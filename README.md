@@ -22,7 +22,7 @@ Step by step :
   Zend Engine v3.4.0, Copyright (c) Zend Technologies
   with Zend OPcache v7.4.3, Copyright (c), by Zend Technologies
 
-- <span class="text-success">sulai@DESKTOP-V893VNL</span><span class="text-primary">:/mnt/d/Coding/Web Developer/Project/Expert System$</span> php -S localhost:8080
+- <span class="text-success">sulai@DESKTOP-V893VNL</span><span class="text-primary">:/mnt/d/Coding/Web Developer/Project/Expert System/public$</span> php -S localhost:8080
   [Sat Oct 24 11:09:08 2020] PHP 7.4.3 Development Server (http://localhost:8080) started
 
   sekian terima kasih pak,,

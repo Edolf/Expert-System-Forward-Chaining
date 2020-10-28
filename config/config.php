@@ -1,12 +1,15 @@
 <?php
 define('DEBUG', true);
+define('ROOT_DIR', dirname(__DIR__));
 
 define('APP_NAME', 'PintuRakik');
+define('APP_LOCALE', 'en');
 
-define('DB_HOST', 'mydbinstance.cxzk9cwtlbjn.us-east-1.rds.amazonaws.com');
+define('DB_CONNECTON', 'mysql');
+define('DB_HOSTNAME', 'mydbinstance.cxzk9cwtlbjn.us-east-1.rds.amazonaws.com');
 define('DB_PORT', '3306');
-define('DB_NAME', 'development');
-define('DB_USER', 'admin');
+define('DB_NAME', 'pinturakik');
+define('DB_USERNAME', 'admin');
 define('DB_PASSWORD', 'uFtCP3pqW43Oivh4uYci');
 
 define('MAIL_MAILER', 'smtp');
