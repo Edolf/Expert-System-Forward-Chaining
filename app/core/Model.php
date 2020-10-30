@@ -4,6 +4,7 @@ namespace app\core;
 
 abstract class Model
 {
+  const PRIMARY_KEY = 'id';
   const CREATED_AT = 'createdAt';
   const UPDATED_AT = 'updatedAt';
 
@@ -12,6 +13,8 @@ abstract class Model
   abstract public static function attributes(): array;
 
   abstract public static function primaryKey(): string;
+
+  abstract public static function timeStamp(): array;
 
   public static function query()
   {

@@ -2,20 +2,14 @@
 
 namespace app\core;
 
-use app\core\Session;
-
 class View
 {
-  public Session $session;
-
-  public function __construct(Session $session)
-  {
-    $this->session = $session;
-  }
-
   public function renderView($view, array $params = [])
   {
-    $session = $this->session;
+    $csrfToken = new Token();
+    $flash = new Flash();
+    $user = Application::$app->user;
+
     foreach ($params as $key => $value) {
       $$key = $value;
     }

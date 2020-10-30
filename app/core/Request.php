@@ -6,14 +6,15 @@ use app\core\Session;
 
 class Request
 {
+
   public function login($user)
   {
     Application::$app->authenticate->login($user);
   }
 
-  public function logout($user)
+  public function logout()
   {
-    Application::$app->authenticate->logout($user);
+    Application::$app->authenticate->logout();
   }
 
   public function getMethod()
@@ -26,6 +27,7 @@ class Request
     $path = $_SERVER['REQUEST_URI'];
     $position = strpos($path, '?');
     if ($position !== false) {
+      $path = substr($path, 0, $position);
     }
     return $path;
   }
@@ -44,6 +46,23 @@ class Request
     }
   }
 
+  public function setHeader($head, $new)
+  {
+    # code...
+  }
+
+  public function getHeader($head = '')
+  {
+    $data = [];
+    foreach (getallheaders() as $key => $value) {
+      $data[$key] = $value;
+    }
+    if ($head) {
+      return $data[$head];
+    }
+    return $data;
+  }
+
   public function setBody($body, $new)
   {
     $_POST[$body] = $new;
@@ -56,16 +75,6 @@ class Request
     } else {
       return $_POST;
     }
-  }
-
-  public function setFlash($key, $class, $message)
-  {
-    Session::setFlash($key, $class, $message);
-  }
-
-  public function getFlash($key)
-  {
-    return Session::getFlash($key);
   }
 
   public function isJson($string)

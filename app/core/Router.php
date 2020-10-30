@@ -20,7 +20,12 @@ class Router
     $url = $this->request->getUrl();
     $callback = self::$routeMap[$method][$url] ?? false;
     if (!$callback) {
-      $this->response->createError(404,'Not Found');
+      $this->response->createError(404, 'Not Found');
+    }
+    if (!($method == 'get')) {
+      if (!Token::checkToken($this->request->getHeader('CSRF-Token') ?? $this->request->getQuery('_csrf'))) {
+        $this->response->createError(400, 'Invalid CSRF Token');
+      }
     }
     if (is_string($callback)) {
       $callback = explode('@', $callback);
@@ -28,10 +33,10 @@ class Router
       $controller = new $controller;
       $controller->action = $callback[1];
       Application::$app->controller = $controller;
-      // $middlewares = $controller->getMiddlewares();
-      // foreach ($middlewares as $middleware) {
-      //   $middleware->execute();
-      // }
+      $middlewares = $controller->getMiddlewares();
+      foreach ($middlewares as $middleware) {
+        $middleware->execute();
+      }
       $callback[0] = $controller;
     }
     return call_user_func($callback, $this->request, $this->response);

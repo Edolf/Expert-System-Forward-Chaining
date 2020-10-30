@@ -19,9 +19,9 @@ class AuthMiddleware
 
     public function execute()
     {
-        if (Authenticate::isGuest()) {
+        if (!Application::$app->user) {
             if (empty($this->actions) || in_array(Application::$app->controller->action, $this->actions)) {
-                throw new ExceptionHandler();
+                throw new HttpException();
             }
         }
     }

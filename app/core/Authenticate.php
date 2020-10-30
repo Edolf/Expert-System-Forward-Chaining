@@ -6,14 +6,8 @@ use app\core\Model;
 
 use app\models\User;
 
-abstract class Authenticate extends Model
+class Authenticate
 {
-  abstract public static function tableName(): string;
-
-  abstract public static function attributes(): array;
-
-  abstract public static function primaryKey(): string;
-
   public function __construct($userId)
   {
     if ($userId) {
@@ -21,23 +15,18 @@ abstract class Authenticate extends Model
     }
   }
 
-  public static function isGuest()
-  {
-    return !Application::$app->user;
-  }
-
   public function login(User $user)
   {
-    $this->user = $user;
+    Application::$app->user = $user;
     $primaryKey = $user->primaryKey();
     $value = $user->{$primaryKey};
-    Application::$app->session->set('user', $value);
+    Application::$app->session::set('user', $value);
     return true;
   }
 
   public function logout()
   {
-    $this->user = null;
-    Application::$app->session->remove('user');
+    Application::$app->user = null;
+    Application::$app->session::remove('user');
   }
 }

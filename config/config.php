@@ -1,6 +1,7 @@
 <?php
 define('DEBUG', true);
 define('ROOT_DIR', dirname(__DIR__));
+define('DS', DIRECTORY_SEPARATOR);
 
 define('APP_NAME', 'PintuRakik');
 define('APP_LOCALE', 'en');
