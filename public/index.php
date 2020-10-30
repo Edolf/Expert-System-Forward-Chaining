@@ -1,11 +1,6 @@
 <?php
 
 use app\core\Application;
-use app\core\Request;
-use app\core\Response;
-
-use app\models\Navbar;
-use app\models\Category;
 
 require_once dirname(__DIR__) . '/config/config.php';
 
@@ -24,15 +19,6 @@ spl_autoload_register('autoload');
 
 $app = new Application();
 
-$app->router::get('/', function (Request $request, Response $response) {
-  $response->render('index', [
-    'navbars' => Navbar::findAll(['categoryId' => 4]),
-    'categories' => Category::all()
-  ]);
-});
-
-$app->router::post('/auth', 'AuthController@login');
-$app->router::post('/auth/join', 'AuthController@register');
-$app->router::get('/members', 'MembersController@index');
+require_once dirname(__DIR__) . '/routers/routers.php';
 
 $app->run();
