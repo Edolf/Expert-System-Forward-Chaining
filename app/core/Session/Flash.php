@@ -1,8 +1,8 @@
 <?php
 
-namespace app\core;
+namespace app\core\Session;
 
-use app\core\Session;
+use app\core\Session\Session;
 
 class Flash extends Session
 {

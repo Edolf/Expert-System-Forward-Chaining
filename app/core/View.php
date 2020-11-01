@@ -2,6 +2,9 @@
 
 namespace app\core;
 
+use app\core\Session\Flash;
+use app\core\Session\Token;
+
 class View
 {
   public function renderView($view, array $params = [])

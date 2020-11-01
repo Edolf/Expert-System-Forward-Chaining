@@ -20,7 +20,7 @@ class Authenticate
     Application::$app->user = $user;
     $primaryKey = $user->primaryKey();
     $value = $user->{$primaryKey};
-    Application::$app->session::set('user', $value);
+    Application::$app->session::setSession('user', $value);
     return true;
   }
 

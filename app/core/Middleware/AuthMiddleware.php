@@ -1,28 +1,27 @@
 <?php
 
-namespace app\core\middlewares;
+namespace app\core\middleware;
 
 use app\core\Application;
-use app\core\Authenticate;
-use app\core\ExceptionHandler;
+use app\core\HttpException;
 
-use app\models\User;
-
-class AuthMiddleware
+class AuthMiddleware extends Middleware
 {
     protected array $actions = [];
 
-    public function __construct($actions = [])
+    public function __construct(array $actions = [])
     {
         $this->actions = $actions;
     }
 
     public function execute()
     {
-        if (!Application::$app->user) {
-            if (empty($this->actions) || in_array(Application::$app->controller->action, $this->actions)) {
-                throw new HttpException();
+        if (Application::$app->user) {
+            if (!in_array(Application::$app->user->role, $this->actions[Application::$app->controller->action])) {
+                throw new HttpException(Application::$app->response::HTTP_UNAUTHORIZED);
             }
+        } else {
+            throw new HttpException(Application::$app->response::HTTP_UNAUTHORIZED);
         }
     }
 }

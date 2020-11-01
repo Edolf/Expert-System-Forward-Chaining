@@ -16,15 +16,11 @@ jadi tidak perlu menggunakan apache atau web server lainnya pak,,
 
 ## Step by step :
 
-- ## <span class="text-success">sulai@DESKTOP-V893VNL</span><span class="text-primary">:/mnt/d/Coding/Web Developer/Project/Expert System$</span> php --version
-  PHP 7.4.3 (cli) (built: Oct 6 2020 15:47:56) ( NTS )
-  Copyright (c) The PHP Group
-  Zend Engine v3.4.0, Copyright (c) Zend Technologies
-  with Zend OPcache v7.4.3, Copyright (c), by Zend Technologies
+- <span class="text-success">sulai@DESKTOP-V893VNL</span>:<span class="text-primary">/mnt/d/Coding/Web Developer/Project/Expert System$</span> php --version
+  PHP 7.4.3 (cli) (built: Oct 6 2020 15:47:56) ( NTS ) ....
 
-- ## <span class="text-success">sulai@DESKTOP-V893VNL</span><span class="text-primary">:/mnt/d/Coding/Web Developer/Project/Expert System/public$</span> php -S localhost:8080
+- <span class="text-success">sulai@DESKTOP-V893VNL</span>:<span class="text-primary">/mnt/d/Coding/Web Developer/Project/Expert System/public$</span> php -S localhost:8080
   [Sat Oct 24 11:09:08 2020] PHP 7.4.3 Development Server (http://localhost:8080) started
 
   sekian terima kasih pak,,
-
   Wasalam,,

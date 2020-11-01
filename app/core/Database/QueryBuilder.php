@@ -90,11 +90,9 @@ class QueryBuilder
 
   public function execute()
   {
-    if ($this->type === self::SELECT) {
-      return $this->connection->executeQuery($this->getSQL(), $this->params, $this->paramTypes);
-    }
-
-    return $this->connection->executeUpdate($this->getSQL(), $this->params, $this->paramTypes);
+    $statement = Application::$app->connection->prepare($this->getSQL());
+    $statement->execute();
+    return $statement->fetchAll();
   }
 
   /**
@@ -501,8 +499,8 @@ class QueryBuilder
    */
   public function where($predicates)
   {
-    if (!(func_num_args() === 1 && $predicates instanceof Expression)) {
-      $predicates = new Expression(Expression::TYPE_AND, func_get_args(), $this->connection);
+    if (!(func_num_args() === 1 && $predicates instanceof Composite)) {
+      $predicates = new Composite(Composite::TYPE_AND, func_get_args());
     }
 
     return $this->add('where', $predicates);
@@ -522,11 +520,11 @@ class QueryBuilder
     $args  = func_get_args();
     $where = $this->getQueryPart('where');
 
-    if ($where instanceof Expression && $where->getType() === Expression::TYPE_AND) {
+    if ($where instanceof Composite && $where->getType() === Composite::TYPE_AND) {
       $where->addMultiple($args);
     } else {
       array_unshift($args, $where);
-      $where = new Expression(Expression::TYPE_AND, $args, $this->connection);
+      $where = new Composite(Composite::TYPE_AND, $args);
     }
 
     return $this->add('where', $where, true);
@@ -546,11 +544,11 @@ class QueryBuilder
     $args  = func_get_args();
     $where = $this->getQueryPart('where');
 
-    if ($where instanceof Expression && $where->getType() === Expression::TYPE_OR) {
+    if ($where instanceof Composite && $where->getType() === Composite::TYPE_OR) {
       $where->addMultiple($args);
     } else {
       array_unshift($args, $where);
-      $where = new Expression(Expression::TYPE_OR, $args, $this->connection);
+      $where = new Composite(Composite::TYPE_OR, $args);
     }
 
     return $this->add('where', $where, true);
@@ -634,8 +632,8 @@ class QueryBuilder
 
   public function having($having)
   {
-    if (!(func_num_args() === 1 && $having instanceof Expression)) {
-      $having = new Expression(Expression::TYPE_AND, func_get_args(), $this->connection);
+    if (!(func_num_args() === 1 && $having instanceof Composite)) {
+      $having = new Composite(Composite::TYPE_AND, func_get_args());
     }
 
     return $this->add('having', $having);
@@ -646,11 +644,11 @@ class QueryBuilder
     $args   = func_get_args();
     $having = $this->getQueryPart('having');
 
-    if ($having instanceof Expression && $having->getType() === Expression::TYPE_AND) {
+    if ($having instanceof Composite && $having->getType() === Composite::TYPE_AND) {
       $having->addMultiple($args);
     } else {
       array_unshift($args, $having);
-      $having = new Expression(Expression::TYPE_AND, $args, $this->connection);
+      $having = new Composite(Composite::TYPE_AND, $args);
     }
 
     return $this->add('having', $having);
@@ -661,11 +659,11 @@ class QueryBuilder
     $args   = func_get_args();
     $having = $this->getQueryPart('having');
 
-    if ($having instanceof Expression && $having->getType() === Expression::TYPE_OR) {
+    if ($having instanceof Composite && $having->getType() === Composite::TYPE_OR) {
       $having->addMultiple($args);
     } else {
       array_unshift($args, $having);
-      $having = new Expression(Expression::TYPE_OR, $args, $this->connection);
+      $having = new Composite(Composite::TYPE_OR, $args, $this->connection);
     }
 
     return $this->add('having', $having);
@@ -838,36 +836,29 @@ class QueryBuilder
     return $sql;
   }
 
-  // public function __clone()
-  // {
-  //   foreach ($this->sqlParts as $part => $elements) {
-  //     if (is_array($this->sqlParts[$part])) {
-  //       foreach ($this->sqlParts[$part] as $idx => $element) {
-  //         if (!is_object($element)) {
-  //           continue;
-  //         }
-
-  //         $this->sqlParts[$part][$idx] = clone $element;
-  //       }
-  //     } elseif (is_object($elements)) {
-  //       $this->sqlParts[$part] = clone $elements;
-  //     }
-  //   }
-
-  //   foreach ($this->params as $name => $param) {
-  //     if (!is_object($param)) {
-  //       continue;
-  //     }
-
-  //     $this->params[$name] = clone $param;
-  //   }
-  // }
-
-  public function getQueryResult()
+  public function __clone()
   {
-    $statement = Application::$app->connection->prepare($this->getSQL());
-    $statement->execute();
-    return $statement->fetchAll();
+    foreach ($this->sqlParts as $part => $elements) {
+      if (is_array($this->sqlParts[$part])) {
+        foreach ($this->sqlParts[$part] as $idx => $element) {
+          if (!is_object($element)) {
+            continue;
+          }
+
+          $this->sqlParts[$part][$idx] = clone $element;
+        }
+      } elseif (is_object($elements)) {
+        $this->sqlParts[$part] = clone $elements;
+      }
+    }
+
+    foreach ($this->params as $name => $param) {
+      if (!is_object($param)) {
+        continue;
+      }
+
+      $this->params[$name] = clone $param;
+    }
   }
 
   public static function unknownAlias($alias, $registeredAliases)

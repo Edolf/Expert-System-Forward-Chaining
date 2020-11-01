@@ -2,7 +2,7 @@
 
 namespace app\core;
 
-use app\core\middlewares\AuthMiddleware;
+use app\core\middleware\Middleware;
 
 class Controller
 {
@@ -20,7 +20,7 @@ class Controller
     return Application::$app->validator->validateResults();
   }
 
-  public function registerMiddleware(AuthMiddleware $middleware)
+  public function setMiddleware(Middleware $middleware)
   {
     $this->middlewares[] = $middleware;
   }

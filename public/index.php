@@ -11,7 +11,7 @@ function autoload($className)
   $subPath = strtolower(implode('/', $classAry));
   $path = dirname(__DIR__) . "/$subPath/$class.php";
   if (file_exists($path)) {
-    require_once($path);
+    require_once $path;
   }
 }
 

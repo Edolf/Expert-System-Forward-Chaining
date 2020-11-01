@@ -2,6 +2,8 @@
 
 namespace app\core;
 
+use app\core\Session\Token;
+
 class Router
 {
   private Request $request;
@@ -20,11 +22,11 @@ class Router
     $url = $this->request->getUrl();
     $callback = self::$routeMap[$method][$url] ?? false;
     if (!$callback) {
-      $this->response->createError(404, 'Not Found');
+      throw new HttpException($this->response::HTTP_NOT_FOUND);
     }
     if (!($method == 'get')) {
       if (!Token::checkToken($this->request->getHeader('CSRF-Token') ?? $this->request->getQuery('_csrf'))) {
-        $this->response->createError(400, 'Invalid CSRF Token');
+        throw new HttpException($this->response::HTTP_UNAUTHORIZED, 'Invalid CSRF Token');
       }
     }
     if (is_string($callback)) {
@@ -33,8 +35,7 @@ class Router
       $controller = new $controller;
       $controller->action = $callback[1];
       Application::$app->controller = $controller;
-      $middlewares = $controller->getMiddlewares();
-      foreach ($middlewares as $middleware) {
+      foreach ($controller->getMiddlewares() as $middleware) {
         $middleware->execute();
       }
       $callback[0] = $controller;

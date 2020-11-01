@@ -1,6 +1,6 @@
 <?php
 
-namespace app\core;
+namespace app\core\Session;
 
 class Session
 {
@@ -10,12 +10,12 @@ class Session
     session_start();
   }
 
-  public static function set($key, $value)
+  public static function setSession($key, $value)
   {
     $_SESSION[$key] = $value;
   }
 
-  public static function get($key)
+  public static function getSession($key)
   {
     return $_SESSION[$key] ?? false;
   }

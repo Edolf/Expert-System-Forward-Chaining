@@ -1,8 +1,8 @@
 <?php
 
-namespace app\core;
+namespace app\core\Session;
 
-use app\core\Session;
+use app\core\Session\Session;
 
 class Token extends Session
 {
@@ -10,8 +10,8 @@ class Token extends Session
 
   public function __construct()
   {
-    self::set(self::TOKEN, md5(uniqid()));
-    // self::set(self::TOKEN, openssl_random_pseudo_bytes(32));
+    self::setSession(self::TOKEN, md5(uniqid()));
+    // self::setSession(self::TOKEN, openssl_random_pseudo_bytes(32));
   }
 
   public function getCSRFToken()
@@ -21,8 +21,8 @@ class Token extends Session
 
   public static function checkToken($token)
   {
-    if (self::get(self::TOKEN) === $token) {
-      self::remove(self::TOKEN);
+    if (self::getSession(self::TOKEN) === $token) {
+      // self::remove(self::TOKEN);
       return true;
     }
     return false;

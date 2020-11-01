@@ -87,6 +87,4 @@ abstract class Model
   {
     return Application::$app->connection->prepare($sql);
   }
-
-  // $this->password = password_hash($this->password, PASSWORD_DEFAULT);
 }

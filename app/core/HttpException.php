@@ -6,16 +6,15 @@ class HttpException extends \RuntimeException
 {
   private $statusCode;
   private $headers;
-  // protected $response;
+  protected $response;
 
-  public function __construct(int $statusCode, string $message = null, \Throwable $previous = null, array $headers = [], ?int $code = 0)
+  public function __construct(int $statusCode, string $message = null, \Throwable $previous = null, array $headers = [])
   {
     $this->statusCode = $statusCode;
     $this->headers = $headers;
+    $this->response = Application::$app->response;
 
-    parent::__construct($message, $code, $previous);
-
-    // $this->response = $response;
+    parent::__construct($message == null ? Application::$app->response::$statusTexts[$statusCode] : $message, $this->statusCode, $previous);
   }
 
   public function getStatusCode()
@@ -33,8 +32,8 @@ class HttpException extends \RuntimeException
     $this->headers = $headers;
   }
 
-  // public function getResponse()
-  // {
-  //     return $this->response;
-  // }
+  public function getResponse()
+  {
+    return $this->response;
+  }
 }

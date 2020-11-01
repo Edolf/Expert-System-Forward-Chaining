@@ -152,23 +152,16 @@ class Response
 
   public function sendHeaders()
   {
-    if (headers_sent()) {
-      return $this;
+    foreach ($this->headers as $key => $arrValue) {
+      foreach ($arrValue as $value) {
+        header("$key: $value", true, $this->statusCode);
+      }
     }
-
-    foreach ($this->headers as $key => $value) {
-      header($key . ': ' . $value, true, $this->statusCode);
-    }
-
-    header(sprintf('HTTP/%s %s', $this->statusCode, $this->statusText), true, $this->statusCode);
-
-    return $this;
   }
 
   public function sendContent()
   {
     echo $this->content;
-    return $this;
   }
 
   public function setHeader(string $key, $values, bool $replace = true)
@@ -190,21 +183,13 @@ class Response
         $this->headers[$key][] = $values;
       }
     }
+    return $this;
   }
 
-  public function getHeader(string $key, string $default = null)
+  public function getHeader(string $key = null)
   {
-    $headers = (null !== $key ? $this->headers[strtr($key, self::UPPER, self::LOWER)] ?? [] : $this->headers);
-
-    if (!$headers) {
-      return $default;
-    }
-
-    if (null === $headers[0]) {
-      return null;
-    }
-
-    return (string) $headers[0];
+    return (null !== $key ? $this->headers[strtr($key, self::UPPER, self::LOWER)] ?? [] : $this->headers);
+    // return (null !== $key ? $this->headers[$key] ?? [] : $this->headers);
   }
 
   public function setContent(?string $content)
@@ -222,8 +207,9 @@ class Response
   {
     $this->statusCode = $code;
     if ($this->isInvalid()) {
-      throw new \InvalidArgumentException(sprintf('The HTTP status code "%s" is not valid.', $code));
+      throw new \InvalidArgumentException("The HTTP status code '$code' is not valid.");
     }
+
     if (null === $text) {
       $this->statusText = isset(self::$statusTexts[$code]) ? self::$statusTexts[$code] : 'unknown status';
 
@@ -298,26 +284,19 @@ class Response
     return \in_array($this->statusCode, [204, 304]);
   }
 
+  public function send()
+  {
+    $this->sendHeaders();
+    $this->sendContent();
+  }
+
   public function render($view, array $params = [])
   {
     return Application::$app->view->renderView($view, $params);
   }
 
-  public function redirect(String $to)
+  public function redirect($url)
   {
-    header("Location: $to");
-  }
-
-  public function json($res)
-  {
-    echo json_encode($res);
-    return $this;
-  }
-
-  public function end()
-  {
-    $this->sendHeaders();
-    $this->sendContent();
-    return exit;
+    $this->setStatusCode($this::HTTP_MOVED_PERMANENTLY)->setHeader('Location', $url)->send();
   }
 }

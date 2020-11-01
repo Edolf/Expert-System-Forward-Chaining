@@ -15,13 +15,13 @@ class Connection
   protected $_config;
   protected $_eventManager;
   protected $_expr;
-  private $params = [];
   private $platform = DB_CONNECTON;
 
   public function __construct()
   {
     $this->pdo = new PDO(self::$dsn, self::$username, self::$password);
     $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $this->_expr = new Expression($this);
   }
 
   public function getName()
@@ -32,14 +32,6 @@ class Connection
   public function createQueryBuilder()
   {
     return new QueryBuilder($this);
-  }
-
-  public function executeQuery($query, array $params = [], $types = [])
-  {
-  }
-
-  public function executeUpdate($query, array $params = [], array $types = [])
-  {
   }
 
   public function getDatabasePlatform()
