@@ -1,10 +1,15 @@
 <?php
 define('DEBUG', true);
 define('ROOT_DIR', dirname(__DIR__));
+define('VIEW_DIR', ROOT_DIR . "/resources/views");
 define('DS', DIRECTORY_SEPARATOR);
 
 define('APP_NAME', 'PintuRakik');
 define('APP_LOCALE', 'en');
+define('APP_URL', DEBUG == true ? 'localhost' : 'pinturakik.ml');
+
+define('CIPHER_METHOD', 'AES-256-CBC');
+define('SESSION_KEY', 'sumbarang');
 
 define('DB_CONNECTON', 'mysql');
 define('DB_HOSTNAME', 'mydbinstance.cxzk9cwtlbjn.us-east-1.rds.amazonaws.com');

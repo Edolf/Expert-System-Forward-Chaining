@@ -13,6 +13,9 @@ Saya ingin Sedikit menjelaskan tentang tugas akhir ini pak,,
 Tugas akhir ini saya kerjakan pada versi PHP 7.4 pak,,
 dan bisa di jalankan tanpa menggunakan Web Server Pak,,
 jadi tidak perlu menggunakan apache atau web server lainnya pak,,
+cuman syaratnya php sudah terinstal di pc pak,, dan sudah terdaftar di ENV untuk php di windows nya pak,,
+
+dan project ini juga bisa berjalan di web server manapun pak,,
 
 ## Step by step :
 

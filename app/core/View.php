@@ -16,6 +16,8 @@ class View
     foreach ($params as $key => $value) {
       $$key = $value;
     }
-    include ROOT_DIR . "/resources/views/$view.php";
+    ob_start();
+    require VIEW_DIR . "/$view.php";
+    return ob_get_clean();
   }
 }

@@ -59,8 +59,8 @@ class Application
   public function run()
   {
     try {
-      echo self::$router->resolve();
-    } catch (\Exception $err) {
+      $this->response->setContent(self::$router->resolve())->send();
+    } catch (\Throwable $err) {
       $this->response->setStatusCode($err->getCode())->setContent($this->view->renderView('error', [
         'error' => [
           'status' => $err->getCode(),

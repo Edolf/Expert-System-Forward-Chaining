@@ -189,7 +189,6 @@ class Response
   public function getHeader(string $key = null)
   {
     return (null !== $key ? $this->headers[strtr($key, self::UPPER, self::LOWER)] ?? [] : $this->headers);
-    // return (null !== $key ? $this->headers[$key] ?? [] : $this->headers);
   }
 
   public function setContent(?string $content)
@@ -286,6 +285,7 @@ class Response
 
   public function send()
   {
+    http_response_code($this->statusCode);
     $this->sendHeaders();
     $this->sendContent();
   }

@@ -9,9 +9,15 @@ class Controller
   protected array $middlewares = [];
   public string $action = '';
 
-  public static function validate($body)
+  public static function validateBody($body)
   {
-    Application::$app->validator->validation($body);
+    Application::$app->validator->bodyValidation($body);
+    return Application::$app->validator;
+  }
+
+  public static function validateQuery($query)
+  {
+    Application::$app->validator->queryValidation($query);
     return Application::$app->validator;
   }
 

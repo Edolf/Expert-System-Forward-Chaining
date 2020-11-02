@@ -6,16 +6,19 @@ use app\core\Controller;
 use app\core\Request;
 use app\core\Response;
 
+use app\models\User;
+
 use app\core\middleware\AuthMiddleware;
 
-class MembersController extends Controller
+class MemberController extends Controller
 {
   public function __construct()
   {
     $this->setMiddleware(new AuthMiddleware(
       ['index' => ['member', 'docter', 'admin']],
       ['listUser' => ['admin']],
-      ['consultation' => ['member', 'docter', 'admin']]
+      ['consultation' => ['member', 'docter', 'admin']],
+      ['account' => ['member', 'docter', 'admin']]
     ));
   }
 
@@ -26,7 +29,7 @@ class MembersController extends Controller
 
   public function listUser(Request $request, Response $response)
   {
-    # code...
+    return $response->render('members/listuser', ['title' => 'List User', 'members' => User::all()]);
   }
 
   public function consultation(Request $request, Response $response)
@@ -61,6 +64,6 @@ class MembersController extends Controller
 
   public function account(Request $request, Response $response)
   {
-    # code...
+    return $response->render('members/users/myaccount', ['title' => 'My Account']);
   }
 }
