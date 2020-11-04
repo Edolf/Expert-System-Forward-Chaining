@@ -17,13 +17,24 @@ class Request
     Application::$app->authenticate->logout();
   }
 
+  public function setFlash($key, $class, $message)
+  {
+    Application::$app->flash->setFlash($key, $class, $message);
+  }
+
   public function getMethod()
   {
     return strtolower($_SERVER['REQUEST_METHOD']);
   }
 
+  public function setMethod($method)
+  {
+    $_SERVER['REQUEST_METHOD'] = strtoupper($method);
+  }
+
   public function getUrl()
   {
+    // var_dump(parse_url($_SERVER['REQUEST_URI']));
     $path = $_SERVER['REQUEST_URI'];
     $position = strpos($path, '?');
     if ($position !== false) {
@@ -40,7 +51,7 @@ class Request
   public function getQuery($query = '')
   {
     if ($query) {
-      return $_GET[$query];
+      return $_GET[$query] ?? null;
     } else {
       return $_GET;
     }
@@ -58,7 +69,7 @@ class Request
       $data[$key] = $value;
     }
     if ($head) {
-      return $data[$head];
+      return $data[$head] ?? null;
     }
     return $data;
   }
@@ -71,7 +82,7 @@ class Request
   public function getBody($body = '')
   {
     if ($body) {
-      return $_POST[$body];
+      return $_POST[$body] ?? null;
     } else {
       return $_POST;
     }

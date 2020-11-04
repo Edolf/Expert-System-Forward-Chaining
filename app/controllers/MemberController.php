@@ -7,6 +7,7 @@ use app\core\Request;
 use app\core\Response;
 
 use app\models\User;
+use app\models\Menu;
 
 use app\core\middleware\AuthMiddleware;
 
@@ -29,15 +30,10 @@ class MemberController extends Controller
 
   public function listUser(Request $request, Response $response)
   {
-    return $response->render('members/listuser', ['title' => 'List User', 'members' => User::all()]);
+    return $response->render('members/listuser', ['title' => 'List Users', 'members' => User::findAll()]);
   }
 
   public function consultation(Request $request, Response $response)
-  {
-    # code...
-  }
-
-  public function sidemenu(Request $request, Response $response)
   {
     # code...
   }

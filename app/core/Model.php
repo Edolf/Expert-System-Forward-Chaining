@@ -12,7 +12,7 @@ abstract class Model
 
   abstract public static function attributes(): array;
 
-  abstract public static function primaryKey(): string;
+  abstract public static function primaryKey(): array;
 
   abstract public static function timeStamp(): array;
 
@@ -21,56 +21,38 @@ abstract class Model
     return Application::$app->connection->createQueryBuilder();
   }
 
-  public static function all($callback = '')
+  public static function findAll($where = [], $callback = '')
   {
     try {
+      if (!empty($where)) {
+        $key = array_keys($where)[0];
+        $value = $where[$key];
+        $statement = self::prepare(Application::$app->connection->createQueryBuilder()
+          ->select('*')->from(static::tableName())->where(static::tableName() . "." . $key . " = '$value'"));
+      } else {
+        $statement = self::prepare(Application::$app->connection->createQueryBuilder()
+          ->select('*')->from(static::tableName()));
+      }
+      $statement->execute();
+      if ($callback) {
+        return call_user_func($callback, $statement->fetchAll(), $error = '');
+      }
+      return $statement->fetchAll();
+    } catch (\Throwable $th) {
+      if ($callback) {
+        return call_user_func($callback, $statement = '', $error = $th);
+      }
+      return $th;
+    }
+  }
+
+  public static function findOne($where, $callback = '')
+  {
+    try {
+      $key = array_keys($where)[0];
+      $value = $where[$key];
       $statement = self::prepare(Application::$app->connection->createQueryBuilder()
-        ->select('*')
-        ->from(static::tableName()));
-      $statement->execute();
-      if ($callback) {
-        return call_user_func($callback, $statement->fetchAll(), $error = '');
-      }
-      return $statement->fetchAll();
-    } catch (\Throwable $th) {
-      if ($callback) {
-        return call_user_func($callback, $statement = '', $error = $th);
-      }
-      return $th;
-    }
-  }
-
-  public static function findAll($options, $callback = '')
-  {
-    try {
-      $key = array_keys($options)[0];
-      $value = $options[$key];
-      $statement = self::prepare(
-        Application::$app->connection->createQueryBuilder()
-          ->select('*')->from(static::tableName())->where(static::tableName() . "." . $key . " = '$value'")
-      );
-      $statement->execute();
-      if ($callback) {
-        return call_user_func($callback, $statement->fetchAll(), $error = '');
-      }
-      return $statement->fetchAll();
-    } catch (\Throwable $th) {
-      if ($callback) {
-        return call_user_func($callback, $statement = '', $error = $th);
-      }
-      return $th;
-    }
-  }
-
-  public static function findOne($options, $callback = '')
-  {
-    try {
-      $key = array_keys($options)[0];
-      $value = $options[$key];
-      $statement = self::prepare(
-        Application::$app->connection->createQueryBuilder()
-          ->select('*')->from(static::tableName())->where(static::tableName() . "." . $key . " = '$value'")
-      );
+        ->select('*')->from(static::tableName())->where(static::tableName() . "." . $key . " = '$value'"));
       $statement->execute();
       if ($callback) {
         return call_user_func($callback, $statement->fetchObject(static::class), $error = '');
@@ -84,28 +66,19 @@ abstract class Model
     }
   }
 
-  // // Update the model in the database.
-  // public static function update(array $attributes = [], array $options = [])
-  // {
-  // }
-
   public static function create(array $options, $callback = '')
   {
     try {
-      $uuid = self::UUID(openssl_random_pseudo_bytes(16));
-      $values[static::primaryKey()] = "'$uuid'";
-      foreach (static::attributes() as $value) {
-        $values[$value] = "'$options[$value]'";
+      $values = self::makeId($options[array_keys(static::primaryKey())[0]] ?? null) ?? [];
+      foreach (static::attributes() as $key => $value) {
+        $values[$key] = "'$options[$key]'";
       }
       foreach (static::timeStamp() as $time) {
-        $now = date("Y-m-d H:i:s");
-        $values[$time] = "'$now'";
+        $values[$time] = "'" . date("Y-m-d H:i:s") . "'";
       }
 
-      $statement = self::prepare(
-        Application::$app->connection->createQueryBuilder()
-          ->insert(static::tableName())->values($values)
-      );
+      $statement = self::prepare(Application::$app->connection->createQueryBuilder()
+        ->insert(static::tableName())->values($values));
       $statement->execute();
       if ($callback) {
         return call_user_func($callback, $statement->rowCount(), $error = '');
@@ -115,23 +88,74 @@ abstract class Model
       if ($callback) {
         return call_user_func($callback, $statement->rowCount(), $error = $th);
       }
-      return $statement->rowCount();
+      return $th;
     }
   }
 
-  // // Destroy the models for the given IDs.
-  // public static function destroy($ids)
-  // {
-  // }
+  public static function update(array $attributes = [], array $where = [], $callback = '')
+  {
+    try {
+      $values = [];
+      foreach (static::attributes() as $key => $value) {
+        $values[] = static::tableName() . ".$key = '$attributes[$key]'";
+      }
+      $values[] = static::tableName() . "." . static::timeStamp()[1] . " = '" . date("Y-m-d H:i:s") . "'";
 
-  // // Delete the model from the database.
-  // public static function delete()
-  // {
-  // }
+      $key = array_keys($where)[0];
+      $value = $where[$key];
+
+      $statement = self::prepare(Application::$app->connection->createQueryBuilder()
+        ->update(static::tableName())->add('set', $values, true)->where(static::tableName() . "." . $key . " = '$value'"));
+      $statement->execute();
+      if ($callback) {
+        return call_user_func($callback, $statement->rowCount(), $error = '');
+      }
+      return $statement->rowCount();
+    } catch (\Throwable $th) {
+      if ($callback) {
+        return call_user_func($callback, $statement->rowCount(), $error = $th);
+      }
+      return $th;
+    }
+  }
+
+  public static function destroy(array $where = [], $callback = '')
+  {
+    try {
+      $key = array_keys($where)[0];
+      $value = $where[$key];
+      $statement = self::prepare(Application::$app->connection->createQueryBuilder()
+        ->delete(static::tableName())->where(static::tableName() . '.' . $key . " = '$value'"));
+      $statement->execute();
+      if ($callback) {
+        return call_user_func($callback, $statement->rowCount(), $error = '');
+      }
+      return $statement->rowCount();
+    } catch (\Throwable $th) {
+      if ($callback) {
+        return call_user_func($callback, $statement->rowCount(), $error = $th);
+      }
+      return $th;
+    }
+  }
 
   private static function prepare($sql): \PDOStatement
   {
     return Application::$app->connection->prepare($sql);
+  }
+
+  private static function makeId($id)
+  {
+    switch (static::primaryKey()[array_keys(static::primaryKey())[0]]['type']) {
+      case 'UUID':
+        return [array_keys(static::primaryKey())[0] => "'" . self::UUID(openssl_random_pseudo_bytes(16)) . "'"];
+        break;
+      case 'INTEGER':
+        if (!(static::primaryKey()[array_keys(static::primaryKey())[0]]['autoIncrement'])) {
+          return [array_keys(static::primaryKey())[0] => "'$id'"];
+        }
+        break;
+    }
   }
 
   public static function UUID($data)

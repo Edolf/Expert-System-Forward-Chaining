@@ -18,6 +18,14 @@ class Router
 
   public function resolve()
   {
+    switch (strtoupper($this->request->getQuery('_method'))) {
+      case 'PUT':
+        $this->request->setMethod(strtoupper($this->request->getQuery('_method')));
+        break;
+      case 'DELETE':
+        $this->request->setMethod(strtoupper($this->request->getQuery('_method')));
+        break;
+    }
     $method = $this->request->getMethod();
     $url = $this->request->getUrl();
     $callback = self::$routeMap[$method][$url] ?? false;
@@ -25,7 +33,9 @@ class Router
       throw new HttpException($this->response::HTTP_NOT_FOUND);
     }
     if (!($method == 'get')) {
-      if (!Token::checkToken($this->request->getHeader('CSRF-Token') ?? $this->request->getQuery('_csrf'))) {
+      $headerToken = $this->request->getHeader('CSRF-Token') ?? null;
+      $queryToken = $this->request->getQuery('_csrf') ?? null;
+      if (!Token::checkToken($headerToken ?? $queryToken)) {
         throw new HttpException($this->response::HTTP_UNAUTHORIZED, 'Invalid CSRF Token');
       }
     }

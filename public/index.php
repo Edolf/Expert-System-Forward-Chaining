@@ -1,5 +1,8 @@
 <?php
 
+// phpinfo();
+// exit;
+
 use app\core\Application;
 
 require_once dirname(__DIR__) . '/config/config.php';

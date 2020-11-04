@@ -4,6 +4,7 @@ namespace app\core;
 
 use app\core\Database\Connection;
 use app\core\Session\Session;
+use app\core\Session\Flash;
 
 use app\models\User;
 
@@ -16,8 +17,9 @@ class Application
   public ?Controller $controller = null;
   public Connection $connection;
   public Session $session;
-  public Validator $validator;
   public Authenticate $authenticate;
+  public Validator $validator;
+  public Flash $flash;
   public View $view;
 
   public ?User $user;
@@ -33,6 +35,7 @@ class Application
     $this->session = new Session();
     $this->authenticate = new Authenticate($this->session->getSession('user'));
     $this->validator = new Validator();
+    $this->flash = new Flash();
     $this->view = new View();
   }
 
@@ -61,11 +64,12 @@ class Application
     try {
       $this->response->setContent(self::$router->resolve())->send();
     } catch (\Throwable $err) {
+      $stack = DEBUG == true ? $err->getTraceAsString() : '';
       $this->response->setStatusCode($err->getCode())->setContent($this->view->renderView('error', [
         'error' => [
           'status' => $err->getCode(),
           'message' => $err->getMessage(),
-          'stack' => $err->getTraceAsString()
+          'stack' => $stack
         ]
       ]))->send();
     }

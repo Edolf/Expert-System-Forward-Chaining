@@ -2,7 +2,6 @@
 
 namespace app\models;
 
-use app\core\Authenticate;
 use app\core\Model;
 
 class Disease extends Model
@@ -14,12 +13,19 @@ class Disease extends Model
 
   public static function attributes(): array
   {
-    return ['name', 'desc', 'solution', 'expertSystemId'];
+    return [
+      'name' => ['type' => 'STRING'],
+      'desc' => ['type' => 'TEXT'],
+      'solution' => ['type' => 'TEXT'],
+      'expertSystemId' => ['type' => 'INTEGER']
+    ];
   }
 
-  public static function primaryKey(): string
+  public static function primaryKey(): array
   {
-    return self::PRIMARY_KEY;
+    return [
+      self::PRIMARY_KEY => ['type' => 'INTEGER', 'autoIncrement' => true]
+    ];
   }
 
   public static function timeStamp(): array

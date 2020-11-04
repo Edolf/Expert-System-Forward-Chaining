@@ -2,7 +2,6 @@
 
 namespace app\models;
 
-use app\core\Authenticate;
 use app\core\Model;
 
 class KnowledgeBase extends Model
@@ -14,12 +13,18 @@ class KnowledgeBase extends Model
 
   public static function attributes(): array
   {
-    return ['solvingId', 'symptoms', 'expertSystemId'];
+    return [
+      'solvingId' => ['type' => 'JSON'],
+      'symptoms' => ['type' => 'STRING'],
+      'expertSystemId' => ['type' => 'INTEGER']
+    ];
   }
 
-  public static function primaryKey(): string
+  public static function primaryKey(): array
   {
-    return self::PRIMARY_KEY;
+    return [
+      self::PRIMARY_KEY => ['type' => 'INTEGER', 'autoIncrement' => true]
+    ];
   }
 
   public static function timeStamp(): array

@@ -13,12 +13,20 @@ class CollapseMenu extends Model
 
   public static function attributes(): array
   {
-    return ['subMenuId', 'title', 'url', 'isActive', 'other'];
+    return [
+      'subMenuId' => ['type' => 'INTEGER'],
+      'title' => ['type' => 'STRING'],
+      'url' => ['type' => 'STRING'],
+      'isActive' => ['type' => 'BOOLEAN'],
+      'other' => ['type' => 'JSON']
+    ];
   }
 
-  public static function primaryKey(): string
+  public static function primaryKey(): array
   {
-    return self::PRIMARY_KEY;
+    return [
+      self::PRIMARY_KEY => ['type' => 'INTEGER', 'autoIncrement' => true]
+    ];
   }
 
   public static function timeStamp(): array

@@ -60,14 +60,6 @@ class QueryBuilder
     $this->connection = $connection;
   }
 
-  /**
-   * <code>
-   *     $qb = $conn->createQueryBuilder()
-   *         ->select('u')
-   *         ->from('users', 'u')
-   *         ->where($qb->expr()->eq('u.id', 1));
-   * </code>
-   */
   public function expr()
   {
     return $this->connection->getExpressionBuilder();
@@ -95,14 +87,6 @@ class QueryBuilder
     return $statement->fetchAll();
   }
 
-  /**
-   * <code>
-   *     $qb = $em->createQueryBuilder()
-   *         ->select('u')
-   *         ->from('User', 'u')
-   *     echo $qb->getSQL(); // SELECT u FROM User u
-   * </code>
-   */
   public function getSQL()
   {
     if ($this->sql !== null && $this->state === self::STATE_CLEAN) {
@@ -133,15 +117,6 @@ class QueryBuilder
     return $sql;
   }
 
-  /**
-   * <code>
-   *     $qb = $conn->createQueryBuilder()
-   *         ->select('u')
-   *         ->from('users', 'u')
-   *         ->where('u.id = :user_id')
-   *         ->setParameter(':user_id', 1);
-   * </code>
-   */
   public function setParameter($key, $value, $type = null)
   {
     if ($type !== null) {
@@ -153,18 +128,6 @@ class QueryBuilder
     return $this;
   }
 
-  /**
-   * <code>
-   *     $qb = $conn->createQueryBuilder()
-   *         ->select('u')
-   *         ->from('users', 'u')
-   *         ->where('u.id = :user_id1 OR u.id = :user_id2')
-   *         ->setParameters(array(
-   *             ':user_id1' => 1,
-   *             ':user_id2' => 2
-   *         ));
-   * </code>
-   */
   public function setParameters(array $params, array $types = [])
   {
     $this->paramTypes = $types;
@@ -252,14 +215,6 @@ class QueryBuilder
     return $this;
   }
 
-  /**
-   * <code>
-   *     $qb = $conn->createQueryBuilder()
-   *         ->select('u.id', 'p.id')
-   *         ->from('users', 'u')
-   *         ->leftJoin('u', 'phonenumbers', 'p', 'u.id = p.user_id');
-   * </code>
-   */
   public function select($select = null)
   {
     $this->type = self::SELECT;
@@ -273,14 +228,6 @@ class QueryBuilder
     return $this->add('select', $selects);
   }
 
-  /**
-   * <code>
-   *     $qb = $conn->createQueryBuilder()
-   *         ->select('u.id')
-   *         ->distinct()
-   *         ->from('users', 'u')
-   * </code>
-   */
   public function distinct(): self
   {
     $this->sqlParts['distinct'] = true;
@@ -288,15 +235,6 @@ class QueryBuilder
     return $this;
   }
 
-  /**
-   * <code>
-   *     $qb = $conn->createQueryBuilder()
-   *         ->select('u.id')
-   *         ->addSelect('p.id')
-   *         ->from('users', 'u')
-   *         ->leftJoin('u', 'phonenumbers', 'u.id = p.user_id');
-   * </code>
-   */
   public function addSelect($select = null)
   {
     $this->type = self::SELECT;
@@ -310,14 +248,6 @@ class QueryBuilder
     return $this->add('select', $selects, true);
   }
 
-  /**
-   * <code>
-   *     $qb = $conn->createQueryBuilder()
-   *         ->delete('users', 'u')
-   *         ->where('u.id = :user_id')
-   *         ->setParameter(':user_id', 1);
-   * </code>
-   */
   public function delete($delete = null, $alias = null)
   {
     $this->type = self::DELETE;
@@ -332,14 +262,6 @@ class QueryBuilder
     ]);
   }
 
-  /**
-   * <code>
-   *     $qb = $conn->createQueryBuilder()
-   *         ->update('counters', 'c')
-   *         ->set('c.value', 'c.value + 1')
-   *         ->where('c.id = ?');
-   * </code>
-   */
   public function update($update = null, $alias = null)
   {
     $this->type = self::UPDATE;
@@ -354,18 +276,6 @@ class QueryBuilder
     ]);
   }
 
-  /**
-   * <code>
-   *     $qb = $conn->createQueryBuilder()
-   *         ->insert('users')
-   *         ->values(
-   *             array(
-   *                 'name' => '?',
-   *                 'password' => '?'
-   *             )
-   *         );
-   * </code>
-   */
   public function insert($insert = null)
   {
     $this->type = self::INSERT;
@@ -377,13 +287,6 @@ class QueryBuilder
     return $this->add('from', ['table' => $insert]);
   }
 
-  /**
-   * <code>
-   *     $qb = $conn->createQueryBuilder()
-   *         ->select('u.id')
-   *         ->from('users', 'u')
-   * </code>
-   */
   public function from($from, $alias = null)
   {
     return $this->add('from', [
@@ -392,27 +295,11 @@ class QueryBuilder
     ], true);
   }
 
-  /**
-   * <code>
-   *     $qb = $conn->createQueryBuilder()
-   *         ->select('u.name')
-   *         ->from('users', 'u')
-   *         ->join('u', 'phonenumbers', 'p', 'p.is_primary = 1');
-   * </code>
-   */
   public function join($fromAlias, $join, $alias, $condition = null)
   {
     return $this->innerJoin($fromAlias, $join, $alias, $condition);
   }
 
-  /**
-   * <code>
-   *     $qb = $conn->createQueryBuilder()
-   *         ->select('u.name')
-   *         ->from('users', 'u')
-   *         ->innerJoin('u', 'phonenumbers', 'p', 'p.is_primary = 1');
-   * </code>
-   */
   public function innerJoin($fromAlias, $join, $alias, $condition = null)
   {
     return $this->add('join', [
@@ -425,14 +312,6 @@ class QueryBuilder
     ], true);
   }
 
-  /**
-   * <code>
-   *     $qb = $conn->createQueryBuilder()
-   *         ->select('u.name')
-   *         ->from('users', 'u')
-   *         ->leftJoin('u', 'phonenumbers', 'p', 'p.is_primary = 1');
-   * </code>
-   */
   public function leftJoin($fromAlias, $join, $alias, $condition = null)
   {
     return $this->add('join', [
@@ -445,14 +324,6 @@ class QueryBuilder
     ], true);
   }
 
-  /**
-   * <code>
-   *     $qb = $conn->createQueryBuilder()
-   *         ->select('u.name')
-   *         ->from('users', 'u')
-   *         ->rightJoin('u', 'phonenumbers', 'p', 'p.is_primary = 1');
-   * </code>
-   */
   public function rightJoin($fromAlias, $join, $alias, $condition = null)
   {
     return $this->add('join', [
@@ -465,38 +336,11 @@ class QueryBuilder
     ], true);
   }
 
-  /**
-   * <code>
-   *     $qb = $conn->createQueryBuilder()
-   *         ->update('counters', 'c')
-   *         ->set('c.value', 'c.value + 1')
-   *         ->where('c.id = ?');
-   * </code>
-   */
   public function set($key, $value)
   {
     return $this->add('set', $key . ' = ' . $value, true);
   }
 
-  /**
-   * <code>
-   *     $qb = $conn->createQueryBuilder()
-   *         ->select('c.value')
-   *         ->from('counters', 'c')
-   *         ->where('c.id = ?');
-   *
-   *     // You can optionally programatically build and/or expressions
-   *     $qb = $conn->createQueryBuilder();
-   *
-   *     $or = $qb->expr()->orx();
-   *     $or->add($qb->expr()->eq('c.id', 1));
-   *     $or->add($qb->expr()->eq('c.id', 2));
-   *
-   *     $qb->update('counters', 'c')
-   *         ->set('c.value', 'c.value + 1')
-   *         ->where($or);
-   * </code>
-   */
   public function where($predicates)
   {
     if (!(func_num_args() === 1 && $predicates instanceof Composite)) {
@@ -506,15 +350,6 @@ class QueryBuilder
     return $this->add('where', $predicates);
   }
 
-  /**
-   * <code>
-   *     $qb = $conn->createQueryBuilder()
-   *         ->select('u')
-   *         ->from('users', 'u')
-   *         ->where('u.username LIKE ?')
-   *         ->andWhere('u.is_active = 1');
-   * </code>
-   */
   public function andWhere($where)
   {
     $args  = func_get_args();
@@ -530,15 +365,6 @@ class QueryBuilder
     return $this->add('where', $where, true);
   }
 
-  /**
-   * <code>
-   *     $qb = $em->createQueryBuilder()
-   *         ->select('u.name')
-   *         ->from('users', 'u')
-   *         ->where('u.id = 1')
-   *         ->orWhere('u.id = 2');
-   * </code>
-   */
   public function orWhere($where)
   {
     $args  = func_get_args();
@@ -554,14 +380,6 @@ class QueryBuilder
     return $this->add('where', $where, true);
   }
 
-  /**
-   * <code>
-   *     $qb = $conn->createQueryBuilder()
-   *         ->select('u.name')
-   *         ->from('users', 'u')
-   *         ->groupBy('u.id');
-   * </code>
-   */
   public function groupBy($groupBy)
   {
     if (empty($groupBy)) {
@@ -573,15 +391,6 @@ class QueryBuilder
     return $this->add('groupBy', $groupBy, false);
   }
 
-  /**
-   * <code>
-   *     $qb = $conn->createQueryBuilder()
-   *         ->select('u.name')
-   *         ->from('users', 'u')
-   *         ->groupBy('u.lastLogin')
-   *         ->addGroupBy('u.createdAt');
-   * </code>
-   */
   public function addGroupBy($groupBy)
   {
     if (empty($groupBy)) {
@@ -593,18 +402,6 @@ class QueryBuilder
     return $this->add('groupBy', $groupBy, true);
   }
 
-  /**
-   * <code>
-   *     $qb = $conn->createQueryBuilder()
-   *         ->insert('users')
-   *         ->values(
-   *             array(
-   *                 'name' => '?'
-   *             )
-   *         )
-   *         ->setValue('password', '?');
-   * </code>
-   */
   public function setValue($column, $value)
   {
     $this->sqlParts['values'][$column] = $value;
@@ -612,18 +409,6 @@ class QueryBuilder
     return $this;
   }
 
-  /**
-   * <code>
-   *     $qb = $conn->createQueryBuilder()
-   *         ->insert('users')
-   *         ->values(
-   *             array(
-   *                 'name' => '?',
-   *                 'password' => '?'
-   *             )
-   *         );
-   * </code>
-   */
   public function values(array $values)
   {
     return $this->add('values', $values);
@@ -730,7 +515,6 @@ class QueryBuilder
     $fromClauses  = [];
     $knownAliases = [];
 
-    // Loop through all FROM clauses
     foreach ($this->sqlParts['from'] as $from) {
       if ($from['alias'] === null) {
         $tableSql       = $from['table'];
@@ -776,13 +560,6 @@ class QueryBuilder
     return $this->getSQL();
   }
 
-  /**
-   * <code>
-   * $value = 2;
-   * $q->eq( 'id', $q->bindValue( $value ) );
-   * $stmt = $q->executeQuery(); // executed with 'id = 2'
-   * </code>
-   */
   public function createNamedParameter($value, $type = self::STRING, $placeHolder = null)
   {
     if ($placeHolder === null) {
@@ -794,15 +571,6 @@ class QueryBuilder
     return $placeHolder;
   }
 
-  /**
-   * <code>
-   *  $qb = $conn->createQueryBuilder();
-   *  $qb->select('u.*')
-   *     ->from('users', 'u')
-   *     ->where('u.username = ' . $qb->createPositionalParameter('Foo', self::STRING))
-   *     ->orWhere('u.username = ' . $qb->createPositionalParameter('Bar', self::STRING))
-   * </code>
-   */
   public function createPositionalParameter($value, $type = self::STRING)
   {
     $this->boundCounter++;
@@ -863,15 +631,11 @@ class QueryBuilder
 
   public static function unknownAlias($alias, $registeredAliases)
   {
-    return "The given alias '" . $alias . "' is not part of " .
-      'any FROM or JOIN clause table. The currently registered ' .
-      'aliases are: ' . implode(', ', $registeredAliases);
+    return "Given alias" . $alias . "not part of FROM or JOIN clause table. alias is:" . implode(',', $registeredAliases);
   }
 
   public static function nonUniqueAlias($alias, $registeredAliases)
   {
-    return "The given alias '" . $alias . "' is not unique " .
-      'in FROM and JOIN clause table. The currently registered ' .
-      'aliases are: ' . implode(', ', $registeredAliases);
+    return "Given alias" . $alias . "not unique in the FROM and JOIN clause tables. alias is:" . implode(',', $registeredAliases);
   }
 }

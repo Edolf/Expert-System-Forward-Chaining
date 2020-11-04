@@ -152,6 +152,8 @@ class Response
 
   public function sendHeaders()
   {
+    header_remove();
+
     foreach ($this->headers as $key => $arrValue) {
       foreach ($arrValue as $value) {
         header("$key: $value", true, $this->statusCode);
@@ -288,6 +290,12 @@ class Response
     http_response_code($this->statusCode);
     $this->sendHeaders();
     $this->sendContent();
+    $this->end();
+  }
+
+  public function end()
+  {
+    return exit;
   }
 
   public function render($view, array $params = [])

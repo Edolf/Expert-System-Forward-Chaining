@@ -11,16 +11,15 @@ class Authenticate
   public function __construct($userId)
   {
     if ($userId) {
-      Application::$app->user = User::findOne([User::primaryKey() => $userId]);
+      Application::$app->user = User::findOne([array_keys(User::primaryKey())[0] => $userId]);
     }
   }
 
   public function login(User $user)
   {
     Application::$app->user = $user;
-    $primaryKey = $user->primaryKey();
-    $value = $user->{$primaryKey};
-    Application::$app->session::setSession('user', $value);
+    $id = $user->{array_keys($user::primaryKey())[0]};
+    Application::$app->session::setSession('user', $id);
     return true;
   }
 

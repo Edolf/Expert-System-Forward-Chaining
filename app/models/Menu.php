@@ -8,17 +8,23 @@ class Menu extends Model
 {
   public static function tableName(): string
   {
-    return 'Menu';
+    return 'Menus';
   }
 
   public static function attributes(): array
   {
-    return ['menu', 'isActive', 'other'];
+    return [
+      'menu' => ['type' => 'STRING'],
+      'isActive' => ['type' => 'BOOLEAN'],
+      'other' => ['type' => 'JSON']
+    ];
   }
 
-  public static function primaryKey(): string
+  public static function primaryKey(): array
   {
-    return self::PRIMARY_KEY;
+    return [
+      self::PRIMARY_KEY => ['type' => 'INTEGER', 'autoIncrement' => true]
+    ];
   }
 
   public static function timeStamp(): array

@@ -2,7 +2,6 @@
 
 namespace app\models;
 
-use app\core\Authenticate;
 use app\core\Model;
 
 class Symptom extends Model
@@ -14,12 +13,19 @@ class Symptom extends Model
 
   public static function attributes(): array
   {
-    return ['name', 'desc', 'question', 'expertSystemId'];
+    return [
+      'name' => ['type' => 'STRING'],
+      'desc' => ['type' => 'TEXT'],
+      'question' => ['type' => 'STRING'],
+      'expertSystemId' => ['type' => 'INTEGER']
+    ];
   }
 
-  public static function primaryKey(): string
+  public static function primaryKey(): array
   {
-    return self::PRIMARY_KEY;
+    return [
+      self::PRIMARY_KEY => ['type' => 'INTEGER', 'autoIncrement' => true]
+    ];
   }
 
   public static function timeStamp(): array

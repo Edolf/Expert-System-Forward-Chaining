@@ -2,7 +2,6 @@
 
 namespace app\models;
 
-use app\core\Authenticate;
 use app\core\Model;
 
 class User extends Model
@@ -14,12 +13,25 @@ class User extends Model
 
   public static function attributes(): array
   {
-    return ['name', 'username', 'email', 'image', 'role', 'verifiedAt', 'password', 'rememberme', 'token', 'other'];
+    return [
+      'name' => ['type' => 'STRING'],
+      'username' => ['type' => 'STRING'],
+      'email' => ['type' => 'STRING'],
+      'image' => ['type' => 'BLOB'],
+      'role' => ['type' => 'STRING'],
+      'verifiedAt' => ['type' => 'DATE'],
+      'password' => ['type' => 'STRING'],
+      'rememberme' => ['type' => 'STRING'],
+      'token' => ['type' => 'STRING'],
+      'other' => ['type' => 'JSON']
+    ];
   }
 
-  public static function primaryKey(): string
+  public static function primaryKey(): array
   {
-    return self::PRIMARY_KEY;
+    return [
+      self::PRIMARY_KEY => ['type' => 'UUID']
+    ];
   }
 
   public static function timeStamp(): array

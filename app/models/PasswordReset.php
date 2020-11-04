@@ -2,7 +2,6 @@
 
 namespace app\models;
 
-use app\core\Authenticate;
 use app\core\Model;
 
 class PasswordReset extends Model
@@ -14,12 +13,17 @@ class PasswordReset extends Model
 
   public static function attributes(): array
   {
-    return ['email', 'token'];
+    return [
+      'email' => ['type' => 'STRING'],
+      'token' => ['type' => 'STRING']
+    ];
   }
 
-  public static function primaryKey(): string
+  public static function primaryKey(): array
   {
-    return self::PRIMARY_KEY;
+    return [
+      self::PRIMARY_KEY => ['type' => 'UUID']
+    ];
   }
 
   public static function timeStamp(): array

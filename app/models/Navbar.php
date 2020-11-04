@@ -13,12 +13,18 @@ class Navbar extends Model
 
   public static function attributes(): array
   {
-    return ['name', 'url', 'categoryId'];
+    return [
+      'name' => ['type' => 'STRING'],
+      'url' => ['type' => 'STRING'],
+      'categoryId' => ['type' => 'INTEGER']
+    ];
   }
 
-  public static function primaryKey(): string
+  public static function primaryKey(): array
   {
-    return self::PRIMARY_KEY;
+    return [
+      self::PRIMARY_KEY => ['type' => 'INTEGER', 'autoIncrement' => true]
+    ];
   }
 
   public static function timeStamp(): array

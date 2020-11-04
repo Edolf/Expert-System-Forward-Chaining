@@ -2,7 +2,6 @@
 
 namespace app\models;
 
-use app\core\Authenticate;
 use app\core\Model;
 
 class ExpertSystem extends Model
@@ -14,12 +13,16 @@ class ExpertSystem extends Model
 
   public static function attributes(): array
   {
-    return ['problem'];
+    return [
+      'problem' => ['type' => 'STRING']
+    ];
   }
 
-  public static function primaryKey(): string
+  public static function primaryKey(): array
   {
-    return self::PRIMARY_KEY;
+    return [
+      self::PRIMARY_KEY => ['type' => 'INTEGER', 'autoIncrement' => true]
+    ];
   }
 
   public static function timeStamp(): array

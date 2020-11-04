@@ -10,7 +10,7 @@ class View
   public function renderView($view, array $params = [])
   {
     $csrfToken = new Token();
-    $flash = new Flash();
+    $flash = Application::$app->flash;
     $user = Application::$app->user;
 
     foreach ($params as $key => $value) {

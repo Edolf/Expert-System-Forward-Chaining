@@ -148,8 +148,9 @@ class Validator
   public function custom($callback)
   {
     try {
-      if (call_user_func($callback, $this->target, $this->validating) != null) {
-        throw new \Error(call_user_func($callback, $this->target, $this->validating)->getMessage());
+      $heiboy = call_user_func($callback, $this->target, $this->validating);
+      if ($heiboy != null) {
+        throw new \Error($heiboy->getMessage());
       }
     } catch (\Throwable $err) {
       $this->setError($err->getMessage(), $this->param, $this->location);
@@ -159,6 +160,13 @@ class Validator
 
   public function setError($msg, $param, $location)
   {
+    foreach ($this->validationResults as $key => $value) {
+      if (in_array($param, $value)) {
+        return;
+        // unset($this->validationResults[$key]);
+      }
+    }
+
     array_push($this->validationResults, [
       "location" => $location,
       "msg" => "$msg",

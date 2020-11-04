@@ -17,7 +17,7 @@ class AuthMiddleware extends Middleware
   public function execute()
   {
     if (Application::$app->user) {
-      if ($this->actions[Application::$app->controller->action]) {
+      if ($this->actions[Application::$app->controller->action] ?? false) {
         if (!in_array(Application::$app->user->role, $this->actions[Application::$app->controller->action])) {
           throw new HttpException(Application::$app->response::HTTP_UNAUTHORIZED);
         }
