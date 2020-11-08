@@ -207,9 +207,9 @@ class Response
   public function setStatusCode(int $code, $text = null): object
   {
     $this->statusCode = $code;
-    if ($this->isInvalid()) {
-      throw new \InvalidArgumentException("The HTTP status code '$code' is not valid.");
-    }
+    // if ($this->isInvalid()) {
+    //   throw new \InvalidArgumentException("The HTTP status code '$code' is not valid.");
+    // }
 
     if (null === $text) {
       $this->statusText = isset(self::$statusTexts[$code]) ? self::$statusTexts[$code] : 'unknown status';

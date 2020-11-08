@@ -38,21 +38,13 @@ class QueryBuilder
   ];
 
   private $sqlParts = self::SQL_PARTS_DEFAULTS;
-
   private $sql;
-
   private $params = [];
-
   private $paramTypes = [];
-
   private $type = self::SELECT;
-
   private $state = self::STATE_CLEAN;
-
   private $firstResult = null;
-
   private $maxResults = null;
-
   private $boundCounter = 0;
 
   public function __construct(Connection $connection)

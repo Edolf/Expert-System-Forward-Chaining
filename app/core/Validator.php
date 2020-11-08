@@ -70,6 +70,14 @@ class Validator
     return $this;
   }
 
+  public function isUrl(String $errorMsg = '')
+  {
+    if (!filter_var($this->target, FILTER_VALIDATE_URL)) {
+      $this->setError($errorMsg != null ? $errorMsg : 'invalid URL', $this->param, $this->location);
+    }
+    return $this;
+  }
+
   public function isAlpha(String $errorMsg = '')
   {
     if (!ctype_alpha($this->target)) {
@@ -121,27 +129,49 @@ class Validator
     return $this;
   }
 
-  public function sanitizeQuery()
+  public function trim($char = '')
   {
-    Application::$app->request->setQuery($this->param, filter_var($this->target, FILTER_SANITIZE_SPECIAL_CHARS));
+    switch ($this->location) {
+      case 'body':
+        Application::$app->request->setBody($this->param, trim($this->target, $char));
+        break;
+      case 'query':
+        Application::$app->request->setQuery($this->param, trim($this->target, $char));
+        break;
+    }
     return $this;
   }
 
-  public function sanitizeBody()
+  public function sanitize($type = 'SPECIAL_CHARS')
   {
-    Application::$app->request->setBody($this->param, filter_var($this->target, FILTER_SANITIZE_SPECIAL_CHARS));
-    return $this;
-  }
-
-  public function trimQuery($char = '')
-  {
-    Application::$app->request->setQuery($this->param, trim($this->target, $char));
-    return $this;
-  }
-
-  public function trimBody($char = '')
-  {
-    Application::$app->request->setBody($this->param, trim($this->target, $char));
+    switch ($this->location) {
+      case 'body':
+        switch ($type) {
+          case 'STRING':
+            Application::$app->request->setBody($this->param, filter_var($this->target, FILTER_SANITIZE_STRING));
+            break;
+          case 'URL':
+            Application::$app->request->setBody($this->param, filter_var($this->target, FILTER_SANITIZE_URL));
+            break;
+          case 'SPECIAL_CHARS':
+            Application::$app->request->setBody($this->param, filter_var($this->target, FILTER_SANITIZE_SPECIAL_CHARS));
+            break;
+        }
+        break;
+      case 'query':
+        switch ($type) {
+          case 'STRING':
+            Application::$app->request->setQuery($this->param, filter_var($this->target, FILTER_SANITIZE_STRING));
+            break;
+          case 'URL':
+            Application::$app->request->setQuery($this->param, filter_var($this->target, FILTER_SANITIZE_URL));
+            break;
+          case 'SPECIAL_CHARS':
+            Application::$app->request->setQuery($this->param, filter_var($this->target, FILTER_SANITIZE_SPECIAL_CHARS));
+            break;
+        }
+        break;
+    }
     return $this;
   }
 

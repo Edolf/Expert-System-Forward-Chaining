@@ -17,13 +17,13 @@ class AuthController extends Controller
 {
   public function login(Request $request, Response $response)
   {
-    self::validateBody('user')->isNotNull()->isLength(['min' => 2, 'max' => 25])->trimBody();
-    self::validateBody('password')->isNotNull()->isLength(['min' => 6, 'max' => 30])->trimBody();
+    self::validateBody('user')->isNotNull()->isLength(['min' => 2, 'max' => 25])->trim();
+    self::validateBody('password')->isNotNull()->isLength(['min' => 6, 'max' => 30])->trim();
 
     if (!empty(self::validateResults())) {
       $response->setStatusCode($response::HTTP_BAD_REQUEST)->setContent(json_encode(['errors' => self::validateResults()]))->send();
     } else {
-      $user = User::findOne(['email' => $request->getBody('user')]);
+      $user = User::findOne([User::OR => ['username' => $request->getBody('user'), 'email' => $request->getBody('user')]]);
       if (!$user) {
         return $response->setStatusCode($response::HTTP_NOT_FOUND)->setContent(json_encode(['errors' => [[
           "msg" => "User Not Found",
@@ -37,7 +37,7 @@ class AuthController extends Controller
         ]]]))->send();
       }
       $request->login($user);
-      return $response->redirect('/');
+      $response->redirect('/');
     }
   }
 
@@ -54,28 +54,27 @@ class AuthController extends Controller
 
   public function register(Request $request, Response $response)
   {
-    self::validateBody('fullname')->isNotNull()->isLength(['min' => 2, 'max' => 30])->isAlphaSpace()->trimBody();
+    self::validateBody('fullname')->isNotNull()->isLength(['min' => 2, 'max' => 30])->isAlphaSpace()->trim();
     self::validateBody('username')->isNotNull()->isLength(['min' => 6, 'max' => 30])->isAlphaNumeric()->custom(function ($username) {
       return User::findOne(['username' => $username], function ($user) {
         if ($user) {
           return new \Error('Username Has Already Been Used by Other User');
         }
       });
-    })->trimBody();
+    })->trim();
     self::validateBody('email')->isNotNull()->isEmail()->custom(function ($email) {
       return User::findOne(['email' => $email], function ($user) {
         if ($user) {
           return new \Error('Email Has Already Been Used by Other User');
         }
       });
-    })->trimBody();
-    self::validateBody('getpassword')->isNotNull()->isLength(['min' => 6, 'max' => 250])->isNotIn(['account'])->trimBody();
-    self::validateBody('repassword')->isNotNull()->equals($request->getBody('getpassword'), 'Confirm Password Does Not Match')->trimBody();
+    })->trim();
+    self::validateBody('getpassword')->isNotNull()->isLength(['min' => 6, 'max' => 250])->isNotIn(['account'])->trim();
+    self::validateBody('repassword')->isNotNull()->equals($request->getBody('getpassword'), 'Confirm Password Does Not Match')->trim();
 
     if (!empty(self::validateResults())) {
       return $response->setStatusCode($response::HTTP_BAD_REQUEST)->setContent(json_encode(['errors' => self::validateResults()]))->send();
     } else {
-      // $randomKey = strtoupper(bin2hex(openssl_random_pseudo_bytes(4, $cstrong)));
       $randomKey = strtoupper(bin2hex(random_bytes(4)));
       $encIV = openssl_random_pseudo_bytes(openssl_cipher_iv_length(CIPHER_METHOD));
       $token = openssl_encrypt(implode(',', [implode(',', $request->getBody()), time() + 60 * 60 * 60]), CIPHER_METHOD, $randomKey, 0, $encIV) . '::' . bin2hex($encIV);

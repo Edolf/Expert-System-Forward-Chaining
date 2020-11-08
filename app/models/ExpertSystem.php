@@ -14,7 +14,8 @@ class ExpertSystem extends Model
   public static function attributes(): array
   {
     return [
-      'problem' => ['type' => 'STRING']
+      'problem' => ['type' => 'STRING'],
+      'desc' => ['type' => 'TEXT']
     ];
   }
 

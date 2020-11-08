@@ -6,6 +6,7 @@ use app\core\Session;
 
 class Request
 {
+  public $_PARAM = [];
 
   public function login($user)
   {
@@ -34,13 +35,7 @@ class Request
 
   public function getUrl()
   {
-    // var_dump(parse_url($_SERVER['REQUEST_URI']));
-    $path = $_SERVER['REQUEST_URI'];
-    $position = strpos($path, '?');
-    if ($position !== false) {
-      $path = substr($path, 0, $position);
-    }
-    return $path;
+    return parse_url($_SERVER['REQUEST_URI'])['path'];
   }
 
   public function setQuery($query, $new)
@@ -57,9 +52,28 @@ class Request
     }
   }
 
-  public function setHeader($head, $new)
+  public function setParam($param, $new)
   {
-    # code...
+    $this->_PARAM[$param] = $new;
+  }
+
+  public function getParam($param = '')
+  {
+    if ($param) {
+      return $this->_PARAM[$param] ?? null;
+    } else {
+      return $this->_PARAM;
+    }
+  }
+
+  public function setHeader($head, $value)
+  {
+    try {
+      header_remove($head);
+      Application::$app->response->setHeader($head, $value);
+    } catch (\Throwable $th) {
+      throw new HttpException($this->response::HTTP_INTERNAL_SERVER_ERROR);
+    }
   }
 
   public function getHeader($head = '')

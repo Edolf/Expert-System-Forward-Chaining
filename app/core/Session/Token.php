@@ -10,8 +10,7 @@ class Token extends Session
 
   public function __construct()
   {
-    self::setSession(self::TOKEN, md5(uniqid()));
-    // self::setSession(self::TOKEN, openssl_random_pseudo_bytes(32));
+    self::setSession(self::TOKEN, bin2hex(openssl_random_pseudo_bytes(32, $cstrong)));
   }
 
   public function getCSRFToken()
@@ -22,9 +21,13 @@ class Token extends Session
   public static function checkToken($token)
   {
     if (self::getSession(self::TOKEN) === $token) {
-      // self::remove(self::TOKEN);
       return true;
     }
     return false;
+  }
+
+  public function removeToken()
+  {
+    self::remove(self::TOKEN);
   }
 }

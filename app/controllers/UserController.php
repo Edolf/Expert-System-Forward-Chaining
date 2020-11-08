@@ -12,9 +12,7 @@ class UserController extends Controller
 {
   public function __construct()
   {
-    $this->setMiddleware(new AuthMiddleware(
-      ['updateProfile' => ['member', 'docter', 'admin']],
-    ));
+    # code ..
   }
 
   public function updateNameProfile(Request $request, Response $response)

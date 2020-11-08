@@ -11,6 +11,7 @@ Assalamu'alakum Pak,,
 Saya ingin Sedikit menjelaskan tentang tugas akhir ini pak,,
 
 Tugas akhir ini saya kerjakan pada versi PHP 7.4 pak,,
+dan MySQL versi 8.++ pak,, karna versi MariaDB tidak support JSON pak,,
 dan bisa di jalankan tanpa menggunakan Web Server Pak,,
 jadi tidak perlu menggunakan apache atau web server lainnya pak,,
 cuman syaratnya php sudah terinstal di pc pak,, dan sudah terdaftar di ENV untuk php di windows nya pak,,

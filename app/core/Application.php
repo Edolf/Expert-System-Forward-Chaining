@@ -21,8 +21,9 @@ class Application
   public Validator $validator;
   public Flash $flash;
   public View $view;
-
   public ?User $user;
+
+  public $locals = [];
 
   public function __construct()
   {
@@ -41,28 +42,28 @@ class Application
 
   public static function get(string $url, $callback)
   {
-    self::$router::get($url, $callback);
+    self::$router::setUrlMethodAndParam('get', $url, $callback);
   }
 
   public static function post(string $url, $callback)
   {
-    self::$router::post($url, $callback);
+    self::$router::setUrlMethodAndParam('post', $url, $callback);
   }
 
   public static function put(string $url, $callback)
   {
-    self::$router::put($url, $callback);
+    self::$router::setUrlMethodAndParam('put', $url, $callback);
   }
 
   public static function delete(string $url, $callback)
   {
-    self::$router::delete($url, $callback);
+    self::$router::setUrlMethodAndParam('delete', $url, $callback);
   }
 
   public function run()
   {
     try {
-      $this->response->setContent(self::$router->resolve())->send();
+      $this->response->setStatusCode($this->response::HTTP_OK)->setContent(self::$router->resolve())->send();
     } catch (\Throwable $err) {
       $stack = DEBUG == true ? $err->getTraceAsString() : '';
       $this->response->setStatusCode($err->getCode())->setContent($this->view->renderView('error', [
