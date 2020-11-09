@@ -3,8 +3,9 @@
 namespace app\controllers;
 
 use app\core\Application;
-use app\core\HttpException;
+use app\core\middleware\AuthMiddleware;
 use app\core\Controller;
+use app\core\HttpException;
 use app\core\Request;
 use app\core\Response;
 
@@ -16,27 +17,12 @@ use app\models\Rule;
 use app\models\ExpertSystem;
 use app\models\SubMenu;
 
-use app\core\middleware\AuthMiddleware;
-
-class MemberController extends Controller
+class ConsultationController extends Controller
 {
-
-  use DiseaseController;
-  use SymptomController;
-  use KnowledgeController;
-
   public function __construct(Request $request, Response $response)
   {
-    $access = json_decode(SubMenu::findOne(['url' => $request->getUrl()])->other)->access;
-    if ($access) {
-      $this->setMiddleware(new AuthMiddleware(
-        [AuthMiddleware::ALL_METHOD => $access],
-      ));
-    } else {
-      $this->setMiddleware(new AuthMiddleware());
-    }
+    $this->setMiddleware(new AuthMiddleware());
 
-    Application::$app->locals['title'] = 'Disease';
     Application::$app->locals['expertsystems'] = ExpertSystem::class;
     Application::$app->locals['diseases'] = Disease::class;
     Application::$app->locals['symptoms'] = Symptom::class;
@@ -44,34 +30,30 @@ class MemberController extends Controller
     Application::$app->locals['rule'] = Rule::class;
   }
 
-  public function index(Request $request, Response $response)
-  {
-    return $response->render('members/index', ['title' => 'Dashboard']);
-  }
-
-  public function listUser(Request $request, Response $response)
-  {
-    return $response->render('members/listuser', ['title' => 'List Users', 'members' => User::findAll()]);
-  }
-
   public function selectConsul(Request $request, Response $response)
   {
-    return $response->render('members/consultations/select', ['title' => 'Tester Consultation']);
+    return $response->render('consultations/index', ['title' => 'Expert System | Forward Chanings']);
   }
 
   public function consultation(Request $request, Response $response)
   {
-    if (ExpertSystem::findAll(['id' => $request->getParam('id')])) {
-      return $response->render('members/consultations/index', ['title' => 'Tester Consultation', 'id' => $request->getParam('id')]);
+    $expertsystem = ExpertSystem::findOne(['id' => $request->getParam('id')]);
+    if ($expertsystem) {
+      return $response->render('consultations/consultation', ['title' => $expertsystem->problem, 'id' => $request->getParam('id')]);
     } else {
       throw new HttpException(400);
     }
   }
-
-  public function results(Request $request, Response $response)
+  public function result(Request $request, Response $response)
   {
     if (count($request->getBody()) != 0) {
-      $sympTemp = Symptom::findAll(['id' => Symptom::IN(array_keys($request->getBody()))]);
+      $options = [];
+      foreach ($request->getBody() as $key => $value) {
+        if ($value === 'on') {
+          $options[$key] = $value;
+        }
+      }
+      $sympTemp = Symptom::findAll(['id' => Symptom::IN(array_keys($options))]);
       $isSolving = false;
       while (!$isSolving) {
         $isNotFound = [];
@@ -79,7 +61,7 @@ class MemberController extends Controller
         foreach ($knowledgebases as $key => $knowledgebase) {
           $isFound = [];
           foreach (explode(",", $knowledgebase['symptoms']) as $key => $symptomId) {
-            if (in_array($symptomId, array_keys($request->getBody()))) {
+            if (in_array($symptomId, array_keys($options))) {
               $isFound[] = true;
             }
           }
@@ -96,7 +78,7 @@ class MemberController extends Controller
               $isSolving = (array) $disease;
             } elseif ($symptom) {
               $symptom = (array) $symptom;
-              $request->setBody($symptom['id'], 'on');
+              $options[$symptom['id']] = 'on';
               unset($isNotFound);
               unset($knowledgebases[$key]);
             }
@@ -113,22 +95,12 @@ class MemberController extends Controller
           }
         }
       }
-      return $response->render('members/consultations/result', [
+      return $response->render('consultations/result', [
         'results' => $isSolving,
         'sympTemps' => $sympTemp
       ]);
     } else {
       throw new HttpException(400);
     }
-  }
-
-  public function rule(Request $request, Response $response)
-  {
-    return $response->render('members/rule');
-  }
-
-  public function account(Request $request, Response $response)
-  {
-    return $response->render('members/users/myaccount', ['title' => 'My Account']);
   }
 }

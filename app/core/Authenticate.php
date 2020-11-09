@@ -2,8 +2,6 @@
 
 namespace app\core;
 
-use app\core\Model;
-
 use app\models\User;
 
 class Authenticate

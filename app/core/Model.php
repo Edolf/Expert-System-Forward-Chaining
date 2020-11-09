@@ -8,11 +8,7 @@ abstract class Model
   const CREATED_AT  = 'createdAt';
   const UPDATED_AT  = 'updatedAt';
 
-  const OR   = 'OR_LOGIC';
-  const AND  = 'AND_LOGIC';
-  // const NOT  = 'NOT_LOGIC';
-  // const LIKE = 'LIKE_LOGIC';
-  // const IN   = 'IN_LOGIC';
+  private static $useEquals = true;
 
   abstract public static function tableName(): string;
 
@@ -31,10 +27,12 @@ abstract class Model
   {
     try {
       if (!empty($where)) {
-        $statement = self::setQueryForWhereLogic(array_keys($where)[0], $where[array_keys($where)[0]], self::query()->select('*')->from(static::tableName()));
+        $key = array_keys($where)[0];
+        $value = $where[$key];
+        $query = self::query()->select('*')->from(static::tableName());
+        $statement = self::setWhereLogic($key, $value, $query);
       } else {
-        $statement = self::prepare(self::query()
-          ->select('*')->from(static::tableName()));
+        $statement = self::prepare(self::query()->select('*')->from(static::tableName()));
       }
       $statement->execute();
       if ($callback) {
@@ -52,7 +50,10 @@ abstract class Model
   public static function findOne(array $where, $callback = '')
   {
     try {
-      $statement = self::setQueryForWhereLogic(array_keys($where)[0], $where[array_keys($where)[0]], self::query()->select('*')->from(static::tableName()));
+      $key = array_keys($where)[0];
+      $value = $where[$key];
+      $query = self::query()->select('*')->from(static::tableName());
+      $statement = self::setWhereLogic($key, $value, $query);
       $statement->execute();
       if ($callback) {
         return call_user_func($callback, $statement->fetchObject(static::class), $error = '');
@@ -76,7 +77,6 @@ abstract class Model
       foreach (static::timeStamp() as $time) {
         $values[$time] = "'" . date("Y-m-d H:i:s") . "'";
       }
-
       $statement = self::prepare(self::query()->insert(static::tableName())->values($values));
       $statement->execute();
       if ($callback) {
@@ -99,7 +99,10 @@ abstract class Model
         $values[] = static::tableName() . ".$key = '$attributes[$key]'";
       }
       $values[] = static::tableName() . "." . static::timeStamp()[1] . " = '" . date("Y-m-d H:i:s") . "'";
-      $statement = self::setQueryForWhereLogic(array_keys($where)[0], $where[array_keys($where)[0]], self::query()->update(static::tableName())->add('set', $values, true));
+      $key = array_keys($where)[0];
+      $where = $where[array_keys($where)[0]];
+      $query = self::query()->update(static::tableName())->add('set', $values, true);
+      $statement = self::setWhereLogic($key, $where, $query);
       $statement->execute();
       if ($callback) {
         return call_user_func($callback, $statement->rowCount(), $error = '');
@@ -132,25 +135,52 @@ abstract class Model
     }
   }
 
+  private static function setWhereLogic($key, $value, $query)
+  {
+    if (array_key_exists($key, static::attributes()) || array_key_exists($key, static::primaryKey())) {
+      $value = self::$useEquals == true ? " = '$value'" : " $value";
+      return self::prepare($query->where(static::tableName() . "." . $key . $value));
+    } else {
+      return self::prepare($query->where($value));
+    }
+  }
+
   private static function prepare($sql): \PDOStatement
   {
+    self::$useEquals = true;
     return Application::$app->connection->prepare($sql);
   }
 
-  private static function setQueryForWhereLogic($key, $value, $beginQuery)
+  public static function AND(array $where)
   {
-    if ($key === self::OR || $key === self::AND) {
-      $whereLogic = [];
-      foreach ($value as $k => $val) {
-        $whereLogic[] = static::tableName() . "." . $k . " = '$val'";
-      }
-      $logic = $key === self::AND ? 'AND' : $key === self::NOT;
-      return self::prepare($beginQuery->where(implode(" $logic ", $whereLogic)));
-      // } elseif ($key === self::NOT) {
-
-    } else {
-      return self::prepare($beginQuery->where(static::tableName() . "." . $key . " = '$value'"));
+    $whereLogic = [];
+    foreach ($where as $key => $value) {
+      $whereLogic[] = static::tableName() . "." . $key . " = '$value'";
     }
+    return implode(" AND ", $whereLogic);
+  }
+
+  public static function OR(array $where)
+  {
+    $whereLogic = [];
+    foreach ($where as $key => $value) {
+      $whereLogic[] = static::tableName() . "." . $key . " = '$value'";
+    }
+    return implode(" OR ", $whereLogic);
+  }
+
+  public static function NOT(array $where)
+  {
+  }
+
+  public static function LIKE(array $where)
+  {
+  }
+
+  public static function IN(array $where)
+  {
+    self::$useEquals = false;
+    return "IN (" . implode(",", $where) . ")";
   }
 
   private static function makeId($id)

@@ -7,12 +7,16 @@ use app\core\Response;
 use app\models\Navbar;
 use app\models\Category;
 
-// Application::get('/', function (Request $request, Response $response) {
-//   return $response->render('index', [
-//     'navbars' => Navbar::findAll(['categoryId' => 4]),
-//     'categories' => Category::findAll()
-//   ]);
-// });
+Application::get('/', function (Request $request, Response $response) {
+  return $response->render('index', [
+    'navbars' => Navbar::findAll(['categoryId' => 4]),
+    'categories' => Category::findAll()
+  ]);
+});
+
+Application::get('/consultation', 'ConsultationController@selectConsul');
+Application::get('/consultation/{id}', 'ConsultationController@consultation');
+Application::post('/consultation/{id}', 'ConsultationController@result');
 
 Application::post('/auth', 'AuthController@login');
 Application::get('/auth/gplus', 'AuthController@goauth');
@@ -24,7 +28,7 @@ Application::get('/members', 'MemberController@index');
 Application::get('/members/account', 'MemberController@account');
 Application::get('/members/list-user', 'MemberController@listUser');
 
-Application::get('/members/sidemenu/', 'SidemenuController@sidemenu');
+Application::get('/members/sidemenu', 'SidemenuController@sidemenu');
 Application::post('/members/sidemenu', 'SidemenuController@addSidemenu');
 Application::put('/members/sidemenu', 'SidemenuController@updateSidemenu');
 Application::delete('/members/sidemenu', 'SidemenuController@deleteSidemenu');

@@ -29,14 +29,10 @@ class Router
     $method = $this->request->getMethod();
     $url = $this->request->getUrl();
     $callback = $this->cekUrlIsExist($method, $url);
-    echo '<pre>';
-    var_dump($callback);
-    echo '</pre>';
-    exit;
     if (!$callback) {
       throw new HttpException($this->response::HTTP_NOT_FOUND);
     }
-    if (!($method == 'get')) {
+    if (!($method == 'get') && DEBUG != true) {
       $headerToken = $this->request->getHeader('CSRF-Token') ?? null;
       $queryToken = $this->request->getQuery('_csrf') ?? null;
       if (!Token::checkToken($headerToken ?? $queryToken)) {
@@ -69,18 +65,14 @@ class Router
         }
         $paramKey = array_keys(self::$routeMap[$method][$url])[0];
         $this->request->setParam($paramKey, $paramValue[1]);
-        // return self::$routeMap[$method][$url][$paramKey];
-        echo '<pre>';
-        var_dump(self::$routeMap[$method][$url][$paramKey]);
-        echo '</pre>';
-        exit;
+        return self::$routeMap[$method][$url][$paramKey];
       } else {
         return self::$routeMap[$method][$url];
       }
     } elseif (substr($url, strlen($url)) == '/') {
       $position = strpos($url, '/', strlen($url) - 1);
       $url = substr($url, 0, $position);
-      $this->cekUrlIsExist($method, $url);
+      return $this->cekUrlIsExist($method, $url);
     } else {
       $paths = explode('/', $url);
       foreach ($paths as $key => $value) {
@@ -94,10 +86,9 @@ class Router
           unset($newUrl[$key]);
         }
       }
-      $this->cekUrlIsExist($method, $newUrl[0]);
+      return $this->cekUrlIsExist($method, $newUrl[0]);
     }
-
-    // Modern Params By Edolf Sulai Inspired by Laravel
+    // Modern Params By Edo Sulaiman Inspired by Laravel
   }
 
   public static function setUrlMethodAndParam(string $method, string $url, $callback)
@@ -109,14 +100,12 @@ class Router
         $temp0[] = $v;
       }
     }
-
     // Cek Array Yang Kosong
     foreach ($temp0 as $key => $value) {
       if (empty($value)) {
         unset($temp0[$key]);
       }
     }
-
     // Masukkan ke Nested / Multidimensi Array
     $temp2 = [];
     for ($i = count($temp0) - 1; $i >= 0; $i--) {
@@ -127,9 +116,7 @@ class Router
         $temp2 = [$temp0[$i] => $temp2];
       }
     };
-
     self::$routeMap = array_merge_recursive(self::$routeMap, $temp2);
-
     // Cek Array Yang Kosong
     foreach (self::$routeMap as $key => $value) {
       if (is_array($value)) {
@@ -140,7 +127,6 @@ class Router
         }
       }
     }
-
-    // Modern Params By Edolf Sulai Inspired by Laravel
+    // Modern Params By Edo Sulaiman Inspired by Laravel
   }
 }
