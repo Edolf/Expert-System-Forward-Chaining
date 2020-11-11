@@ -41,9 +41,9 @@ abstract class Model
       return $statement->fetchAll();
     } catch (\Throwable $th) {
       if ($callback) {
-        return call_user_func($callback, $statement = '', $error = $th);
+        return call_user_func($callback, $statement = '', $error = true);
       }
-      return $th;
+      return false;
     }
   }
 
@@ -61,9 +61,9 @@ abstract class Model
       return $statement->fetchObject(static::class);
     } catch (\Throwable $th) {
       if ($callback) {
-        return call_user_func($callback, $statement = '', $error = $th);
+        return call_user_func($callback, $statement = '', $error = true);
       }
-      return $th;
+      return false;
     }
   }
 
@@ -72,10 +72,10 @@ abstract class Model
     try {
       $values = self::makeId($options[array_keys(static::primaryKey())[0]] ?? null) ?? [];
       foreach (static::attributes() as $key => $value) {
-        $values[$key] = "'$options[$key]'";
+        $values["`$key`"] = "'$options[$key]'";
       }
       foreach (static::timeStamp() as $time) {
-        $values[$time] = "'" . date("Y-m-d H:i:s") . "'";
+        $values["`$time`"] = "'" . date("Y-m-d H:i:s") . "'";
       }
       $statement = self::prepare(self::query()->insert(static::tableName())->values($values));
       $statement->execute();
@@ -85,18 +85,20 @@ abstract class Model
       return $statement->rowCount();
     } catch (\Throwable $th) {
       if ($callback) {
-        return call_user_func($callback, $statement->rowCount(), $error = $th);
+        return call_user_func($callback, $statement->rowCount(), $error = true);
       }
-      return $th;
+      return false;
     }
   }
 
-  public static function update(array $attributes = [], array $where = [], $callback = '')
+  public static function update(array $attributes, array $where, $callback = '')
   {
     try {
       $values = [];
       foreach (static::attributes() as $key => $value) {
-        $values[] = static::tableName() . ".$key = '$attributes[$key]'";
+        if (!is_null($attributes[$key])) {
+          $values[] = static::tableName() . ".$key = '$attributes[$key]'";
+        }
       }
       $values[] = static::tableName() . "." . static::timeStamp()[1] . " = '" . date("Y-m-d H:i:s") . "'";
       $key = array_keys($where)[0];
@@ -110,9 +112,9 @@ abstract class Model
       return $statement->rowCount();
     } catch (\Throwable $th) {
       if ($callback) {
-        return call_user_func($callback, $statement->rowCount(), $error = $th);
+        return call_user_func($callback, $statement->rowCount(), $error = true);
       }
-      return $th;
+      return false;
     }
   }
 
@@ -129,9 +131,9 @@ abstract class Model
       return $statement->rowCount();
     } catch (\Throwable $th) {
       if ($callback) {
-        return call_user_func($callback, $statement->rowCount(), $error = $th);
+        return call_user_func($callback, $statement->rowCount(), $error = true);
       }
-      return $th;
+      return false;
     }
   }
 
@@ -143,12 +145,6 @@ abstract class Model
     } else {
       return self::prepare($query->where($value));
     }
-  }
-
-  private static function prepare($sql): \PDOStatement
-  {
-    self::$useEquals = true;
-    return Application::$app->connection->prepare($sql);
   }
 
   public static function AND(array $where)
@@ -205,5 +201,11 @@ abstract class Model
     $data[8] = chr(ord($data[8]) & 0x3f | 0x80); // set bits 6-7 to 10
 
     return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
+  }
+
+  private static function prepare($sql): \PDOStatement
+  {
+    self::$useEquals = true;
+    return Application::$app->connection->prepare($sql);
   }
 }

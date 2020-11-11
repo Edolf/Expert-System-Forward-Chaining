@@ -8,6 +8,45 @@ class Request
 {
   public $_PARAM = [];
 
+  public function __construct()
+  {
+    if ($this->getMethod() == 'put') {
+      if (empty($this->getBody())) {
+        $contents = file("php://input");
+        foreach ($contents as $key => $content) {
+          // Bersihkan Content Tidak Diperlukan
+          if (strpos($content, '------WebKitFormBoundary') !== false || ctype_space($content)) {
+            unset($contents[$key]);
+            continue;
+          }
+          // Ambil Content
+          if (strpos($content, 'form-data; name="') !== false) {
+            $position = strpos($content, 'form-data; name="');
+            $contents[$key] = substr($content, $position + strlen('form-data; name="'), $position);
+          }
+          $contents[$key] = substr($contents[$key], 0, strlen($contents[$key]) - 2);
+          // Bersihkan `""`
+          if (strpos($contents[$key], '"', strlen($contents[$key]) - 3) !== false) {
+            $contents[$key] = substr($contents[$key], 0, strpos($contents[$key], '"', strlen($contents[$key]) - 3));
+          }
+        }
+        // Sort Array
+        $sortArray = [];
+        foreach ($contents as $key => $value) {
+          $sortArray[] = $value;
+        }
+        // Store Content Ke $_POST
+        for ($i = 0; $i < count($contents); $i++) {
+          if ($i % 2 == 0) {
+            $this->setBody($sortArray[$i], '');
+          } else {
+            $this->setBody($sortArray[$i - 1], $sortArray[$i]);
+          }
+        }
+      }
+    }
+  }
+
   public function login($user)
   {
     Application::$app->authenticate->login($user);

@@ -25,6 +25,10 @@ Application::post('/auth/join', 'AuthController@register');
 
 Application::get('/members', 'MemberController@index');
 
+Application::post('/members/getproblem', 'MemberController@getProblem');
+Application::put('/members/updateproblem', 'MemberController@updateProblem');
+Application::delete('/members/dropproblem', 'MemberController@deleteProblem');
+
 Application::get('/members/account', 'MemberController@account');
 Application::get('/members/list-user', 'MemberController@listUser');
 
@@ -49,14 +53,14 @@ Application::put('/members/disease', 'MemberController@updateDisease');
 Application::delete('/members/disease', 'MemberController@deleteDisease');
 
 Application::get('/members/symptom', 'MemberController@symptom');
-Application::post('/members/symptom', 'MemberController@addDisease');
-Application::put('/members/symptom', 'MemberController@updateDisease');
-Application::delete('/members/symptom', 'MemberController@deleteDisease');
+Application::post('/members/symptom', 'MemberController@addSymptom');
+Application::put('/members/symptom', 'MemberController@updateSymptom');
+Application::delete('/members/symptom', 'MemberController@deleteSymptom');
 
 Application::get('/members/knowledge', 'MemberController@knowledge');
-Application::post('/members/knowledge', 'MemberController@addDisease');
-Application::put('/members/knowledge', 'MemberController@updateDisease');
-Application::delete('/members/knowledge', 'MemberController@deleteDisease');
+Application::post('/members/knowledge', 'MemberController@addKnowledge');
+Application::put('/members/knowledge', 'MemberController@updateKnowledge');
+Application::delete('/members/knowledge', 'MemberController@deleteKnowledge');
 
 Application::get('/members/rule', 'MemberController@rule');
 

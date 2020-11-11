@@ -20,14 +20,14 @@ use app\core\middleware\AuthMiddleware;
 
 class MemberController extends Controller
 {
-
+  use ExpertSystemController;
   use DiseaseController;
   use SymptomController;
   use KnowledgeController;
 
   public function __construct(Request $request, Response $response)
   {
-    $access = json_decode(SubMenu::findOne(['url' => $request->getUrl()])->other)->access;
+    $access = json_decode(SubMenu::findOne(['url' => $request->getUrl()])->other)->access ?? false;
     if ($access) {
       $this->setMiddleware(new AuthMiddleware(
         [AuthMiddleware::ALL_METHOD => $access],
@@ -36,7 +36,6 @@ class MemberController extends Controller
       $this->setMiddleware(new AuthMiddleware());
     }
 
-    Application::$app->locals['title'] = 'Disease';
     Application::$app->locals['expertsystems'] = ExpertSystem::class;
     Application::$app->locals['diseases'] = Disease::class;
     Application::$app->locals['symptoms'] = Symptom::class;
@@ -70,12 +69,12 @@ class MemberController extends Controller
 
   public function results(Request $request, Response $response)
   {
+    $sympTemp = Symptom::findAll(['id' => Symptom::IN(array_keys($request->getBody()))]);
     if (count($request->getBody()) != 0) {
-      $sympTemp = Symptom::findAll(['id' => Symptom::IN(array_keys($request->getBody()))]);
+      $knowledgebases = KnowledgeBase::findAll(['expertSystemId' => $request->getParam('id')]);
       $isSolving = false;
       while (!$isSolving) {
         $isNotFound = [];
-        $knowledgebases = KnowledgeBase::findAll(['expertSystemId' => $request->getParam('id')]);
         foreach ($knowledgebases as $key => $knowledgebase) {
           $isFound = [];
           foreach (explode(",", $knowledgebase['symptoms']) as $key => $symptomId) {
@@ -118,7 +117,16 @@ class MemberController extends Controller
         'sympTemps' => $sympTemp
       ]);
     } else {
-      throw new HttpException(400);
+      $isSolving = [
+        'id' => 0,
+        'name' => 'Not Found',
+        'desc' => 'We\'re Sorry, Your Disease Could Not be Found in Our System :(',
+        'solution' => 'Please Contact your Doctor Immediately for Further Consultation',
+      ];
+      return $response->render('members/consultations/result', [
+        'results' => $isSolving,
+        'sympTemps' => $sympTemp
+      ]);
     }
   }
 

@@ -46,18 +46,18 @@ class ConsultationController extends Controller
   }
   public function result(Request $request, Response $response)
   {
-    if (count($request->getBody()) != 0) {
-      $options = [];
-      foreach ($request->getBody() as $key => $value) {
-        if ($value === 'on') {
-          $options[$key] = $value;
-        }
+    $options = [];
+    foreach ($request->getBody() as $key => $value) {
+      if ($value === 'on') {
+        $options[$key] = $value;
       }
-      $sympTemp = Symptom::findAll(['id' => Symptom::IN(array_keys($options))]);
+    }
+    $sympTemp = Symptom::findAll(['id' => Symptom::IN(array_keys($options))]);
+    if (count($request->getBody()) != 0) {
+      $knowledgebases = KnowledgeBase::findAll(['expertSystemId' => $request->getParam('id')]);
       $isSolving = false;
       while (!$isSolving) {
         $isNotFound = [];
-        $knowledgebases = KnowledgeBase::findAll(['expertSystemId' => $request->getParam('id')]);
         foreach ($knowledgebases as $key => $knowledgebase) {
           $isFound = [];
           foreach (explode(",", $knowledgebase['symptoms']) as $key => $symptomId) {
@@ -86,12 +86,6 @@ class ConsultationController extends Controller
             $isNotFound[] = true;
           }
           if (count($knowledgebases) <= count($isNotFound)) {
-            $isSolving = [
-              'id' => 0,
-              'name' => 'Not Found',
-              'desc' => 'We\'re Sorry, Your Disease Could Not be Found in Our System :(',
-              'solution' => 'Please Contact your Doctor Immediately for Further Consultation',
-            ];
           }
         }
       }
@@ -100,7 +94,16 @@ class ConsultationController extends Controller
         'sympTemps' => $sympTemp
       ]);
     } else {
-      throw new HttpException(400);
+      $isSolving = [
+        'id' => 0,
+        'name' => 'Not Found',
+        'desc' => 'We\'re Sorry, Your Disease Could Not be Found in Our System :(',
+        'solution' => 'Please Contact your Doctor Immediately for Further Consultation',
+      ];
+      return $response->render('consultations/result', [
+        'results' => $isSolving,
+        'sympTemps' => $sympTemp
+      ]);
     }
   }
 }

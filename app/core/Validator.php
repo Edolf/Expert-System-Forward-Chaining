@@ -70,6 +70,14 @@ class Validator
     return $this;
   }
 
+  public function isArray(String $errorMsg = '')
+  {
+    if (!is_array($this->target)) {
+      $this->setError($errorMsg != null ? $errorMsg : 'Invalid Value', $this->param, $this->location);
+    }
+    return $this;
+  }
+
   public function isUrl(String $errorMsg = '')
   {
     if (!filter_var($this->target, FILTER_VALIDATE_URL)) {
