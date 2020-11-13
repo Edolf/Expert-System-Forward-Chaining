@@ -4,6 +4,10 @@ namespace app\core;
 
 class Validator
 {
+  const BODY = 'body';
+  const PARAM = 'param';
+  const QUERY = 'query';
+
   private $validationResults = [];
   private $validating = [];
   private $target;
@@ -12,22 +16,44 @@ class Validator
 
   public function __construct()
   {
-    $this->validating['body'] = Application::$app->request->getBody();
-    $this->validating['query'] = Application::$app->request->getQuery();
+    $this->validating[self::BODY] = Application::$app->request->getBody();
+    $this->validating[self::QUERY] = Application::$app->request->getQuery();
   }
 
   public function bodyValidation(String $target)
   {
-    $this->target = Application::$app->request->getBody($target);
-    $this->param = $target;
-    $this->location = 'body';
+    if (array_key_exists($target, Application::$app->request->getBody())) {
+      $this->target = Application::$app->request->getBody($target);
+      $this->param = $target;
+      $this->location = self::BODY;
+    } else {
+      $this->setError('Something Wrong', $this->param, $this->location);
+      return $this;
+    }
+  }
+
+  public function paramValidation(String $target)
+  {
+    if (array_key_exists($target, Application::$app->request->getParam())) {
+      $this->target = Application::$app->request->getParam($target);
+      $this->param = $target;
+      $this->location = self::PARAM;
+    } else {
+      $this->setError('Something Wrong', $this->param, $this->location);
+      return $this;
+    }
   }
 
   public function queryValidation(String $target)
   {
-    $this->target = Application::$app->request->getQuery($target);
-    $this->param = $target;
-    $this->location = 'query';
+    if (array_key_exists($target, Application::$app->request->getQuery())) {
+      $this->target = Application::$app->request->getQuery($target);
+      $this->param = $target;
+      $this->location = self::QUERY;
+    } else {
+      $this->setError('Something Wrong', $this->param, $this->location);
+      return $this;
+    }
   }
 
   public function isNotNull(String $errorMsg = '')
@@ -140,10 +166,13 @@ class Validator
   public function trim($char = '')
   {
     switch ($this->location) {
-      case 'body':
+      case self::BODY:
         Application::$app->request->setBody($this->param, trim($this->target, $char));
         break;
-      case 'query':
+      case self::PARAM:
+        Application::$app->request->setParam($this->param, trim($this->target, $char));
+        break;
+      case self::QUERY:
         Application::$app->request->setQuery($this->param, trim($this->target, $char));
         break;
     }
@@ -153,7 +182,7 @@ class Validator
   public function sanitize($type = 'SPECIAL_CHARS')
   {
     switch ($this->location) {
-      case 'body':
+      case self::BODY:
         switch ($type) {
           case 'STRING':
             Application::$app->request->setBody($this->param, filter_var($this->target, FILTER_SANITIZE_STRING));
@@ -166,7 +195,20 @@ class Validator
             break;
         }
         break;
-      case 'query':
+      case self::PARAM:
+        switch ($type) {
+          case 'STRING':
+            Application::$app->request->setParam($this->param, filter_var($this->target, FILTER_SANITIZE_STRING));
+            break;
+          case 'URL':
+            Application::$app->request->setParam($this->param, filter_var($this->target, FILTER_SANITIZE_URL));
+            break;
+          case 'SPECIAL_CHARS':
+            Application::$app->request->setParam($this->param, filter_var($this->target, FILTER_SANITIZE_SPECIAL_CHARS));
+            break;
+        }
+        break;
+      case self::QUERY:
         switch ($type) {
           case 'STRING':
             Application::$app->request->setQuery($this->param, filter_var($this->target, FILTER_SANITIZE_STRING));

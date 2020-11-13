@@ -3,7 +3,7 @@
 namespace app\controllers;
 
 use app\core\Application;
-use app\core\middleware\AuthMiddleware;
+use app\core\Middleware\AuthMiddleware;
 use app\core\Controller;
 use app\core\HttpException;
 use app\core\Request;

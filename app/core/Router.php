@@ -8,7 +8,8 @@ class Router
 {
   private Request $request;
   private Response $response;
-  private static array $routeMap = ['get' => '', 'post' => '', 'put' => '', 'delete' => ''];
+  private static array $routesMap = ['get' => '', 'post' => '', 'put' => '', 'delete' => ''];
+  private static array $paramsMap = [];
 
   public function __construct(Request $request, Response $response)
   {
@@ -28,7 +29,10 @@ class Router
     }
     $method = $this->request->getMethod();
     $url = $this->request->getUrl();
-    $callback = $this->cekUrlIsExist($method, $url);
+    if (!$url) {
+      throw new HttpException($this->response::HTTP_NOT_FOUND);
+    }
+    $callback = $this->cekUrlIsExist($method, $url) ?? false;
     if (!$callback) {
       throw new HttpException($this->response::HTTP_NOT_FOUND);
     }
@@ -55,78 +59,78 @@ class Router
 
   public function cekUrlIsExist(string $method, string $url)
   {
-    if (self::$routeMap[$method][$url] ?? false) {
-      if (is_array(self::$routeMap[$method][$url])) {
-        $paramValue = explode($url, $this->request->getUrl());
-        foreach ($paramValue as $key => $value) {
-          if (empty($value)) {
-            unset($paramValue[$key]);
-          }
-        }
-        $paramKey = array_keys(self::$routeMap[$method][$url])[0];
-        $this->request->setParam($paramKey, $paramValue[1]);
-        return self::$routeMap[$method][$url][$paramKey];
-      } else {
-        return self::$routeMap[$method][$url];
-      }
-    } elseif (substr($url, strlen($url)) == '/') {
+    // Cek Handling Error Apabila Url Seperti Berikut : http://localhost:8080/members/consultation/,,, akan menghilangkan '/' akhiran
+    if (strlen($url) > 1 && substr($url, strlen($url) - 1) == '/') {
       $position = strpos($url, '/', strlen($url) - 1);
       $url = substr($url, 0, $position);
-      return $this->cekUrlIsExist($method, $url);
-    } else {
-      $paths = explode('/', $url);
-      foreach ($paths as $key => $value) {
-        if (empty($value)) {
-          unset($paths[$key]);
-        }
-      }
-      $newUrl = explode($paths[count($paths)], $url);
-      foreach ($newUrl as $key => $value) {
-        if (empty($value)) {
-          unset($newUrl[$key]);
-        }
-      }
-      return $this->cekUrlIsExist($method, $newUrl[0]);
     }
-    // Modern Params By Edo Sulaiman Inspired by Laravel
+
+    if (self::$routesMap[$method][$url] ?? false) {
+      if (is_array(self::$routesMap[$method][$url])) { // Cek Apabila Ada Duplikat URL dan Pasti itu adalah Array
+        if (!empty(self::$paramsMap)) { // Cek Apabila Param Kosong
+          $iterator = count(explode("/", $url));
+          foreach (self::$routesMap[$method][$url] as $key => $callback) {
+            if (is_string($key)) { // Cek Di Dalam Router Map Apabila ada array_keys yang bukan bertype integer
+              $this->request->setParam($key, self::$paramsMap[$iterator]);
+              return $callback;
+            }
+          }
+        } else {
+          return self::$routesMap[$method][$url][0];
+        }
+      } else {
+        return self::$routesMap[$method][$url]; // Kalau Tidak Langsung Return Alamat Callback
+      }
+    } else {
+      if (strlen($url) <= 1) {
+        return false;
+      } else {
+        $paths = explode('/', $url); // Apabila Masih Belum Solving,,, Parameter akhir Pertama Akan Kita Simpan Ke Dalam $paramsMap akan di gunakan apabila di perlukan,,
+        self::$paramsMap[count($paths) - 1] = $paths[count($paths) - 1]; // Setelah Kita Pecahkan Kita Dapat Akhiran yang di simpan ke dalam $paramsMap apabila nanti di perlukan untuk di gunakan
+        unset($paths[count($paths) - 1]); // Hilangkan Parameter Terakhir dalam URL
+        $newUrl = implode('/', $paths); // Buat Url Baru
+        if (substr($newUrl, 0, 1) == '/') { // Cek Garis Miring Awalan
+          return $this->cekUrlIsExist($method, $newUrl);
+        } else {
+          return $this->cekUrlIsExist($method, '/' . $newUrl);
+        }
+      }
+      // Untuk Type Routers Application::method('/someurl/{someparam}/someurl/{someparam}', 'SomeController@method'); akan di lanjutkan apabila project ini terus di lanjutkan
+    }
+    // Modern Params By Edo Sulaiman
   }
 
   public static function setUrlMethodAndParam(string $method, string $url, $callback)
   {
-    // Pecahkan URL
-    $temp0[] = $method;
-    foreach (explode('{', $url) as $value) {
+    $temp0[] = $method; // Pecahkan URL
+    foreach (explode('/{', $url) as $value) {
       foreach (explode('}', $value) as $v) {
         $temp0[] = $v;
       }
     }
-    // Cek Array Yang Kosong
-    foreach ($temp0 as $key => $value) {
+    foreach ($temp0 as $key => $value) { // Cek Array Yang Kosong
       if (empty($value)) {
         unset($temp0[$key]);
       }
     }
-    // Masukkan ke Nested / Multidimensi Array
-    $temp2 = [];
+    $temp2 = []; // Masukkan ke Nested / Multidimensi Array
     for ($i = count($temp0) - 1; $i >= 0; $i--) {
       if ($i == count($temp0) - 1) {
-        // Gabungkan Nested / Multidimensi URL dan Callback
-        $temp2[$temp0[$i]] = $callback;
+        $temp2[$temp0[$i]] = $callback; // Gabungkan Nested / Multidimensi URL dan Callback
       } else {
         $temp2 = [$temp0[$i] => $temp2];
       }
     };
-    self::$routeMap = array_merge_recursive(self::$routeMap, $temp2);
-    // Cek Array Yang Kosong
-    foreach (self::$routeMap as $key => $value) {
+    self::$routesMap = array_merge_recursive(self::$routesMap, $temp2);
+    foreach (self::$routesMap as $key => $value) { // Cek Array Yang Kosong
       if (is_array($value)) {
         foreach ($value as $kunci => $url) {
           if (empty($url)) {
-            unset(self::$routeMap[$key][$kunci]);
+            unset(self::$routesMap[$key][$kunci]);
           }
         }
       }
     }
-    // Modern Params By Edo Sulaiman Inspired by Laravel
+    // Modern Params By Edo Sulaiman
   }
 }

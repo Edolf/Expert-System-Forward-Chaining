@@ -3,6 +3,7 @@ define('DEBUG', true);
 define('ROOT_DIR', dirname(__DIR__));
 define('VIEW_DIR', ROOT_DIR . "/resources/views");
 define('DS', DIRECTORY_SEPARATOR);
+define('PS', PATH_SEPARATOR);
 
 define('APP_NAME', 'PintuRakik');
 define('APP_LOCALE', 'en');
@@ -13,16 +14,13 @@ define('SESSION_KEY', 'sumbarang');
 
 define('DB_CONNECTON', 'mysql');
 define('DB_HOSTNAME', '127.0.0.1');
-define('DB_PORT', '3306');
-define('DB_NAME', 'expertsystem');
-define('DB_USERNAME', 'root');
-define('DB_PASSWORD', '123qwe');
-
-// define('DB_CONNECTON', 'mysql');
 // define('DB_HOSTNAME', 'mydbinstance.cxzk9cwtlbjn.us-east-1.rds.amazonaws.com');
-// define('DB_PORT', '3306');
+define('DB_PORT', '3306');
+define('DB_NAME', 'expertSystem');
 // define('DB_NAME', 'pinturakik');
+define('DB_USERNAME', 'root');
 // define('DB_USERNAME', 'admin');
+define('DB_PASSWORD', '');
 // define('DB_PASSWORD', 'uFtCP3pqW43Oivh4uYci');
 
 define('MAIL_MAILER', 'smtp');

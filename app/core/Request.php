@@ -10,7 +10,7 @@ class Request
 
   public function __construct()
   {
-    if ($this->getMethod() == 'put') {
+    if ($this->getMethod() == 'put' || $this->getMethod() == 'delete') {
       if (empty($this->getBody())) {
         $contents = file("php://input");
         foreach ($contents as $key => $content) {

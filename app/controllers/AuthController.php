@@ -7,45 +7,33 @@ use app\core\Controller;
 use app\core\Request;
 use app\core\Response;
 
-use app\core\mail\PHPMailer;
-use app\core\mail\SMTP;
-
 use app\models\User;
-use app\models\Menu;
 
 class AuthController extends Controller
 {
   public function login(Request $request, Response $response)
   {
-    self::validateBody('user')->isNotNull()->isLength(['min' => 2, 'max' => 25])->trim();
     self::validateBody('password')->isNotNull()->isLength(['min' => 6, 'max' => 30])->trim();
+    self::validateBody('user')->isNotNull()->isLength(['min' => 2, 'max' => 25])->custom(function ($user, $request) {
+      $user = User::findOne([User::OR(['username' => $user, 'email' => $user])]);
+      if (!$user || !password_verify($request['body']['password'], $user->password)) {
+        return new \Error('User Not Found');
+      }
+    })->trim();
 
     if (!empty(self::validateResults())) {
       $response->setStatusCode($response::HTTP_BAD_REQUEST)->setContent(json_encode(['errors' => self::validateResults()]))->send();
     } else {
-      $user = User::findOne([User::OR(['username' => $request->getBody('user'), 'email' => $request->getBody('user')])]);
-      if (!$user) {
-        return $response->setStatusCode($response::HTTP_NOT_FOUND)->setContent(json_encode(['errors' => [[
-          "msg" => "User Not Found",
-          "param" => "user"
-        ]]]))->send();
-      }
-      if (!password_verify($request->getBody('password'), $user->password)) {
-        return $response->setStatusCode($response::HTTP_NOT_FOUND)->setContent(json_encode(['errors' => [[
-          "msg" => "Inncorrect Password",
-          "param" => "password"
-        ]]]))->send();
-      }
-      $request->login($user);
+      $request->login(User::findOne([User::OR(['username' => $request->getBody('user'), 'email' => $request->getBody('user')])]));
       $response->redirect('/');
     }
   }
 
   public function goauth(Request $request, Response $response)
   {
-    $response->setStatusCode($response::HTTP_TOO_EARLY)->setContent($response->render('error', [
+    $response->setStatusCode($response::HTTP_SERVICE_UNAVAILABLE)->setContent($response->render('error', [
       'error' => [
-        'status' => $response::HTTP_TOO_EARLY,
+        'status' => $response::HTTP_SERVICE_UNAVAILABLE,
         'message' => 'Coming Soon',
         'stack' => ''
       ]

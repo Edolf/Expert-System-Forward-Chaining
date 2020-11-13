@@ -16,7 +16,7 @@ use app\models\Rule;
 use app\models\ExpertSystem;
 use app\models\SubMenu;
 
-use app\core\middleware\AuthMiddleware;
+use app\core\Middleware\AuthMiddleware;
 
 class MemberController extends Controller
 {
@@ -132,11 +132,6 @@ class MemberController extends Controller
 
   public function rule(Request $request, Response $response)
   {
-    return $response->render('members/rule');
-  }
-
-  public function account(Request $request, Response $response)
-  {
-    return $response->render('members/users/myaccount', ['title' => 'My Account']);
+    return $response->render('members/rule', ['title' => 'Rules']);
   }
 }

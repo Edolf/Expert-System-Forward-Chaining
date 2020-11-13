@@ -12,7 +12,7 @@ use app\models\Menu;
 use app\models\SubMenu;
 use app\models\CollapseMenu;
 
-use app\core\middleware\AuthMiddleware;
+use app\core\Middleware\AuthMiddleware;
 
 class SidemenuController extends Controller
 {

@@ -2,7 +2,7 @@
 
 namespace app\core;
 
-use app\core\middleware\Middleware;
+use app\core\Middleware\Middleware;
 
 class Controller
 {
@@ -12,6 +12,12 @@ class Controller
   public static function validateBody($body)
   {
     Application::$app->validator->bodyValidation($body);
+    return Application::$app->validator;
+  }
+
+  public static function validateParam($param)
+  {
+    Application::$app->validator->paramValidation($param);
     return Application::$app->validator;
   }
 

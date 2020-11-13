@@ -3,25 +3,17 @@
 // phpinfo();
 // exit;
 
-use app\core\Application;
-
 require_once dirname(__DIR__) . '/config/config.php';
 
-function autoload($className)
-{
-  $classAry = explode('\\', $className);
-  $class = array_pop($classAry);
-  $subPath = strtolower(implode('/', $classAry));
-  $path = dirname(__DIR__) . "/$subPath/$class.php";
-  if (file_exists($path)) {
-    require_once $path;
+spl_autoload_register(function ($className) {
+  $file = dirname(__DIR__) . DS . str_replace('\\', DS, $className) . '.php';
+  if (file_exists($file) && is_readable($file)) {
+    require_once $file;
   }
-}
+});
 
-spl_autoload_register('autoload');
+$app = new app\core\Application();
 
-$app = new Application();
-
-require_once dirname(__DIR__) . '/routers/routers.php';
+require_once dirname(__DIR__) . '/resources/routers/routers.php';
 
 $app->run();
