@@ -11,20 +11,22 @@ class Controller
 
   public static function validateBody($body)
   {
-    Application::$app->validator->bodyValidation($body);
-    return Application::$app->validator;
+    return Application::$app->validator->bodyValidation($body);
   }
 
   public static function validateParam($param)
   {
-    Application::$app->validator->paramValidation($param);
-    return Application::$app->validator;
+    return Application::$app->validator->paramValidation($param);
   }
 
   public static function validateQuery($query)
   {
-    Application::$app->validator->queryValidation($query);
-    return Application::$app->validator;
+    return Application::$app->validator->queryValidation($query);
+  }
+
+  public static function validateFile($file)
+  {
+    return Application::$app->validator->fileValidation($file);
   }
 
   public static function validateResults()

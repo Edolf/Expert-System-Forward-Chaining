@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\core\Application;
+use app\core\HttpException;
 use app\core\Controller;
 use app\core\Request;
 use app\core\Response;
@@ -15,7 +16,7 @@ class UserController extends Controller
 {
   public function __construct()
   {
-    # code ..
+    $this->setMiddleware(new AuthMiddleware());
   }
 
   public function account(Request $request, Response $response)
@@ -40,10 +41,50 @@ class UserController extends Controller
     if (!empty(self::validateResults())) {
       $response->setStatusCode($response::HTTP_BAD_REQUEST)->setContent(json_encode(['errors' => self::validateResults()]))->send();
     } else {
-      User::update([
-        $request->getParam('targetUpdate') => array_pop($request->getQuery())
-      ], ['id' => Application::$app->user->id]);
+      if (User::update([$request->getParam('targetUpdate') => array_pop($request->getQuery())], ['id' => Application::$app->user->id])) {
+        $response->redirect('/members/account');
+      } else {
+        throw new HttpException(500);
+      }
+    }
+  }
+
+  public function updatePassword(Request $request, Response $response)
+  {
+    self::validateBody('oldpassword')->isNotNull()->custom(function ($oldpassword) {
+      $user = Application::$app->user;
+      if (!$user || !password_verify($oldpassword, $user->password)) {
+        return new \Error('Wrong Password');
+      }
+    })->trim();
+    self::validateBody('newpassword')->isNotNull()->equals($request->getBody('confirmpassword'), 'New Password Does Not Match')->trim();
+    self::validateBody('confirmpassword')->isNotNull()->trim();
+
+    if (!empty(self::validateResults())) {
+      $response->setStatusCode($response::HTTP_BAD_REQUEST)->setContent(json_encode(['errors' => self::validateResults()]))->send();
+    } else {
+      if (User::update(['password' => password_hash($request->getBody('newpassword'), PASSWORD_DEFAULT)], ['id' => Application::$app->user->id])) {
+        $response->redirect('/members/account');
+      } else {
+        throw new HttpException(500);
+      }
+    }
+  }
+
+  public function updateImageProfile(Request $request, Response $response)
+  {
+    self::validateFile('userprofile')->isExt(['jpg', 'jpeg', 'png', 'bmp'])->isType(['image', 'jpg', 'jpeg', 'png', 'bmp'])->isLimit(['max' => 300000]);
+
+    if (!empty(self::validateResults())) {
+      $request->setFlash('upload', 'invalid', self::validateResults());
       $response->redirect('/members/account');
+    } else {
+      if (User::update(['image' => base64_encode(file_get_contents($request->getFile('userprofile')["tmp_name"]))], ['id' => Application::$app->user->id])) {
+        $request->setFlash('upload', 'valid', [['msg' => "Looks Good"]]);
+        $response->redirect('/members/account');
+      } else {
+        throw new HttpException(500);
+      }
     }
   }
 
@@ -66,8 +107,11 @@ class UserController extends Controller
       $response->setStatusCode($response::HTTP_BAD_REQUEST)->setContent(json_encode(['errors' => self::validateResults()]))->send();
     } else {
       $request->logout();
-      User::destroy(['id' => Application::$app->user->id]);
-      $response->redirect('/');
+      if (User::destroy(['id' => Application::$app->user->id])) {
+        $response->redirect('/');
+      } else {
+        throw new HttpException(500);
+      }
     }
   }
 }

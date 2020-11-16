@@ -10,51 +10,29 @@ class Request
 
   public function __construct()
   {
-    if ($this->getMethod() == 'put' || $this->getMethod() == 'delete') {
-      if (empty($this->getBody())) {
-        $contents = file("php://input");
-        foreach ($contents as $key => $content) {
-          // Bersihkan Content Tidak Diperlukan
-          if (strpos($content, '------WebKitFormBoundary') !== false || ctype_space($content)) {
-            unset($contents[$key]);
-            continue;
-          }
-          // Ambil Content
-          if (strpos($content, 'form-data; name="') !== false) {
-            $position = strpos($content, 'form-data; name="');
-            $contents[$key] = substr($content, $position + strlen('form-data; name="'), $position);
-          }
-          $contents[$key] = substr($contents[$key], 0, strlen($contents[$key]) - 2);
-          // Bersihkan `""`
-          if (strpos($contents[$key], '"', strlen($contents[$key]) - 3) !== false) {
-            $contents[$key] = substr($contents[$key], 0, strpos($contents[$key], '"', strlen($contents[$key]) - 3));
-          }
-        }
-        // Sort Array
-        $sortArray = [];
-        foreach ($contents as $key => $value) {
-          $sortArray[] = $value;
-        }
-        // Store Content Ke $_POST
-        for ($i = 0; $i < count($contents); $i++) {
-          if ($i % 2 == 0) {
-            $this->setBody($sortArray[$i], '');
-          } else {
-            $this->setBody($sortArray[$i - 1], $sortArray[$i]);
-          }
-        }
+    // Algoritma untuk fetch Javascript Modern dari Class Javascript From Data
+    $input = file_get_contents('php://input');
+    $metaBlock = preg_split("/-+/", $input); // Bagi input tadi dengan Memadukan Depan Belakang dan buang element terakhir
+    array_pop($metaBlock); // Buang Sampah Tak Guna,,
+    foreach ($metaBlock as $key => $block) {
+      if (empty($block)) {
+        continue; // Kosong Yah Skip
+      }
+      preg_match('/name=\"([^\"]*)\"[\n|\r]+([^\n\r].*)?\r$/s', $block, $matches); // Pecahkan Beka Raw Data Tadi Ambil Apapun yang Ada Di Depan "nama=" dan "]+(" dan di depan ini adalah valuenya
+      if (!empty($matches)) {
+        $this->setBody($matches[1], $matches[2] ?? ''); // Store Content Ke $_POST
       }
     }
   }
 
   public function login($user)
   {
-    Application::$app->authenticate->login($user);
+    return Application::$app->authenticate->login($user);
   }
 
   public function logout()
   {
-    Application::$app->authenticate->logout();
+    return Application::$app->authenticate->logout();
   }
 
   public function setFlash($key, $class, $message)
@@ -77,7 +55,7 @@ class Request
     return parse_url($_SERVER['REQUEST_URI'])['path'];
   }
 
-  public function setQuery($query, $new)
+  public function setQuery($query, $new = '')
   {
     $_GET[$query] = $new;
   }
@@ -91,7 +69,7 @@ class Request
     }
   }
 
-  public function setParam($param, $new)
+  public function setParam($param, $new = '')
   {
     $this->_PARAM[$param] = $new;
   }
@@ -105,7 +83,7 @@ class Request
     }
   }
 
-  public function setHeader($head, $value)
+  public function setHeader($head, $value = '')
   {
     try {
       header_remove($head);
@@ -127,7 +105,7 @@ class Request
     return $data;
   }
 
-  public function setBody($body, $new)
+  public function setBody($body, $new = '')
   {
     $_POST[$body] = $new;
   }
@@ -138,6 +116,15 @@ class Request
       return $_POST[$body] ?? null;
     } else {
       return $_POST;
+    }
+  }
+
+  public function getFile($file = '')
+  {
+    if ($file) {
+      return $_FILES[$file] ?? null;
+    } else {
+      return $_FILES;
     }
   }
 

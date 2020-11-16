@@ -27,13 +27,27 @@ class MemberController extends Controller
 
   public function __construct(Request $request, Response $response)
   {
+    // ini Adalah Daftar Rule Authentikasi Yang Sudah Terdaftar Di Database
     $access = json_decode(SubMenu::findOne(['url' => $request->getUrl()])->other)->access ?? false;
     if ($access) {
       $this->setMiddleware(new AuthMiddleware(
         [AuthMiddleware::ALL_METHOD => $access],
       ));
     } else {
-      $this->setMiddleware(new AuthMiddleware());
+      // Kalau Tidak Ketemu Di Database Bisa di Buat Authentikasi Manual untuk setiap Method Di Dalam Controller Ini Termasuk Trait-class nya
+      // 'getProblem' => ['doctor'], : Maksudnya "getProblem" hanya boleh di akses user dengan role doctor
+      // 'getProblem' => ['doctor', 'member'], : Dan ini "getProblem" hanya boleh di akses user dengan role doctor dan member,, yang berarti admin tidak boleh mengakses,,
+      // Syarat Agar Authentikasi Berjalan Lancar User Harus Memiliki Tabel Role
+      $this->setMiddleware(new AuthMiddleware(
+        [
+          'getProblem' => ['doctor'],
+          'updateProblem' => ['doctor'],
+          'deleteProblem' => ['doctor'],
+          'selectConsul' => ['doctor'],
+          'consultation' => ['doctor'],
+          'results' => ['doctor']
+        ]
+      ));
     }
 
     Application::$app->locals['expertsystems'] = ExpertSystem::class;
@@ -69,39 +83,19 @@ class MemberController extends Controller
 
   public function results(Request $request, Response $response)
   {
-    $sympTemp = Symptom::findAll(['id' => Symptom::IN(array_keys($request->getBody()))]);
-    if (count($request->getBody()) != 0) {
+    $options = [];
+    foreach ($request->getBody() as $key => $value) {
+      if ($value === 'on') {
+        $options[] = $key;
+      }
+    }
+    $sympTemp = Symptom::findAll(['id' => Symptom::IN($options)]);
+    if (count($options) != 0) {
       $knowledgebases = KnowledgeBase::findAll(['expertSystemId' => $request->getParam('id')]);
       $isSolving = false;
       while (!$isSolving) {
         $isNotFound = [];
         foreach ($knowledgebases as $key => $knowledgebase) {
-          $isFound = [];
-          foreach (explode(",", $knowledgebase['symptoms']) as $key => $symptomId) {
-            if (in_array($symptomId, array_keys($request->getBody()))) {
-              $isFound[] = true;
-            }
-          }
-          if (count($isFound) == count(explode(",", $knowledgebase['symptoms']))) {
-            $disease = Disease::findOne([Disease::AND([
-              'id' => json_decode($knowledgebase['solvingId'], true)['diseaseId'],
-              'expertSystemId' => $request->getParam('id')
-            ])]);
-            $symptom = Symptom::findOne([Symptom::AND([
-              'id' => json_decode($knowledgebase['solvingId'], true)['symptomId'],
-              'expertSystemId' => $request->getParam('id')
-            ])]);
-            if ($disease) {
-              $isSolving = (array) $disease;
-            } elseif ($symptom) {
-              $symptom = (array) $symptom;
-              $request->setBody($symptom['id'], 'on');
-              unset($isNotFound);
-              unset($knowledgebases[$key]);
-            }
-          } else {
-            $isNotFound[] = true;
-          }
           if (count($knowledgebases) <= count($isNotFound)) {
             $isSolving = [
               'id' => 0,
@@ -109,6 +103,31 @@ class MemberController extends Controller
               'desc' => 'We\'re Sorry, Your Disease Could Not be Found in Our System :(',
               'solution' => 'Please Contact your Doctor Immediately for Further Consultation',
             ];
+          }
+          $isFound = [];
+          foreach (explode(",", $knowledgebase['symptoms']) as $symptomId) {
+            if (in_array($symptomId, $options)) {
+              $isFound[] = true;
+            }
+          }
+          if (count($isFound) == count(explode(",", $knowledgebase['symptoms']))) {
+            if (array_key_exists('diseaseId', json_decode($knowledgebase['solvingId'], true))) {
+              $isSolving = (array) Disease::findOne([Disease::AND([
+                'id' => json_decode($knowledgebase['solvingId'], true)['diseaseId'],
+                'expertSystemId' => $request->getParam('id')
+              ])]);
+            } elseif (array_key_exists('symptomId', json_decode($knowledgebase['solvingId'], true))) {
+              $symptom = Symptom::findOne([Symptom::AND([
+                'id' => json_decode($knowledgebase['solvingId'], true)['symptomId'],
+                'expertSystemId' => $request->getParam('id')
+              ])]);
+              $symptom = (array) $symptom;
+              $options[] = $symptom['id'];
+              $isNotFound = [];
+              unset($knowledgebases[$key]);
+            }
+          } else {
+            $isNotFound[] = true;
           }
         }
       }

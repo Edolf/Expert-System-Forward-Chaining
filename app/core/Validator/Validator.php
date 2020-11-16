@@ -1,23 +1,33 @@
 <?php
 
-namespace app\core;
+namespace app\core\Validator;
+
+use app\core\Application;
 
 class Validator
 {
+  use FileValidator {
+    FileValidator::__construct as private __fvConstruct;
+  }
+
   const BODY = 'body';
   const PARAM = 'param';
   const QUERY = 'query';
+  const FILE = 'file';
 
-  private $validationResults = [];
-  private $validating = [];
-  private $target;
-  private $param;
-  private $location;
+  protected $validationResults = [];
+  protected $validating = [];
+  protected $target;
+  protected $param;
+  protected $location;
 
   public function __construct()
   {
     $this->validating[self::BODY] = Application::$app->request->getBody();
+    $this->validating[self::PARAM] = Application::$app->request->getParam();
     $this->validating[self::QUERY] = Application::$app->request->getQuery();
+    $this->validating[self::FILE] = Application::$app->request->getFile();
+    $this->__fvConstruct($this);
   }
 
   public function bodyValidation(String $target)
@@ -28,8 +38,8 @@ class Validator
       $this->location = self::BODY;
     } else {
       $this->setError('Something Wrong', $this->param, $this->location);
-      return $this;
     }
+    return $this;
   }
 
   public function paramValidation(String $target)
@@ -40,8 +50,8 @@ class Validator
       $this->location = self::PARAM;
     } else {
       $this->setError('Something Wrong', $this->param, $this->location);
-      return $this;
     }
+    return $this;
   }
 
   public function queryValidation(String $target)
@@ -52,8 +62,8 @@ class Validator
       $this->location = self::QUERY;
     } else {
       $this->setError('Something Wrong', $this->param, $this->location);
-      return $this;
     }
+    return $this;
   }
 
   public function isNotNull(String $errorMsg = '')
@@ -144,7 +154,7 @@ class Validator
     return $this;
   }
 
-  public function equals(String $target, String $errorMsg = '')
+  public function equals(String $target = '', String $errorMsg = '')
   {
     if ($this->target !== $target) {
       $this->setError($errorMsg != null ? $errorMsg : $this->param . " Does Not Match", $this->param, $this->location);

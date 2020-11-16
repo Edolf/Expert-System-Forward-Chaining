@@ -79,13 +79,13 @@ class Expression
         return $x . ' IS NOT NULL';
     }
 
-    public function like($x, $y/*, ?string $escapeChar = null */)
+    public function like($x, $y)
     {
         return $this->comparison($x, 'LIKE', $y) .
             (func_num_args() >= 3 ? sprintf(' ESCAPE %s', func_get_arg(2)) : '');
     }
 
-    public function notLike($x, $y/*, ?string $escapeChar = null */)
+    public function notLike($x, $y)
     {
         return $this->comparison($x, 'NOT LIKE', $y) .
             (func_num_args() >= 3 ? sprintf(' ESCAPE %s', func_get_arg(2)) : '');

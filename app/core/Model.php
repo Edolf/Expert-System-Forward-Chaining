@@ -36,9 +36,9 @@ abstract class Model
       }
       $statement->execute();
       if ($callback) {
-        return call_user_func($callback, $statement->fetchAll(), $error = '');
+        return call_user_func($callback, $statement->fetchAll(\PDO::FETCH_ASSOC), $error = '');
       }
-      return $statement->fetchAll();
+      return $statement->fetchAll(\PDO::FETCH_ASSOC);
     } catch (\Throwable $th) {
       if ($callback) {
         return call_user_func($callback, $statement = '', $error = true);
@@ -80,12 +80,12 @@ abstract class Model
       $statement = self::prepare(self::query()->insert(static::tableName())->values($values));
       $statement->execute();
       if ($callback) {
-        return call_user_func($callback, $statement->rowCount(), $error = '');
+        return call_user_func($callback, $statement->execute(), $error = '');
       }
-      return $statement->rowCount();
+      return $statement->execute();
     } catch (\Throwable $th) {
       if ($callback) {
-        return call_user_func($callback, $statement->rowCount(), $error = true);
+        return call_user_func($callback, $statement->execute(), $error = true);
       }
       return false;
     }
@@ -96,7 +96,7 @@ abstract class Model
     try {
       $values = [];
       foreach (static::attributes() as $key => $value) {
-        if (!is_null($attributes[$key])) {
+        if (($attributes[$key] ?? false) && (!is_null($attributes[$key]))) {
           $values[] = static::tableName() . ".$key = '$attributes[$key]'";
         }
       }
@@ -105,14 +105,13 @@ abstract class Model
       $where = $where[array_keys($where)[0]];
       $query = self::query()->update(static::tableName())->add('set', $values, true);
       $statement = self::setWhereLogic($key, $where, $query);
-      $statement->execute();
       if ($callback) {
-        return call_user_func($callback, $statement->rowCount(), $error = '');
+        return call_user_func($callback, $statement->execute(), $error = '');
       }
-      return $statement->rowCount();
+      return $statement->execute();
     } catch (\Throwable $th) {
       if ($callback) {
-        return call_user_func($callback, $statement->rowCount(), $error = true);
+        return call_user_func($callback, $statement->execute(), $error = true);
       }
       return false;
     }
@@ -126,12 +125,12 @@ abstract class Model
       $statement = self::prepare(self::query()->delete(static::tableName())->where(static::tableName() . '.' . $key . " = '$value'"));
       $statement->execute();
       if ($callback) {
-        return call_user_func($callback, $statement->rowCount(), $error = '');
+        return call_user_func($callback, $statement->execute(), $error = '');
       }
-      return $statement->rowCount();
+      return $statement->execute();
     } catch (\Throwable $th) {
       if ($callback) {
-        return call_user_func($callback, $statement->rowCount(), $error = true);
+        return call_user_func($callback, $statement->execute(), $error = true);
       }
       return false;
     }

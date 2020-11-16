@@ -2,15 +2,15 @@
 
 namespace app\core\Session;
 
-use app\core\Session\Session;
+use app\core\Application;
 
-class Token extends Session
+class Token
 {
   public const TOKEN = 'token';
 
   public function __construct()
   {
-    self::setSession(self::TOKEN, bin2hex(openssl_random_pseudo_bytes(32, $cstrong)));
+    Application::$app->session->setSession(self::TOKEN, bin2hex(openssl_random_pseudo_bytes(32, $cstrong)));
   }
 
   public function getCSRFToken()
@@ -18,9 +18,9 @@ class Token extends Session
     return $_SESSION[self::TOKEN] ?? false;
   }
 
-  public static function checkToken($token)
+  public function checkToken($token)
   {
-    if (self::getSession(self::TOKEN) === $token) {
+    if (Application::$app->session->getSession(self::TOKEN) === $token) {
       return true;
     }
     return false;
@@ -28,6 +28,6 @@ class Token extends Session
 
   public function removeToken()
   {
-    self::remove(self::TOKEN);
+    Application::$app->session->remove(self::TOKEN);
   }
 }

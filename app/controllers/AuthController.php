@@ -24,8 +24,20 @@ class AuthController extends Controller
     if (!empty(self::validateResults())) {
       $response->setStatusCode($response::HTTP_BAD_REQUEST)->setContent(json_encode(['errors' => self::validateResults()]))->send();
     } else {
-      $request->login(User::findOne([User::OR(['username' => $request->getBody('user'), 'email' => $request->getBody('user')])]));
-      $response->redirect('/');
+      if ($request->login(
+        User::findOne(
+          [User::OR([
+            'username' => $request->getBody('user'), 'email' => $request->getBody('user')
+          ])]
+        )
+      )) {
+        $response->redirect('/');
+      } else {
+        self::validateBody('user')->custom(function () {
+          return new \Error('Something Wrong');
+        });
+        $response->setStatusCode($response::HTTP_BAD_REQUEST)->setContent(json_encode(['errors' => self::validateResults()]))->send();
+      }
     }
   }
 

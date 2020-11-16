@@ -20,7 +20,7 @@ define('DB_NAME', 'expertSystem');
 // define('DB_NAME', 'pinturakik');
 define('DB_USERNAME', 'root');
 // define('DB_USERNAME', 'admin');
-define('DB_PASSWORD', '');
+define('DB_PASSWORD', '123qwe');
 // define('DB_PASSWORD', 'uFtCP3pqW43Oivh4uYci');
 
 define('MAIL_MAILER', 'smtp');

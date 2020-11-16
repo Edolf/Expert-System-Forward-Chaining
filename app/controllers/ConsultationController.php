@@ -44,48 +44,54 @@ class ConsultationController extends Controller
       throw new HttpException(400);
     }
   }
+
   public function result(Request $request, Response $response)
   {
     $options = [];
     foreach ($request->getBody() as $key => $value) {
       if ($value === 'on') {
-        $options[$key] = $value;
+        $options[] = $key;
       }
     }
-    $sympTemp = Symptom::findAll(['id' => Symptom::IN(array_keys($options))]);
-    if (count($request->getBody()) != 0) {
+    $sympTemp = Symptom::findAll(['id' => Symptom::IN($options)]);
+    if (count($options) != 0) {
       $knowledgebases = KnowledgeBase::findAll(['expertSystemId' => $request->getParam('id')]);
       $isSolving = false;
       while (!$isSolving) {
         $isNotFound = [];
         foreach ($knowledgebases as $key => $knowledgebase) {
+          if (count($knowledgebases) <= count($isNotFound)) {
+            $isSolving = [
+              'id' => 0,
+              'name' => 'Not Found',
+              'desc' => 'We\'re Sorry, Your Disease Could Not be Found in Our System :(',
+              'solution' => 'Please Contact your Doctor Immediately for Further Consultation',
+            ];
+          }
           $isFound = [];
-          foreach (explode(",", $knowledgebase['symptoms']) as $key => $symptomId) {
-            if (in_array($symptomId, array_keys($options))) {
+          foreach (explode(",", $knowledgebase['symptoms']) as $symptomId) {
+            if (in_array($symptomId, $options)) {
               $isFound[] = true;
             }
           }
           if (count($isFound) == count(explode(",", $knowledgebase['symptoms']))) {
-            $disease = Disease::findOne([Disease::AND([
-              'id' => json_decode($knowledgebase['solvingId'], true)['diseaseId'],
-              'expertSystemId' => $request->getParam('id')
-            ])]);
-            $symptom = Symptom::findOne([Symptom::AND([
-              'id' => json_decode($knowledgebase['solvingId'], true)['symptomId'],
-              'expertSystemId' => $request->getParam('id')
-            ])]);
-            if ($disease) {
-              $isSolving = (array) $disease;
-            } elseif ($symptom) {
+            if (array_key_exists('diseaseId', json_decode($knowledgebase['solvingId'], true))) {
+              $isSolving = (array) Disease::findOne([Disease::AND([
+                'id' => json_decode($knowledgebase['solvingId'], true)['diseaseId'],
+                'expertSystemId' => $request->getParam('id')
+              ])]);
+            } elseif (array_key_exists('symptomId', json_decode($knowledgebase['solvingId'], true))) {
+              $symptom = Symptom::findOne([Symptom::AND([
+                'id' => json_decode($knowledgebase['solvingId'], true)['symptomId'],
+                'expertSystemId' => $request->getParam('id')
+              ])]);
               $symptom = (array) $symptom;
-              $options[$symptom['id']] = 'on';
-              unset($isNotFound);
+              $options[] = $symptom['id'];
+              $isNotFound = [];
               unset($knowledgebases[$key]);
             }
           } else {
             $isNotFound[] = true;
-          }
-          if (count($knowledgebases) <= count($isNotFound)) {
           }
         }
       }
