@@ -6,6 +6,7 @@ use app\core\HttpException;
 use app\core\Controller;
 use app\core\Request;
 use app\core\Response;
+// use app\core\Cookie;
 
 use app\models\User;
 
@@ -24,13 +25,21 @@ class AuthController extends Controller
     if (!empty(self::validateResults())) {
       $response->setStatusCode($response::HTTP_BAD_REQUEST)->setContent(json_encode(['errors' => self::validateResults()]))->send();
     } else {
-      if ($request->login(
-        User::findOne(
-          [User::OR([
-            'username' => $request->getBody('user'), 'email' => $request->getBody('user')
-          ])]
-        )
-      )) {
+      $user = User::findOne([User::OR([
+        'username' => $request->getBody('user'), 'email' => $request->getBody('user')
+      ])]);
+      if ($request->login($user)) {
+        // if ($request->getBody('rememberme') == 'on') {
+        //   $randomKey = bin2hex(random_bytes(4));
+        //   if (User::update(['rememberme' => $randomKey], ['id' => $user->{array_keys($user::primaryKey())[0]}])) {
+        //     Cookie::set(REMEMBER_ME_COOKIE_NAME, $randomKey, REMEMBER_ME_COOKIE_EXPIRY);
+        //   } else {
+        //     self::validateBody('user')->custom(function () {
+        //       return new \Error('Something Wrong');
+        //     });
+        //     $response->setStatusCode($response::HTTP_BAD_REQUEST)->setContent(json_encode(['errors' => self::validateResults()]))->send();
+        //   }
+        // }
         $response->redirect('/');
       } else {
         self::validateBody('user')->custom(function () {

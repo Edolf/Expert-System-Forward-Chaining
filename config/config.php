@@ -10,7 +10,9 @@ define('APP_LOCALE', 'en');
 define('APP_URL', DEBUG == true ? 'localhost' : 'pinturakik.ml');
 
 define('CIPHER_METHOD', 'AES-256-CBC');
-define('SESSION_KEY', 'sumbarang');
+
+define('REMEMBER_ME_COOKIE_NAME', 'rememberme');
+define('REMEMBER_ME_COOKIE_EXPIRY', 604800);
 
 define('DB_CONNECTON', 'mysql');
 define('DB_HOSTNAME', '127.0.0.1');
@@ -20,7 +22,7 @@ define('DB_NAME', 'expertSystem');
 // define('DB_NAME', 'pinturakik');
 define('DB_USERNAME', 'root');
 // define('DB_USERNAME', 'admin');
-define('DB_PASSWORD', '123qwe');
+define('DB_PASSWORD', '');
 // define('DB_PASSWORD', 'uFtCP3pqW43Oivh4uYci');
 
 define('MAIL_MAILER', 'smtp');
