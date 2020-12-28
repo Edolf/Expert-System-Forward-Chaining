@@ -92,7 +92,7 @@ class MemberController extends Controller
         'username' => $request->getBody('editUserName'),
         'role' => $roles[array_search($request->getBody('roleUser'), $roles)]
       ], ['id' => $request->getQuery('id')])) {
-        $request->setFlash('list-user', 'alert-success', [['msg' => "{$request->getBody('editFullName')} Has Been Updated"]]);
+        $request->setFlash('list-user', '_1I2Cg', [['msg' => "{$request->getBody('editFullName')} Has Been Updated"]]);
         $response->redirect('/members/list-user');
       } else {
         throw new HttpException(500);
@@ -103,7 +103,7 @@ class MemberController extends Controller
   public function dropUser(Request $request, Response $response)
   {
     if (User::destroy(['id' => $request->getQuery('id')])) {
-      $request->setFlash('list-user', 'alert-success', [['msg' => "User Has Been Deleted"]]);
+      $request->setFlash('list-user', '_1I2Cg', [['msg' => "User Has Been Deleted"]]);
       $response->redirect('/members/list-user');
     } else {
       throw new HttpException(404);

@@ -38,7 +38,7 @@ trait DiseaseController
         'solution' => $request->getBody('diseasesolution'),
         'expertSystemId' => $request->getQuery('problemId')
       ])) {
-        $request->setFlash('disease', 'alert-success', [['msg' => "{$request->getBody('diseasename')} Has Been Added"]]);
+        $request->setFlash('disease', '_1I2Cg', [['msg' => "{$request->getBody('diseasename')} Has Been Added"]]);
         $response->redirect('/members/disease');
       } else {
         throw new HttpException(500);
@@ -69,7 +69,7 @@ trait DiseaseController
         'solution' => $request->getBody('editdiseasesolution'),
         'expertSystemId' => $request->getQuery('problemId')
       ], ['id' => $request->getQuery('id')])) {
-        $request->setFlash('disease', 'alert-success', [['msg' => "{$request->getQuery('name')} Has Been Updated"]]);
+        $request->setFlash('disease', '_1I2Cg', [['msg' => "{$request->getQuery('name')} Has Been Updated"]]);
         $response->redirect('/members/disease');
       } else {
         throw new HttpException(500);
@@ -81,11 +81,11 @@ trait DiseaseController
   {
     self::validateQuery('id')->isNotNull()->isInt()->trim()->sanitize();
     if (!empty(self::validateResults())) {
-      $request->setFlash('disease', 'alert-success', self::validateResults());
+      $request->setFlash('disease', '_1I2Cg', self::validateResults());
       $response->redirect('/members/disease');
     } else {
       if (Disease::destroy(['id' => $request->getQuery('id')])) {
-        $request->setFlash('disease', 'alert-success', [['msg' => "{$request->getQuery('name')} Has Been Deleted"]]);
+        $request->setFlash('disease', '_1I2Cg', [['msg' => "{$request->getQuery('name')} Has Been Deleted"]]);
         $response->redirect('/members/disease');
       } else {
         throw new HttpException(500);

@@ -51,7 +51,7 @@ class SidemenuController extends Controller
           ]]
         )
       ])) {
-        $request->setFlash('menu', 'alert-success', [['msg' => "{$request->getBody('newMenu')} Has Been Added"]]);
+        $request->setFlash('menu', '_1I2Cg', [['msg' => "{$request->getBody('newMenu')} Has Been Added"]]);
         $response->redirect('/members/sidemenu');
       } else {
         throw new HttpException(500);
@@ -78,7 +78,7 @@ class SidemenuController extends Controller
           ]]
         )
       ], ['id' => $request->getQuery('id')])) {
-        $request->setFlash('menu', 'alert-success', [['msg' => "{$request->getBody('menu')} Has Been Updated"]]);
+        $request->setFlash('menu', '_1I2Cg', [['msg' => "{$request->getBody('menu')} Has Been Updated"]]);
         $response->redirect('/members/sidemenu');
       } else {
         throw new HttpException(500);
@@ -91,11 +91,11 @@ class SidemenuController extends Controller
     self::validateQuery('id')->isInt()->trim()->sanitize();
 
     if (!empty(self::validateResults())) {
-      $request->setFlash('menu', 'alert-danger', self::validateResults());
+      $request->setFlash('menu', 'jP41K', self::validateResults());
       $response->redirect('/members/sidemenu');
     } else {
       if (Menu::destroy(['id' => $request->getQuery('id')])) {
-        $request->setFlash('menu', 'alert-success', [['msg' => "{$request->getQuery('title')} Has Been Deleted"]]);
+        $request->setFlash('menu', '_1I2Cg', [['msg' => "{$request->getQuery('title')} Has Been Deleted"]]);
         $response->redirect('/members/sidemenu');
       } else {
         throw new HttpException(404);
@@ -132,7 +132,7 @@ class SidemenuController extends Controller
           ]]
         )
       ])) {
-        $request->setFlash('submenu', 'alert-success', [['msg' => "{$request->getBody('title')} Has Been Added"]]);
+        $request->setFlash('submenu', '_1I2Cg', [['msg' => "{$request->getBody('title')} Has Been Added"]]);
         $response->redirect('/members/sidemenu/menu');
       } else {
         throw new HttpException(500);
@@ -164,7 +164,7 @@ class SidemenuController extends Controller
           ]]
         )
       ], ['id' => $request->getQuery('id')])) {
-        $request->setFlash('submenu', 'alert-success', [['msg' => "{$request->getBody('editMenuTitle')} Has Been Updated"]]);
+        $request->setFlash('submenu', '_1I2Cg', [['msg' => "{$request->getBody('editMenuTitle')} Has Been Updated"]]);
         $response->redirect('/members/sidemenu/menu');
       } else {
         throw new HttpException(500);
@@ -177,11 +177,11 @@ class SidemenuController extends Controller
     self::validateQuery('id')->isInt()->trim()->sanitize();
 
     if (!empty(self::validateResults())) {
-      $request->setFlash('submenu', 'alert-danger', self::validateResults());
+      $request->setFlash('submenu', 'jP41K', self::validateResults());
       $response->redirect('/members/sidemenu/menu');
     } else {
       if (SubMenu::destroy(['id' => $request->getQuery('id')])) {
-        $request->setFlash('submenu', 'alert-success', [['msg' => "{$request->getQuery('title')} Has Been Deleted"]]);
+        $request->setFlash('submenu', '_1I2Cg', [['msg' => "{$request->getQuery('title')} Has Been Deleted"]]);
         $response->redirect('/members/sidemenu/menu');
       } else {
         throw new HttpException(404);
@@ -216,7 +216,7 @@ class SidemenuController extends Controller
           ]]
         )
       ])) {
-        $request->setFlash('collapsemenu', 'alert-success', [['msg' => "{$request->getBody('title')} Has Been Added"]]);
+        $request->setFlash('collapsemenu', '_1I2Cg', [['msg' => "{$request->getBody('title')} Has Been Added"]]);
         $response->redirect('/members/sidemenu/submenu');
       } else {
         throw new HttpException(500);
@@ -246,7 +246,7 @@ class SidemenuController extends Controller
           ]]
         )
       ], ['id' => $request->getQuery('id')])) {
-        $request->setFlash('collapsemenu', 'alert-success', [['msg' => "{$request->getBody('title')} Has Been Updated"]]);
+        $request->setFlash('collapsemenu', '_1I2Cg', [['msg' => "{$request->getBody('title')} Has Been Updated"]]);
         $response->redirect('/members/sidemenu/submenu');
       } else {
         throw new HttpException(500);
@@ -259,11 +259,11 @@ class SidemenuController extends Controller
     self::validateQuery('id')->isInt()->trim()->sanitize();
 
     if (!empty(self::validateResults())) {
-      $request->setFlash('collapsemenu', 'alert-danger', self::validateResults());
+      $request->setFlash('collapsemenu', 'jP41K', self::validateResults());
       $response->redirect('/members/sidemenu/submenu');
     } else {
       if (CollapseMenu::destroy(['id' => $request->getQuery('id')])) {
-        $request->setFlash('collapsemenu', 'alert-success', [['msg' => "{$request->getQuery('title')} Has Been Deleted"]]);
+        $request->setFlash('collapsemenu', '_1I2Cg', [['msg' => "{$request->getQuery('title')} Has Been Deleted"]]);
         $response->redirect('/members/sidemenu/submenu');
       } else {
         throw new HttpException(404);

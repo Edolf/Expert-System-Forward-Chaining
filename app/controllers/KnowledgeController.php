@@ -38,7 +38,7 @@ trait KnowledgeController
     self::validateQuery('problemId')->isNotNull()->isInt()->trim()->sanitize();
 
     if (!empty(self::validateResults())) {
-      $request->setFlash('knowledge', 'alert-danger', self::validateResults());
+      $request->setFlash('knowledge', 'jP41K', self::validateResults());
       $response->redirect('/members/knowledge');
     } else {
       $typeSolving = strpos($request->getBody('solving'), 'disease-') !== false ? 'diseaseId' : 'symptomId';
@@ -48,7 +48,7 @@ trait KnowledgeController
         'symptoms' => implode(',', $request->getBody('symptoms')),
         'expertSystemId' => $request->getQuery('problemId')
       ])) {
-        $request->setFlash('knowledge', 'alert-success', [['msg' => "The Knowledge Has Been Added"]]);
+        $request->setFlash('knowledge', '_1I2Cg', [['msg' => "The Knowledge Has Been Added"]]);
         $response->redirect('/members/knowledge');
       } else {
         throw new HttpException(500);
@@ -61,13 +61,13 @@ trait KnowledgeController
     self::validateBody('symptoms')->isArray();
 
     if (!empty(self::validateResults())) {
-      $request->setFlash('knowledge', 'alert-danger', self::validateResults());
+      $request->setFlash('knowledge', 'jP41K', self::validateResults());
       $response->redirect('/members/knowledge');
     } else {
       if (KnowledgeBase::update([
         'symptoms' => implode(',', $request->getBody('symptoms')),
       ], ['id' => $request->getQuery('id')])) {
-        $request->setFlash('knowledge', 'alert-success', [['msg' => "The Knowledge Has Been Updated"]]);
+        $request->setFlash('knowledge', '_1I2Cg', [['msg' => "The Knowledge Has Been Updated"]]);
         $response->redirect('/members/knowledge');
       } else {
         throw new HttpException(500);
@@ -79,11 +79,11 @@ trait KnowledgeController
   {
     self::validateQuery('id')->isNotNull()->isInt()->trim()->sanitize();
     if (!empty(self::validateResults())) {
-      $request->setFlash('knowledge', 'alert-success', self::validateResults());
+      $request->setFlash('knowledge', '_1I2Cg', self::validateResults());
       $response->redirect('/members/knowledge');
     } else {
       if (KnowledgeBase::destroy(['id' => $request->getQuery('id')])) {
-        $request->setFlash('knowledge', 'alert-success', [['msg' => "The Knowledge Has Been Deleted"]]);
+        $request->setFlash('knowledge', '_1I2Cg', [['msg' => "The Knowledge Has Been Deleted"]]);
         $response->redirect('/members/knowledge');
       } else {
         throw new HttpException(500);
