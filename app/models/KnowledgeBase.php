@@ -8,7 +8,7 @@ class KnowledgeBase extends Model
 {
   public static function tableName(): string
   {
-    return 'KnowledgeBases';
+    return 'knowledgebases';
   }
 
   public static function attributes(): array

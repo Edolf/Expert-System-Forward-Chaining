@@ -8,7 +8,7 @@ class PasswordReset extends Model
 {
   public static function tableName(): string
   {
-    return 'PasswordResets';
+    return 'passwordresets';
   }
 
   public static function attributes(): array

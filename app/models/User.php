@@ -8,7 +8,7 @@ class User extends Model
 {
   public static function tableName(): string
   {
-    return 'Users';
+    return 'users';
   }
 
   public static function attributes(): array

@@ -8,7 +8,7 @@ class SubMenu extends Model
 {
   public static function tableName(): string
   {
-    return 'SubMenus';
+    return 'submenus';
   }
 
   public static function attributes(): array

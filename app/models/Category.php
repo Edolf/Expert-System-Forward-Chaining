@@ -8,7 +8,7 @@ class Category extends Model
 {
   public static function tableName(): string
   {
-    return 'Categories';
+    return 'categories';
   }
 
   public static function attributes(): array

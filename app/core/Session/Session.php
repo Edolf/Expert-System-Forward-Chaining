@@ -8,15 +8,13 @@ use app\core\Cookie;
 class Session
 {
 
-  public function __construct()
+  public function __construct($set = '')
   {
-    if (!session_id()) {
-      if (!session_start([
-        'cookie_lifetime' => 86400,
-        'use_cookies' => 1
-      ])) {
-        throw new HttpException($this->response::HTTP_INTERNAL_SERVER_ERROR, 'Failed To Start The Session');
-      }
+    if (!session_start($set)) {
+      throw new HttpException(500, 'Failed To Start The Session');
+    }
+    if ((!session_id()) || (!Cookie::getCookie('PHPSESSID'))) {
+      throw new HttpException(500, 'Failed To Start The Session');
     }
   }
 
@@ -34,5 +32,10 @@ class Session
   public function remove($key)
   {
     unset($_SESSION[$key]);
+  }
+
+  public function cleanSession()
+  {
+    return session_destroy();
   }
 }

@@ -3,24 +3,24 @@
 namespace app\core;
 
 use app\core\Session;
+use helpers\ParseInputStream;
 
 class Request
 {
-  public $_PARAM = [];
+  private $_PARAM = [];
 
   public function __construct()
   {
     // Algoritma untuk fetch Javascript Modern dari Class Javascript From Data
     $input = file_get_contents('php://input');
-    $metaBlock = preg_split("/-+/", $input); // Bagi input tadi dengan Memadukan Depan Belakang dan buang element terakhir
-    array_pop($metaBlock); // Buang Sampah Tak Guna,,
+    $metaBlock = preg_split("/--+/", $input); // Bagi input tadi dengan Memadukan Depan Belakang dan buang element terakhir
     foreach ($metaBlock as $key => $block) {
-      if (empty($block)) {
-        continue; // Kosong Yah Skip
-      }
-      preg_match('/name=\"([^\"]*)\"[\n|\r]+([^\n\r].*)?\r$/s', $block, $matches); // Pecahkan Beka Raw Data Tadi Ambil Apapun yang Ada Di Depan "nama=" dan "]+(" dan di depan ini adalah valuenya
-      if (!empty($matches)) {
-        $this->setBody($matches[1], $matches[2] ?? ''); // Store Content Ke $_POST
+      if (preg_match('/name=\"([^\"]*)\"[\n|\r]+([^\n\r].*)?\r$/s', $block, $match)) { // Pecahkan Beka Raw Data Tadi Ambil Apapun yang Ada Di Depan "nama=" dan "]+(" dan di depan ini adalah valuenya
+        if (preg_match('/^(.*)\[\]$/i', $match[1], $tmp)) {
+          $this->setBody($tmp[1], (array_key_exists(2, $match) ? $match[2] : '')); // Store Content Ke $_POST
+        } else {
+          $this->setBody($match[1], (array_key_exists(2, $match) ? $match[2] : '')); // Store Content Ke $_POST
+        }
       }
     }
   }
@@ -52,12 +52,30 @@ class Request
 
   public function getUrl()
   {
-    return parse_url($_SERVER['REQUEST_URI'])['path'];
+    $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    $heee = strpos($url, PROJECT_DIR);
+    if ($heee !== false) {
+      $url = substr($url, strlen(PROJECT_DIR) + 1, strlen($url));
+    }
+    // Cek Handling Error Apabila Url Seperti Berikut : http://localhost:8080/members/consultation/,,, akan menghilangkan '/' akhiran
+    // Metode di File ni manual Penjabaran array sebenanrya lebih mudah apabila menggunakan reGex,, tetapi sudah terbuat yahh biarlah,,,
+    while (strlen($url) > 1 && substr($url, strlen($url) - 1) == '/') {
+      $position = strpos($url, '/', strlen($url) - 1);
+      $url = substr($url, 0, $position);
+    }
+    return $url;
+    // Modern Params By Edo Sulaiman
   }
 
   public function setQuery($query, $new = '')
   {
-    $_GET[$query] = $new;
+    if (($_GET[$query] ?? false)) {
+      if (!($_GET[$query] === $new || (is_array($_GET[$query]) ? ($_GET[$query][array_search($new, $_GET[$query])] === $new) : false))) {
+        $_GET = array_merge_recursive($_POST, [$query => $new]);
+      }
+    } else {
+      $_GET[$query] = $new;
+    }
   }
 
   public function getQuery($query = '')
@@ -71,7 +89,13 @@ class Request
 
   public function setParam($param, $new = '')
   {
-    $this->_PARAM[$param] = $new;
+    if (($this->_PARAM[$param] ?? false)) {
+      if (!($this->_PARAM[$param] === $new || (is_array($this->_PARAM[$param]) ? ($this->_PARAM[$param][array_search($new, $this->_PARAM[$param])] === $new) : false))) {
+        $this->_PARAM = array_merge_recursive($_POST, [$param => $new]);
+      }
+    } else {
+      $this->_PARAM[$param] = $new;
+    }
   }
 
   public function getParam($param = '')
@@ -89,7 +113,7 @@ class Request
       header_remove($head);
       Application::$app->response->setHeader($head, $value);
     } catch (\Throwable $th) {
-      throw new HttpException($this->response::HTTP_INTERNAL_SERVER_ERROR);
+      throw new HttpException(500);
     }
   }
 
@@ -107,7 +131,13 @@ class Request
 
   public function setBody($body, $new = '')
   {
-    $_POST[$body] = $new;
+    if (($_POST[$body] ?? false)) {
+      if (!($_POST[$body] === $new || (is_array($_POST[$body]) ? ($_POST[$body][array_search($new, $_POST[$body])] === $new) : false))) {
+        $_POST = array_merge_recursive($_POST, [$body => $new]);
+      }
+    } else {
+      $_POST[$body] = $new;
+    }
   }
 
   public function getBody($body = '')

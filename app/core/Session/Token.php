@@ -8,25 +8,26 @@ class Token
 {
   public const TOKEN = 'token';
 
-  public function __construct()
+  public static function setToken()
   {
     Application::$app->session->setSession(self::TOKEN, bin2hex(openssl_random_pseudo_bytes(32, $cstrong)));
   }
 
-  public function getCSRFToken()
+  public static function getCSRFToken()
   {
-    return $_SESSION[self::TOKEN] ?? false;
+    return Application::$app->session->getSession(self::TOKEN);
   }
 
-  public function checkToken($token)
+  public static function checkToken($token)
   {
     if (Application::$app->session->getSession(self::TOKEN) === $token) {
+      // self::removeToken();
       return true;
     }
     return false;
   }
 
-  public function removeToken()
+  public static function removeToken()
   {
     Application::$app->session->remove(self::TOKEN);
   }

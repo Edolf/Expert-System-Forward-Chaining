@@ -8,7 +8,7 @@ class ExpertSystem extends Model
 {
   public static function tableName(): string
   {
-    return 'ExpertSystems';
+    return 'expertsystems';
   }
 
   public static function attributes(): array

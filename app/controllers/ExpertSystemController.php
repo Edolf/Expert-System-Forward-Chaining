@@ -24,7 +24,7 @@ trait ExpertSystemController
     self::validateBody('problemdesc')->isNotNull()->isLength(['min' => 3, 'max' => 500])->trim()->sanitize();
 
     if (!empty(self::validateResults())) {
-      $response->setStatusCode($response::HTTP_BAD_REQUEST)->setContent(json_encode(['errors' => self::validateResults()]))->send();
+      $response->setStatusCode(400)->setContent(json_encode(['errors' => self::validateResults()]))->send();
     } else {
       if (ExpertSystem::create([
         'problem' => $request->getBody('problemname'),

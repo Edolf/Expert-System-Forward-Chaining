@@ -6,12 +6,16 @@ use app\models\User;
 use app\core\Application;
 use app\core\HttpException;
 
-class Authenticate extends Session
+class Authenticate
 {
   public function __construct($userId)
   {
-    if ($userId) {
-      Application::$app->user = User::findOne([array_keys(User::primaryKey())[0] => $userId]);
+    try {
+      if ($userId) {
+        Application::$app->user = User::findOne([array_keys(User::primaryKey())[0] => $userId]);
+      }
+    } catch (\Throwable $th) {
+      Application::$app->session->cleanSession();
     }
   }
 

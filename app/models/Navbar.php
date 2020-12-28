@@ -8,7 +8,7 @@ class Navbar extends Model
 {
   public static function tableName(): string
   {
-    return 'Navbars';
+    return 'navbars';
   }
 
   public static function attributes(): array

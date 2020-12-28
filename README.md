@@ -1,30 +1,36 @@
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+## Tugas Akhir Expert System | Forward Chaning
 
-## <p align="center" class="font-weight-bolder">Tugas Akhir Expert System | Forward Chaning</p>
-
-## Nama : Edo Sulaiman
-## NoBP : 18101152630092
-## Kelas : IF-3
+****Edo Sulaiman (18101152630092)** IF-3**
 
 Assalamu'alakum Pak,,
-Saya ingin Sedikit menjelaskan tentang tugas akhir ini pak,,
+Saya ingin Sedikit menjelaskan tentang tugas akhir Ini,,
 
-Tugas akhir ini saya kerjakan pada versi PHP 7.4 pak,,
-dan MySQL versi 8.++ pak,, karna versi MariaDB tidak support JSON pak,,
-dan bisa di jalankan tanpa menggunakan Web Server Pak,,
-jadi tidak perlu menggunakan apache atau web server lainnya pak,,
-cuman syaratnya php sudah terinstal di pc pak,, dan sudah terdaftar di ENV untuk php di windows nya pak,,
+Tugas akhir ini saya kerjakan pada versi **PHP 7.4 ++,** dan **MySQL versi 8.++**, atau asalkan support JSON,,
 
-dan project ini juga bisa berjalan di web server manapun pak,,
+Dan untuk project ini di jalankan dengan menggunakan **PHP-CLI** atau **Apache** asalkan menggunakan PHP versi 7.4 atau lebih,,
+Dan soal directory di htdocs bisa di letakan di dalam folder manapun karna URL sudah di modifikasi di dalam codingya,,
 
-## Step by step :
+Project ini Framework Buatan Saya Sendiri Dan Berbasis MVC,,
 
-- <span class="text-success">sulai@DESKTOP-V893VNL</span>:<span class="text-primary">/mnt/d/Coding/Web Developer/Project/Expert System$</span> php --version
-  PHP 7.4.3 (cli) (built: Oct 6 2020 15:47:56) ( NTS ) ....
+Untuk Set Router Bisa di cek pada Directory **resources/routers/routers.php**,,
 
-- <span class="text-success">sulai@DESKTOP-V893VNL</span>:<span class="text-primary">/mnt/d/Coding/Web Developer/Project/Expert System/public$</span> php -S localhost:8080
-  [Sat Oct 24 11:09:08 2020] PHP 7.4.3 Development Server (http://localhost:8080) started
+Dan untuk ritual menggunakan **PHP-CLI** starternya terletak di Direcotry **public/index.php**,,
 
-  sekian terima kasih pak,,
-  Wasalam,,
+Authentikasi Actor :
+
+* Admin
+  * Username : admin
+  * Password  : 123qwe
+* Doctor
+  * Username : doctor
+  * Password  : 123qwe
+* Member
+  * Username : edosulai
+  * Password  : 123qwe
+* Unverified User
+  * Username : pooruser
+  * Password  : 123qwe
+
+Dan untuk authentikasi login bisa menggunakan username atau email,,
+
+Sekian Terima Kasih Pak Wassalam,,

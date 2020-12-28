@@ -21,15 +21,15 @@ class AuthMiddleware extends Middleware
     if (Application::$app->user) {
       if (in_array(self::ALL_METHOD, array_keys($this->actions))) {
         if (!in_array(Application::$app->user->role, $this->actions[self::ALL_METHOD])) {
-          throw new HttpException(Application::$app->response::HTTP_UNAUTHORIZED);
+          throw new HttpException(401);
         }
       } elseif ($this->actions[Application::$app->controller->action] ?? false) {
         if (!in_array(Application::$app->user->role, $this->actions[Application::$app->controller->action])) {
-          throw new HttpException(Application::$app->response::HTTP_UNAUTHORIZED);
+          throw new HttpException(401);
         }
       }
     } else {
-      throw new HttpException(Application::$app->response::HTTP_UNAUTHORIZED);
+      throw new HttpException(401);
     }
   }
 }

@@ -31,17 +31,25 @@ class UserController extends Controller
         return new \Error('Wrong Password');
       }
     });
-    self::validateParam('targetUpdate')->isNotNull()->custom(function ($targetUpdate) {
+    self::validateParam('targetUpdate')->isNotNull()->custom(function ($targetUpdate, $request) {
       if (!in_array($targetUpdate, array_keys(User::attributes()))) {
         return new \Error('Hehehe Jangan Di Usik Yah Coding nya,,');
+      }
+      if (in_array($targetUpdate, ['username', 'email'])) {
+        $user = User::findOne([
+          $targetUpdate => $request->getQuery(array_keys($request->getQuery())[0])
+        ]);
+        if ($user) {
+          self::createError($request->getParam('targetUpdate') . ' Has Already Been Used by Other User', array_keys($request->getQuery())[0], 'body');
+        }
       }
     })->trim()->sanitize();
     self::validateQuery(array_keys($request->getQuery())[0])->isNotNull()->trim()->sanitize();
 
     if (!empty(self::validateResults())) {
-      $response->setStatusCode($response::HTTP_BAD_REQUEST)->setContent(json_encode(['errors' => self::validateResults()]))->send();
+      $response->setStatusCode(400)->setContent(json_encode(['errors' => self::validateResults()]))->send();
     } else {
-      if (User::update([$request->getParam('targetUpdate') => array_pop($request->getQuery())], ['id' => Application::$app->user->id])) {
+      if (User::update([$request->getParam('targetUpdate') => $request->getQuery(array_keys($request->getQuery())[0])], ['id' => Application::$app->user->id])) {
         $response->redirect('/members/account');
       } else {
         throw new HttpException(500);
@@ -61,7 +69,7 @@ class UserController extends Controller
     self::validateBody('confirmpassword')->isNotNull()->trim();
 
     if (!empty(self::validateResults())) {
-      $response->setStatusCode($response::HTTP_BAD_REQUEST)->setContent(json_encode(['errors' => self::validateResults()]))->send();
+      $response->setStatusCode(400)->setContent(json_encode(['errors' => self::validateResults()]))->send();
     } else {
       if (User::update(['password' => password_hash($request->getBody('newpassword'), PASSWORD_DEFAULT)], ['id' => Application::$app->user->id])) {
         $response->redirect('/members/account');
@@ -104,10 +112,11 @@ class UserController extends Controller
     })->trim();
 
     if (!empty(self::validateResults())) {
-      $response->setStatusCode($response::HTTP_BAD_REQUEST)->setContent(json_encode(['errors' => self::validateResults()]))->send();
+      $response->setStatusCode(400)->setContent(json_encode(['errors' => self::validateResults()]))->send();
     } else {
+      $id = Application::$app->user->id;
       $request->logout();
-      if (User::destroy(['id' => Application::$app->user->id])) {
+      if (User::destroy(['id' => $id])) {
         $response->redirect('/');
       } else {
         throw new HttpException(500);

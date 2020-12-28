@@ -4,6 +4,8 @@ namespace app\core;
 
 abstract class Model
 {
+  // Models By Edo Sulaiman
+
   const PRIMARY_KEY = 'id';
   const CREATED_AT  = 'createdAt';
   const UPDATED_AT  = 'updatedAt';
@@ -72,13 +74,16 @@ abstract class Model
     try {
       $values = self::makeId($options[array_keys(static::primaryKey())[0]] ?? null) ?? [];
       foreach (static::attributes() as $key => $value) {
-        $values["`$key`"] = "'$options[$key]'";
+        if (array_key_exists($key, $options)) {
+          if (strlen($options[$key]) > 0) {
+            $values["`$key`"] = "'$options[$key]'";
+          }
+        }
       }
       foreach (static::timeStamp() as $time) {
         $values["`$time`"] = "'" . date("Y-m-d H:i:s") . "'";
       }
       $statement = self::prepare(self::query()->insert(static::tableName())->values($values));
-      $statement->execute();
       if ($callback) {
         return call_user_func($callback, $statement->execute(), $error = '');
       }
@@ -96,8 +101,10 @@ abstract class Model
     try {
       $values = [];
       foreach (static::attributes() as $key => $value) {
-        if (($attributes[$key] ?? false) && (!is_null($attributes[$key]))) {
-          $values[] = static::tableName() . ".$key = '$attributes[$key]'";
+        if (array_key_exists($key, $attributes)) {
+          if (strlen($attributes[$key]) > 0) {
+            $values[] = static::tableName() . ".$key = '$attributes[$key]'";
+          }
         }
       }
       $values[] = static::tableName() . "." . static::timeStamp()[1] . " = '" . date("Y-m-d H:i:s") . "'";
@@ -123,7 +130,6 @@ abstract class Model
       $key = array_keys($where)[0];
       $value = $where[$key];
       $statement = self::prepare(self::query()->delete(static::tableName())->where(static::tableName() . '.' . $key . " = '$value'"));
-      $statement->execute();
       if ($callback) {
         return call_user_func($callback, $statement->execute(), $error = '');
       }
@@ -196,8 +202,8 @@ abstract class Model
   {
     assert(strlen($data) == 16);
 
-    $data[6] = chr(ord($data[6]) & 0x0f | 0x40); // set version to 0100
-    $data[8] = chr(ord($data[8]) & 0x3f | 0x80); // set bits 6-7 to 10
+    $data[6] = chr(ord($data[6]) & 0x0f | 0x40); // set version sampai 0100
+    $data[8] = chr(ord($data[8]) & 0x3f | 0x80); // set bits 6-7 sampai 10
 
     return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
   }

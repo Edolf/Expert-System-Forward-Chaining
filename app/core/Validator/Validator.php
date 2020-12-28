@@ -21,12 +21,9 @@ class Validator
   protected $param;
   protected $location;
 
-  public function __construct()
+  public function __construct($request)
   {
-    $this->validating[self::BODY] = Application::$app->request->getBody();
-    $this->validating[self::PARAM] = Application::$app->request->getParam();
-    $this->validating[self::QUERY] = Application::$app->request->getQuery();
-    $this->validating[self::FILE] = Application::$app->request->getFile();
+    $this->validating = $request;
     $this->__fvConstruct($this);
   }
 
@@ -37,7 +34,7 @@ class Validator
       $this->param = $target;
       $this->location = self::BODY;
     } else {
-      $this->setError('Something Wrong', $this->param, $this->location);
+      $this->setError('Something Wrong', $target, self::BODY);
     }
     return $this;
   }
@@ -49,7 +46,7 @@ class Validator
       $this->param = $target;
       $this->location = self::PARAM;
     } else {
-      $this->setError('Something Wrong', $this->param, $this->location);
+      $this->setError('Something Wrong', $target, self::PARAM);
     }
     return $this;
   }
@@ -61,7 +58,7 @@ class Validator
       $this->param = $target;
       $this->location = self::QUERY;
     } else {
-      $this->setError('Something Wrong', $this->param, $this->location);
+      $this->setError('Something Wrong', $target, self::QUERY);
     }
     return $this;
   }

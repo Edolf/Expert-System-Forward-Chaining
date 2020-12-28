@@ -29,6 +29,11 @@ class Controller
     return Application::$app->validator->fileValidation($file);
   }
 
+  public static function createError($msg, $param, $location)
+  {
+    return Application::$app->validator->setError($msg, $param, $location);
+  }
+
   public static function validateResults()
   {
     return Application::$app->validator->validateResults();

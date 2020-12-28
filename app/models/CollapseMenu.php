@@ -8,7 +8,7 @@ class CollapseMenu extends Model
 {
   public static function tableName(): string
   {
-    return 'CollapseMenus';
+    return 'collapsemenus';
   }
 
   public static function attributes(): array

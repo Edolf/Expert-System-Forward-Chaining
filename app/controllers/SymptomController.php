@@ -17,7 +17,7 @@ trait SymptomController
 
   public function addSymptom(Request $request, Response $response)
   {
-    self::validateBody('symptomname')->isNotNull()->isString()->isLength(['max' => 50])->custom(function ($symptomname) {
+    self::validateBody('symptomname')->isNotNull()->isString()->isLength(['max' => 100])->custom(function ($symptomname) {
       return Symptom::findOne(['name' => $symptomname], function ($symptom) {
         if ($symptom) {
           return new \Error('Symptom Name Alias Has Already Been Used');
@@ -29,7 +29,7 @@ trait SymptomController
     self::validateQuery('problemId')->isNotNull()->isInt()->trim()->sanitize();
 
     if (!empty(self::validateResults())) {
-      return $response->setStatusCode($response::HTTP_BAD_REQUEST)->setContent(json_encode(['errors' => self::validateResults()]))->send();
+      return $response->setStatusCode(400)->setContent(json_encode(['errors' => self::validateResults()]))->send();
     } else {
       if (Symptom::create([
         'name' => $request->getBody('symptomname'),
@@ -47,10 +47,10 @@ trait SymptomController
 
   public function updateSymptom(Request $request, Response $response)
   {
-    self::validateBody('editsymptomname')->isNotNull()->isString()->isLength(['max' => 50])->custom(function ($editsymptomname, $request) {
-      $disease =  Symptom::findOne(['name' => $editsymptomname]);
-      if ($disease) {
-        if ($disease->name != $request['query']['name']) {
+    self::validateBody('editsymptomname')->isNotNull()->isString()->isLength(['max' => 100])->custom(function ($editsymptomname, $request) {
+      $symptom =  Symptom::findOne(['name' => $editsymptomname]);
+      if ($symptom) {
+        if ($symptom->name != $request->getQuery('name')) {
           return new \Error('Symptom Name Alias Has Already Been Used');
         }
       }
@@ -60,7 +60,7 @@ trait SymptomController
     self::validateQuery('id')->isNotNull()->isInt()->trim()->sanitize();
 
     if (!empty(self::validateResults())) {
-      return $response->setStatusCode($response::HTTP_BAD_REQUEST)->setContent(json_encode(['errors' => self::validateResults()]))->send();
+      return $response->setStatusCode(400)->setContent(json_encode(['errors' => self::validateResults()]))->send();
     } else {
       if (Symptom::update([
         'name' => $request->getBody('editsymptomname'),

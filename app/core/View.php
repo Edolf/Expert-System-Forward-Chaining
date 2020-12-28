@@ -7,12 +7,14 @@ use app\core\Session\Token;
 class View
 {
 
-  public function renderView($view, array $params = [])
+  public static function renderView($view, array $params = [])
   {
     foreach ($params as $key => $value) {
       Application::$app->locals[$key] = $value;
     }
-    Application::$app->locals['csrfToken'] = new Token();
+
+    Token::setToken();
+    Application::$app->locals['csrfToken'] = Token::getCSRFToken();
     Application::$app->locals['flash'] = Application::$app->flash;
     Application::$app->locals['user'] = Application::$app->user;
 

@@ -8,7 +8,7 @@ class Disease extends Model
 {
   public static function tableName(): string
   {
-    return 'Diseases';
+    return 'diseases';
   }
 
   public static function attributes(): array

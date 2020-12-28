@@ -8,6 +8,7 @@ use app\core\Controller;
 use app\core\HttpException;
 use app\core\Request;
 use app\core\Response;
+use helpers\ExpertSystemAlgorithm;
 
 use app\models\User;
 use app\models\Disease;
@@ -45,7 +46,7 @@ class ConsultationController extends Controller
     }
   }
 
-  public function result(Request $request, Response $response)
+  public function results(Request $request, Response $response)
   {
     $options = [];
     foreach ($request->getBody() as $key => $value) {
@@ -53,63 +54,24 @@ class ConsultationController extends Controller
         $options[] = $key;
       }
     }
-    $sympTemp = Symptom::findAll(['id' => Symptom::IN($options)]);
-    if (count($options) != 0) {
-      $knowledgebases = KnowledgeBase::findAll(['expertSystemId' => $request->getParam('id')]);
-      $isSolving = false;
-      while (!$isSolving) {
-        $isNotFound = [];
-        foreach ($knowledgebases as $key => $knowledgebase) {
-          if (count($knowledgebases) <= count($isNotFound)) {
-            $isSolving = [
-              'id' => 0,
-              'name' => 'Not Found',
-              'desc' => 'We\'re Sorry, Your Disease Could Not be Found in Our System :(',
-              'solution' => 'Please Contact your Doctor Immediately for Further Consultation',
-            ];
-          }
-          $isFound = [];
-          foreach (explode(",", $knowledgebase['symptoms']) as $symptomId) {
-            if (in_array($symptomId, $options)) {
-              $isFound[] = true;
-            }
-          }
-          if (count($isFound) == count(explode(",", $knowledgebase['symptoms']))) {
-            if (array_key_exists('diseaseId', json_decode($knowledgebase['solvingId'], true))) {
-              $isSolving = (array) Disease::findOne([Disease::AND([
-                'id' => json_decode($knowledgebase['solvingId'], true)['diseaseId'],
-                'expertSystemId' => $request->getParam('id')
-              ])]);
-            } elseif (array_key_exists('symptomId', json_decode($knowledgebase['solvingId'], true))) {
-              $symptom = Symptom::findOne([Symptom::AND([
-                'id' => json_decode($knowledgebase['solvingId'], true)['symptomId'],
-                'expertSystemId' => $request->getParam('id')
-              ])]);
-              $symptom = (array) $symptom;
-              $options[] = $symptom['id'];
-              $isNotFound = [];
-              unset($knowledgebases[$key]);
-            }
-          } else {
-            $isNotFound[] = true;
-          }
-        }
-      }
-      return $response->render('consultations/result', [
-        'results' => $isSolving,
-        'sympTemps' => $sympTemp
-      ]);
-    } else {
-      $isSolving = [
+    $results = new ExpertSystemAlgorithm(
+      $options,
+      Disease::findAll(['expertSystemId' => $request->getParam('id')]),
+      Symptom::findAll(['expertSystemId' => $request->getParam('id')]),
+      KnowledgeBase::findAll(['expertSystemId' => $request->getParam('id')])
+    );
+    $results = $results->forwardChaining();
+    if (!$results) {
+      $results = [
         'id' => 0,
         'name' => 'Not Found',
         'desc' => 'We\'re Sorry, Your Disease Could Not be Found in Our System :(',
         'solution' => 'Please Contact your Doctor Immediately for Further Consultation',
       ];
-      return $response->render('consultations/result', [
-        'results' => $isSolving,
-        'sympTemps' => $sympTemp
-      ]);
     }
+    return $response->render('consultations/result', [
+      'results' => $results,
+      'sympTemps' => Symptom::findAll(['id' => Symptom::IN($options)])
+    ]);
   }
 }

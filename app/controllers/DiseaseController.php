@@ -30,7 +30,7 @@ trait DiseaseController
     self::validateQuery('problemId')->isNotNull()->isInt()->trim()->sanitize();
 
     if (!empty(self::validateResults())) {
-      return $response->setStatusCode($response::HTTP_BAD_REQUEST)->setContent(json_encode(['errors' => self::validateResults()]))->send();
+      return $response->setStatusCode(400)->setContent(json_encode(['errors' => self::validateResults()]))->send();
     } else {
       if (Disease::create([
         'name' => $request->getBody('diseasename'),
@@ -51,7 +51,7 @@ trait DiseaseController
     self::validateBody('editdiseasename')->isNotNull()->isString()->isLength(['max' => 50])->custom(function ($editdiseasename, $request) {
       $disease =  Disease::findOne(['name' => $editdiseasename]);
       if ($disease) {
-        if ($disease->name != $request['query']['name']) {
+        if ($disease->name != $request->getQuery('name')) {
           return new \Error('Disease Name Alias Has Already Been Used');
         }
       }
@@ -61,7 +61,7 @@ trait DiseaseController
     self::validateQuery('id')->isNotNull()->isInt()->trim()->sanitize();
 
     if (!empty(self::validateResults())) {
-      return $response->setStatusCode($response::HTTP_BAD_REQUEST)->setContent(json_encode(['errors' => self::validateResults()]))->send();
+      return $response->setStatusCode(400)->setContent(json_encode(['errors' => self::validateResults()]))->send();
     } else {
       if (Disease::update([
         'name' => $request->getBody('editdiseasename'),

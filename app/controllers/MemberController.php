@@ -16,6 +16,8 @@ use app\models\Rule;
 use app\models\ExpertSystem;
 use app\models\SubMenu;
 
+use helpers\ExpertSystemAlgorithm;
+
 use app\core\Middleware\AuthMiddleware;
 
 class MemberController extends Controller
@@ -45,7 +47,9 @@ class MemberController extends Controller
           'deleteProblem' => ['doctor'],
           'selectConsul' => ['doctor'],
           'consultation' => ['doctor'],
-          'results' => ['doctor']
+          'results' => ['doctor'],
+          'updateUser' => ['admin'],
+          'dropUser' => ['admin']
         ]
       ));
     }
@@ -65,6 +69,45 @@ class MemberController extends Controller
   public function listUser(Request $request, Response $response)
   {
     return $response->render('members/listuser', ['title' => 'List Users', 'members' => User::findAll()]);
+  }
+
+  public function updateUser(Request $request, Response $response)
+  {
+    self::validateBody('editFullName')->isNotNull()->isLength(['min' => 2, 'max' => 30])->isAlphaSpace()->trim();
+    self::validateBody('editUserName')->isNotNull()->isLength(['min' => 6, 'max' => 30])->isAlphaNumeric()->custom(function ($username, $request) {
+      $user =  User::findOne(['username' => $username]);
+      if ($user) {
+        if ($user->username != $request->getBody('editUserName')) {
+          return new \Error('Username Has Already Been Used by Other User');
+        }
+      }
+    })->trim();
+
+    if (!empty(self::validateResults())) {
+      $response->setStatusCode(400)->setContent(json_encode(['errors' => self::validateResults()]))->send();
+    } else {
+      $roles = ['admin', 'doctor', 'member', 'unverified'];
+      if (User::update([
+        'name' => $request->getBody('editFullName'),
+        'username' => $request->getBody('editUserName'),
+        'role' => $roles[array_search($request->getBody('roleUser'), $roles)]
+      ], ['id' => $request->getQuery('id')])) {
+        $request->setFlash('list-user', 'alert-success', [['msg' => "{$request->getBody('editFullName')} Has Been Updated"]]);
+        $response->redirect('/members/list-user');
+      } else {
+        throw new HttpException(500);
+      }
+    }
+  }
+
+  public function dropUser(Request $request, Response $response)
+  {
+    if (User::destroy(['id' => $request->getQuery('id')])) {
+      $request->setFlash('list-user', 'alert-success', [['msg' => "User Has Been Deleted"]]);
+      $response->redirect('/members/list-user');
+    } else {
+      throw new HttpException(404);
+    }
   }
 
   public function selectConsul(Request $request, Response $response)
@@ -89,68 +132,29 @@ class MemberController extends Controller
         $options[] = $key;
       }
     }
-    $sympTemp = Symptom::findAll(['id' => Symptom::IN($options)]);
-    if (count($options) != 0) {
-      $knowledgebases = KnowledgeBase::findAll(['expertSystemId' => $request->getParam('id')]);
-      $isSolving = false;
-      while (!$isSolving) {
-        $isNotFound = [];
-        foreach ($knowledgebases as $key => $knowledgebase) {
-          if (count($knowledgebases) <= count($isNotFound)) {
-            $isSolving = [
-              'id' => 0,
-              'name' => 'Not Found',
-              'desc' => 'We\'re Sorry, Your Disease Could Not be Found in Our System :(',
-              'solution' => 'Please Contact your Doctor Immediately for Further Consultation',
-            ];
-          }
-          $isFound = [];
-          foreach (explode(",", $knowledgebase['symptoms']) as $symptomId) {
-            if (in_array($symptomId, $options)) {
-              $isFound[] = true;
-            }
-          }
-          if (count($isFound) == count(explode(",", $knowledgebase['symptoms']))) {
-            if (array_key_exists('diseaseId', json_decode($knowledgebase['solvingId'], true))) {
-              $isSolving = (array) Disease::findOne([Disease::AND([
-                'id' => json_decode($knowledgebase['solvingId'], true)['diseaseId'],
-                'expertSystemId' => $request->getParam('id')
-              ])]);
-            } elseif (array_key_exists('symptomId', json_decode($knowledgebase['solvingId'], true))) {
-              $symptom = Symptom::findOne([Symptom::AND([
-                'id' => json_decode($knowledgebase['solvingId'], true)['symptomId'],
-                'expertSystemId' => $request->getParam('id')
-              ])]);
-              $symptom = (array) $symptom;
-              $options[] = $symptom['id'];
-              $isNotFound = [];
-              unset($knowledgebases[$key]);
-            }
-          } else {
-            $isNotFound[] = true;
-          }
-        }
-      }
-      return $response->render('members/consultations/result', [
-        'results' => $isSolving,
-        'sympTemps' => $sympTemp
-      ]);
-    } else {
-      $isSolving = [
+    $results = new ExpertSystemAlgorithm(
+      $options,
+      Disease::findAll(['expertSystemId' => $request->getParam('id')]),
+      Symptom::findAll(['expertSystemId' => $request->getParam('id')]),
+      KnowledgeBase::findAll(['expertSystemId' => $request->getParam('id')])
+    );
+    $results = $results->forwardChaining();
+    if (!$results) {
+      $results = [
         'id' => 0,
         'name' => 'Not Found',
         'desc' => 'We\'re Sorry, Your Disease Could Not be Found in Our System :(',
         'solution' => 'Please Contact your Doctor Immediately for Further Consultation',
       ];
-      return $response->render('members/consultations/result', [
-        'results' => $isSolving,
-        'sympTemps' => $sympTemp
-      ]);
     }
+    return $response->render('members/consultations/result', [
+      'results' => $results,
+      'sympTemps' => Symptom::findAll(['id' => Symptom::IN($options)])
+    ]);
   }
 
   public function rule(Request $request, Response $response)
   {
-    return $response->render('members/rule', ['title' => 'Rules']);
+    return $response->render('members/rules/rule', ['title' => 'Rules']);
   }
 }
