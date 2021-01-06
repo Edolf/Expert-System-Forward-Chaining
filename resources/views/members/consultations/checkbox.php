@@ -1,3 +1,3 @@
 <tr id="symptom-<?= $symptom['id'] ?>">
-  <th class="khrLL"><label><input type="checkbox" name="<?= $symptom['id'] ?>" class="_1c9fz" /><span><small><?= $symptom['question'] ?></small></span></label></th>
+  <th class="_10754"><label><input type="checkbox" name="<?= $symptom['id'] ?>" class="_3na6v" /><span><small><?= $symptom['question'] ?></small></span></label></th>
 </tr>

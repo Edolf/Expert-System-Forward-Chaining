@@ -1,18 +1,18 @@
 <?php include VIEW_DIR . "/layouts/header.php"; ?>
-<div id="app" class="vSOIt">
+<div id="app" class="_2fCJU">
   <?php include VIEW_DIR . "/layouts/navbar.php"; ?>
-  <div class="_2h7iG _1dTWr _3oq1Z">
-    <div class="F2040 TidTZ vSOIt">
-      <div class="_22DlN">
+  <div class="_3hy0- _1wHD0 _6Eppu">
+    <div class="_24Rxj _3H4vP _2fCJU">
+      <div class="_16ASu">
       </div>
     </div>
 
-    <div class="F2040 TidTZ vSOIt">
-      <div class="_1PmQJ _3pDOt">
-        <div class="_3Sail _27IzI _3ur6_">
-          <div class="G6mn4 yqH95 _27IzI _3ur6_ _2DN6r _3znGg">
-            <div id="carouselConsult" data-interval="false" data-wrap="false" class="_2qzlW kEW7A _2Xbyu">
-              <div class="_29diV">
+    <div class="_24Rxj _3H4vP _2fCJU">
+      <div class="_2wxL0 KTZ2J">
+        <div class="SiBSM _30EOh _9z3Wc">
+          <div class="_2rSiM eK4KG _30EOh _9z3Wc _32W6N RogPM">
+            <div id="carouselConsult" data-interval="false" data-wrap="false" class="_1TXlW ZXtfC _2wjzR">
+              <div class="_1YLKn">
                 <form method="POST" id="getSymptoms" action="<?= LINK ?>/consultation/<?= $id ?>?_csrf=<?= $csrfToken ?>">
                   <?php foreach ($symptoms::findAll(['expertSystemId' => $id]) as $key => $symptom) {
                     $isFound = false;
@@ -28,16 +28,16 @@
                   } ?>
                 </form>
               </div>
-              <a role="button" style="bottom: auto; justify-content: start" class="_3QEPX _1mvwU _8y6Bn">
-                <svg css-module="" width="24" height="24" fill="currentColor">
-                  <use xlink:href="<?= ROOT ?>/assets/bootstrap-icons/bootstrap-icons.svg#chevron-double-left" />
+              <a role="button" style="bottom: auto; justify-content: start" class="_3MY7v _2h8rF _2XuUU">
+                <svg width="24" height="24" fill="currentColor">
+                  <use xlink:href="<?= ROOT ?>/assets/fonts/icons/all-icons.svg#chevron-double-left" />
                 </svg>
                 <span>Previous</span>
               </a>
-              <a role="button" style="bottom: auto; justify-content: flex-end" onclick="document.querySelector('#getSymptoms').submit();" class="_1voHE _1mvwU _8y6Bn">
+              <a role="button" style="bottom: auto; justify-content: flex-end" onclick="document.querySelector('#getSymptoms').submit();" class="_3dwPx _2h8rF _2XuUU">
                 <span>Analyze</span>
-                <svg css-module="" width="24" height="24" fill="currentColor">
-                  <use xlink:href="<?= ROOT ?>/assets/bootstrap-icons/bootstrap-icons.svg#thermometer-half" />
+                <svg width="24" height="24" fill="currentColor">
+                  <use xlink:href="<?= ROOT ?>/assets/fonts/icons/all-icons.svg#thermometer-half" />
                 </svg>
               </a>
             </div>

@@ -1,33 +1,33 @@
 <?php include VIEW_DIR . "/layouts/header.php"; ?>
-<div id="app" class="vSOIt">
+<div id="app" class="_2fCJU">
   <?php include VIEW_DIR . "/layouts/navbar.php"; ?>
-  <div class="_2h7iG _1dTWr _3oq1Z">
-    <div class="F2040 TidTZ vSOIt">
-      <div class="_22DlN">
+  <div class="_3hy0- _1wHD0 _6Eppu">
+    <div class="_24Rxj _3H4vP _2fCJU">
+      <div class="_16ASu">
       </div>
     </div>
 
-    <div class="_2h7iG _1dTWr _3oq1Z">
+    <div class="_3hy0- _1wHD0 _6Eppu">
 
-      <div class="F2040 _3pDOt s0VLt">
-        <div class="_1PmQJ">
-          <div class="_3Sail _3PDUl">
-            <div class="_2wnub gqtmr">
-              <div class="_3Sail">
+      <div class="_24Rxj KTZ2J _2W81z">
+        <div class="_2wxL0">
+          <div class="SiBSM _1FnTW">
+            <div class="_3hIbh _34J9b">
+              <div class="SiBSM">
                 <?php foreach ($expertsystems::findAll() as $key => $ExpertSystem) : ?>
-                  <div class="_1s9b_ gqtmr">
-                    <div style="width: 18rem" class="_1aMCn _3znGg _2vYBG">
-                      <div class="_199pu">
-                        <h4 class="_3oNh9 TidTZ _1dYc3"><b><?= $ExpertSystem['problem'] ?></b></h4>
-                        <p class="e2Sjh _1dYc3"><?= $ExpertSystem['desc'] ?></p>
-                        <a href="<?= LINK ?>/consultation/<?= $ExpertSystem['id'] ?>" class="_2niE6 Bdn6B _1dYc3">Try This One</a>
+                  <div class="_1yUFw _34J9b">
+                    <div style="width: 18rem" class="_3zcKU RogPM _2GE1p">
+                      <div class="xilMu">
+                        <h4 class="_15Jmj _3H4vP lJhPB"><b><?= $ExpertSystem['problem'] ?></b></h4>
+                        <p class="zEqNx lJhPB"><?= $ExpertSystem['desc'] ?></p>
+                        <a href="<?= LINK ?>/consultation/<?= $ExpertSystem['id'] ?>" class="_2HPko vhjC9 lJhPB">Try This One</a>
                       </div>
                     </div>
                   </div>
                 <?php endforeach; ?>
               </div>
             </div>
-            <div class="_3HVzZ">
+            <div class="_2IUtP">
               <?php include VIEW_DIR . "/nurse.php"; ?>
             </div>
           </div>

@@ -1,37 +1,37 @@
-<div id="editKnowledgeModal-<?= $ExpertSystem['id'] ?>" tabindex="-1" aria-labelledby="editKnowledgeModal-<?= $ExpertSystem['id'] ?>Label" aria-hidden="true" class="_31P-8 _3bCgx">
-  <div class="_28U8K _2h0Jb">
-    <div class="_2M5QZ _1wCNj _3LA0v _1HTfk s0VLt">
+<div id="editKnowledgeModal-<?= $ExpertSystem['id'] ?>" tabindex="-1" aria-labelledby="editKnowledgeModal-<?= $ExpertSystem['id'] ?>Label" aria-hidden="true" class="_2yvo3 _3F0Yh">
+  <div class="EGnm1 JTLvt">
+    <div class="xo4Q- _3Znxg _1Mqcp _3W_HJ _2W81z">
       <form id="editKnowledgeForm-<?= $ExpertSystem['id'] ?>" method="post">
-        <div class="_3tByX _1jkJg">
-          <button type="button" data-dismiss="modal" aria-label="Close" class="_2yuh-"></button>
-          <div class="_1dTWr _3x-l5 _1HqFl _3mxtc">
-            <h5 class="_3znGg">Edit <strong>Knowledge Base</strong></h5>
+        <div class="_3BAVP _3TCQr">
+          <button type="button" data-dismiss="modal" aria-label="Close" class="_2MKOU"></button>
+          <div class="_1wHD0 _3Yl2j _2WrBi XgJiO">
+            <h5 class="RogPM">Edit <strong>Knowledge Base</strong></h5>
           </div>
 
-          <div class="_3Sail">
-            <div class="_18uPx _14vxW _3e0Cs _2kea1 _3x-l5">
-              <svg width="24" height="24" fill="currentColor" class="_2i-WK">
-                <use xlink:href="<?= ROOT ?>/assets/bootstrap-icons/bootstrap-icons.svg#patch-check-fll" />
+          <div class="SiBSM">
+            <div class="_1Nnzl rCKpP _3eiVE _1uVtA _3Yl2j">
+              <svg width="24" height="24" fill="currentColor" class="_2mXhC">
+                <use xlink:href="<?= ROOT ?>/assets/fonts/icons/all-icons.svg#patch-check-fll" />
               </svg>
-              <h6 class="_10lSW _1x6Xu"><strong>Solving Path</strong></h6>
+              <h6 class="_3MkHC _23PWi"><strong>Solving Path</strong></h6>
             </div>
-            <div class="_3BRUK">
-              <div class="_2E95Y riVBJ">
-                <input disabled="" id="knowledge<?= $ExpertSystem['id'] ?>" name="knowledge" type="text" class="_1y8Oi" />
-                <span data-error="" data-success="" class="_25Y7w"></span>
+            <div class="_20qFt">
+              <div class="_36R48 DLDJz">
+                <input disabled="" id="knowledge<?= $ExpertSystem['id'] ?>" name="knowledge" type="text" class="_21QBy" />
+                <span data-error="" data-success="" class="_3jmDY"></span>
               </div>
             </div>
           </div>
 
-          <div class="_3Sail">
-            <div class="_18uPx _14vxW _3e0Cs _2kea1 _3x-l5">
-              <svg width="24" height="24" fill="currentColor" class="_2i-WK">
-                <use xlink:href="<?= ROOT ?>/assets/bootstrap-icons/bootstrap-icons.svg#card-checklist" />
+          <div class="SiBSM">
+            <div class="_1Nnzl rCKpP _3eiVE _1uVtA _3Yl2j">
+              <svg width="24" height="24" fill="currentColor" class="_2mXhC">
+                <use xlink:href="<?= ROOT ?>/assets/fonts/icons/all-icons.svg#card-checklist" />
               </svg>
-              <h6 class="_10lSW _1x6Xu"><strong>Symptoms</strong></h6>
+              <h6 class="_3MkHC _23PWi"><strong>Symptoms</strong></h6>
             </div>
-            <div class="_3BRUK">
-              <div class="_2E95Y riVBJ">
+            <div class="_20qFt">
+              <div class="_36R48 DLDJz">
                 <select multiple="" name="symptoms[]" id="symptoms<?= $ExpertSystem['id'] ?>">
                   <?php if ($symptoms::findAll(['expertSystemId' => $ExpertSystem['id']])) : ?>
                     <?php foreach ($symptoms::findAll(['expertSystemId' => $ExpertSystem['id']]) as $symptom) : ?>
@@ -44,11 +44,11 @@
             </div>
           </div>
 
-          <div class="_3Sail _3x-l5 riVBJ gqtmr">
-            <div class="_-1QSV _3HVzZ _1dTWr _1JVHC">
-              <button type="button" data-dismiss="modal" class="_2niE6 _2-EzS">Close</button>
-              <button type="submit" class="_2niE6 _2-EzS Bdn6B _1dTWr _2kea1 _3x-l5">
-                <span style="width: 1rem; height: 1rem" role="status" class="_8sneY _2f2YP _14vxW"></span>
+          <div class="SiBSM _3Yl2j DLDJz _34J9b">
+            <div class="_1SQGt _2IUtP _1wHD0 _1qW0Z">
+              <button type="button" data-dismiss="modal" class="_2HPko _3XagE">Close</button>
+              <button type="submit" class="_2HPko _3XagE vhjC9 _1wHD0 _1uVtA _3Yl2j">
+                <span style="width: 1rem; height: 1rem" role="status" class="_2_2xs _2uMGw rCKpP"></span>
                 <span>Edit Knowledge Base</span>
               </button>
             </div>

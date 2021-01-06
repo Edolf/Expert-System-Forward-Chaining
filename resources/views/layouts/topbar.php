@@ -1,20 +1,20 @@
-<nav style="align-content: center" class="_4m9J6 _2KNck _1dCwc _2vYBG _3Wpcx _3Q2fo">
-  <div class="_1LyCm">
+<nav style="align-content: center" class="_3tbxM _3e0u2 _2y2g9 _2GE1p _2FxLQ _2gl4K">
+  <div class="_12Qb9">
 
-    <div class="_1dTWr _2Un_V">
-      <button class="_2niE6 _2zhDk _2QgNG _3OQik _1kTcN _1dTWr _2kea1 _3x-l5">
-        <svg width="24" height="24" fill="currentColor" class="_2i-WK">
-          <use xlink:href="<?= ROOT ?>/assets/bootstrap-icons/bootstrap-icons.svg#list" />
+    <div class="_1wHD0 _27HVy">
+      <button class="_2HPko USCBs _3JDZi _2JWik _1kT0z _1wHD0 _1uVtA _3Yl2j">
+        <svg width="24" height="24" fill="currentColor" class="_2mXhC">
+          <use xlink:href="<?= ROOT ?>/assets/fonts/icons/all-icons.svg#list" />
         </svg>
       </button>
     </div>
 
-    <form method="POST" action="" class="_2Wi8m _2cBZX _1WjWF">
+    <form method="POST" action="" class="_1kGsc _33ZcI _1AsDo">
       <?php include ROOT_DIR . "/resources/views/layouts/search.php"; ?>
     </form>
 
-    <div class="_3_QRE _1dTWr _2Un_V"></div>
-    <div class="_1dTWr _2Un_V">
+    <div class="_26nl3 _1wHD0 _27HVy"></div>
+    <div class="_1wHD0 _27HVy">
       <?php include ROOT_DIR . "/resources/views/members/users/usertoggle.php"; ?>
     </div>
   </div>

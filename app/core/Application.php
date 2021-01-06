@@ -90,6 +90,7 @@ class Application
     }
     if (!$this->response->isRedirect($url) && DEBUG !== true) {
       if (!(strcmp("get", $method) === 0)) {
+        // Dan CSRF Token Sepeti Ini Juga Sangat Lemah akan saya perbaiki jika project ini terus di lanjutkan
         $headerToken = $this->request->getHeader('CSRF-Token') ?? null;
         $queryToken = $this->request->getQuery('_csrf') ?? null;
         if (!Token::checkToken($headerToken ?? $queryToken)) {

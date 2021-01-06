@@ -2,6 +2,7 @@
 
 namespace app\core\Session;
 
+use app\core\Application;
 use app\core\HttpException;
 use app\core\Cookie;
 
@@ -10,12 +11,7 @@ class Session
 
   public function __construct($set = '')
   {
-    if (!session_start($set)) {
-      throw new HttpException(500, 'Failed To Start The Session');
-    }
-    if ((!session_id()) || (!Cookie::getCookie('PHPSESSID'))) {
-      throw new HttpException(500, 'Failed To Start The Session');
-    }
+    session_start($set);
   }
 
   public function setSession($key, $value)

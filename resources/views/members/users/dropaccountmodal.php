@@ -1,36 +1,36 @@
-<div id="dropAccountModal" tabindex="-1" aria-labelledby="dropAccountModalLabel" aria-hidden="true" class="_31P-8 _3bCgx">
-  <div class="_28U8K">
-    <div class="_2M5QZ _1wCNj s0VLt _3YofF">
-      <div class="_2oYfP cnWz7">
-        <h5 id="dropAccountModalLabel" class="_2NT6A _1dYc3">Are you really sure?</h5>
-        <button type="button" data-dismiss="modal" aria-label="Close" class="_2yuh-"></button>
+<div id="dropAccountModal" tabindex="-1" aria-labelledby="dropAccountModalLabel" aria-hidden="true" class="_2yvo3 _3F0Yh">
+  <div class="EGnm1">
+    <div class="xo4Q- _3Znxg _2W81z _3VdNp">
+      <div class="_1dR9f _2rGfb">
+        <h5 id="dropAccountModalLabel" class="_1XL6n lJhPB">Are you really sure?</h5>
+        <button type="button" data-dismiss="modal" aria-label="Close" class="_2MKOU"></button>
       </div>
       <form method="POST" id="dropUserForm" onsubmit="sulaiForm({this:this,event:event,link:'<?= LINK ?>/members/account',method:'DELETE'});">
-        <div class="_3tByX _27Ucp">
-          <div class="_1yZhQ _3GpXu _3znGg">
-            <strong class="_3znGg">Unexpected bad things will happen if you don’t read this!</strong>
+        <div class="_3BAVP _1kqFz">
+          <div class="_3ZisC sHcZn RogPM">
+            <strong class="RogPM">Unexpected bad things will happen if you don’t read this!</strong>
           </div>
-          <div class="_3GpXu _3c1f_">
+          <div class="sHcZn _2N7Mo">
             Once you delete your user, there is no going back. This will permanently delete the
             <strong><?= $user->name ?></strong> user
             account
             <strong>This action cannot be undone!</strong>
           </div>
-          <div class="_3GpXu _3c1f_">
+          <div class="sHcZn _2N7Mo">
             Please type <strong><?= $user->password != null ? 'your password account' : 'delete me' ?></strong> to
             confirm.
           </div>
-          <div class="_3c1f_ riVBJ">
-            <div class="_2E95Y">
-              <input id="confirmation" name="confirmation" type="<?= $user->password != null ? 'password' : 'text' ?>" placeholder="Be Careful !!" required="" class="_1y8Oi _1GV_i" />
+          <div class="_2N7Mo DLDJz">
+            <div class="_36R48">
+              <input id="confirmation" name="confirmation" type="<?= $user->password != null ? 'password' : 'text' ?>" placeholder="Be Careful !!" required="" class="_21QBy _2fCo5" />
               <label for="confirmation">Your Password</label>
-              <span data-error="" data-success="" class="_25Y7w"></span>
+              <span data-error="" data-success="" class="_3jmDY"></span>
             </div>
           </div>
         </div>
-        <div class="_2WwSZ">
-          <button type="submit" class="_2niE6 cnWz7 _2S6Up _1dTWr _2kea1 _3x-l5">
-            <span style="width: 1rem; height: 1rem" role="status" class="_8sneY _2f2YP _14vxW"></span>
+        <div class="_3yp-0">
+          <button type="submit" class="_2HPko _2rGfb BoWE6 _1wHD0 _1uVtA _3Yl2j">
+            <span style="width: 1rem; height: 1rem" role="status" class="_2_2xs _2uMGw rCKpP"></span>
             <span>I Know What I Do</span>
           </button>
         </div>

@@ -51,7 +51,7 @@ class SidemenuController extends Controller
           ]]
         )
       ])) {
-        $request->setFlash('menu', '_1I2Cg', [['msg' => "{$request->getBody('newMenu')} Has Been Added"]]);
+        $request->setFlash('menu', '_1SiFz', [['msg' => "{$request->getBody('newMenu')} Has Been Added"]]);
         $response->redirect('/members/sidemenu');
       } else {
         throw new HttpException(500);
@@ -78,7 +78,7 @@ class SidemenuController extends Controller
           ]]
         )
       ], ['id' => $request->getQuery('id')])) {
-        $request->setFlash('menu', '_1I2Cg', [['msg' => "{$request->getBody('menu')} Has Been Updated"]]);
+        $request->setFlash('menu', '_1SiFz', [['msg' => "{$request->getBody('menu')} Has Been Updated"]]);
         $response->redirect('/members/sidemenu');
       } else {
         throw new HttpException(500);
@@ -95,7 +95,7 @@ class SidemenuController extends Controller
       $response->redirect('/members/sidemenu');
     } else {
       if (Menu::destroy(['id' => $request->getQuery('id')])) {
-        $request->setFlash('menu', '_1I2Cg', [['msg' => "{$request->getQuery('title')} Has Been Deleted"]]);
+        $request->setFlash('menu', '_1SiFz', [['msg' => "{$request->getQuery('title')} Has Been Deleted"]]);
         $response->redirect('/members/sidemenu');
       } else {
         throw new HttpException(404);
@@ -132,7 +132,7 @@ class SidemenuController extends Controller
           ]]
         )
       ])) {
-        $request->setFlash('submenu', '_1I2Cg', [['msg' => "{$request->getBody('title')} Has Been Added"]]);
+        $request->setFlash('submenu', '_1SiFz', [['msg' => "{$request->getBody('title')} Has Been Added"]]);
         $response->redirect('/members/sidemenu/menu');
       } else {
         throw new HttpException(500);
@@ -164,7 +164,7 @@ class SidemenuController extends Controller
           ]]
         )
       ], ['id' => $request->getQuery('id')])) {
-        $request->setFlash('submenu', '_1I2Cg', [['msg' => "{$request->getBody('editMenuTitle')} Has Been Updated"]]);
+        $request->setFlash('submenu', '_1SiFz', [['msg' => "{$request->getBody('editMenuTitle')} Has Been Updated"]]);
         $response->redirect('/members/sidemenu/menu');
       } else {
         throw new HttpException(500);
@@ -181,7 +181,7 @@ class SidemenuController extends Controller
       $response->redirect('/members/sidemenu/menu');
     } else {
       if (SubMenu::destroy(['id' => $request->getQuery('id')])) {
-        $request->setFlash('submenu', '_1I2Cg', [['msg' => "{$request->getQuery('title')} Has Been Deleted"]]);
+        $request->setFlash('submenu', '_1SiFz', [['msg' => "{$request->getQuery('title')} Has Been Deleted"]]);
         $response->redirect('/members/sidemenu/menu');
       } else {
         throw new HttpException(404);
@@ -216,7 +216,7 @@ class SidemenuController extends Controller
           ]]
         )
       ])) {
-        $request->setFlash('collapsemenu', '_1I2Cg', [['msg' => "{$request->getBody('title')} Has Been Added"]]);
+        $request->setFlash('collapsemenu', '_1SiFz', [['msg' => "{$request->getBody('title')} Has Been Added"]]);
         $response->redirect('/members/sidemenu/submenu');
       } else {
         throw new HttpException(500);
@@ -246,7 +246,7 @@ class SidemenuController extends Controller
           ]]
         )
       ], ['id' => $request->getQuery('id')])) {
-        $request->setFlash('collapsemenu', '_1I2Cg', [['msg' => "{$request->getBody('title')} Has Been Updated"]]);
+        $request->setFlash('collapsemenu', '_1SiFz', [['msg' => "{$request->getBody('title')} Has Been Updated"]]);
         $response->redirect('/members/sidemenu/submenu');
       } else {
         throw new HttpException(500);
@@ -263,7 +263,7 @@ class SidemenuController extends Controller
       $response->redirect('/members/sidemenu/submenu');
     } else {
       if (CollapseMenu::destroy(['id' => $request->getQuery('id')])) {
-        $request->setFlash('collapsemenu', '_1I2Cg', [['msg' => "{$request->getQuery('title')} Has Been Deleted"]]);
+        $request->setFlash('collapsemenu', '_1SiFz', [['msg' => "{$request->getQuery('title')} Has Been Deleted"]]);
         $response->redirect('/members/sidemenu/submenu');
       } else {
         throw new HttpException(404);

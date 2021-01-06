@@ -1,5 +1,5 @@
-<a class="_16IZ9 _3jFF_ _3x-l5 _2kea1">
+<a class="_1uc42 _1_acL _3Yl2j _1uVtA">
   <svg width="32" height="32" fill="currentColor">
-    <use xlink:href="<?= ROOT ?>/assets/bootstrap-icons/bootstrap-icons.svg#arrow-up-circle-fill" />
+    <use xlink:href="<?= ROOT ?>/assets/fonts/icons/all-icons.svg#arrow-up-circle-fill" />
   </svg>
 </a>

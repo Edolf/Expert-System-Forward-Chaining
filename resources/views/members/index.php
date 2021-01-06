@@ -1,10 +1,10 @@
 <?php include VIEW_DIR . "/layouts/header.php"; ?>
-<div class="_1FInK">
+<div class="_2pyK2">
   <?php include VIEW_DIR . "/layouts/sidebar.php"; ?>
-  <div class="_2h7iG _1dTWr _3oq1Z vSOIt">
-    <div class="F2040 _1PITf">
+  <div class="_3hy0- _1wHD0 _6Eppu _2fCJU">
+    <div class="_24Rxj _1re0U">
       <?php include VIEW_DIR . "/layouts/topbar.php"; ?>
-      <div class="_22DlN _3PDUl">
+      <div class="_16ASu _1FnTW">
 
         <?php switch ($user->role) {
           case 'admin': ?>

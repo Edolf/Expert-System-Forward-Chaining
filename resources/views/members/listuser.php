@@ -1,18 +1,18 @@
 <?php include VIEW_DIR . "/layouts/header.php"; ?>
-<div class="_1FInK">
+<div class="_2pyK2">
   <?php include VIEW_DIR . "/layouts/sidebar.php"; ?>
-  <div class="_2h7iG _1dTWr _3oq1Z vSOIt">
-    <div class="F2040 _1PITf">
+  <div class="_3hy0- _1wHD0 _6Eppu _2fCJU">
+    <div class="_24Rxj _1re0U">
       <?php include VIEW_DIR . "/layouts/topbar.php"; ?>
-      <div class="_22DlN _3PDUl">
-        <div class="_3Sail gqtmr">
+      <div class="_16ASu _1FnTW">
+        <div class="SiBSM _34J9b">
 
-          <div class="_1dTWr _2kea1 njVXK TidTZ">
-            <h1 class="_3vE3C _2gyiY"><?= $title ?></h1>
+          <div class="_1wHD0 _1uVtA _20iUl _3H4vP">
+            <h1 class="_25N9D _1aegJ"><?= $title ?></h1>
           </div>
 
-          <div class="_3JfU8 gqtmr">
-            <table class="_12PUq -tn6h _6uPk6 s0VLt">
+          <div class="_3oEG9 _34J9b">
+            <table class="_3bYJs _3Lvqy _1MfMA _2W81z">
               <thead>
                 <tr>
                   <th scope="col">#</th>
@@ -29,30 +29,30 @@
               <tbody>
                 <?php foreach ($members as $key => $member) : ?>
                   <tr>
-                    <th class="khrLL"><?= $key ?></th>
-                    <td class="khrLL"><?= $member['id'] ?></td>
-                    <td class="khrLL"><?= json_decode($member['other'], true)['googleId'] ?></td>
-                    <td class="khrLL"><?= $member['name'] ?></td>
-                    <td class="khrLL"><?= $member['username'] ?></td>
-                    <td class="khrLL"><?= $member['email'] ?></td>
-                    <td class="khrLL _3znGg">
-                      <div style="background-image: url('<?= $member['image'] ? 'data:image/jpg/jpeg/png/bmp; base64,' . $member['image']: '' ?>')" class="_2TnLg yqH95 Z2yax _27IzI _23T99">
+                    <th class="_10754"><?= $key ?></th>
+                    <td class="_10754"><?= $member['id'] ?></td>
+                    <td class="_10754"><?= json_decode($member['other'], true)['googleId'] ?></td>
+                    <td class="_10754"><?= $member['name'] ?></td>
+                    <td class="_10754"><?= $member['username'] ?></td>
+                    <td class="_10754"><?= $member['email'] ?></td>
+                    <td class="_10754 RogPM">
+                      <div style="background-image: url('<?= $member['image'] ? 'data:image/jpg/jpeg/png/bmp; base64,' . $member['image'] : '' ?>')" class="_1DUEa eK4KG _3-lYj _30EOh _32J_2">
                       </div>
                     </td>
-                    <td class="khrLL"><?= $member['role'] ?></td>
-                    <td class="khrLL">
-                      <nav class="_4m9J6">
+                    <td class="_10754"><?= $member['role'] ?></td>
+                    <td class="_10754">
+                      <nav class="_3tbxM">
                         <div>
-                          <button type="button" data-target="list-user-<?= $member['id'] ?>" data-alignment="right" class="_2zhDk _2QgNG _3VHKy _8y6Bn">
-                            <svg width="15" height="15" fill="currentColor" class="_2i-WK">
-                              <use xlink:href="<?= ROOT ?>/assets/bootstrap-icons/bootstrap-icons.svg#three-dots-vertical" />
+                          <button type="button" data-target="list-user-<?= $member['id'] ?>" data-alignment="right" class="USCBs _3JDZi _1VhGu _2XuUU">
+                            <svg width="15" height="15" fill="currentColor" class="_2mXhC">
+                              <use xlink:href="<?= ROOT ?>/assets/fonts/icons/all-icons.svg#three-dots-vertical" />
                             </svg>
                           </button>
-                          <ul id="list-user-<?= $member['id'] ?>" class="EYW33 _2dgNq _5OpzR">
-                            <li><button onclick="setModalValue({editFullName:'<?= $member['name'] ?>',editUserName:'<?= $member['username'] ?>',roleUser:'<?= $member['role'] ?>'},document.querySelector('#editUserForm'));document.querySelector('#editUserForm').action = '<?= LINK ?>/members/list-user?id=<?= $member['id'] ?>';" data-toggle="modal" data-target="#editUser" class="_2niE6 _222Gi _2S6Up">Edit</button></li>
+                          <ul id="list-user-<?= $member['id'] ?>" class="_3XUI2 _24ZeC _3YqDp">
+                            <li><button onclick="setModalValue({editFullName:'<?= $member['name'] ?>',editUserName:'<?= $member['username'] ?>',roleUser:'<?= $member['role'] ?>'},document.querySelector('#editUserForm'));document.querySelector('#editUserForm').action = '<?= LINK ?>/members/list-user?id=<?= $member['id'] ?>';" data-toggle="modal" data-target="#editUser" class="_2HPko _3-WY3 BoWE6">Edit</button></li>
                             <li>
                               <form method="post" action="<?= LINK ?>/members/list-user?id=<?= $member['id'] ?>&_csrf=<?= $csrfToken ?>&_method=DELETE">
-                                <button onclick="return confirm('Are you sure you want to Delete it ?')" class="_2niE6 cnWz7 _2S6Up">Delete</button>
+                                <button onclick="return confirm('Are you sure you want to Delete it ?')" class="_2HPko _2rGfb BoWE6">Delete</button>
                               </form>
                             </li>
                           </ul>
@@ -68,29 +68,29 @@
       </div>
     </div>
 
-    <div id="editUser" tabindex="-1" aria-labelledby="editUserLabel" aria-hidden="true" class="_31P-8 _3bCgx">
-      <div class="_28U8K">
-        <div class="_2M5QZ _1wCNj _3LA0v _1HTfk s0VLt">
+    <div id="editUser" tabindex="-1" aria-labelledby="editUserLabel" aria-hidden="true" class="_2yvo3 _3F0Yh">
+      <div class="EGnm1">
+        <div class="xo4Q- _3Znxg _1Mqcp _3W_HJ _2W81z">
           <form method="POST" id="editUserForm" onsubmit="sulaiForm({this:this,event:event,link:this.action,method:'PUT'})">
-            <div class="_3tByX _1jkJg">
-              <button type="button" data-dismiss="modal" aria-label="Close" class="_2yuh-"></button>
-              <div class="_1dTWr _3x-l5 _1HqFl _3mxtc">
-                <h5 class="_3znGg">Edit <strong>User</strong></h5>
+            <div class="_3BAVP _3TCQr">
+              <button type="button" data-dismiss="modal" aria-label="Close" class="_2MKOU"></button>
+              <div class="_1wHD0 _3Yl2j _2WrBi XgJiO">
+                <h5 class="RogPM">Edit <strong>User</strong></h5>
               </div>
 
-              <div class="_2E95Y">
-                <input type="text" id="editFullName" name="editFullName" class="_1y8Oi _1GV_i" />
+              <div class="_36R48">
+                <input type="text" id="editFullName" name="editFullName" class="_21QBy _2fCo5" />
                 <label for="editFullName">User Full Name</label>
-                <span data-error="" data-success="" class="_25Y7w"></span>
+                <span data-error="" data-success="" class="_3jmDY"></span>
               </div>
 
-              <div class="_2E95Y">
-                <input type="text" id="editUserName" name="editUserName" class="_1y8Oi _1GV_i" />
+              <div class="_36R48">
+                <input type="text" id="editUserName" name="editUserName" class="_21QBy _2fCo5" />
                 <label for="editUserName">Username</label>
-                <span data-error="" data-success="" class="_25Y7w"></span>
+                <span data-error="" data-success="" class="_3jmDY"></span>
               </div>
 
-              <div class="_2E95Y">
+              <div class="_36R48">
                 <select name="roleUser" id="roleUser">
                   <option value="admin">Admin</option>
                   <option value="doctor">Doctor</option>
@@ -99,11 +99,11 @@
                 </select>
               </div>
 
-              <div class="_3Sail _3x-l5 riVBJ gqtmr">
-                <div class="EbIZP _2wnub _1dTWr _1JVHC">
-                  <button type="button" data-dismiss="modal" class="_2niE6 _2-EzS">Close</button>
-                  <button type="submit" class="_2niE6 _2SF1n _2-EzS _1dYc3 _1dTWr _2kea1 _3x-l5">
-                    <span style="width: 1rem; height: 1rem" role="status" class="_8sneY _2f2YP _14vxW"></span>
+              <div class="SiBSM _3Yl2j DLDJz _34J9b">
+                <div class="SSDpf _3hIbh _1wHD0 _1qW0Z">
+                  <button type="button" data-dismiss="modal" class="_2HPko _3XagE">Close</button>
+                  <button type="submit" class="_2HPko _2Q1xM _3XagE lJhPB _1wHD0 _1uVtA _3Yl2j">
+                    <span style="width: 1rem; height: 1rem" role="status" class="_2_2xs _2uMGw rCKpP"></span>
                     <span>Edit User</span>
                   </button>
                 </div>

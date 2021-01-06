@@ -1,4 +1,4 @@
-<li class="_1Db0X F570B _1dYc3"><strong><?= $symptom['question'] ?></strong></li>
-<li class="_1Db0X s0VLt">
-  <div class="HCwLM">Descriptions : </div><i><?= $symptom['desc'] ?></i>
+<li class="_3-Y05 _3zXm1 lJhPB"><strong><?= $symptom['question'] ?></strong></li>
+<li class="_3-Y05 _2W81z">
+  <div class="_3elW-">Descriptions : </div><i><?= $symptom['desc'] ?></i>
 </li>

@@ -1,20 +1,20 @@
 <?php include VIEW_DIR . "/layouts/header.php"; ?>
-<div id="app" class="vSOIt">
+<div id="app" class="_2fCJU">
   <?php include VIEW_DIR . "/layouts/navbar.php"; ?>
-  <div class="_2h7iG _1dTWr _3oq1Z">
-    <div class="F2040 TidTZ vSOIt">
-      <div class="_22DlN">
+  <div class="_3hy0- _1wHD0 _6Eppu">
+    <div class="_24Rxj _3H4vP _2fCJU">
+      <div class="_16ASu">
       </div>
     </div>
-    <div class="F2040 TidTZ vSOIt mFoGj o6VYZ _37akz">
-      <div class="_2yRov _3pDOt _1jkJg">
-        <div class="_1aMCn s0VLt _3znGg">
-          <div class="_199pu _2DN6r">
-            <h3 class="_3oNh9">Congratulations</h3>
-            <p class="e2Sjh">Your Email <%= email %> Has Been Verified</p>
+    <div class="_24Rxj _3H4vP _2fCJU iJDxc _2HYhx cd6iS">
+      <div class="_321tY KTZ2J _3TCQr">
+        <div class="_3zcKU _2W81z RogPM">
+          <div class="xilMu _32W6N">
+            <h3 class="_15Jmj">Congratulations</h3>
+            <p class="zEqNx">Your Email <%= email %> Has Been Verified</p>
           </div>
-          <div class="_2xrM7 _1jl8t s0VLt">
-            <a href="<?= LINK ?>/" class="_2niE6 Bdn6B">&larr; Back to
+          <div class="_2O4o7 _33nLS _2W81z">
+            <a href="<?= LINK ?>/" class="_2HPko vhjC9">&larr; Back to
               Timeline</a>
           </div>
         </div>

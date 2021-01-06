@@ -1,6 +1,6 @@
-<div class="_3Sail _10cuz">
-  <div class="olbEI">
+<div class="SiBSM _2tMsi">
+  <div class="XgBPh">
     <h6>Lorem, ipsum.</h6>
-    <hr class="_3qGFe" />
+    <hr class="_3ZWkC" />
   </div>
 </div>

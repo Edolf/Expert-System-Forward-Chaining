@@ -1,17 +1,17 @@
-<input id="search-input" placeholder="Search" type="text" name="q" value="" autocomplete="off" aria-label="Search box" class="_2Wi8m Dxtze" />
-<label for="search-input" class="_1meX7 _1dTWr _2kea1">
+<input id="search-input" placeholder="Search" type="text" name="q" value="" autocomplete="off" aria-label="Search box" class="_1kGsc _1fso2" />
+<label for="search-input" class="_1AKuG _1wHD0 _1uVtA">
   <svg width="16" height="16" fill="currentColor">
-    <use xlink:href="<?= ROOT ?>/assets/bootstrap-icons/bootstrap-icons.svg#search" />
+    <use xlink:href="<?= ROOT ?>/assets/fonts/icons/all-icons.svg#search" />
   </svg>
 </label>
-<div class="_3GZ9R">
-  <div class="_2IigC">
-    <label class="_2Lyei">Most Visited</label>
-    <ul class="_2SF2C">
-      <li><a href="#" class="_1mvwU">Google</a></li>
-      <li><a href="#" class="_1mvwU">Apple</a></li>
-      <li><a href="#" class="_1mvwU">Microsoft</a></li>
-      <li><a href="#" class="_1mvwU">Github</a></li>
+<div class="_25ecE">
+  <div class="_3Dq1O">
+    <label class="_2KE7-">Most Visited</label>
+    <ul class="_1ceNM">
+      <li><a href="#" class="_2h8rF">Google</a></li>
+      <li><a href="#" class="_2h8rF">Apple</a></li>
+      <li><a href="#" class="_2h8rF">Microsoft</a></li>
+      <li><a href="#" class="_2h8rF">Github</a></li>
     </ul>
   </div>
 </div>

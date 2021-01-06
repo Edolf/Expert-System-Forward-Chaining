@@ -1,43 +1,43 @@
 <?php include VIEW_DIR . "/layouts/header.php"; ?>
-<div class="_1FInK">
+<div class="_2pyK2">
   <?php include VIEW_DIR . "/layouts/sidebar.php"; ?>
-  <div class="_2h7iG _1dTWr _3oq1Z vSOIt">
-    <div class="F2040 _1PITf">
+  <div class="_3hy0- _1wHD0 _6Eppu _2fCJU">
+    <div class="_24Rxj _1re0U">
       <?php include VIEW_DIR . "/layouts/topbar.php"; ?>
-      <div class="_22DlN _3PDUl">
-        <div class="_3Sail gqtmr">
+      <div class="_16ASu _1FnTW">
+        <div class="SiBSM _34J9b">
 
-          <div class="_1dTWr _2kea1 njVXK TidTZ">
-            <h1 class="_3vE3C _2gyiY">Diagnosis Based on The Selected Symptoms</h1>
+          <div class="_1wHD0 _1uVtA _20iUl _3H4vP">
+            <h1 class="_25N9D _1aegJ">Diagnosis Based on The Selected Symptoms</h1>
           </div>
 
-          <div class="_1s9b_ gqtmr">
-            <h6 class="_1PITf">Users Information</h6>
-            <table class="_12PUq -tn6h">
+          <div class="_1yUFw _34J9b">
+            <h6 class="_1re0U">Users Information</h6>
+            <table class="_3bYJs _3Lvqy">
               <tr>
-                <td scope="col" class="_3GpXu">Full Name</td>
-                <td scope="col" class="_3GpXu">
-                  <strong css-module=""><?= $user->name ?></strong>
+                <td scope="col" class="sHcZn">Full Name</td>
+                <td scope="col" class="sHcZn">
+                  <strong><?= $user->name ?></strong>
                 </td>
               </tr>
               <tr>
-                <td scope="col" class="_3GpXu">Username</td>
-                <td scope="col" class="_3GpXu">
+                <td scope="col" class="sHcZn">Username</td>
+                <td scope="col" class="sHcZn">
                   <strong><?= $user->username != null ? $user->username : 'NULL' ?></strong>
                 </td>
               </tr>
               <tr>
-                <td scope="col" class="_3GpXu">E-mail</td>
-                <td scope="col" class="_3GpXu">
+                <td scope="col" class="sHcZn">E-mail</td>
+                <td scope="col" class="sHcZn">
                   <strong>
-                    <?= $user->email != null ? $user->email : 'NULL' ?><small class="<?= $user->role == 'unverified' ? '_2ivdp' : '_1y8Oi' ?> _1MoWO"><?= $user->role == 'unverified' ? '(unverified)' : '(verified)' ?></small>
+                    <?= $user->email != null ? $user->email : 'NULL' ?><small class="<?= $user->role == 'unverified' ? 'UG45_' : '_21QBy' ?> _282Xl"><?= $user->role == 'unverified' ? '(unverified)' : '(verified)' ?></small>
                   </strong>
                 </td>
               </tr>
             </table>
           </div>
-          <div class="_1s9b_ _3L-oI">
-            <h3 class="_1m-Fh _1PITf">Results</h3>
+          <div class="_1yUFw _11x2F">
+            <h3 class="zCP3X _1re0U">Results</h3>
             <?php if ($results['id'] == 0) : ?>
               <h6><?= $results['desc'] ?> </h6>
               <ul>
@@ -54,17 +54,18 @@
                 <?php endforeach; ?>
               </ul>
               <h6>it can be concluded that the disease is
-                <span><strong><?= $results['name'] ?></strong></span></h6>
+                <span><strong><?= $results['name'] ?></strong></span>
+              </h6>
             <?php endif; ?>
           </div>
         </div>
         <?php if ($results['id'] != 0) : ?>
-          <div class="_3Sail gqtmr">
-            <h3 class="_1m-Fh _1PITf">What Is <strong><?= $results['name'] ?></strong> ?</h3>
+          <div class="SiBSM _34J9b">
+            <h3 class="zCP3X _1re0U">What Is <strong><?= $results['name'] ?></strong> ?</h3>
             <h6><strong><?= $results['name'] ?></strong> is <?= $results['desc'] ?></h6>
           </div>
-          <div class="_3Sail">
-            <h3 class="_1m-Fh _1PITf">Solution for this Disease</h3>
+          <div class="SiBSM">
+            <h3 class="zCP3X _1re0U">Solution for this Disease</h3>
             <h6><?= $results['solution'] ?></h6>
           </div>
         <?php endif; ?>

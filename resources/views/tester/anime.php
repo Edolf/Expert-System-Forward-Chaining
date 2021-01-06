@@ -1,13 +1,13 @@
 <?php include VIEW_DIR . "/layouts/header.php"; ?>
-<div id="app" class="vSOIt">
+<div id="app" class="_2fCJU">
   <?php include VIEW_DIR . "/layouts/navbar.php"; ?>
-  <div class="_2h7iG _1dTWr _3oq1Z">
-    <div class="F2040 TidTZ vSOIt">
-      <div class="_22DlN">
+  <div class="_3hy0- _1wHD0 _6Eppu">
+    <div class="_24Rxj _3H4vP _2fCJU">
+      <div class="_16ASu">
       </div>
     </div>
 
-    <div class="_22DlN">
+    <div class="_16ASu vRF3K _1vawn _1MfvM qEbXj _37G-1 _1-AWB _1SiFz _1qaaU _3X7Q7 xf1sj _1YMz6 _2QQS4 _3_tGX">
       <html>
 
       <head>
@@ -24,6 +24,7 @@
       </head>
 
       <body>
+
         <div id="ball" onclick="testAnimate(this);"> </div>
       </body>
 

@@ -1,31 +1,31 @@
 <?php $flashSelected = 'doctor';
 include VIEW_DIR . "/layouts/flash.php"; ?>
 
-<div class="_3xzGw _2kea1 njVXK gqtmr">
-  <h1 class="_3vE3C _2gyiY"><?= strtoupper($user->role) ?> Dashboard</h1>
-  <button type="button" data-toggle="modal" data-target="#addProblemModal" class="_2niE6 Bdn6B">Add
+<div class="F5PZw _1uVtA _20iUl _34J9b">
+  <h1 class="_25N9D _1aegJ"><?= strtoupper($user->role) ?> Dashboard</h1>
+  <button type="button" data-toggle="modal" data-target="#addProblemModal" class="_2HPko vhjC9">Add
     New Problem</button>
 </div>
 
-<div class="_22DlN _3PDUl">
+<div class="_16ASu _1FnTW">
   <?php foreach ($expertsystems::findAll() as $key => $ExpertSystem) : ?>
-    <div class="_3Sail gqtmr">
-      <div class="krQJT">
-        <h3 class="_1m-Fh">
-          <span class="_2eRp4">
+    <div class="SiBSM _34J9b">
+      <div class="yQrO-">
+        <h3 class="zCP3X">
+          <span class="_3bcME">
             <?= $ExpertSystem['problem'] ?>
-            <button type="button" class="_2niE6 _2-EzS _2zhDk _27Ucp _14vxW">
+            <button type="button" class="_2HPko _3XagE USCBs _1kqFz rCKpP">
               <svg width="24" height="24" fill="currentColor">
-                <use xlink:href="<?= ROOT ?>/assets/bootstrap-icons/bootstrap-icons.svg#check" />
+                <use xlink:href="<?= ROOT ?>/assets/fonts/icons/all-icons.svg#check" />
               </svg>
             </button>
-            <button type="button" class="_2niE6 _2-EzS _2zhDk _27Ucp _2eRp4">
+            <button type="button" class="_2HPko _3XagE USCBs _1kqFz _3bcME">
               <svg width="24" height="24" fill="currentColor">
-                <use xlink:href="<?= ROOT ?>/assets/bootstrap-icons/bootstrap-icons.svg#link-45deg" />
+                <use xlink:href="<?= ROOT ?>/assets/fonts/icons/all-icons.svg#link-45deg" />
               </svg>
             </button>
           </span>
-          <span class="_14vxW">
+          <span class="rCKpP">
             <!-- <form>
               <div css-module="row input-field text-center m-0">
                 <div css-module="input-field p-0 m-0">
@@ -35,20 +35,20 @@ include VIEW_DIR . "/layouts/flash.php"; ?>
             </form> -->
           </span>
         </h3>
-        <h6 class="_1PITf">
-          <span class="_2eRp4"><b><?= $ExpertSystem['problem'] ?></b> is <?= $ExpertSystem['desc'] ?>
-            <button type="button" class="_2niE6 _2-EzS _2zhDk _27Ucp _14vxW _27Ucp _2eRp4">
+        <h6 class="_1re0U">
+          <span class="_3bcME"><b><?= $ExpertSystem['problem'] ?></b> is <?= $ExpertSystem['desc'] ?>
+            <button type="button" class="_2HPko _3XagE USCBs _1kqFz rCKpP _1kqFz _3bcME">
               <svg width="24" height="24" fill="currentColor">
-                <use xlink:href="<?= ROOT ?>/assets/bootstrap-icons/bootstrap-icons.svg#link-45deg" />
+                <use xlink:href="<?= ROOT ?>/assets/fonts/icons/all-icons.svg#link-45deg" />
               </svg>
             </button>
-            <button type="button" class="_2niE6 _2-EzS _2zhDk _27Ucp _14vxW _27Ucp _14vxW">
+            <button type="button" class="_2HPko _3XagE USCBs _1kqFz rCKpP _1kqFz rCKpP">
               <svg width="24" height="24" fill="currentColor">
-                <use xlink:href="<?= ROOT ?>/assets/bootstrap-icons/bootstrap-icons.svg#check" />
+                <use xlink:href="<?= ROOT ?>/assets/fonts/icons/all-icons.svg#check" />
               </svg>
             </button>
           </span>
-          <span class="_14vxW">
+          <span class="rCKpP">
             <!-- <form>
               <div css-module="row input-field text-center m-0">
                 <div css-module="input-field p-0 m-0">
@@ -59,29 +59,29 @@ include VIEW_DIR . "/layouts/flash.php"; ?>
           </span>
         </h6>
       </div>
-      <div class="Ww7sD _1dTWr _2kea1 _3x-l5">
+      <div class="_1BnRQ _1wHD0 _1uVtA _3Yl2j">
         <form method="post" action="<?= LINK ?>/members/dropproblem?id=<?= $ExpertSystem['id'] ?>&_csrf=<?= $csrfToken ?>&_method=DELETE">
-          <button onclick="return confirm('After you remove this problem everything related to this problem including the diseases and symptoms associated with this problem will be deleted')" class="_2niE6 cnWz7">Delete
+          <button onclick="return confirm('After you remove this problem everything related to this problem including the diseases and symptoms associated with this problem will be deleted')" class="_2HPko _2rGfb">Delete
             <?= $ExpertSystem['problem'] ?></button>
         </form>
       </div>
     </div>
 
-    <div class="_3Sail gqtmr">
-      <div class="_1s9b_">
-        <h3 class="_1m-Fh _1PITf">Diseases</h3>
+    <div class="SiBSM _34J9b">
+      <div class="_1yUFw">
+        <h3 class="zCP3X _1re0U">Diseases</h3>
         <?php foreach ($diseases::findAll(['expertSystemId' => $ExpertSystem['id']]) as $key => $disease) : ?>
-          <h5 class="_1m-Fh"><?= $disease['name'] ?></h5>
-          <h6 class="_1PITf"><?= $disease['desc'] ?></h6>
+          <h5 class="zCP3X"><?= $disease['name'] ?></h5>
+          <h6 class="_1re0U"><?= $disease['desc'] ?></h6>
           <!-- <h6 css-module="mb-4"><?= $disease['solution'] ?></h6> -->
         <?php endforeach; ?>
       </div>
-      <div class="_1s9b_">
-        <h3 class="_1m-Fh _1PITf">Symptoms</h3>
-        <table class="_12PUq -tn6h">
+      <div class="_1yUFw">
+        <h3 class="zCP3X _1re0U">Symptoms</h3>
+        <table class="_3bYJs _3Lvqy">
           <?php foreach ($symptoms::findAll(['expertSystemId' => $ExpertSystem['id']]) as $key => $symptom) : ?>
             <tr>
-              <td scope="col" class="_3GpXu"><?= $symptom['name'] ?></td>
+              <td scope="col" class="sHcZn"><?= $symptom['name'] ?></td>
             </tr>
           <?php endforeach; ?>
         </table>

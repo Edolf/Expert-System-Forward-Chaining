@@ -6,7 +6,8 @@ use app\core\Response;
 
 use app\models\Navbar;
 use app\models\Category;
-use app\models\Content;
+use app\models\CollapseMenu;
+use app\models\SubMenu;
 
 Application::all('/', function (Request $request, Response $response) {
   return $response->render('index', [
@@ -15,9 +16,9 @@ Application::all('/', function (Request $request, Response $response) {
   ]);
 });
 
-Application::get('/tester/animation', function (Request $request, Response $response) {
-  return $response->render('tester/anime');
-});
+// Application::get('/tester/animation', function (Request $request, Response $response) {
+//   return $response->render('tester/anime');
+// });
 
 Application::get('/consultation', 'ConsultationController@selectConsul');
 Application::get('/consultation/{id}', 'ConsultationController@consultation');
@@ -28,7 +29,13 @@ Application::get('/auth/gplus', 'AuthController@goauth');
 Application::post('/auth/out', 'AuthController@logout');
 Application::post('/auth/join', 'AuthController@register');
 
-Application::get('/members', 'MemberController@index');
+$subUrlMap = [];
+
+foreach (SubMenu::findAll() as $key => $value) {
+  $subUrlMap[$value['id']] = $value['url'];
+}
+
+Application::get($subUrlMap[1], 'MemberController@index');
 
 Application::post('/members/getproblem', 'MemberController@getProblem');
 Application::put('/members/updateproblem', 'MemberController@updateProblem');
@@ -40,42 +47,48 @@ Application::put('/members/account/password', 'UserController@updatePassword');
 Application::put('/members/account/{targetUpdate}', 'UserController@updateAccount');
 Application::delete('/members/account', 'UserController@dropAccount');
 
-Application::get('/members/list-user', 'MemberController@listUser');
-Application::put('/members/list-user', 'MemberController@updateUser');
-Application::delete('/members/list-user', 'MemberController@dropUser');
+Application::get($subUrlMap[2], 'MemberController@selectConsul');
+Application::get($subUrlMap[2] . '/{id}', 'MemberController@consultation');
+Application::post($subUrlMap[2] . '/{id}', 'MemberController@results');
 
-Application::get('/members/sidemenu', 'SidemenuController@sidemenu');
-Application::post('/members/sidemenu', 'SidemenuController@addSidemenu');
-Application::put('/members/sidemenu', 'SidemenuController@updateSidemenu');
-Application::delete('/members/sidemenu', 'SidemenuController@deleteSidemenu');
+Application::get($subUrlMap[3], 'MemberController@listUser');
+Application::put($subUrlMap[3], 'MemberController@updateUser');
+Application::delete($subUrlMap[3], 'MemberController@dropUser');
 
-Application::get('/members/sidemenu/menu', 'SidemenuController@menu');
-Application::post('/members/sidemenu/menu', 'SidemenuController@addMenu');
-Application::put('/members/sidemenu/menu', 'SidemenuController@updateMenu');
-Application::delete('/members/sidemenu/menu', 'SidemenuController@deleteMenu');
+Application::get($subUrlMap[8], 'MemberController@disease');
+Application::post($subUrlMap[8], 'MemberController@addDisease');
+Application::put($subUrlMap[8], 'MemberController@updateDisease');
+Application::delete($subUrlMap[8], 'MemberController@deleteDisease');
 
-Application::get('/members/sidemenu/submenu', 'SidemenuController@submenu');
-Application::post('/members/sidemenu/submenu', 'SidemenuController@addSubmenu');
-Application::put('/members/sidemenu/submenu', 'SidemenuController@updateSubmenu');
-Application::delete('/members/sidemenu/submenu', 'SidemenuController@deleteSubmenu');
+Application::get($subUrlMap[9], 'MemberController@symptom');
+Application::post($subUrlMap[9], 'MemberController@addSymptom');
+Application::put($subUrlMap[9], 'MemberController@updateSymptom');
+Application::delete($subUrlMap[9], 'MemberController@deleteSymptom');
 
-Application::get('/members/disease', 'MemberController@disease');
-Application::post('/members/disease', 'MemberController@addDisease');
-Application::put('/members/disease', 'MemberController@updateDisease');
-Application::delete('/members/disease', 'MemberController@deleteDisease');
+Application::get($subUrlMap[10], 'MemberController@knowledge');
+Application::post($subUrlMap[10], 'MemberController@addKnowledge');
+Application::put($subUrlMap[10], 'MemberController@updateKnowledge');
+Application::delete($subUrlMap[10], 'MemberController@deleteKnowledge');
 
-Application::get('/members/symptom', 'MemberController@symptom');
-Application::post('/members/symptom', 'MemberController@addSymptom');
-Application::put('/members/symptom', 'MemberController@updateSymptom');
-Application::delete('/members/symptom', 'MemberController@deleteSymptom');
+Application::get($subUrlMap[11], 'MemberController@rule');
 
-Application::get('/members/knowledge', 'MemberController@knowledge');
-Application::post('/members/knowledge', 'MemberController@addKnowledge');
-Application::put('/members/knowledge', 'MemberController@updateKnowledge');
-Application::delete('/members/knowledge', 'MemberController@deleteKnowledge');
+$collUrlMap = [];
 
-Application::get('/members/rule', 'MemberController@rule');
+foreach (CollapseMenu::findAll() as $key => $value) {
+  $collUrlMap[$value['id']] = $value['url'];
+}
 
-Application::get('/members/consultation', 'MemberController@selectConsul');
-Application::get('/members/consultation/{id}', 'MemberController@consultation');
-Application::post('/members/consultation/{id}', 'MemberController@results');
+Application::get($collUrlMap[1], 'SidemenuController@sidemenu');
+Application::post($collUrlMap[1], 'SidemenuController@addSidemenu');
+Application::put($collUrlMap[1], 'SidemenuController@updateSidemenu');
+Application::delete($collUrlMap[1], 'SidemenuController@deleteSidemenu');
+
+Application::get($collUrlMap[2], 'SidemenuController@menu');
+Application::post($collUrlMap[2], 'SidemenuController@addMenu');
+Application::put($collUrlMap[2], 'SidemenuController@updateMenu');
+Application::delete($collUrlMap[2], 'SidemenuController@deleteMenu');
+
+Application::get($collUrlMap[3], 'SidemenuController@submenu');
+Application::post($collUrlMap[3], 'SidemenuController@addSubmenu');
+Application::put($collUrlMap[3], 'SidemenuController@updateSubmenu');
+Application::delete($collUrlMap[3], 'SidemenuController@deleteSubmenu');

@@ -1,45 +1,45 @@
 <?php include VIEW_DIR . "/layouts/header.php"; ?>
-<div id="app" class="vSOIt">
+<div id="app" class="_2fCJU">
   <?php include VIEW_DIR . "/layouts/navbar.php"; ?>
-  <div class="_2h7iG _1dTWr _3oq1Z">
-    <div class="F2040 TidTZ vSOIt">
-      <div class="_22DlN">
+  <div class="_3hy0- _1wHD0 _6Eppu">
+    <div class="_24Rxj _3H4vP _2fCJU">
+      <div class="_16ASu">
       </div>
     </div>
 
-    <div class="_2h7iG _1dTWr _3oq1Z">
-      <div class="F2040 _1PITf _1vA3K s0VLt">
-        <div class="_1PmQJ">
-          <div class="_3Sail _3PDUl">
-            <div class="_2wnub gqtmr">
-              <h1 class="_3BvH7 _2M3Kx">Lorem Ipsum</h1>
-              <h4 class="_1PITf">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil totam repudiandae sunt. Quo unde
+    <div class="_3hy0- _1wHD0 _6Eppu">
+      <div class="_24Rxj _1re0U _1sNoa _2W81z">
+        <div class="_2wxL0">
+          <div class="SiBSM _1FnTW">
+            <div class="_3hIbh _34J9b">
+              <h1 class="_1mXp4 _3BjGC">Lorem Ipsum</h1>
+              <h4 class="_1re0U">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil totam repudiandae sunt. Quo unde
                 iste
                 voluptates vero earum nesciunt autem laboriosam voluptatem a voluptatibus? Nobis fuga quia quidem. Ea, autem.
               </h4>
               <?php if ($user) : ?>
-                <a href="<?= LINK ?>/consultation" style="max-width: fit-content" class="_1dTWr _2kea1 _1JD_t Bdn6B _1YEbm _1dYc3">
-                  <h4 class="_27Ucp _10lSW"><strong class="_2ivdp">Start Consultation</strong></h4>
+                <a href="<?= LINK ?>/consultation" style="max-width: fit-content" class="_1wHD0 _1uVtA IBCQz vhjC9 _1ALMo lJhPB">
+                  <h4 class="_1kqFz _3MkHC"><strong class="UG45_">Start Consultation</strong></h4>
                 </a>
               <?php else : ?>
-                <button type="button" data-toggle="modal" data-target="#authModal" class="_1JD_t Bdn6B _1YEbm _1dYc3">
-                  <h4 class="_27Ucp _10lSW"><strong class="_2ivdp">Get Started</strong></h4>
+                <button type="button" data-toggle="modal" data-target="#authModal" class="IBCQz vhjC9 _1ALMo lJhPB">
+                  <h4 class="_1kqFz _3MkHC"><strong class="UG45_">Get Started</strong></h4>
                 </button>
               <?php endif; ?>
             </div>
-            <div class="_3HVzZ">
+            <div class="_2IUtP">
               <?php include VIEW_DIR . "/nurse.php"; ?>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="F2040 TidTZ vSOIt">
-        <div class="_1PmQJ">
-          <div class="_3Sail _3PDUl">
-            <div class="G6mn4 yqH95 _3PDUl _3znGg">
-              <h1 class="Whrre _2M3Kx">About Us</h1>
-              <h4 class="_1PITf">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil totam repudiandae sunt. Quo unde
+      <div class="_24Rxj _3H4vP _2fCJU">
+        <div class="_2wxL0">
+          <div class="SiBSM _1FnTW">
+            <div class="_2rSiM eK4KG _1FnTW RogPM">
+              <h1 class="_3xxdb _3BjGC">About Us</h1>
+              <h4 class="_1re0U">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil totam repudiandae sunt. Quo unde
                 iste
                 voluptates vero earum nesciunt autem laboriosam voluptatem a voluptatibus? Nobis fuga quia quidem. Ea, autem.
               </h4>
