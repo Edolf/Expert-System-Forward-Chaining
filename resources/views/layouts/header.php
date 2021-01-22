@@ -11,6 +11,15 @@
 
   <link rel="stylesheet" href="<?= ROOT ?>/css/app.css" />
 
+  <script>
+    if (window.localStorage.getItem('theme')) {
+      document.documentElement.setAttribute('data-theme', localStorage.getItem('theme'))
+      window.addEventListener('DOMContentLoaded', function(e) {
+        document.querySelector('#switchTheme').setAttribute(window.localStorage.getItem('theme') == 'dark' ? 'checked' : 'value', '');
+      })
+    }
+  </script>
+
   <title><?= $title ?? APP_NAME; ?></title>
 </head>
 

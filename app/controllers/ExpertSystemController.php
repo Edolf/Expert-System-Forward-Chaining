@@ -30,7 +30,7 @@ trait ExpertSystemController
         'problem' => $request->getBody('problemname'),
         'desc' => $request->getBody('problemdesc')
       ])) {
-        $request->setFlash('doctor', '_1SiFz', [['msg' => "{$request->getBody('problemname')} Has Been Added"]]);
+        $request->setFlash('doctor', 'Ilona_537', [['msg' => "{$request->getBody('problemname')} Has Been Added"]]);
         $response->redirect('/members');
       } else {
         throw new HttpException(500);
@@ -49,7 +49,7 @@ trait ExpertSystemController
     if ($deleteExpertSystem) {
       Disease::destroy(['expertSystemId' => $request->getQuery('id')]);
       Symptom::destroy(['expertSystemId' => $request->getQuery('id')]);
-      $request->setFlash('doctor', '_1SiFz', [['msg' => "The Problem Has Been Deleted"]]);
+      $request->setFlash('doctor', 'Ilona_537', [['msg' => "The Problem Has Been Deleted"]]);
       $response->redirect('/members');
     } else {
       throw new HttpException(500);

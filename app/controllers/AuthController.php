@@ -14,9 +14,6 @@ class AuthController extends Controller
 {
   public function login(Request $request, Response $response)
   {
-    // echo '<pre>';
-    // var_dump($request->getBody());
-    // echo '</pre>';
     self::validateBody('password')->isNotNull()->isLength(['min' => 6, 'max' => 30])->trim();
     self::validateBody('user')->isNotNull()->isLength(['min' => 2, 'max' => 25])->custom(function ($user, $request) {
       $user = User::findOne([User::OR(['username' => $user, 'email' => $user])]);

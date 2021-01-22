@@ -1,21 +1,21 @@
-<footer class="_2y2g9 _2GE1p BF6h9">
-  <div class="_16ASu _3p-IP">
-    <div class="SiBSM _1UAJa">
-      <div class="_3svkF _1wHD0 _1uVtA _3Yl2j">
-        <div class="B1Q3h">
+<footer class="Rush_424 Lili_335 Hayes_558">
+  <div class="Aylin_367 Isra_307">
+    <div class="Calen_148 Peri_129">
+      <div class="Abril_315 Zephyr_231 Preston_343 Safwan_346">
+        <div class="Torrin_262">
           <input id="switchTheme" type="checkbox" />
-          <label for="switchTheme" class="_1wHD0 _3Yl2j">
-            <div data-checked="Dark" data-unchecked="Light" class="_24u8E"></div>
+          <label for="switchTheme" class="Zephyr_231 Safwan_346">
+            <div data-checked="Dark" data-unchecked="Light" class="Enya_Justine_345"></div>
             <!-- <div css-module="switchLabel"></div> -->
           </label>
         </div>
       </div>
-      <div class="_2FIkM _1wHD0 _1uVtA _3Yl2j">
-        <div class="_1DuA9">
-          <div class="_3vfit">
-            <div class="_3-VHg _1qyzj RogPM _3p-IP _38Rsr">
+      <div class="Kasyn_371 Zephyr_231 Preston_343 Safwan_346">
+        <div class="Abran_399">
+          <div class="Jackelyn_324">
+            <div class="Layton_389 Halo_323 Faizan_466 Isra_307 Shlomo_457">
               Copyright &copy;
-              <a href="<?= LINK ?>/" class="_38Rsr _3BjGC _3MkHC _1kqFz"><?= APP_NAME ?></a>
+              <a href="<?= LINK ?>/" class="Shlomo_457 Ariana_Dora_191 Raena_142 William_145"><?= APP_NAME ?></a>
               <?= date("Y"); ?>. All
               rights
               reserved.

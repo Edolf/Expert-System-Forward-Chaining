@@ -37,7 +37,7 @@ trait SymptomController
         'question' => $request->getBody('question'),
         'expertSystemId' => $request->getQuery('problemId')
       ])) {
-        $request->setFlash('symptom', '_1SiFz', [['msg' => "{$request->getBody('symptomname')} Has Been Added"]]);
+        $request->setFlash('symptom', 'Ilona_537', [['msg' => "{$request->getBody('symptomname')} Has Been Added"]]);
         $response->redirect('/members/symptom');
       } else {
         throw new HttpException(500);
@@ -68,7 +68,7 @@ trait SymptomController
         'question' => $request->getBody('editquestion'),
         'expertSystemId' => $request->getQuery('problemId')
       ], ['id' => $request->getQuery('id')])) {
-        $request->setFlash('symptom', '_1SiFz', [['msg' => "{$request->getQuery('name')} Has Been Updated"]]);
+        $request->setFlash('symptom', 'Ilona_537', [['msg' => "{$request->getQuery('name')} Has Been Updated"]]);
         $response->redirect('/members/symptom');
       } else {
         throw new HttpException(500);
@@ -80,11 +80,11 @@ trait SymptomController
   {
     self::validateQuery('id')->isNotNull()->isInt()->trim()->sanitize();
     if (!empty(self::validateResults())) {
-      $request->setFlash('symptom', 'xf1sj', self::validateResults());
+      $request->setFlash('symptom', 'Brennen_465', self::validateResults());
       $response->redirect('/members/symptom');
     } else {
       if (Symptom::destroy(['id' => $request->getQuery('id')])) {
-        $request->setFlash('symptom', '_1SiFz', [['msg' => "{$request->getQuery('name')} Has Been Deleted"]]);
+        $request->setFlash('symptom', 'Ilona_537', [['msg' => "{$request->getQuery('name')} Has Been Deleted"]]);
         $response->redirect('/members/symptom');
       } else {
         throw new HttpException(500);

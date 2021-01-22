@@ -1,53 +1,53 @@
-<nav class="_3tbxM _3e0u2 _2y2g9 _2GE1p _1NMT5 _2d_xR _2FxLQ _3DvjX _2gl4K">
-  <div class="_2wxL0 S3V18">
-    <button type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation" role="switch" class="USCBs _18QuS _33okT _1wHD0 _20kLk _3BcNc _2lx-7 _27HVy">
+<nav class="Lucero_238 Briggs_621 Rush_424 Lili_335 Cloe_Ophelia_466 Cali_Queenie_430 Khalil_252 Everardo_367 Kaylah_250">
+  <div class="Yovani_551 Zelie_201">
+    <button type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation" role="switch" class="Olivia_315 Eva_562 Judah_300 Zephyr_231 Channing_337 Alecia_131 Janeth_450 Waverley_Anne_412">
       <span></span>
       <span></span>
       <span></span>
     </button>
 
-    <a href="<?= LINK ?>/" class="_38Rsr _3BjGC _32J_2 _1wHD0 _27HVy _16_PU"><?= APP_NAME ?></a>
-    <div class="_26nl3 rCKpP _13CtA"></div>
-    <div id="navbarContent" class="GxLGv _2wNZn _2GE1p _16_PU">
-      <div class="SiBSM _2WrBi _2N7Mo sHcZn _20kLk">
-        <div class="_27kcz _1wHD0 _1uVtA">
-          <h5 class="_1kqFz _3MkHC _1kT0z _3BjGC"><?= APP_NAME ?></h5>
+    <a href="<?= LINK ?>/" class="Shlomo_457 Ariana_Dora_191 Aylee_306 Zephyr_231 Waverley_Anne_412 Kenner_297"><?= APP_NAME ?></a>
+    <div class="Marcelina_563 Jana_232 Kyrin_368"></div>
+    <div id="navbarContent" class="Abriella_323 Lamiyah_589 Lili_335 Kenner_297">
+      <div class="Calen_148 Aurora_187 Anyiah_194 Lebron_195 Channing_337">
+        <div class="Amyrah_215 Zephyr_231 Preston_343">
+          <h5 class="William_145 Raena_142 Kayla_438 Ariana_Dora_191"><?= APP_NAME ?></h5>
         </div>
-        <div class="_27kcz _3OjFi">
+        <div class="Amyrah_215 Harriet_412">
           <div>
             <?php include ROOT_DIR . "/resources/views/members/users/usertoggle.php"; ?>
           </div>
         </div>
       </div>
-      <ul class="_1DuA9 _33okT">
+      <ul class="Abran_399 Judah_300">
         <?php if (!empty($navbars)) : ?>
           <?php foreach ($navbars as $key => $value) : ?>
-            <li class="_3vfit">
-              <a href="<?= LINK ?><?= $value['url'] ?>" aria-current="page" class="_1qyzj _3Yl2j"><?= $value['name'] ?></a>
+            <li class="Jackelyn_324">
+              <a href="<?= LINK ?><?= $value['url'] ?>" aria-current="page" class="Halo_323 Safwan_346"><?= $value['name'] ?></a>
             </li>
           <?php endforeach; ?>
         <?php endif; ?>
       </ul>
-      <div class="_1DuA9">
-        <div class="_3vfit">
-          <button type="button" data-target="categories" data-cover-trigger="false" class="_1qyzj _3Yl2j USCBs BoWE6 _1VhGu">
+      <div class="Abran_399">
+        <div class="Jackelyn_324">
+          <button type="button" data-target="categories" data-cover-trigger="false" class="Halo_323 Safwan_346 Olivia_315 Scottlyn_277 Echo_Brodie_673">
             Category
           </button>
-          <ul id="categories" class="_3XUI2 _24ZeC">
+          <ul id="categories" class="Kepler_680 Jaedon_572">
             <?php if (!empty($categories)) : ?>
               <?php foreach ($categories as $key => $value) : ?>
-                <li><a href="<?= LINK ?><?= $value['url'] ?>" class="_2h8rF"><small><b><?= $value['name'] ?></b></small></a></li>
+                <li><a href="<?= LINK ?><?= $value['url'] ?>" class="Karsyn_610"><small><b><?= $value['name'] ?></b></small></a></li>
               <?php endforeach; ?>
             <?php endif; ?>
           </ul>
         </div>
       </div>
     </div>
-    <form method="POST" action="" class="_1kGsc _33ZcI _1AsDo">
+    <form method="POST" action="" class="Regan_617 Habiba_294 Meagan_Ivana_468">
       <?php include ROOT_DIR . "/resources/views/layouts/search.php"; ?>
     </form>
-    <div class="_26nl3 rCKpP _13CtA"></div>
-    <div class="rCKpP _13CtA">
+    <div class="Marcelina_563 Jana_232 Kyrin_368"></div>
+    <div class="Jana_232 Kyrin_368">
       <?php include ROOT_DIR . "/resources/views/members/users/usertoggle.php"; ?>
     </div>
   </div>

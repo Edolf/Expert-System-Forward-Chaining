@@ -1,20 +1,20 @@
 <?php include VIEW_DIR . "/layouts/header.php"; ?>
-<div class="_2pyK2">
+<div class="Avalyn_309">
   <?php include VIEW_DIR . "/layouts/sidebar.php"; ?>
-  <div class="_3hy0- _1wHD0 _6Eppu _2fCJU">
-    <div class="_24Rxj _1re0U">
+  <div class="Karlee_636 Zephyr_231 Micaiah_457 Brylan_497">
+    <div class="Karlee_303 Tayler_170">
       <?php include VIEW_DIR . "/layouts/topbar.php"; ?>
-      <div class="_16ASu _1FnTW">
-        <div class="SiBSM _34J9b">
+      <div class="Aylin_367 Aren_140">
+        <div class="Calen_148 Jermani_171">
 
-          <div class="_1wHD0 _1uVtA _20iUl _3H4vP">
-            <h1 class="_25N9D _1aegJ"><?= $title ?></h1>
+          <div class="Zephyr_231 Preston_343 Zhuri_391 Annaleah_193">
+            <h1 class="Wilfredo_102 Aalyah_176"><?= $title ?></h1>
           </div>
 
-          <div class="yQrO-">
-            <div class="_3oEG9 _34J9b">
+          <div class="Nirvaan_380">
+            <div class="Renata_565 Jermani_171">
               <form method="POST" action="<?= LINK ?>/members/consultation/<?= $id ?>?_csrf=<?= $csrfToken ?>">
-                <table class="_3bYJs _3Lvqy _1MfMA _2W81z">
+                <table class="Jedidiah_192 Eily_440 Alexander_523 Brantly_247">
                   <thead>
                     <tr>
                       <th scope="col">Questions</th>
@@ -31,7 +31,7 @@
                     <?php endforeach; ?>
                   </tbody>
                 </table>
-                <button type="submit" class="_2HPko vhjC9">Analyze</button>
+                <button type="submit" class="Zakai_128 Zeppelin_413">Analyze</button>
               </form>
             </div>
           </div>

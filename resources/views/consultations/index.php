@@ -1,33 +1,33 @@
 <?php include VIEW_DIR . "/layouts/header.php"; ?>
-<div id="app" class="_2fCJU">
+<div id="app" class="Brylan_497">
   <?php include VIEW_DIR . "/layouts/navbar.php"; ?>
-  <div class="_3hy0- _1wHD0 _6Eppu">
-    <div class="_24Rxj _3H4vP _2fCJU">
-      <div class="_16ASu">
+  <div class="Karlee_636 Zephyr_231 Micaiah_457">
+    <div class="Karlee_303 Annaleah_193 Brylan_497">
+      <div class="Aylin_367">
       </div>
     </div>
 
-    <div class="_3hy0- _1wHD0 _6Eppu">
+    <div class="Karlee_636 Zephyr_231 Micaiah_457">
 
-      <div class="_24Rxj KTZ2J _2W81z">
-        <div class="_2wxL0">
-          <div class="SiBSM _1FnTW">
-            <div class="_3hIbh _34J9b">
-              <div class="SiBSM">
+      <div class="Karlee_303 Emmarose_194 Brantly_247">
+        <div class="Yovani_551">
+          <div class="Calen_148 Aren_140">
+            <div class="Alisa_321 Jermani_171">
+              <div class="Calen_148">
                 <?php foreach ($expertsystems::findAll() as $key => $ExpertSystem) : ?>
-                  <div class="_1yUFw _34J9b">
-                    <div style="width: 18rem" class="_3zcKU RogPM _2GE1p">
-                      <div class="xilMu">
-                        <h4 class="_15Jmj _3H4vP lJhPB"><b><?= $ExpertSystem['problem'] ?></b></h4>
-                        <p class="zEqNx lJhPB"><?= $ExpertSystem['desc'] ?></p>
-                        <a href="<?= LINK ?>/consultation/<?= $ExpertSystem['id'] ?>" class="_2HPko vhjC9 lJhPB">Try This One</a>
+                  <div id="<?= preg_replace('/\s+/', '_', $ExpertSystem['problem']) ?>" class="Finlay_320 Jermani_171">
+                    <div style="width: 18rem" class="Zaydee_150 Faizan_466 Lili_335">
+                      <div class="Rory_340">
+                        <h4 class="Brileigh_396 Annaleah_193 Isabella_429"><b><?= $ExpertSystem['problem'] ?></b></h4>
+                        <p class="Harmonie_363 Isabella_429"><?= $ExpertSystem['desc'] ?></p>
+                        <a href="<?= LINK ?>/consultation/<?= $ExpertSystem['id'] ?>" class="Zakai_128 Zeppelin_413 Isabella_429">Try This One</a>
                       </div>
                     </div>
                   </div>
                 <?php endforeach; ?>
               </div>
             </div>
-            <div class="_2IUtP">
+            <div class="Ann_319">
               <?php include VIEW_DIR . "/nurse.php"; ?>
             </div>
           </div>

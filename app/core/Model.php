@@ -72,7 +72,7 @@ abstract class Model
   public static function create(array $options, $callback = '')
   {
     try {
-      $values = self::makeId($options[array_keys(static::primaryKey())[0]] ?? null) ?? [];
+      $values = self::makeId($options[static::PRIMARY_KEY] ?? null) ?? [];
       foreach (static::attributes() as $key => $value) {
         if (array_key_exists($key, $options)) {
           if (strlen($options[$key]) > 0) {
@@ -186,13 +186,13 @@ abstract class Model
 
   private static function makeId($id)
   {
-    switch (static::primaryKey()[array_keys(static::primaryKey())[0]]['type']) {
+    switch (static::primaryKey()[static::PRIMARY_KEY]['type']) {
       case 'UUID':
-        return [array_keys(static::primaryKey())[0] => "'" . self::UUID(openssl_random_pseudo_bytes(16)) . "'"];
+        return [static::PRIMARY_KEY => "'" . self::UUID(openssl_random_pseudo_bytes(16)) . "'"];
         break;
       case 'INTEGER':
-        if (!(static::primaryKey()[array_keys(static::primaryKey())[0]]['autoIncrement'])) {
-          return [array_keys(static::primaryKey())[0] => "'$id'"];
+        if (!(static::primaryKey()[static::PRIMARY_KEY]['autoIncrement'])) {
+          return [static::PRIMARY_KEY => "'$id'"];
         }
         break;
     }

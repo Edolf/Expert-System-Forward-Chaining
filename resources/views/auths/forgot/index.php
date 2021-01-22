@@ -1,33 +1,33 @@
 <?php include VIEW_DIR . "/layouts/header.php"; ?>
-<div id="app" class="_2fCJU">
+<div id="app" class="Brylan_497">
   <?php include VIEW_DIR . "/layouts/navbar.php"; ?>
-  <div class="_3hy0- _1wHD0 _6Eppu">
-    <div class="_24Rxj _3H4vP _2fCJU">
-      <div class="_16ASu">
+  <div class="Karlee_636 Zephyr_231 Micaiah_457">
+    <div class="Karlee_303 Annaleah_193 Brylan_497">
+      <div class="Aylin_367">
       </div>
     </div>
-    <div class="_24Rxj _3H4vP">
-      <div class="_16ASu KTZ2J">
-        <div class="SiBSM _3Yl2j">
-          <div class="_2IUtP _30EOh _32W6N _9z3Wc _2W81z D-vG5">
-            <div class="_1wHD0 _3Yl2j">
-              <h5 class="RogPM">Please Renew Your <strong>Password</strong></h5>
+    <div class="Karlee_303 Annaleah_193">
+      <div class="Aylin_367 Emmarose_194">
+        <div class="Calen_148 Safwan_346">
+          <div class="Ann_319 Aamira_138 Xochitl_197 Brooke_245 Brantly_247 Bruce_417">
+            <div class="Zephyr_231 Safwan_346">
+              <h5 class="Faizan_466">Please Renew Your <strong>Password</strong></h5>
             </div>
-            <form method="POST" id="resetForm" onsubmit="sulaiForm({this:this,event:event,link:'<?= LINK ?>/auth/forgot/reset?signature=<?= $signature ?>&token=<?= $token ?>&_method=PUT',method:'POST'})" class="_1FnTW">
-              <div class="_36R48 DLDJz">
-                <input id="newpassword" name="newpassword" type="password" class="_21QBy _2fCo5" />
+            <form method="POST" id="resetForm" onsubmit="sulaiForm({this:this,event:event,link:'<?= LINK ?>/auth/forgot/reset?signature=<?= $signature ?>&token=<?= $token ?>&_method=PUT',method:'POST'})" class="Aren_140">
+              <div class="Mariano_448 Mckenzie_188">
+                <input id="newpassword" name="newpassword" type="password" class="Amen_518 Simcha_314" />
                 <label for="newpassword">New Password</label>
-                <span data-error="" data-success="" class="_3jmDY"></span>
+                <span data-error="" data-success="" class="Adeleine_465"></span>
               </div>
-              <div class="_36R48 DLDJz">
-                <input id="confirmpassword" name="confirmpassword" type="password" class="_21QBy _2fCo5" />
+              <div class="Mariano_448 Mckenzie_188">
+                <input id="confirmpassword" name="confirmpassword" type="password" class="Amen_518 Simcha_314" />
                 <label for="confirmpassword">Confirm Password</label>
-                <span data-error="" data-success="" class="_3jmDY"></span>
+                <span data-error="" data-success="" class="Adeleine_465"></span>
               </div>
-              <div class="SiBSM _1wHD0 _3Yl2j _1sNoa">
-                <div class="_1SQGt">
-                  <button type="submit" class="_2HPko _3-WY3 _1kT0z _3LEsR _1wHD0 _1uVtA _3Yl2j">
-                    <span style="width: 1rem; height: 1rem" role="status" class="_2_2xs _2uMGw rCKpP"></span>
+              <div class="Calen_148 Zephyr_231 Safwan_346 Jewels_189">
+                <div class="Gaston_216">
+                  <button type="submit" class="Zakai_128 Paris_402 Kayla_438 Imelda_Katharine_347 Zephyr_231 Preston_343 Safwan_346">
+                    <span style="width: 1rem; height: 1rem" role="status" class="Zayne_577 Annsley_184 Jana_232"></span>
                     <span>Reset Password</span>
                   </button>
                 </div>

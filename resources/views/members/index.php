@@ -1,23 +1,21 @@
 <?php include VIEW_DIR . "/layouts/header.php"; ?>
-<div class="_2pyK2">
+<div class="Avalyn_309">
   <?php include VIEW_DIR . "/layouts/sidebar.php"; ?>
-  <div class="_3hy0- _1wHD0 _6Eppu _2fCJU">
-    <div class="_24Rxj _1re0U">
+  <div class="Karlee_636 Zephyr_231 Micaiah_457 Brylan_497">
+    <div class="Karlee_303 Tayler_170">
       <?php include VIEW_DIR . "/layouts/topbar.php"; ?>
-      <div class="_16ASu _1FnTW">
+      <div class="Aylin_367 Aren_140">
 
         <?php switch ($user->role) {
-          case 'admin': ?>
-            <?php include VIEW_DIR . "/members/dashboard/admin.php"; ?>
-          <?php break;
-          case 'doctor': ?>
-            <?php include VIEW_DIR . "/members/dashboard/doctor/index.php"; ?>
-            <?php include VIEW_DIR . "/members/dashboard/doctor/addproblemmodal.php"; ?>
-          <?php break;
-          case 'member': ?>
-            <?php include VIEW_DIR . "/members/dashboard/member.php"; ?>
-            <?php break; ?>
-        <?php } ?>
+          case 'admin':
+          case 'doctor':
+            include VIEW_DIR . "/members/dashboard/doctor/index.php";
+            include VIEW_DIR . "/members/dashboard/doctor/addproblemmodal.php";
+            break;
+          case 'member':
+            include VIEW_DIR . "/members/dashboard/member.php";
+            break;
+        } ?>
 
       </div>
     </div>

@@ -48,7 +48,7 @@ trait KnowledgeController
         'symptoms' => implode(',', $request->getBody('symptoms')),
         'expertSystemId' => $request->getQuery('problemId')
       ])) {
-        $request->setFlash('knowledge', '_1SiFz', [['msg' => "The Knowledge Has Been Added"]]);
+        $request->setFlash('knowledge', 'Ilona_537', [['msg' => "The Knowledge Has Been Added"]]);
         $response->redirect('/members/knowledge');
       } else {
         throw new HttpException(500);
@@ -67,7 +67,7 @@ trait KnowledgeController
       if (KnowledgeBase::update([
         'symptoms' => implode(',', $request->getBody('symptoms')),
       ], ['id' => $request->getQuery('id')])) {
-        $request->setFlash('knowledge', '_1SiFz', [['msg' => "The Knowledge Has Been Updated"]]);
+        $request->setFlash('knowledge', 'Ilona_537', [['msg' => "The Knowledge Has Been Updated"]]);
         $response->redirect('/members/knowledge');
       } else {
         throw new HttpException(500);
@@ -79,11 +79,11 @@ trait KnowledgeController
   {
     self::validateQuery('id')->isNotNull()->isInt()->trim()->sanitize();
     if (!empty(self::validateResults())) {
-      $request->setFlash('knowledge', 'xf1sj', self::validateResults());
+      $request->setFlash('knowledge', 'Brennen_465', self::validateResults());
       $response->redirect('/members/knowledge');
     } else {
       if (KnowledgeBase::destroy(['id' => $request->getQuery('id')])) {
-        $request->setFlash('knowledge', '_1SiFz', [['msg' => "The Knowledge Has Been Deleted"]]);
+        $request->setFlash('knowledge', 'Ilona_537', [['msg' => "The Knowledge Has Been Deleted"]]);
         $response->redirect('/members/knowledge');
       } else {
         throw new HttpException(500);

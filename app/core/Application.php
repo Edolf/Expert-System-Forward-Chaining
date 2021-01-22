@@ -26,7 +26,7 @@ class Application
 
   public $locals = [];
 
-  private static array $routesMap = ['get' => '', 'post' => '', 'put' => '', 'delete' => ''];
+  private static array $routesMap = ['GET' => '', 'POST' => '', 'PUT' => '', 'DELETE' => ''];
   private static array $paramsMap = [];
 
   public function __construct()
@@ -60,7 +60,7 @@ class Application
 
   public function resolve($method, $url)
   {
-    $callback = $this->cekCallbackIsExist(strtolower($method), $url) ?? false;
+    $callback = $this->cekCallbackIsExist($method, $url) ?? false;
     if (!$callback) {
       throw new HttpException(404, 'Something Error Try Next Time');
     }
@@ -85,13 +85,13 @@ class Application
       throw new HttpException(404, 'URL 404 Not Found');
     }
     $method = $this->request->getMethod();
-    if (strcmp("post", $this->request->getMethod()) === 0) {
-      $method = $this->request->getQuery('_method') ? strtolower($this->request->getQuery('_method')) : $method;
+    if (strcmp("POST", $this->request->getMethod()) === 0) {
+      $method = $this->request->getQuery('_method') ?? $method;
     }
     if (!$this->response->isRedirect($url) && DEBUG !== true) {
-      if (!(strcmp("get", $method) === 0)) {
+      if (!(strcmp("GET", $method) === 0)) {
         // Dan CSRF Token Sepeti Ini Juga Sangat Lemah akan saya perbaiki jika project ini terus di lanjutkan
-        $headerToken = $this->request->getHeader('CSRF-Token') ?? null;
+        $headerToken = $this->request->getHeader('Csrf-Token') ?? $this->request->getHeader('CSRF-Token');
         $queryToken = $this->request->getQuery('_csrf') ?? null;
         if (!Token::checkToken($headerToken ?? $queryToken)) {
           throw new HttpException(401, 'Invalid CSRF Token');
@@ -180,29 +180,29 @@ class Application
 
   public static function all(string $url, $callback)
   {
-    self::setUrlMethodAndParam('get', $url, $callback);
-    self::setUrlMethodAndParam('post', $url, $callback);
-    self::setUrlMethodAndParam('put', $url, $callback);
-    self::setUrlMethodAndParam('delete', $url, $callback);
+    self::setUrlMethodAndParam('GET', $url, $callback);
+    self::setUrlMethodAndParam('POST', $url, $callback);
+    self::setUrlMethodAndParam('PUT', $url, $callback);
+    self::setUrlMethodAndParam('DELETE', $url, $callback);
   }
 
   public static function get(string $url, $callback)
   {
-    self::setUrlMethodAndParam('get', $url, $callback);
+    self::setUrlMethodAndParam('GET', $url, $callback);
   }
 
   public static function post(string $url, $callback)
   {
-    self::setUrlMethodAndParam('post', $url, $callback);
+    self::setUrlMethodAndParam('POST', $url, $callback);
   }
 
   public static function put(string $url, $callback)
   {
-    self::setUrlMethodAndParam('put', $url, $callback);
+    self::setUrlMethodAndParam('PUT', $url, $callback);
   }
 
   public static function delete(string $url, $callback)
   {
-    self::setUrlMethodAndParam('delete', $url, $callback);
+    self::setUrlMethodAndParam('DELETE', $url, $callback);
   }
 }

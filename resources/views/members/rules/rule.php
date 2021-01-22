@@ -1,57 +1,66 @@
 <?php include VIEW_DIR . "/layouts/header.php"; ?>
-<div class="_2pyK2">
+<div class="Avalyn_309">
   <?php include VIEW_DIR . "/layouts/sidebar.php"; ?>
-  <div class="_3hy0- _1wHD0 _6Eppu _2fCJU">
-    <div class="_24Rxj _1re0U">
+  <div class="Karlee_636 Zephyr_231 Micaiah_457 Brylan_497">
+    <div class="Karlee_303 Tayler_170">
       <?php include VIEW_DIR . "/layouts/topbar.php"; ?>
-      <div class="_16ASu _1FnTW">
-        <div class="SiBSM _34J9b">
+      <div class="Aylin_367 Aren_140">
+        <div class="Calen_148 Jermani_171">
           <?php foreach ($expertsystems::findAll() as $key => $ExpertSystem) : ?>
-            <div class="_1wHD0 _1uVtA _20iUl _3H4vP">
-              <h1 class="_25N9D _1aegJ"><?= $ExpertSystem['problem'] ?></h1>
-            </div>
-            <div class="_1yUFw">
-              <div class="_1wHD0 _1uVtA _20iUl _3H4vP">
-                <h1 class="_25N9D _1aegJ">Rules</h1>
-              </div>
-              <div class="_3oEG9 _34J9b">
-                <?php foreach ($knowledgebases::findAll(['expertSystemId' => $ExpertSystem['id']]) as $key => $knowledgebase) : ?>
-                  <ul class="_3SL0A _1TQUr _1re0U">
-                    <li class="_3-Y05 _3zXm1 lJhPB"><i>IF</i></li>
-                    <?php foreach (explode(",", $knowledgebase['symptoms']) as $key => $symptomId) : ?>
-                      <li class="_3-Y05 _2W81z">
-                        <?php foreach ($symptoms::findAll(['id' => $symptomId]) as $s) : ?>
-                          <i>AND</i> <strong><?= $s['name'] ?></strong>
+            <div id="<?= preg_replace('/\s+/', '_', $ExpertSystem['problem']) ?>">
+              <div class="Calen_148">
+                <div class="Zephyr_231 Preston_343 Zhuri_391 Annaleah_193">
+                  <h1 class="Wilfredo_102 Aalyah_176"><?= $ExpertSystem['problem'] ?></h1>
+                </div>
+                <div class="Finlay_320">
+                  <div class="Zephyr_231 Preston_343 Zhuri_391 Annaleah_193">
+                    <h1 class="Wilfredo_102 Aalyah_176">Rules</h1>
+                  </div>
+                  <div class="Renata_565 Jermani_171">
+                    <?php foreach ($knowledgebases::findAll(['expertSystemId' => $ExpertSystem['id']]) as $key => $knowledgebase) : ?>
+                      <ul class="Nakayla_441 Ahlam_683 Tayler_170">
+                        <li class="Kayli_632 Raymundo_255 Isabella_429"><i>IF</i></li>
+                        <?php foreach (explode(",", $knowledgebase['symptoms']) as $key => $symptomId) : ?>
+                          <li class="Kayli_632 Brantly_247">
+                            <?php foreach ($symptoms::findAll(['id' => $symptomId]) as $s) : ?>
+                              <i>AND</i> <strong><?= $s['name'] ?></strong>
+                            <?php endforeach; ?>
+                          </li>
                         <?php endforeach; ?>
-                      </li>
+                        <li class="Kayli_632 Raymundo_255 Isabella_429"><i>THEN</i>
+                          <?php foreach ($diseases::findAll(['id' => json_decode($knowledgebase['solvingId'], true)['diseaseId']]) as $key => $disease) : ?>
+                            <strong><?= $disease['name'] ?></strong> <small>(Disease)</small>
+                          <?php endforeach; ?>
+                          <?php foreach ($symptoms::findAll(['id' => json_decode($knowledgebase['solvingId'], true)['symptomId']]) as $key => $symptom) : ?>
+                            <strong><?= $symptom['name'] ?></strong> <small>(Symptom)</small>
+                          <?php endforeach; ?>
+                        </li>
+                      </ul>
                     <?php endforeach; ?>
-                    <li class="_3-Y05 _3zXm1 lJhPB"><i>THEN</i>
-                      <?php foreach ($diseases::findAll(['id' => json_decode($knowledgebase['solvingId'], true)['diseaseId']]) as $key => $disease) : ?>
-                        <strong><?= $disease['name'] ?></strong> <small>(Disease)</small>
+                  </div>
+                </div>
+                <div class="Finlay_320">
+                  <div class="Zephyr_231 Preston_343 Zhuri_391 Annaleah_193">
+                    <h1 class="Wilfredo_102 Aalyah_176">Questions</h1>
+                  </div>
+                  <div class="Renata_565 Jermani_171">
+                    <ul class="Nakayla_441 Ahlam_683 Tayler_170">
+                      <?php foreach ($symptoms::findAll(['expertSystemId' => $ExpertSystem['id']]) as $key => $symptom) : $isFound = false; ?>
+                        <?php foreach ($knowledgebases::findAll() as $key => $knowledgebase) : ?>
+                          <?php if ($symptom['id'] == json_decode($knowledgebase['solvingId'], true)['symptomId']) {
+                            $isFound = true;
+                          } ?>
+                        <?php endforeach; ?>
+                        <?php if ($isFound != true) : ?>
+                          <li class="Kayli_632 Raymundo_255 Isabella_429"><strong><?= $symptom['question'] ?></strong></li>
+                          <li class="Kayli_632 Brantly_247">
+                            <div class="Madeleine_192">Descriptions : </div><i><?= $symptom['desc'] ?></i>
+                          </li>
+                        <?php endif; ?>
                       <?php endforeach; ?>
-                      <?php foreach ($symptoms::findAll(['id' => json_decode($knowledgebase['solvingId'], true)['symptomId']]) as $key => $symptom) : ?>
-                        <strong><?= $symptom['name'] ?></strong> <small>(Symptom)</small>
-                      <?php endforeach; ?>
-                    </li>
-                  </ul>
-                <?php endforeach; ?>
-              </div>
-            </div>
-            <div class="_1yUFw">
-              <div class="_1wHD0 _1uVtA _20iUl _3H4vP">
-                <h1 class="_25N9D _1aegJ">Questions</h1>
-              </div>
-              <div class="_3oEG9 _34J9b">
-                <ul class="_3SL0A _1TQUr _1re0U">
-                  <?php foreach ($symptoms::findAll(['expertSystemId' => $ExpertSystem['id']]) as $key => $symptom) : $isFound = false; ?>
-                    <?php foreach ($knowledgebases::findAll() as $key => $knowledgebase) : ?>
-                      <?php if ($symptom['id'] == json_decode($knowledgebase['solvingId'], true)['symptomId']) {
-                        $isFound = true;
-                      } ?>
-                    <?php endforeach; ?>
-                    <?php if ($isFound != true) include VIEW_DIR . "/members/rules/listrule.php"; ?>
-                  <?php endforeach; ?>
-                </ul>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
           <?php endforeach; ?>

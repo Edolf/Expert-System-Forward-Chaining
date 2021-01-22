@@ -42,12 +42,12 @@ class MemberController extends Controller
       // Syarat Agar Authentikasi Berjalan Lancar User Harus Memiliki Tabel Role
       $this->setMiddleware(new AuthMiddleware(
         [
-          'getProblem' => ['doctor'],
-          'updateProblem' => ['doctor'],
-          'deleteProblem' => ['doctor'],
-          'selectConsul' => ['doctor'],
-          'consultation' => ['doctor'],
-          'results' => ['doctor'],
+          'getProblem' => ['doctor', 'admin'],
+          'updateProblem' => ['doctor', 'admin'],
+          'deleteProblem' => ['doctor', 'admin'],
+          'selectConsul' => ['doctor', 'admin'],
+          'consultation' => ['doctor', 'admin'],
+          'results' => ['doctor', 'admin'],
           'updateUser' => ['admin'],
           'dropUser' => ['admin']
         ]
@@ -92,7 +92,7 @@ class MemberController extends Controller
         'username' => $request->getBody('editUserName'),
         'role' => $roles[array_search($request->getBody('roleUser'), $roles)]
       ], ['id' => $request->getQuery('id')])) {
-        $request->setFlash('list-user', '_1SiFz', [['msg' => "{$request->getBody('editFullName')} Has Been Updated"]]);
+        $request->setFlash('list-user', 'Ilona_537', [['msg' => "{$request->getBody('editFullName')} Has Been Updated"]]);
         $response->redirect('/members/list-user');
       } else {
         throw new HttpException(500);
@@ -103,7 +103,7 @@ class MemberController extends Controller
   public function dropUser(Request $request, Response $response)
   {
     if (User::destroy(['id' => $request->getQuery('id')])) {
-      $request->setFlash('list-user', '_1SiFz', [['msg' => "User Has Been Deleted"]]);
+      $request->setFlash('list-user', 'Ilona_537', [['msg' => "User Has Been Deleted"]]);
       $response->redirect('/members/list-user');
     } else {
       throw new HttpException(404);

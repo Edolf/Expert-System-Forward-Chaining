@@ -1,20 +1,20 @@
 <?php include VIEW_DIR . "/layouts/header.php"; ?>
-<div id="app" class="_2fCJU">
+<div id="app" class="Brylan_497">
   <?php include VIEW_DIR . "/layouts/navbar.php"; ?>
-  <div class="_3hy0- _1wHD0 _6Eppu">
-    <div class="_24Rxj _3H4vP _2fCJU">
-      <div class="_16ASu">
+  <div class="Karlee_636 Zephyr_231 Micaiah_457">
+    <div class="Karlee_303 Annaleah_193 Brylan_497">
+      <div class="Aylin_367">
       </div>
     </div>
-    <div class="_24Rxj _3H4vP _2fCJU iJDxc _2HYhx cd6iS">
-      <div class="_321tY KTZ2J _3TCQr">
-        <div class="_3zcKU _2W81z RogPM">
-          <div class="xilMu _32W6N">
-            <h3 class="_15Jmj">Congratulations</h3>
-            <p class="zEqNx">Your password has been successfully changed</p>
+    <div class="Karlee_303 Annaleah_193 Brylan_497 Magdalen_301 Townes_174 Yousef_197">
+      <div class="Haydee_599 Emmarose_194 Mattison_196">
+        <div class="Zaydee_150 Brantly_247 Faizan_466">
+          <div class="Rory_340 Xochitl_197">
+            <h3 class="Brileigh_396">Congratulations</h3>
+            <p class="Harmonie_363">Your password has been successfully changed</p>
           </div>
-          <div class="_2O4o7 _33nLS _2W81z">
-            <a href="<?= LINK ?>/" class="_2HPko vhjC9">&larr; Back to
+          <div class="Landan_437 Makhai_436 Brantly_247">
+            <a href="<?= LINK ?>/" class="Zakai_128 Zeppelin_413">&larr; Back to
               Timeline</a>
           </div>
         </div>

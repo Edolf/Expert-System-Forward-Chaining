@@ -1,65 +1,65 @@
 <!-- Modal -->
-<div id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true" class="_2yvo3 _3F0Yh">
-  <div class="EGnm1 _4GJxo">
-    <div class="xo4Q- _3Znxg _1Mqcp _3W_HJ _2W81z">
-      <div class="_3BAVP _1FnTW">
-        <button type="button" data-dismiss="modal" aria-label="Close" class="_2MKOU"></button>
-        <div id="carouselAuth" data-ride="carousel" data-interval="false" data-wrap="false" class="_1TXlW ZXtfC">
-          <div class="_1YLKn">
-            <div class="K7T-G _1ptY3">
-              <div class="_1wHD0 _3Yl2j _34J9b">
-                <h5 id="authModalLabel" class="_1XL6n">Login to <span class="_3BjGC"><?= APP_NAME ?></span></h5>
+<div id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true" class="Judd_197 Avery_140 Garrison_477">
+  <div class="Merry_453 Caylin_795">
+    <div class="Kayce_528 Dezmond_357 Aylan_418 Alexei_424 Brantly_247">
+      <div class="Daiana_395 Aren_140">
+        <button type="button" data-dismiss="modal" aria-label="Close" class="Zakai_358"></button>
+        <div id="carouselAuth" data-ride="carousel" data-interval="false" data-wrap="false" class="Luz_334 Blessing_Camryn_201">
+          <div class="Huxton_574">
+            <div class="Glendon_533 Elyzabeth_240">
+              <div class="Zephyr_231 Safwan_346 Jermani_171">
+                <h5 id="authModalLabel" class="Malayna_443">Login to <span class="Ariana_Dora_191"><?= APP_NAME ?></span></h5>
               </div>
               <form method="POST" id="loginForm" onsubmit="sulaiForm({this:this,event:event,link:'<?= LINK ?>/auth',method:'POST'})">
-                <div class="_36R48 DLDJz">
-                  <svg width="32" height="32" fill="currentColor" class="_2mXhC">
+                <div class="Mariano_448 Mckenzie_188">
+                  <svg width="32" height="32" fill="currentColor" class="Atalia_258">
                     <use xlink:href="<?= ROOT ?>/assets/fonts/icons/all-icons.svg#at" />
                   </svg>
-                  <input id="user" name="user" type="text" class="_21QBy _2fCo5" />
+                  <input id="user" name="user" type="text" class="Amen_518 Simcha_314" />
                   <label for="user">E-mail / Username</label>
-                  <span data-error="" data-success="" class="_3jmDY"></span>
+                  <span data-error="" data-success="" class="Adeleine_465"></span>
                 </div>
-                <div class="_36R48 DLDJz">
-                  <svg width="32" height="32" fill="currentColor" class="_2mXhC">
+                <div class="Mariano_448 Mckenzie_188">
+                  <svg width="32" height="32" fill="currentColor" class="Atalia_258">
                     <use xlink:href="<?= ROOT ?>/assets/fonts/icons/all-icons.svg#key" />
                   </svg>
-                  <input id="password" name="password" type="password" class="_21QBy" />
+                  <input id="password" name="password" type="password" class="Amen_518" />
                   <label for="password">Password</label>
-                  <span data-error="" data-success="" class="_3jmDY"></span>
+                  <span data-error="" data-success="" class="Adeleine_465"></span>
                 </div>
-                <div class="SiBSM _3Yl2j _1sNoa">
-                  <div class="_3s_H5 _3g8ld _2WCXA">
-                    <div class="_1wHD0 _3Yl2j">
+                <div class="Calen_148 Safwan_346 Jewels_189">
+                  <div class="Diego_122 Ekaterina_318 Coltan_353">
+                    <div class="Zephyr_231 Safwan_346">
                       <label>
                         <input type="checkbox" checked="checked" name="rememberme" id="rememberme" />
-                        <span class="zCP3X _3_mW1"><small>Remember Me</small></span>
+                        <span class="Zianna_371 Virat_488"><small>Remember Me</small></span>
                       </label>
                     </div>
                   </div>
-                  <div class="_3lwaw">
-                    <div class="HyKq7 rCKpP _13CtA"></div>
+                  <div class="Jasleen_436">
+                    <div class="Zelda_Dakota_641 Jana_232 Kyrin_368"></div>
                   </div>
-                  <div class="_3s_H5 _3g8ld _1wHD0 _3Yl2j _1sNoa _1WmuJ">
-                    <button type="submit" class="_2HPko _3XagE BoWE6 vhjC9 _1wHD0 _1uVtA _3Yl2j">
-                      <span style="width: 1rem; height: 1rem" role="status" class="_2_2xs _2uMGw rCKpP"></span>
+                  <div class="Diego_122 Ekaterina_318 Zephyr_231 Safwan_346 Jewels_189 Juliann_299">
+                    <button type="submit" class="Zakai_128 Kepler_361 Scottlyn_277 Zeppelin_413 Zephyr_231 Preston_343 Safwan_346">
+                      <span style="width: 1rem; height: 1rem" role="status" class="Zayne_577 Annsley_184 Jana_232"></span>
                       <span>Login</span>
                     </button>
                   </div>
                 </div>
               </form>
-              <div class="SiBSM _3Yl2j _3H4vP">
-                <div class="SSDpf _1wHD0 _3Yl2j">
-                  <button type="button" data-toggle="modal" data-target="#forgotModal" class="USCBs _2XuUU">
+              <div class="Calen_148 Safwan_346 Annaleah_193">
+                <div class="Raegyn_275 Zephyr_231 Safwan_346">
+                  <button type="button" data-toggle="modal" data-target="#forgotModal" class="Olivia_315 Ulisses_424">
                     Forgot Password ?
                   </button>
                 </div>
               </div>
-              <hr class="_3-_HB" />
-              <div class="SiBSM _3Yl2j _1re0U">
-                <div class="SSDpf _1wHD0 _3Yl2j">
+              <hr class="Terron_136" />
+              <div class="Calen_148 Safwan_346 Tayler_170">
+                <div class="Raegyn_275 Zephyr_231 Safwan_346">
                   <!-- Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a> -->
-                  <a href="<?= LINK ?>/auth/gplus" class="_2HPko _3XagE _2iS7c BoWE6 zCP3X _3phrn _1wHD0 _3Yl2j _1uVtA sHcZn">
-                    <svg width="16" height="16" fill="currentColor" class="_2uMGw">
+                  <a href="<?= LINK ?>/auth/gplus" class="Zakai_128 Kepler_361 Cathryn_314 Scottlyn_277 Zianna_371 Jayden_370 Zephyr_231 Safwan_346 Preston_343 Lebron_195">
+                    <svg width="16" height="16" fill="currentColor" class="Annsley_184">
                       <use xlink:href="<?= ROOT ?>/assets/svg/google.svg#Layer_1" />
                     </svg>
                     <strong>Login With Google+</strong>
@@ -67,66 +67,66 @@
                 </div>
               </div>
             </div>
-            <div class="K7T-G">
-              <div class="_1wHD0 _3Yl2j">
-                <h5 id="authModalLabel" class="_1XL6n">or <span class="_3BjGC">Create
+            <div class="Glendon_533">
+              <div class="Zephyr_231 Safwan_346">
+                <h5 id="authModalLabel" class="Malayna_443">or <span class="Ariana_Dora_191">Create
                     One</span></h5>
               </div>
               <form method="POST" id="regisForm" onsubmit="sulaiForm({this:this,event:event,link:'<?= LINK ?>/auth/join',method:'POST'})">
-                <div class="_36R48 DLDJz">
-                  <svg width="32" height="32" fill="currentColor" class="_2mXhC">
+                <div class="Mariano_448 Mckenzie_188">
+                  <svg width="32" height="32" fill="currentColor" class="Atalia_258">
                     <use xlink:href="<?= ROOT ?>/assets/fonts/icons/all-icons.svg#file-person-fill" />
                   </svg>
-                  <input id="fullname" name="fullname" type="text" data-length="30" class="_21QBy _2fCo5" />
+                  <input id="fullname" name="fullname" type="text" data-length="30" class="Amen_518 Simcha_314" />
                   <label for="fullname">Full name</label>
-                  <span data-error="" data-success="" class="_3jmDY"></span>
+                  <span data-error="" data-success="" class="Adeleine_465"></span>
                 </div>
 
-                <div class="_36R48 DLDJz">
-                  <svg width="32" height="32" fill="currentColor" class="_2mXhC">
+                <div class="Mariano_448 Mckenzie_188">
+                  <svg width="32" height="32" fill="currentColor" class="Atalia_258">
                     <use xlink:href="<?= ROOT ?>/assets/fonts/icons/all-icons.svg#sunglasses" />
                   </svg>
-                  <input id="username" name="username" type="text" data-length="30" class="_21QBy _2fCo5" />
+                  <input id="username" name="username" type="text" data-length="30" class="Amen_518 Simcha_314" />
                   <label for="username">Username</label>
-                  <span data-error="" data-success="" class="_3jmDY"></span>
+                  <span data-error="" data-success="" class="Adeleine_465"></span>
                 </div>
 
-                <div class="_36R48 DLDJz">
-                  <svg width="32" height="32" fill="currentColor" class="_2mXhC">
+                <div class="Mariano_448 Mckenzie_188">
+                  <svg width="32" height="32" fill="currentColor" class="Atalia_258">
                     <use xlink:href="<?= ROOT ?>/assets/fonts/icons/all-icons.svg#at" />
                   </svg>
-                  <input id="email" name="email" type="email" class="_21QBy _2fCo5" />
+                  <input id="email" name="email" type="email" class="Amen_518 Simcha_314" />
                   <label for="email">Email</label>
-                  <span data-error="" data-success="" class="_3jmDY"></span>
+                  <span data-error="" data-success="" class="Adeleine_465"></span>
                 </div>
 
-                <div class="SiBSM _3Yl2j">
+                <div class="Calen_148 Safwan_346">
 
-                  <div class="_1yUFw">
-                    <div class="_36R48 DLDJz">
-                      <svg width="32" height="32" fill="currentColor" class="_2mXhC">
+                  <div class="Finlay_320">
+                    <div class="Mariano_448 Mckenzie_188">
+                      <svg width="32" height="32" fill="currentColor" class="Atalia_258">
                         <use xlink:href="<?= ROOT ?>/assets/fonts/icons/all-icons.svg#key" />
                       </svg>
-                      <input id="getpassword" name="getpassword" type="password" data-length="30" class="_21QBy _2fCo5" />
+                      <input id="getpassword" name="getpassword" type="password" data-length="30" class="Amen_518 Simcha_314" />
                       <label for="getpassword">Password</label>
-                      <span data-error="" data-success="" class="_3jmDY"></span>
+                      <span data-error="" data-success="" class="Adeleine_465"></span>
                     </div>
                   </div>
 
-                  <div class="_1yUFw">
-                    <div class="_36R48 DLDJz">
-                      <svg width="32" height="32" fill="currentColor" class="_2mXhC">
+                  <div class="Finlay_320">
+                    <div class="Mariano_448 Mckenzie_188">
+                      <svg width="32" height="32" fill="currentColor" class="Atalia_258">
                         <use xlink:href="<?= ROOT ?>/assets/fonts/icons/all-icons.svg#key-fill" />
                       </svg>
-                      <input id="repassword" name="repassword" type="password" class="_21QBy _2fCo5" />
+                      <input id="repassword" name="repassword" type="password" class="Amen_518 Simcha_314" />
                       <label for="repassword">Retype Password</label>
-                      <span data-error="" data-success="" class="_3jmDY"></span>
+                      <span data-error="" data-success="" class="Adeleine_465"></span>
                     </div>
                   </div>
                 </div>
-                <div class="_1wHD0 _3Yl2j _1sNoa _1re0U">
-                  <button type="submit" class="_2HPko _3XagE BoWE6 vhjC9 _1wHD0 _1uVtA _3Yl2j">
-                    <span style="width: 1rem; height: 1rem" role="status" class="_2_2xs _2uMGw rCKpP"></span>
+                <div class="Zephyr_231 Safwan_346 Jewels_189 Tayler_170">
+                  <button type="submit" class="Zakai_128 Kepler_361 Scottlyn_277 Zeppelin_413 Zephyr_231 Preston_343 Safwan_346">
+                    <span style="width: 1rem; height: 1rem" role="status" class="Zayne_577 Annsley_184 Jana_232"></span>
                     <span>Create</span>
                   </button>
                 </div>
@@ -134,13 +134,13 @@
             </div>
           </div>
         </div>
-        <a style="left: -3%" class="_3MY7v">
-          <svg width="24" height="24" fill="currentColor" class="zCP3X">
+        <a style="left: -3%" class="Draya_880">
+          <svg width="24" height="24" fill="currentColor" class="Zianna_371">
             <use xlink:href="<?= ROOT ?>/assets/fonts/icons/all-icons.svg#chevron-double-left" />
           </svg>
         </a>
-        <a style="right: -3%" class="_3dwPx">
-          <svg width="24" height="24" fill="currentColor" class="zCP3X">
+        <a style="right: -3%" class="Ysabella_882">
+          <svg width="24" height="24" fill="currentColor" class="Zianna_371">
             <use xlink:href="<?= ROOT ?>/assets/fonts/icons/all-icons.svg#chevron-double-right" />
           </svg>
         </a>

@@ -1,13 +1,13 @@
 <?php include VIEW_DIR . "/layouts/header.php"; ?>
-<div id="app" class="_2fCJU">
+<div id="app" class="Brylan_497">
   <?php include VIEW_DIR . "/layouts/navbar.php"; ?>
-  <div class="_3hy0- _1wHD0 _6Eppu">
-    <div class="_24Rxj _3H4vP _2fCJU">
-      <div class="_16ASu">
+  <div class="Karlee_636 Zephyr_231 Micaiah_457">
+    <div class="Karlee_303 Annaleah_193 Brylan_497">
+      <div class="Aylin_367">
       </div>
     </div>
 
-    <div class="_16ASu vRF3K _1vawn _1MfvM qEbXj _37G-1 _1-AWB _1SiFz _1qaaU _3X7Q7 xf1sj _1YMz6 _2QQS4 _3_tGX">
+    <div class="Aylin_367 Azura_208 Aicha_496 Najma_406 Jakobe_684 Martell_548 Kensleigh_608 Ilona_537 Roxanna_404 Carolina_534 Brennen_465 Kyrian_444 Kaidyn_394 Kamiah_417">
       <html>
 
       <head>

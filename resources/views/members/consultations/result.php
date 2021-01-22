@@ -1,43 +1,43 @@
 <?php include VIEW_DIR . "/layouts/header.php"; ?>
-<div class="_2pyK2">
+<div class="Avalyn_309">
   <?php include VIEW_DIR . "/layouts/sidebar.php"; ?>
-  <div class="_3hy0- _1wHD0 _6Eppu _2fCJU">
-    <div class="_24Rxj _1re0U">
+  <div class="Karlee_636 Zephyr_231 Micaiah_457 Brylan_497">
+    <div class="Karlee_303 Tayler_170">
       <?php include VIEW_DIR . "/layouts/topbar.php"; ?>
-      <div class="_16ASu _1FnTW">
-        <div class="SiBSM _34J9b">
+      <div class="Aylin_367 Aren_140">
+        <div class="Calen_148 Jermani_171">
 
-          <div class="_1wHD0 _1uVtA _20iUl _3H4vP">
-            <h1 class="_25N9D _1aegJ">Diagnosis Based on The Selected Symptoms</h1>
+          <div class="Zephyr_231 Preston_343 Zhuri_391 Annaleah_193">
+            <h1 class="Wilfredo_102 Aalyah_176">Diagnosis Based on The Selected Symptoms</h1>
           </div>
 
-          <div class="_1yUFw _34J9b">
-            <h6 class="_1re0U">Users Information</h6>
-            <table class="_3bYJs _3Lvqy">
+          <div class="Finlay_320 Jermani_171">
+            <h6 class="Tayler_170">Users Information</h6>
+            <table class="Jedidiah_192 Eily_440">
               <tr>
-                <td scope="col" class="sHcZn">Full Name</td>
-                <td scope="col" class="sHcZn">
+                <td scope="col" class="Lebron_195">Full Name</td>
+                <td scope="col" class="Lebron_195">
                   <strong><?= $user->name ?></strong>
                 </td>
               </tr>
               <tr>
-                <td scope="col" class="sHcZn">Username</td>
-                <td scope="col" class="sHcZn">
+                <td scope="col" class="Lebron_195">Username</td>
+                <td scope="col" class="Lebron_195">
                   <strong><?= $user->username != null ? $user->username : 'NULL' ?></strong>
                 </td>
               </tr>
               <tr>
-                <td scope="col" class="sHcZn">E-mail</td>
-                <td scope="col" class="sHcZn">
+                <td scope="col" class="Lebron_195">E-mail</td>
+                <td scope="col" class="Lebron_195">
                   <strong>
-                    <?= $user->email != null ? $user->email : 'NULL' ?><small class="<?= $user->role == 'unverified' ? 'UG45_' : '_21QBy' ?> _282Xl"><?= $user->role == 'unverified' ? '(unverified)' : '(verified)' ?></small>
+                    <?= $user->email != null ? $user->email : 'NULL' ?><small class="<?= $user->role == 'unverified' ? 'Dariah_515' : 'Amen_518' ?> Aleyda_179"><?= $user->role == 'unverified' ? '(unverified)' : '(verified)' ?></small>
                   </strong>
                 </td>
               </tr>
             </table>
           </div>
-          <div class="_1yUFw _11x2F">
-            <h3 class="zCP3X _1re0U">Results</h3>
+          <div class="Finlay_320 Eston_289">
+            <h3 class="Zianna_371 Tayler_170">Results</h3>
             <?php if ($results['id'] == 0) : ?>
               <h6><?= $results['desc'] ?> </h6>
               <ul>
@@ -60,12 +60,12 @@
           </div>
         </div>
         <?php if ($results['id'] != 0) : ?>
-          <div class="SiBSM _34J9b">
-            <h3 class="zCP3X _1re0U">What Is <strong><?= $results['name'] ?></strong> ?</h3>
+          <div class="Calen_148 Jermani_171">
+            <h3 class="Zianna_371 Tayler_170">What Is <strong><?= $results['name'] ?></strong> ?</h3>
             <h6><strong><?= $results['name'] ?></strong> is <?= $results['desc'] ?></h6>
           </div>
-          <div class="SiBSM">
-            <h3 class="zCP3X _1re0U">Solution for this Disease</h3>
+          <div class="Calen_148">
+            <h3 class="Zianna_371 Tayler_170">Solution for this Disease</h3>
             <h6><?= $results['solution'] ?></h6>
           </div>
         <?php endif; ?>

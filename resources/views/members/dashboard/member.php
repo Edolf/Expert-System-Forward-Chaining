@@ -1,7 +1,7 @@
-<div class="F5PZw _1uVtA _20iUl _34J9b">
-  <h1 class="_25N9D _1aegJ"><?= strtoupper($user->role) ?> Dashboard</h1>
+<div class="Briseyda_351 Preston_343 Zhuri_391 Jermani_171">
+  <h1 class="Wilfredo_102 Aalyah_176"><?= strtoupper($user->role) ?> Dashboard</h1>
 </div>
 
-<div class="_16ASu _1FnTW">
-  <div data-text="Coming Soon" style="font-size: 2rem !important" class="_1dBmu _32J_2">Coming Soon</div>
+<div class="Aylin_367 Aren_140">
+  <div data-text="Coming Soon" style="font-size: 2rem !important" class="Mauro_226 Aylee_306">Coming Soon</div>
 </div>

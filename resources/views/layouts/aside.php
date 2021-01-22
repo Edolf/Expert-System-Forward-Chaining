@@ -1,6 +1,6 @@
-<div class="SiBSM _2tMsi">
-  <div class="XgBPh">
+<div class="Calen_148 Huntley_139">
+  <div class="Kynslie_372">
     <h6>Lorem, ipsum.</h6>
-    <hr class="_3ZWkC" />
+    <hr class="Williams_300" />
   </div>
 </div>
