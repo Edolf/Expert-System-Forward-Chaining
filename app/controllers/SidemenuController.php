@@ -91,7 +91,7 @@ class SidemenuController extends Controller
     self::validateQuery('id')->isInt()->trim()->sanitize();
 
     if (!empty(self::validateResults())) {
-      $request->setFlash('menu', 'jP41K', self::validateResults());
+      $request->setFlash('menu', 'Carolina_534', self::validateResults());
       $response->redirect('/members/sidemenu');
     } else {
       if (Menu::destroy(['id' => $request->getQuery('id')])) {
@@ -177,7 +177,7 @@ class SidemenuController extends Controller
     self::validateQuery('id')->isInt()->trim()->sanitize();
 
     if (!empty(self::validateResults())) {
-      $request->setFlash('submenu', 'jP41K', self::validateResults());
+      $request->setFlash('submenu', 'Carolina_534', self::validateResults());
       $response->redirect('/members/sidemenu/menu');
     } else {
       if (SubMenu::destroy(['id' => $request->getQuery('id')])) {
@@ -259,7 +259,7 @@ class SidemenuController extends Controller
     self::validateQuery('id')->isInt()->trim()->sanitize();
 
     if (!empty(self::validateResults())) {
-      $request->setFlash('collapsemenu', 'jP41K', self::validateResults());
+      $request->setFlash('collapsemenu', 'Carolina_534', self::validateResults());
       $response->redirect('/members/sidemenu/submenu');
     } else {
       if (CollapseMenu::destroy(['id' => $request->getQuery('id')])) {

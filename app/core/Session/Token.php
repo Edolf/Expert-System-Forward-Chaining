@@ -10,25 +10,24 @@ class Token
 
   public static function setToken()
   {
-    Application::$app->session->setSession(self::TOKEN, bin2hex(openssl_random_pseudo_bytes(32, $cstrong)));
+    Application::$app->session->setSession(self::TOKEN, bin2hex(openssl_random_pseudo_bytes(32, $cstrong)), false);
   }
 
   public static function getCSRFToken()
   {
-    return Application::$app->session->getSession(self::TOKEN);
+    $token = Application::$app->session->getSession(self::TOKEN);
+    return $token[count($token) - 1];
   }
 
-  public static function checkToken($token)
+  public static function checkToken($userToken)
   {
-    if (Application::$app->session->getSession(self::TOKEN) === $token) {
-      // self::removeToken();
-      return true;
+    $allToken = Application::$app->session->getSession(self::TOKEN);
+    foreach ($allToken as $token) {
+      if ($token === $userToken) {
+        unset($token);
+        return true;
+      }
     }
     return false;
-  }
-
-  public static function removeToken()
-  {
-    Application::$app->session->remove(self::TOKEN);
   }
 }

@@ -38,7 +38,7 @@ trait KnowledgeController
     self::validateQuery('problemId')->isNotNull()->isInt()->trim()->sanitize();
 
     if (!empty(self::validateResults())) {
-      $request->setFlash('knowledge', 'jP41K', self::validateResults());
+      $request->setFlash('knowledge', 'Carolina_534', self::validateResults());
       $response->redirect('/members/knowledge');
     } else {
       $typeSolving = strpos($request->getBody('solving'), 'disease-') !== false ? 'diseaseId' : 'symptomId';
@@ -61,7 +61,7 @@ trait KnowledgeController
     self::validateBody('symptoms')->isArray();
 
     if (!empty(self::validateResults())) {
-      $request->setFlash('knowledge', 'jP41K', self::validateResults());
+      $request->setFlash('knowledge', 'Carolina_534', self::validateResults());
       $response->redirect('/members/knowledge');
     } else {
       if (KnowledgeBase::update([

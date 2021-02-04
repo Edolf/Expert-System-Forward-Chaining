@@ -14,9 +14,13 @@ class Session
     session_start($set);
   }
 
-  public function setSession($key, $value)
+  public function setSession($key, $value, $timpa = true)
   {
-    $_SESSION[$key] = $value;
+    if ($timpa) {
+      $_SESSION[$key] = $value;
+    } else {
+      $_SESSION[$key][] = $value;
+    }
     return true;
   }
 

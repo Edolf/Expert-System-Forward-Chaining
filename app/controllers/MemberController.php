@@ -148,6 +148,7 @@ class MemberController extends Controller
       ];
     }
     return $response->render('members/consultations/result', [
+      'title' => 'Tester Consultation',
       'results' => $results,
       'sympTemps' => Symptom::findAll(['id' => Symptom::IN($options)])
     ]);

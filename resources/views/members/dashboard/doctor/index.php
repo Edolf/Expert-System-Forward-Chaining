@@ -12,59 +12,28 @@ include VIEW_DIR . "/layouts/flash.php"; ?>
     <div id="<?= preg_replace('/\s+/', '_', $ExpertSystem['problem']) ?>">
       <div class="Calen_148 Jermani_171">
         <div class="Nirvaan_380">
-          <h3 class="Zianna_371">
-            <span class="Melissa_530">
-              <?= $ExpertSystem['problem'] ?>
-              <button type="button" class="Zakai_128 Kepler_361 Olivia_315 William_145 Jana_232">
-                <svg width="24" height="24" fill="currentColor">
-                  <use xlink:href="<?= ROOT ?>/assets/fonts/icons/all-icons.svg#check" />
-                </svg>
-              </button>
-              <button type="button" class="Zakai_128 Kepler_361 Olivia_315 William_145 Melissa_530">
-                <svg width="24" height="24" fill="currentColor">
-                  <use xlink:href="<?= ROOT ?>/assets/fonts/icons/all-icons.svg#link-45deg" />
-                </svg>
-              </button>
-            </span>
-            <span class="Jana_232">
-              <!-- <form>
-              <div css-module="row input-field text-center m-0">
-                <div css-module="input-field p-0 m-0">
-                  <input id="newfullname" name="newfullname" value="<?= preg_replace('/\s+/', '_', $ExpertSystem['problem']) ?>" type="text" css-module="p-0 m-0 text-success" data-length="25">
-                </div>
-              </div>
-            </form> -->
-            </span>
-          </h3>
+          <h3 class="Zianna_371"><?= $ExpertSystem['problem'] ?></h3>
           <h6 class="Tayler_170">
-            <span class="Melissa_530"><b><?= $ExpertSystem['problem'] ?></b> is <?= $ExpertSystem['desc'] ?>
-              <button type="button" class="Zakai_128 Kepler_361 Olivia_315 William_145 Jana_232 William_145 Melissa_530">
-                <svg width="24" height="24" fill="currentColor">
-                  <use xlink:href="<?= ROOT ?>/assets/fonts/icons/all-icons.svg#link-45deg" />
-                </svg>
-              </button>
-              <button type="button" class="Zakai_128 Kepler_361 Olivia_315 William_145 Jana_232 William_145 Jana_232">
-                <svg width="24" height="24" fill="currentColor">
-                  <use xlink:href="<?= ROOT ?>/assets/fonts/icons/all-icons.svg#check" />
-                </svg>
-              </button>
-            </span>
-            <span class="Jana_232">
-              <!-- <form>
-              <div css-module="row input-field text-center m-0">
-                <div css-module="input-field p-0 m-0">
-                  <input id="newfullname" name="newfullname" value="<?= $ExpertSystem['desc'] ?>" type="text" css-module="p-0 m-0 text-success" data-length="25">
-                </div>
-              </div>
-            </form> -->
-            </span>
+            <b><?= $ExpertSystem['problem'] ?></b> is <?= $ExpertSystem['desc'] ?>
           </h6>
         </div>
         <div class="Rumi_316 Zephyr_231 Preston_343 Safwan_346">
-          <form method="post" action="<?= LINK ?>/members/dropproblem?id=<?= $ExpertSystem['id'] ?>&_csrf=<?= $csrfToken ?>&_method=DELETE">
-            <button onclick="return confirm('After you remove this problem everything related to this problem including the diseases and symptoms associated with this problem will be deleted')" class="Zakai_128 Hutton_326">Delete
-              <?= $ExpertSystem['problem'] ?></button>
-          </form>
+
+          <div>
+            <button type="button" data-target="problem-<?= $ExpertSystem['id'] ?>" data-alignment="right" class="Olivia_315 Kepler_480 Echo_Brodie_673 Ulisses_424">
+              <svg width="15" height="15" fill="currentColor" class="Atalia_258">
+                <use xlink:href="<?= ROOT ?>/assets/fonts/icons/all-icons.svg#three-dots-vertical" />
+              </svg>
+            </button>
+            <ul id="problem-<?= $ExpertSystem['id'] ?>" class="Kepler_680 Jaedon_572 Melody_575">
+              <li><button onclick="setModalValue({editproblemname:`<?= $ExpertSystem['problem'] ?>`,editproblemdesc:'<?= $ExpertSystem['desc'] ?>'},document.querySelector('#editProblemForm'));document.querySelector('#editProblemForm').action = '<?= LINK ?>/members/updateproblem?id=<?= $ExpertSystem['id'] ?>&_csrf=<?= $csrfToken ?>&_method=PUT';" data-toggle="modal" data-target="#editProblemModal" class="Zakai_128 Paris_402 Scottlyn_277">Edit</button></li>
+              <li>
+                <form method="post" action="<?= LINK ?>/members/dropproblem?id=<?= $ExpertSystem['id'] ?>&_csrf=<?= $csrfToken ?>&_method=DELETE">
+                  <button onclick="return confirm('After you remove this problem everything related to this problem including the diseases and symptoms associated with this problem will be deleted')" class="Zakai_128 Hutton_326 Scottlyn_277">Delete</button>
+                </form>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
 
@@ -72,9 +41,26 @@ include VIEW_DIR . "/layouts/flash.php"; ?>
         <div class="Finlay_320">
           <h3 class="Zianna_371 Tayler_170">Diseases</h3>
           <?php foreach ($diseases::findAll(['expertSystemId' => $ExpertSystem['id']]) as $key => $disease) : ?>
-            <h5 class="Zianna_371"><?= $disease['name'] ?></h5>
-            <h6 class="Tayler_170"><?= $disease['desc'] ?></h6>
-            <!-- <h6 css-module="mb-4"><?= $disease['solution'] ?></h6> -->
+            <div class="Calen_148">
+              <div class="Ann_319 Coltan_353">
+                <h5 class="Zianna_371"><?= $disease['name'] ?></h5>
+              </div>
+              <div class="Finlay_320">
+                <ul style="height: auto; width: fit-content" class="Amirah_Nanette_166 William_145 Brylan_497">
+                  <li style="height: auto" class="Jedidiah_115"><a href="#description-<?= $disease['id'] ?>" class="Halo_323 Ulisses_424">Description</a></li>
+                  <li style="height: auto" class="Jedidiah_115"><a href="#solution-<?= $disease['id'] ?>" class="Halo_323 Ulisses_424">Solution</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <div id="description-<?= $disease['id'] ?>">
+              <h6>Description</h6>
+              <p class="Tayler_170"><?= $disease['desc'] ?></p>
+            </div>
+            <div id="solution-<?= $disease['id'] ?>">
+              <h6>Solution</h6>
+              <p class="Tayler_170"><?= $disease['solution'] ?></p>
+            </div>
           <?php endforeach; ?>
         </div>
         <div class="Finlay_320">
@@ -91,4 +77,5 @@ include VIEW_DIR . "/layouts/flash.php"; ?>
     </div>
 
   <?php endforeach; ?>
+  <?php include VIEW_DIR . "/members/dashboard/doctor/editproblemmodal.php"; ?>
 </div>

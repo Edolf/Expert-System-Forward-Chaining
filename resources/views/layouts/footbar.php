@@ -15,7 +15,7 @@
           <div class="Jackelyn_324">
             <div class="Layton_389 Halo_323 Faizan_466 Isra_307 Shlomo_457">
               Copyright &copy;
-              <a href="<?= LINK ?>/" class="Shlomo_457 Ariana_Dora_191 Raena_142 William_145"><?= APP_NAME ?></a>
+              <a href="https://github.com/Edolf" target="_blank" class="Shlomo_457 Ariana_Dora_191 Raena_142 William_145"><?= APP_NAME ?></a>
               <?= date("Y"); ?>. All
               rights
               reserved.

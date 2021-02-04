@@ -6,7 +6,6 @@
       <div class="Aylin_367">
       </div>
     </div>
-
     <div class="Karlee_303 Annaleah_193">
       <div class="Haydee_599 Emmarose_194">
         <div class="Faizan_466 Romy_293 Amelie_298 Kendon_195 Xochitl_197 Brooke_245 Brantly_247">
@@ -21,10 +20,13 @@
             <pre class="Aalyah_176"><?= $error['stack'] ?></pre>
           </div>
           <a href="<?= LINK ?>/" class="Zakai_128 Zeppelin_413 Isabella_429 Jewels_189">&larr; Back to Timeline</a>
+          <?php if (!$error['stack']) : ?>
+            <div class="Karlee_303 Aren_140"></div>
+            <div class="Karlee_303 Aren_140"></div>
+          <?php endif; ?>
         </div>
       </div>
     </div>
-
     <?php include VIEW_DIR . "/layouts/footbar.php"; ?>
   </div>
 </div>

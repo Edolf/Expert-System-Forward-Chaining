@@ -50,19 +50,19 @@ define('CIPHER_METHOD', 'AES-256-CBC');
 define('REMEMBER_ME_COOKIE_NAME', 'rememberme');
 define('REMEMBER_ME_COOKIE_EXPIRY', 604800);
 
-define('DB_CONNECTON', 'mysql');
-define('DB_HOSTNAME', '127.0.0.1');
-define('DB_PORT', '3306');
-define('DB_NAME', 'expertsystem');
-define('DB_USERNAME', 'root');
-define('DB_PASSWORD', '123qwe');
-
 // define('DB_CONNECTON', 'mysql');
-// define('DB_HOSTNAME', 'mydbinstance.cxzk9cwtlbjn.us-east-1.rds.amazonaws.com');
+// define('DB_HOSTNAME', '127.0.0.1');
 // define('DB_PORT', '3306');
 // define('DB_NAME', 'expertsystem');
-// define('DB_USERNAME', 'admin');
-// define('DB_PASSWORD', 'uFtCP3pqW43Oivh4uYci');
+// define('DB_USERNAME', 'root');
+// define('DB_PASSWORD', '');
+
+define('DB_CONNECTON', 'mysql');
+define('DB_HOSTNAME', 'mydbinstance.cxzk9cwtlbjn.us-east-1.rds.amazonaws.com');
+define('DB_PORT', '3306');
+define('DB_NAME', 'expertsystem');
+define('DB_USERNAME', 'admin');
+define('DB_PASSWORD', 'uFtCP3pqW43Oivh4uYci');
 
 define('MAIL_MAILER', 'smtp');
 define('MAIL_HOST', 'smtp.mailtrap.io');
