@@ -17,6 +17,7 @@ class Disease extends Model
       'name' => ['type' => 'STRING'],
       'desc' => ['type' => 'TEXT'],
       'solution' => ['type' => 'TEXT'],
+      'solved' => ['type' => 'INTEGER'],
       'expertSystemId' => ['type' => 'INTEGER']
     ];
   }

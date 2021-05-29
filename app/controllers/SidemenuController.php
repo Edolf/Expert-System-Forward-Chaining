@@ -23,10 +23,10 @@ class SidemenuController extends Controller
       [AuthMiddleware::ALL_METHOD => $access],
     ));
 
-    Application::$app->locals['title'] = 'Sidemenus';
-    Application::$app->locals['menus'] = Menu::findAll();
-    Application::$app->locals['submenus'] = SubMenu::findAll();
-    Application::$app->locals['collapsemenus'] = CollapseMenu::findAll();
+    $GLOBALS['locals']['title'] = 'Sidemenus';
+    $GLOBALS['locals']['menus'] = Menu::findAll();
+    $GLOBALS['locals']['submenus'] = SubMenu::findAll();
+    $GLOBALS['locals']['collapsemenus'] = CollapseMenu::findAll();
   }
 
   public function sidemenu(Request $request, Response $response)
@@ -51,8 +51,8 @@ class SidemenuController extends Controller
           ]]
         )
       ])) {
-        $request->setFlash('menu', 'Ilona_537', [['msg' => "{$request->getBody('newMenu')} Has Been Added"]]);
-        $response->redirect('/members/sidemenu');
+        $request->setFlash('menu', 'alert-info', [['msg' => "{$request->getBody('newMenu')} Has Been Added"]]);
+        $response->redirect($GLOBALS['collUrlMap'][1]);
       } else {
         throw new HttpException(500);
       }
@@ -78,8 +78,8 @@ class SidemenuController extends Controller
           ]]
         )
       ], ['id' => $request->getQuery('id')])) {
-        $request->setFlash('menu', 'Ilona_537', [['msg' => "{$request->getBody('menu')} Has Been Updated"]]);
-        $response->redirect('/members/sidemenu');
+        $request->setFlash('menu', 'alert-info', [['msg' => "{$request->getBody('menu')} Has Been Updated"]]);
+        $response->redirect($GLOBALS['collUrlMap'][1]);
       } else {
         throw new HttpException(500);
       }
@@ -92,11 +92,11 @@ class SidemenuController extends Controller
 
     if (!empty(self::validateResults())) {
       $request->setFlash('menu', 'Carolina_534', self::validateResults());
-      $response->redirect('/members/sidemenu');
+      $response->redirect($GLOBALS['collUrlMap'][1]);
     } else {
       if (Menu::destroy(['id' => $request->getQuery('id')])) {
-        $request->setFlash('menu', 'Ilona_537', [['msg' => "{$request->getQuery('title')} Has Been Deleted"]]);
-        $response->redirect('/members/sidemenu');
+        $request->setFlash('menu', 'alert-info', [['msg' => "{$request->getQuery('title')} Has Been Deleted"]]);
+        $response->redirect($GLOBALS['collUrlMap'][1]);
       } else {
         throw new HttpException(404);
       }
@@ -132,8 +132,8 @@ class SidemenuController extends Controller
           ]]
         )
       ])) {
-        $request->setFlash('submenu', 'Ilona_537', [['msg' => "{$request->getBody('title')} Has Been Added"]]);
-        $response->redirect('/members/sidemenu/menu');
+        $request->setFlash('submenu', 'alert-info', [['msg' => "{$request->getBody('title')} Has Been Added"]]);
+        $response->redirect($GLOBALS['collUrlMap'][2]);
       } else {
         throw new HttpException(500);
       }
@@ -164,8 +164,8 @@ class SidemenuController extends Controller
           ]]
         )
       ], ['id' => $request->getQuery('id')])) {
-        $request->setFlash('submenu', 'Ilona_537', [['msg' => "{$request->getBody('editMenuTitle')} Has Been Updated"]]);
-        $response->redirect('/members/sidemenu/menu');
+        $request->setFlash('submenu', 'alert-info', [['msg' => "{$request->getBody('editMenuTitle')} Has Been Updated"]]);
+        $response->redirect($GLOBALS['collUrlMap'][2]);
       } else {
         throw new HttpException(500);
       }
@@ -178,11 +178,11 @@ class SidemenuController extends Controller
 
     if (!empty(self::validateResults())) {
       $request->setFlash('submenu', 'Carolina_534', self::validateResults());
-      $response->redirect('/members/sidemenu/menu');
+      $response->redirect($GLOBALS['collUrlMap'][2]);
     } else {
       if (SubMenu::destroy(['id' => $request->getQuery('id')])) {
-        $request->setFlash('submenu', 'Ilona_537', [['msg' => "{$request->getQuery('title')} Has Been Deleted"]]);
-        $response->redirect('/members/sidemenu/menu');
+        $request->setFlash('submenu', 'alert-info', [['msg' => "{$request->getQuery('title')} Has Been Deleted"]]);
+        $response->redirect($GLOBALS['collUrlMap'][2]);
       } else {
         throw new HttpException(404);
       }
@@ -216,8 +216,8 @@ class SidemenuController extends Controller
           ]]
         )
       ])) {
-        $request->setFlash('collapsemenu', 'Ilona_537', [['msg' => "{$request->getBody('title')} Has Been Added"]]);
-        $response->redirect('/members/sidemenu/submenu');
+        $request->setFlash('collapsemenu', 'alert-info', [['msg' => "{$request->getBody('title')} Has Been Added"]]);
+        $response->redirect($GLOBALS['collUrlMap'][3]);
       } else {
         throw new HttpException(500);
       }
@@ -246,8 +246,8 @@ class SidemenuController extends Controller
           ]]
         )
       ], ['id' => $request->getQuery('id')])) {
-        $request->setFlash('collapsemenu', 'Ilona_537', [['msg' => "{$request->getBody('title')} Has Been Updated"]]);
-        $response->redirect('/members/sidemenu/submenu');
+        $request->setFlash('collapsemenu', 'alert-info', [['msg' => "{$request->getBody('title')} Has Been Updated"]]);
+        $response->redirect($GLOBALS['collUrlMap'][3]);
       } else {
         throw new HttpException(500);
       }
@@ -260,11 +260,11 @@ class SidemenuController extends Controller
 
     if (!empty(self::validateResults())) {
       $request->setFlash('collapsemenu', 'Carolina_534', self::validateResults());
-      $response->redirect('/members/sidemenu/submenu');
+      $response->redirect($GLOBALS['collUrlMap'][3]);
     } else {
       if (CollapseMenu::destroy(['id' => $request->getQuery('id')])) {
-        $request->setFlash('collapsemenu', 'Ilona_537', [['msg' => "{$request->getQuery('title')} Has Been Deleted"]]);
-        $response->redirect('/members/sidemenu/submenu');
+        $request->setFlash('collapsemenu', 'alert-info', [['msg' => "{$request->getQuery('title')} Has Been Deleted"]]);
+        $response->redirect($GLOBALS['collUrlMap'][3]);
       } else {
         throw new HttpException(404);
       }

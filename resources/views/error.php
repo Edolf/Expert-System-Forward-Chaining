@@ -1,28 +1,28 @@
 <?php include VIEW_DIR . "/layouts/header.php"; ?>
-<div id="app" class="Brylan_497">
+<div id="app" class="bg-background">
   <?php include VIEW_DIR . "/layouts/navbar.php"; ?>
-  <div class="Karlee_636 Zephyr_231 Micaiah_457">
-    <div class="Karlee_303 Annaleah_193 Brylan_497">
-      <div class="Aylin_367">
+  <div class="content-wrapper d-flex flex-column">
+    <div class="content my-4 bg-background">
+      <div class="container">
       </div>
     </div>
-    <div class="Karlee_303 Annaleah_193">
-      <div class="Haydee_599 Emmarose_194">
-        <div class="Faizan_466 Romy_293 Amelie_298 Kendon_195 Xochitl_197 Brooke_245 Brantly_247">
-          <div data-text="<?= $error['status'] ?? 404 ?>" class="Mauro_226 Aylee_306"><?= $error['status'] ?? 404 ?>
+    <div class="content my-4">
+      <div class="container-fluid my-5">
+        <div class="text-center rounded mx-md-5 px-4 py-5 p-md-5 bg-card">
+          <div class="error mx-auto" data-text="<?= $error['status'] ?? 404 ?>"><?= $error['status'] ?? 404 ?>
           </div>
-          <div class="Jayvon_146 Faizan_466 Jermani_171">
+          <div class="lead text-center mb-5">
             <span><svg width="16" height="16" fill="currentColor">
                 <use xlink:href="<?= ROOT ?>/assets/fonts/icons/all-icons.svg#bug-fill" />
               </svg> <?= $error['message'] ?></span>
           </div>
-          <div class="Asmaa_380">
-            <pre class="Aalyah_176"><?= $error['stack'] ?></pre>
+          <div class="text-left">
+            <pre class="mb-0"><?= $error['stack'] ?></pre>
           </div>
-          <a href="<?= LINK ?>/" class="Zakai_128 Zeppelin_413 Isabella_429 Jewels_189">&larr; Back to Timeline</a>
+          <a href="<?= LINK ?>/" class="btn bg-primary text-light mt-5">&larr; Back to Timeline</a>
           <?php if (!$error['stack']) : ?>
-            <div class="Karlee_303 Aren_140"></div>
-            <div class="Karlee_303 Aren_140"></div>
+            <div class="content p-5"></div>
+            <div class="content p-5"></div>
           <?php endif; ?>
         </div>
       </div>

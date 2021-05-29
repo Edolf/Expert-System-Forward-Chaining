@@ -1,21 +1,21 @@
-<footer class="Rush_424 Lili_335 Hayes_558">
-  <div class="Aylin_367 Isra_307">
-    <div class="Calen_148 Peri_129">
-      <div class="Abril_315 Zephyr_231 Preston_343 Safwan_346">
-        <div class="Torrin_262">
-          <input id="switchTheme" type="checkbox" />
-          <label for="switchTheme" class="Zephyr_231 Safwan_346">
-            <div data-checked="Dark" data-unchecked="Light" class="Enya_Justine_345"></div>
-            <!-- <div css-module="switchLabel"></div> -->
+<footer class="navbar-dark bg-navbar sticky-footer">
+  <div class="container my-auto">
+    <div class="row g-3">
+      <div class="col-md-1 d-flex ai-center jc-center">
+        <div class="switch">
+          <input id="switchTheme" type="checkbox">
+          <label for="switchTheme" class="d-flex jc-center">
+            <div class="switcher" data-checked="Dark" data-unchecked="Light"></div>
+            <!-- <div class="switchLabel"></div> -->
           </label>
         </div>
       </div>
-      <div class="Kasyn_371 Zephyr_231 Preston_343 Safwan_346">
-        <div class="Abran_399">
-          <div class="Jackelyn_324">
-            <div class="Layton_389 Halo_323 Faizan_466 Isra_307 Shlomo_457">
+      <div class="col-md-11 d-flex ai-center jc-center">
+        <div class="navbar-nav">
+          <div class="nav-item">
+            <div class="copyright nav-link text-center my-auto navbar-brand">
               Copyright &copy;
-              <a href="https://github.com/Edolf" target="_blank" class="Shlomo_457 Ariana_Dora_191 Raena_142 William_145"><?= APP_NAME ?></a>
+              <a href="https://github.com/Edolf" target="_blank" class="navbar-brand brand m-0 p-0"><?= APP_NAME ?></a>
               <?= date("Y"); ?>. All
               rights
               reserved.

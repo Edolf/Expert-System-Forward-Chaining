@@ -1,19 +1,19 @@
 <?php include VIEW_DIR . "/layouts/header.php"; ?>
-<div id="app" class="Brylan_497">
+<div id="app" class="bg-background">
   <?php include VIEW_DIR . "/layouts/navbar.php"; ?>
-  <div class="Karlee_636 Zephyr_231 Micaiah_457">
-    <div class="Karlee_303 Annaleah_193 Brylan_497">
-      <div class="Aylin_367">
+  <div class="content-wrapper d-flex flex-column">
+    <div class="content my-4 bg-background">
+      <div class="container">
       </div>
     </div>
 
-    <div class="Karlee_303 Annaleah_193 Brylan_497">
-      <div class="Yovani_551 Emmarose_194">
-        <div class="Calen_148 Aamira_138 Brooke_245">
-          <div class="Sufyan_297 Montana_404 Aamira_138 Brooke_245 Xochitl_197 Faizan_466">
-            <div id="carouselConsult" data-interval="false" data-wrap="false" class="Luz_334 Blessing_Camryn_201 Nicolas_520">
-              <div class="Huxton_574">
-                <form method="POST" id="getSymptoms" action="<?= LINK ?>/consultation/<?= $id ?>?_csrf=<?= $csrfToken ?>">
+    <div class="content my-4 bg-background">
+      <div class="container-xxl my-5">
+        <div class="row p-3 p-md-5">
+          <div class="bg-panel rounded-lg p-3 p-md-5 py-5 text-center">
+            <div id="carouselConsult" class="carousel slide carousel-dark" data-interval="false" data-wrap="false">
+              <div class="carousel-inner">
+                <form method="POST" id="getSymptoms" action="<?= LINK ?>/consultation/<?= $id ?>?_csrf=<?= $csrfToken ?>" method="post">
                   <?php foreach ($symptoms::findAll(['expertSystemId' => $id]) as $key => $symptom) {
                     $isFound = false;
                     foreach ($knowledgebases::findAll(['expertSystemId' => $id]) as $key => $knowledgebase) {
@@ -28,13 +28,13 @@
                   } ?>
                 </form>
               </div>
-              <a role="button" style="bottom: auto; justify-content: start" class="Draya_880 Karsyn_610 Ulisses_424">
+              <a class="carousel-control-prev text-decor-none text-theme" role="button" style="bottom: auto; justify-content: start;">
                 <svg width="24" height="24" fill="currentColor">
                   <use xlink:href="<?= ROOT ?>/assets/fonts/icons/all-icons.svg#chevron-double-left" />
                 </svg>
                 <span>Previous</span>
               </a>
-              <a role="button" style="bottom: auto; justify-content: flex-end" onclick="document.querySelector('#getSymptoms').submit();" class="Ysabella_882 Karsyn_610 Ulisses_424">
+              <a class="carousel-control-next text-decor-none text-theme" role="button" style="bottom: auto; justify-content: flex-end;" onclick="document.querySelector('#getSymptoms').submit();">
                 <span>Analyze</span>
                 <svg width="24" height="24" fill="currentColor">
                   <use xlink:href="<?= ROOT ?>/assets/fonts/icons/all-icons.svg#thermometer-half" />

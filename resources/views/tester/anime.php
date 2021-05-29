@@ -1,13 +1,13 @@
 <?php include VIEW_DIR . "/layouts/header.php"; ?>
-<div id="app" class="Brylan_497">
+<div id="app" class="bg-background">
   <?php include VIEW_DIR . "/layouts/navbar.php"; ?>
-  <div class="Karlee_636 Zephyr_231 Micaiah_457">
-    <div class="Karlee_303 Annaleah_193 Brylan_497">
-      <div class="Aylin_367">
+  <div class="content-wrapper d-flex flex-column">
+    <div class="content my-4 bg-background">
+      <div class="container">
       </div>
     </div>
 
-    <div class="Aylin_367 Azura_208 Aicha_496 Najma_406 Jakobe_684 Martell_548 Kensleigh_608 Ilona_537 Roxanna_404 Carolina_534 Brennen_465 Kyrian_444 Kaidyn_394 Kamiah_417">
+    <div class="container alert alert-heading alert-link alert-dismissible alert-primary alert-secondary alert-success alert-info alert-warning alert-danger alert-light alert-dark alert-black">
       <html>
 
       <head>

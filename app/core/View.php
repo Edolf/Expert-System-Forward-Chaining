@@ -9,16 +9,21 @@ class View
 
   public static function renderView($view, array $params = [])
   {
-    foreach ($params as $key => $value) {
-      Application::$app->locals[$key] = $value;
-    }
 
     Token::setToken();
-    Application::$app->locals['csrfToken'] = Token::getCSRFToken();
-    Application::$app->locals['flash'] = Application::$app->flash;
-    Application::$app->locals['user'] = Application::$app->user;
+    $GLOBALS['csrfToken'] = Token::getCSRFToken();
+    $GLOBALS['flash'] = Application::$app->flash;
+    $GLOBALS['user'] = Application::$app->user;
 
-    foreach (Application::$app->locals as $key => $value) {
+    foreach ($GLOBALS as $key => $value) {
+      $$key = $value;
+    }
+
+    foreach ($GLOBALS['locals'] as $key => $value) {
+      $$key = $value;
+    }
+
+    foreach ($params as $key => $value) {
       $$key = $value;
     }
 

@@ -36,10 +36,11 @@ trait DiseaseController
         'name' => $request->getBody('diseasename'),
         'desc' => $request->getBody('diseasedesc'),
         'solution' => $request->getBody('diseasesolution'),
+        'solved' => $request->getBody('totalcases'),
         'expertSystemId' => $request->getQuery('problemId')
       ])) {
-        $request->setFlash('disease', 'Ilona_537', [['msg' => "{$request->getBody('diseasename')} Has Been Added"]]);
-        $response->redirect('/members/disease');
+        $request->setFlash('disease', 'alert-info', [['msg' => "{$request->getBody('diseasename')} Has Been Added"]]);
+        $response->redirect($GLOBALS['subUrlMap'][8]);
       } else {
         throw new HttpException(500);
       }
@@ -67,10 +68,11 @@ trait DiseaseController
         'name' => $request->getBody('editdiseasename'),
         'desc' => $request->getBody('editdiseasedesc'),
         'solution' => $request->getBody('editdiseasesolution'),
+        'solved' => $request->getBody('edittotalcases'),
         'expertSystemId' => $request->getQuery('problemId')
       ], ['id' => $request->getQuery('id')])) {
-        $request->setFlash('disease', 'Ilona_537', [['msg' => "{$request->getQuery('name')} Has Been Updated"]]);
-        $response->redirect('/members/disease');
+        $request->setFlash('disease', 'alert-info', [['msg' => "{$request->getQuery('name')} Has Been Updated"]]);
+        $response->redirect($GLOBALS['subUrlMap'][8]);
       } else {
         throw new HttpException(500);
       }
@@ -81,12 +83,12 @@ trait DiseaseController
   {
     self::validateQuery('id')->isNotNull()->isInt()->trim()->sanitize();
     if (!empty(self::validateResults())) {
-      $request->setFlash('disease', 'Brennen_465', self::validateResults());
-      $response->redirect('/members/disease');
+      $request->setFlash('disease', 'alert-danger', self::validateResults());
+      $response->redirect($GLOBALS['subUrlMap'][8]);
     } else {
       if (Disease::destroy(['id' => $request->getQuery('id')])) {
-        $request->setFlash('disease', 'Ilona_537', [['msg' => "{$request->getQuery('name')} Has Been Deleted"]]);
-        $response->redirect('/members/disease');
+        $request->setFlash('disease', 'alert-info', [['msg' => "{$request->getQuery('name')} Has Been Deleted"]]);
+        $response->redirect($GLOBALS['subUrlMap'][8]);
       } else {
         throw new HttpException(500);
       }

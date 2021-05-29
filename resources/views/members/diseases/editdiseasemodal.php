@@ -1,66 +1,80 @@
-<div id="editDiseaseModal" tabindex="-1" aria-labelledby="editDiseaseModalLabel" aria-hidden="true" class="Judd_197 Avery_140 Garrison_477">
-  <div class="Merry_453 Solange_304">
-    <div class="Kayce_528 Dezmond_357 Aylan_418 Alexei_424 Brantly_247">
+<div class="modal fade modal-static" id="editDiseaseModal" tabindex="-1" aria-labelledby="editDiseaseModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content shadow-lg bl-primary br-primary bg-card">
       <form method="POST" id="editDiseaseForm" onsubmit="sulaiForm({this:this,event:event,link:this.action,method:'PUT'})">
-        <div class="Daiana_395 Mattison_196">
-          <button type="button" data-dismiss="modal" aria-label="Close" class="Zakai_358"></button>
-          <div class="Zephyr_231 Safwan_346 Aurora_187 Cherish_137">
-            <h5 class="Faizan_466">Edit <strong>Diseases</strong></h5>
+        <div class="modal-body px-5">
+          <button type="button" class="btn-close  " data-dismiss="modal" aria-label="Close"></button>
+          <div class="d-flex jc-center mt-3 m-5">
+            <h5 class="text-center">Edit <strong>Diseases</strong></h5>
           </div>
 
-          <div class="Calen_148">
-            <div class="Izzabella_317 Jana_232 Xavien_336 Preston_343 Safwan_346">
-              <svg width="24" height="24" fill="currentColor" class="Atalia_258">
-                <use xlink:href="<?= ROOT ?>/assets/fonts/icons/all-icons.svg#patch-exclamation-fll" />
-              </svg>
-              <h6 for="editdiseasename" class="Raena_142 Gotham_178"><strong>Disease Name</strong></h6>
+          <div class="row">
+            <div class="col-md-3 d-none d-md-flex ai-center jc-center">
+              <div class="col-md-3 d-none d-md-flex ai-center jc-center">
+                <h6 class="m-0 ml-2" for="editdiseasename"><strong>Disease Name</strong></h6>
+              </div>
             </div>
-            <div class="Mayer_323">
-              <div class="Mariano_448 Mckenzie_188">
-                <input id="editdiseasename" name="editdiseasename" type="text" data-length="50" class="Amen_518 Simcha_314" />
+
+            <div class="col-md-5">
+              <div class="input-field mt-4">
+                <input id="editdiseasename" name="editdiseasename" type="text" class="text-success validate" data-length="50">
                 <label for="editdiseasename">Disease</label>
-                <span data-error="" data-success="" class="Adeleine_465"></span>
+                <span class="helper-text" data-error="" data-success=""></span>
+              </div>
+            </div>
+
+            <div class="col-md-2 d-none d-md-flex ai-center jc-center">
+              <div class="col-md-3 d-none d-md-flex ai-center jc-center">
+                <h6 class="m-0 ml-2" for="edittotalcases"><strong>Total Cases</strong></h6>
+              </div>
+            </div>
+
+            <div class="col-md-2">
+              <div class="input-field mt-4">
+                <input id="edittotalcases" name="edittotalcases" type="number" class="text-success validate">
+                <label for="edittotalcases">Total</label>
+                <span class="helper-text" data-error="" data-success=""></span>
               </div>
             </div>
           </div>
 
-          <div class="Calen_148">
-            <div class="Izzabella_317 Jana_232 Xavien_336 Preston_343 Safwan_346">
-              <svg width="24" height="24" fill="currentColor" class="Atalia_258">
+          <div class="row">
+            <div class="col-md-3 d-none d-md-flex ai-center jc-center">
+              <svg class="prefix" width="24" height="24" fill="currentColor">
                 <use xlink:href="<?= ROOT ?>/assets/fonts/icons/all-icons.svg#journal-text" />
               </svg>
-              <h6 for="editdiseasedesc" class="Raena_142 Gotham_178"><strong>Description</strong></h6>
+              <h6 class="m-0 ml-2" for="editdiseasedesc"><strong>Description</strong></h6>
             </div>
-            <div class="Mayer_323">
-              <div class="Mariano_448 Mckenzie_188">
-                <textarea id="editdiseasedesc" name="editdiseasedesc" type="text" data-length="500" class="Amen_518 Justus_576 Simcha_314"></textarea>
+            <div class="col-md-9">
+              <div class="input-field mt-4">
+                <textarea id="editdiseasedesc" name="editdiseasedesc" type="text" class="text-success sulai-textarea validate" data-length="500"></textarea>
                 <label for="editdiseasedesc">Description</label>
-                <span data-error="" data-success="" class="Adeleine_465"></span>
+                <span class="helper-text" data-error="" data-success=""></span>
               </div>
             </div>
           </div>
 
-          <div class="Calen_148">
-            <div class="Izzabella_317 Jana_232 Xavien_336 Preston_343 Safwan_346">
-              <svg width="24" height="24" fill="currentColor" class="Atalia_258">
+          <div class="row">
+            <div class="col-md-3 d-none d-md-flex ai-center jc-center">
+              <svg class="prefix" width="24" height="24" fill="currentColor">
                 <use xlink:href="<?= ROOT ?>/assets/fonts/icons/all-icons.svg#clipboard-check" />
               </svg>
-              <h6 for="editdiseasesolution" class="Raena_142 Gotham_178"><strong>Solution</strong></h6>
+              <h6 class="m-0 ml-2" for="editdiseasesolution"><strong>Solution</strong></h6>
             </div>
-            <div class="Mayer_323">
-              <div class="Mariano_448 Mckenzie_188">
-                <textarea id="editdiseasesolution" name="editdiseasesolution" type="text" data-length="500" class="Amen_518 Justus_576 Simcha_314"></textarea>
+            <div class="col-md-9">
+              <div class="input-field mt-4">
+                <textarea id="editdiseasesolution" name="editdiseasesolution" type="text" class="text-success sulai-textarea validate" data-length="500"></textarea>
                 <label for="editdiseasesolution">Solution</label>
-                <span data-error="" data-success="" class="Adeleine_465"></span>
+                <span class="helper-text" data-error="" data-success=""></span>
               </div>
             </div>
           </div>
 
-          <div class="Calen_148 Safwan_346 Mckenzie_188 Jermani_171">
-            <div class="Gaston_216 Ann_319 Zephyr_231 Talaya_354">
-              <button type="button" data-dismiss="modal" class="Zakai_128 Kepler_361">Close</button>
-              <button type="submit" class="Zakai_128 Pascual_265 Kepler_361 Isabella_429 Zephyr_231 Preston_343 Safwan_346">
-                <span style="width: 1rem; height: 1rem" role="status" class="Zayne_577 Annsley_184 Jana_232"></span>
+          <div class="row jc-center mt-4 mb-5">
+            <div class="col-7 col-md-5 d-flex jc-around">
+              <button type="button" class="btn btn-small" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn bg-info btn-small text-light d-flex ai-center jc-center">
+                <span class="spinner-border mr-2 d-none" style="width: 1rem; height: 1rem;" role="status"></span>
                 <span>Edit Data</span>
               </button>
             </div>

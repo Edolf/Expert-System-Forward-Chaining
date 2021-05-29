@@ -4,7 +4,7 @@ namespace app\core;
 
 use app\core\Middleware\Middleware;
 
-class Controller
+abstract class Controller
 {
   protected array $middlewares = [];
   public string $action = '';

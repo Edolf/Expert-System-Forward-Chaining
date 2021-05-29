@@ -6,8 +6,6 @@ use app\core\Response;
 
 use app\models\Navbar;
 use app\models\Category;
-use app\models\CollapseMenu;
-use app\models\SubMenu;
 
 Application::all('/', function (Request $request, Response $response) {
   return $response->render('index', [
@@ -28,12 +26,6 @@ Application::post('/auth', 'AuthController@login');
 Application::get('/auth/gplus', 'AuthController@goauth');
 Application::post('/auth/out', 'AuthController@logout');
 Application::post('/auth/join', 'AuthController@register');
-
-$subUrlMap = [];
-
-foreach (SubMenu::findAll() as $key => $value) {
-  $subUrlMap[$value['id']] = $value['url'];
-}
 
 Application::get($subUrlMap[1], 'MemberController@index');
 
@@ -65,18 +57,12 @@ Application::post($subUrlMap[9], 'MemberController@addSymptom');
 Application::put($subUrlMap[9], 'MemberController@updateSymptom');
 Application::delete($subUrlMap[9], 'MemberController@deleteSymptom');
 
-Application::get($subUrlMap[10], 'MemberController@knowledge');
-Application::post($subUrlMap[10], 'MemberController@addKnowledge');
-Application::put($subUrlMap[10], 'MemberController@updateKnowledge');
-Application::delete($subUrlMap[10], 'MemberController@deleteKnowledge');
+Application::get($collUrlMap[4], 'MemberController@knowledge');
+Application::post($collUrlMap[4], 'MemberController@addKnowledge');
+Application::put($collUrlMap[4], 'MemberController@updateKnowledge');
+Application::delete($collUrlMap[4], 'MemberController@deleteKnowledge');
 
 Application::get($subUrlMap[11], 'MemberController@rule');
-
-$collUrlMap = [];
-
-foreach (CollapseMenu::findAll() as $key => $value) {
-  $collUrlMap[$value['id']] = $value['url'];
-}
 
 Application::get($collUrlMap[1], 'SidemenuController@sidemenu');
 Application::post($collUrlMap[1], 'SidemenuController@addSidemenu');

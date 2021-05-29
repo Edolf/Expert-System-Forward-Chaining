@@ -11,6 +11,8 @@ use app\core\Validator\Validator;
 
 use app\models\User;
 
+use helpers\index;
+
 class Application
 {
   public static Application $app;
@@ -23,8 +25,6 @@ class Application
   public Validator $validator;
   public ?Flash $flash;
   public ?User $user = null;
-
-  public $locals = [];
 
   private static array $routesMap = ['GET' => '', 'POST' => '', 'PUT' => '', 'DELETE' => ''];
   private static array $paramsMap = [];

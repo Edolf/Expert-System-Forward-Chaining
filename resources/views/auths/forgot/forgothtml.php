@@ -3,8 +3,8 @@
   <html lang="en">
 
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
       body,
       td {
@@ -53,7 +53,7 @@
         <tr>
           <td>
             <div style="overflow: hidden;">
-              <div size="-1" class="font"><u></u>
+              <font size="-1"><u></u>
                 <div style="box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';background-color:#ffffff;color:#718096;height:100%;line-height:1.4;margin:0;padding:0;width:100%!important">
                   <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';background-color:#edf2f7;margin:0;padding:0;width:100%">
                     <tbody>
@@ -114,7 +114,7 @@
                                           <p style="box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';font-size:16px;line-height:1.5em;margin-top:30px;text-align:left">
                                             If you did not create an account, no further action is required.</p>
                                           <p style="box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';font-size:16px;line-height:1.5em;margin-top:0;text-align:left">
-                                            Regards,<br />
+                                            Regards,<br>
                                             <?= MAIL_FROM_NAME ?></p>
                                           <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';border-top:1px solid #e8e5ef;margin-top:25px;padding-top:25px">
                                             <tbody>
@@ -124,7 +124,7 @@
                                                     If you’re having trouble clicking the "Reset Password" button,
                                                     copy and paste the URL below
                                                     into your web browser : <span style="box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';word-break:break-all">
-                                                      <a href="<?= LINK ?>/auth/forgot/reset?signature=<?= $randomKey ?>&token=<?= $token ?>" style="box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';color:#3869d4" target="_blank"><?= LINK ?>/auth/<wbr />forgot/<wbr />reset?signature=<?= $randomKey ?>&token=<?= $token ?></a></span>
+                                                      <a href="<?= LINK ?>/auth/forgot/reset?signature=<?= $randomKey ?>&token=<?= $token ?>" style="box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';color:#3869d4" target="_blank"><?= LINK ?>/auth/<wbr>forgot/<wbr>reset?signature=<?= $randomKey ?>&token=<?= $token ?></a></span>
                                                   </p>
                                                 </td>
                                               </tr>
@@ -157,7 +157,7 @@
                     </tbody>
                   </table>
                 </div>
-              </div>
+              </font>
             </div>
           </td>
         </tr>

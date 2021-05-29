@@ -1,29 +1,30 @@
 <?php include VIEW_DIR . "/layouts/header.php"; ?>
-<div class="Avalyn_309">
+<div class="wrapper">
   <?php include VIEW_DIR . "/layouts/sidebar.php"; ?>
-  <div class="Karlee_636 Zephyr_231 Micaiah_457 Brylan_497">
-    <div class="Karlee_303 Tayler_170">
+  <div class="content-wrapper d-flex flex-column bg-background">
+    <div class="content mb-4">
       <?php include VIEW_DIR . "/layouts/topbar.php"; ?>
-      <div class="Aylin_367 Aren_140">
-        <div class="Calen_148 Jermani_171">
+      <div class="container p-5">
+        <div class="row mb-5">
 
           <?php $flashSelected = 'symptom';
           include VIEW_DIR . "/layouts/flash.php"; ?>
 
           <?php foreach ($expertsystems::findAll() as $key => $ExpertSystem) : ?>
             <div id="<?= preg_replace('/\s+/', '_', $ExpertSystem['problem']) ?>">
-              <div class="Zephyr_231 Preston_343 Zhuri_391 Annaleah_193">
-                <h1 class="Wilfredo_102 Aalyah_176"><?= $ExpertSystem['problem'] ?></h1>
-                <button type="button" data-toggle="modal" data-target="#addSymptomModal" onclick="document.querySelector('#newSymptomForm').action = '<?= LINK ?>/members/symptom?problemId=<?= $ExpertSystem['id'] ?>'" class="Zakai_128 Zeppelin_413 Isabella_429">Add
+              <div class="d-flex ai-center jc-between my-4">
+                <h1 class="h3 mb-0 "><?= $ExpertSystem['problem'] ?></h1>
+                <button type="button" class="btn bg-primary text-light" data-toggle="modal" data-target="#addSymptomModal" onclick="document.querySelector('#newSymptomForm').action = '<?= LINK ?><?= $subUrlMap[9] ?>?problemId=<?= $ExpertSystem['id'] ?>'">Add
                   New Symptoms</button>
               </div>
-              <div class="Renata_565 Jermani_171">
-                <table class="Jedidiah_192 Eily_440 Alexander_523 Brantly_247">
+              <div class="overflow-auto mb-5">
+                <table class="table table-hover table-striped bg-card">
                   <thead>
                     <tr>
                       <th scope="col">#</th>
                       <th scope="col">Name</th>
                       <th scope="col">Description</th>
+                      <th scope="col">CF</th>
                       <th scope="col">Question</th>
                       <th scope="col">Action</th>
                     </tr>
@@ -31,23 +32,24 @@
                   <tbody>
                     <?php foreach ($symptoms::findAll(['expertSystemId' => $ExpertSystem['id']]) as $key => $symptom) : ?>
                       <tr>
-                        <th class="Beauregard_450"><?= $key + 1 ?></th>
-                        <td class="Beauregard_450"><?= $symptom['name'] ?></td>
-                        <td class="Beauregard_450"><?= $symptom['desc'] ?></td>
-                        <td class="Beauregard_450"><?= $symptom['question'] ?></td>
-                        <td class="Beauregard_450">
-                          <nav class="Lucero_238">
+                        <th class="align-middle"><?= $key + 1 ?></th>
+                        <td class="align-middle"><?= $symptom['name'] ?></td>
+                        <td class="align-middle"><?= $symptom['desc'] ?></td>
+                        <td class="align-middle"><?= $symptom['cf'] ?></td>
+                        <td class="align-middle"><?= $symptom['question'] ?></td>
+                        <td class="align-middle">
+                          <nav class="navbar">
                             <div>
-                              <button type="button" data-target="symptom-<?= $symptom['id'] ?>" data-alignment="right" class="Olivia_315 Kepler_480 Echo_Brodie_673 Ulisses_424">
-                                <svg width="15" height="15" fill="currentColor" class="Atalia_258">
+                              <button type="button" class="btn-flat btn-floating dropdown-trigger text-theme" data-target="symptom-<?= $symptom['id'] ?>" data-alignment="right">
+                                <svg class="prefix" width="15" height="15" fill="currentColor">
                                   <use xlink:href="<?= ROOT ?>/assets/fonts/icons/all-icons.svg#three-dots-vertical" />
                                 </svg>
                               </button>
-                              <ul id="symptom-<?= $symptom['id'] ?>" class="Kepler_680 Jaedon_572 Melody_575">
-                                <li><button onclick="setModalValue({editsymptomname:'<?= $symptom['name'] ?>',editsymptomdesc:'<?= $symptom['desc'] ?>',editquestion:'<?= $symptom['question'] ?>'},document.querySelector('#editSymptomForm'));document.querySelector('#editSymptomForm').action = '<?= LINK ?>/members/symptom?id=<?= $symptom['id'] ?>&problemId=<?= $ExpertSystem['id'] ?>&name=<?= $symptom['name'] ?>';" data-toggle="modal" data-target="#editSymptomModal" class="Zakai_128 Paris_402 Scottlyn_277">Edit</button></li>
+                              <ul id="symptom-<?= $symptom['id'] ?>" class="dropdown-content list-unstyled bg-transparent">
+                                <li><button class="btn bg-success w-100" onclick="setModalValue({editsymptomname:'<?= $symptom['name'] ?>',editsymptomdesc:'<?= $symptom['desc'] ?>',editquestion:'<?= $symptom['question'] ?>'},document.querySelector('#editSymptomForm'));document.querySelector('#editSymptomForm').action = '<?= LINK ?><?= $subUrlMap[9] ?>?id=<?= $symptom['id'] ?>&problemId=<?= $ExpertSystem['id'] ?>&name=<?= $symptom['name'] ?>';" data-toggle="modal" data-target="#editSymptomModal">Edit</button></li>
                                 <li>
-                                  <form method="post" action="<?= LINK ?>/members/symptom?id=<?= $symptom['id'] ?>&name=<?= $symptom['name'] ?>&_csrf=<?= $csrfToken ?>&_method=DELETE">
-                                    <button onclick="return confirm('Are you sure you want to Delete it ?')" class="Zakai_128 Hutton_326 Scottlyn_277">Delete</button>
+                                  <form method="post" action="<?= LINK ?><?= $subUrlMap[9] ?>?id=<?= $symptom['id'] ?>&name=<?= $symptom['name'] ?>&_csrf=<?= $csrfToken ?>&_method=DELETE">
+                                    <button class="btn bg-danger w-100" onclick="return confirm('Are you sure you want to Delete it ?')">Delete</button>
                                   </form>
                                 </li>
                               </ul>

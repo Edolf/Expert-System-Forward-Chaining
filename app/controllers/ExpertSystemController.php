@@ -29,9 +29,10 @@ trait ExpertSystemController
     } else {
       if (ExpertSystem::create([
         'problem' => $request->getBody('problemname'),
-        'desc' => $request->getBody('problemdesc')
+        'desc' => $request->getBody('problemdesc'),
+        'solved' => $request->getBody('problemsolved'),
       ])) {
-        $request->setFlash('doctor', 'Ilona_537', [['msg' => "{$request->getBody('problemname')} Has Been Added"]]);
+        $request->setFlash('doctor', 'alert-info', [['msg' => "{$request->getBody('problemname')} Has Been Added"]]);
         $response->redirect('/members');
       } else {
         throw new HttpException(500);
@@ -56,9 +57,10 @@ trait ExpertSystemController
     } else {
       if (ExpertSystem::update([
         'problem' => $request->getBody('editproblemname'),
-        'desc' => $request->getBody('editproblemdesc')
+        'desc' => $request->getBody('editproblemdesc'),
+        'solved' => $request->getBody('editproblemsolved')
       ], ['id' => $request->getQuery('id')])) {
-        $request->setFlash('doctor', 'Ilona_537', [['msg' => "{$request->getBody('editproblemname')} Has Been Updated"]]);
+        $request->setFlash('doctor', 'alert-info', [['msg' => "{$request->getBody('editproblemname')} Has Been Updated"]]);
         $response->redirect('/members');
       } else {
         throw new HttpException(500);
@@ -73,7 +75,7 @@ trait ExpertSystemController
       Disease::destroy(['expertSystemId' => $request->getQuery('id')]);
       Symptom::destroy(['expertSystemId' => $request->getQuery('id')]);
       KnowledgeBase::destroy(['expertSystemId' => $request->getQuery('id')]);
-      $request->setFlash('doctor', 'Ilona_537', [['msg' => "The Problem Has Been Deleted"]]);
+      $request->setFlash('doctor', 'alert-info', [['msg' => "The Problem Has Been Deleted"]]);
       $response->redirect('/members');
     } else {
       throw new HttpException(500);

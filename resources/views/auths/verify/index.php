@@ -1,20 +1,20 @@
 <?php include VIEW_DIR . "/layouts/header.php"; ?>
-<div id="app" class="Brylan_497">
+<div id="app" class="bg-background">
   <?php include VIEW_DIR . "/layouts/navbar.php"; ?>
-  <div class="Karlee_636 Zephyr_231 Micaiah_457">
-    <div class="Karlee_303 Annaleah_193 Brylan_497">
-      <div class="Aylin_367">
+  <div class="content-wrapper d-flex flex-column">
+    <div class="content my-4 bg-background">
+      <div class="container">
       </div>
     </div>
-    <div class="Karlee_303 Annaleah_193 Brylan_497 Magdalen_301 Townes_174 Yousef_197">
-      <div class="Haydee_599 Emmarose_194 Mattison_196">
-        <div class="Zaydee_150 Brantly_247 Faizan_466">
-          <div class="Rory_340 Xochitl_197">
-            <h3 class="Brileigh_396">Congratulations</h3>
-            <p class="Harmonie_363">Your Email <%= email %> Has Been Verified</p>
+    <div class="content my-4 bg-background px-md-5 pb-5 pt-0">
+      <div class="container-fluid my-5 px-5">
+        <div class="card bg-card text-center">
+          <div class="card-body py-5">
+            <h3 class="card-title">Congratulations</h3>
+            <p class="card-text">Your Email <%= email %> Has Been Verified</p>
           </div>
-          <div class="Landan_437 Makhai_436 Brantly_247">
-            <a href="<?= LINK ?>/" class="Zakai_128 Zeppelin_413">&larr; Back to
+          <div class="card-footer text-muted bg-card">
+            <a href="<?= LINK ?>/" class="btn bg-primary">&larr; Back to
               Timeline</a>
           </div>
         </div>

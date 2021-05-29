@@ -37,8 +37,8 @@ trait SymptomController
         'question' => $request->getBody('question'),
         'expertSystemId' => $request->getQuery('problemId')
       ])) {
-        $request->setFlash('symptom', 'Ilona_537', [['msg' => "{$request->getBody('symptomname')} Has Been Added"]]);
-        $response->redirect('/members/symptom');
+        $request->setFlash('symptom', 'alert-info', [['msg' => "{$request->getBody('symptomname')} Has Been Added"]]);
+        $response->redirect($GLOBALS['subUrlMap'][9]);
       } else {
         throw new HttpException(500);
       }
@@ -68,8 +68,8 @@ trait SymptomController
         'question' => $request->getBody('editquestion'),
         'expertSystemId' => $request->getQuery('problemId')
       ], ['id' => $request->getQuery('id')])) {
-        $request->setFlash('symptom', 'Ilona_537', [['msg' => "{$request->getQuery('name')} Has Been Updated"]]);
-        $response->redirect('/members/symptom');
+        $request->setFlash('symptom', 'alert-info', [['msg' => "{$request->getQuery('name')} Has Been Updated"]]);
+        $response->redirect($GLOBALS['subUrlMap'][9]);
       } else {
         throw new HttpException(500);
       }
@@ -80,12 +80,12 @@ trait SymptomController
   {
     self::validateQuery('id')->isNotNull()->isInt()->trim()->sanitize();
     if (!empty(self::validateResults())) {
-      $request->setFlash('symptom', 'Brennen_465', self::validateResults());
-      $response->redirect('/members/symptom');
+      $request->setFlash('symptom', 'alert-danger', self::validateResults());
+      $response->redirect($GLOBALS['subUrlMap'][9]);
     } else {
       if (Symptom::destroy(['id' => $request->getQuery('id')])) {
-        $request->setFlash('symptom', 'Ilona_537', [['msg' => "{$request->getQuery('name')} Has Been Deleted"]]);
-        $response->redirect('/members/symptom');
+        $request->setFlash('symptom', 'alert-info', [['msg' => "{$request->getQuery('name')} Has Been Deleted"]]);
+        $response->redirect($GLOBALS['subUrlMap'][9]);
       } else {
         throw new HttpException(500);
       }

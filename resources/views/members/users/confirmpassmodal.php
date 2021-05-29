@@ -1,45 +1,45 @@
-<div id="confirmPassModal" tabindex="-1" aria-labelledby="confirmPassModalLabel" aria-hidden="true" class="Judd_197 Avery_140 Garrison_477">
-  <div class="Merry_453">
-    <div class="Kayce_528 Dezmond_357 Aylan_418 Alexei_424 Brantly_247">
+<div class="modal fade modal-static" id="confirmPassModal" tabindex="-1" aria-labelledby="confirmPassModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content shadow-lg bl-primary br-primary bg-card">
       <form method="POST" id="changePassForm" onsubmit="sulaiForm({this:this,event:event,link:'<?= LINK ?>/members/account/password',method:'PUT'});">
-        <div class="Daiana_395 Mattison_196">
-          <button type="button" data-dismiss="modal" aria-label="Close" class="Zakai_358"></button>
-          <div class="Zephyr_231 Safwan_346 Aurora_187 Cherish_137">
-            <h5 class="Faizan_466">Renew Your <strong>Password</strong></h5>
+        <div class="modal-body px-5">
+          <button type="button" class="btn-close " data-dismiss="modal" aria-label="Close"></button>
+          <div class="d-flex jc-center mt-3 m-5">
+            <h5 class="text-center">Renew Your <strong>Password</strong></h5>
           </div>
-          <div class="Calen_148">
-            <div class="Shanelle_322">
+          <div class="row">
+            <div class="col-md-8">
               <?php if ($user->password != null) { ?>
-                <div class="Mariano_448">
-                  <input id="oldpassword" name="oldpassword" type="password" class="Amen_518 Simcha_314" />
+                <div class="input-field ">
+                  <input id="oldpassword" name="oldpassword" type="password" class="text-success validate">
                   <label for="oldpassword">Old Password</label>
-                  <span data-error="" data-success="" class="Adeleine_465"></span>
+                  <span class="helper-text" data-error="" data-success=""></span>
                 </div>
               <?php } ?>
-              <div class="Monty_259 Channing_337">
+              <div class="d-block d-md-none">
                 Use at least 6 characters. Don't use passwords from other references or something easy to guess like
                 your pet's name.
               </div>
-              <div class="Mariano_448 Jewels_189">
-                <input id="newpassword" name="newpassword" type="password" class="Amen_518 Simcha_314" />
+              <div class="input-field mt-5">
+                <input id="newpassword" name="newpassword" type="password" class="text-success validate">
                 <label for="newpassword">New Password</label>
-                <span data-error="" data-success="" class="Adeleine_465"></span>
+                <span class="helper-text" data-error="" data-success=""></span>
               </div>
-              <div class="Mariano_448 Mckenzie_188">
-                <input id="confirmpassword" name="confirmpassword" type="password" class="Amen_518 Simcha_314" />
+              <div class="input-field mt-4">
+                <input id="confirmpassword" name="confirmpassword" type="password" class="text-success validate">
                 <label for="confirmpassword">Confirm New Password</label>
-                <span data-error="" data-success="" class="Adeleine_465"></span>
+                <span class="helper-text" data-error="" data-success=""></span>
               </div>
             </div>
-            <div class="Ekaterina_318 Jana_232 Xavien_336 Preston_343">
+            <div class="col-md-4 d-none d-md-flex ai-center">
               Use at least 6 characters. Don't use passwords from other references or something easy to guess like your
               pet's name.
             </div>
           </div>
-          <div class="Calen_148 Safwan_346 Mckenzie_188 Jermani_171">
-            <div class="Gaston_216">
-              <button type="submit" class="Zakai_128 Zeppelin_413 Scottlyn_277 Zephyr_231 Preston_343 Safwan_346">
-                <span style="width: 1rem; height: 1rem" role="status" class="Zayne_577 Annsley_184 Jana_232"></span>
+          <div class="row jc-center mt-4 mb-5">
+            <div class="col-7">
+              <button type="submit" class="btn bg-primary w-100 d-flex ai-center jc-center">
+                <span class="spinner-border mr-2 d-none" style="width: 1rem; height: 1rem;" role="status"></span>
                 <span>Change Password</span>
               </button>
             </div>

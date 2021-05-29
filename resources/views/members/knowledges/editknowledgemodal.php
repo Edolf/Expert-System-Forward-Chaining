@@ -1,38 +1,38 @@
-<div id="editKnowledgeModal-<?= $ExpertSystem['id'] ?>" tabindex="-1" aria-labelledby="editKnowledgeModal-<?= $ExpertSystem['id'] ?>Label" aria-hidden="true" class="Judd_197 Avery_140 Garrison_477">
-  <div class="Merry_453 Solange_304">
-    <div class="Kayce_528 Dezmond_357 Aylan_418 Alexei_424 Brantly_247">
+<div class="modal fade modal-static" id="editKnowledgeModal-<?= $ExpertSystem['id'] ?>" tabindex="-1" aria-labelledby="editKnowledgeModal-<?= $ExpertSystem['id'] ?>Label" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content shadow-lg bl-primary br-primary bg-card">
       <form id="editKnowledgeForm-<?= $ExpertSystem['id'] ?>" method="post">
-        <div class="Daiana_395 Mattison_196">
-          <button type="button" data-dismiss="modal" aria-label="Close" class="Zakai_358"></button>
-          <div class="Zephyr_231 Safwan_346 Aurora_187 Cherish_137">
-            <h5 class="Faizan_466">Edit <strong>Knowledge Base</strong></h5>
+        <div class="modal-body px-5">
+          <button type="button" class="btn-close  " data-dismiss="modal" aria-label="Close"></button>
+          <div class="d-flex jc-center mt-3 m-5">
+            <h5 class="text-center">Edit <strong>Knowledge Base</strong></h5>
           </div>
 
-          <div class="Calen_148">
-            <div class="Izzabella_317 Jana_232 Xavien_336 Preston_343 Safwan_346">
-              <svg width="24" height="24" fill="currentColor" class="Atalia_258">
+          <div class="row">
+            <div class="col-md-3 d-none d-md-flex ai-center jc-center">
+              <svg class="prefix" width="24" height="24" fill="currentColor">
                 <use xlink:href="<?= ROOT ?>/assets/fonts/icons/all-icons.svg#patch-check-fll" />
               </svg>
-              <h6 class="Raena_142 Gotham_178"><strong>Solving Path</strong></h6>
+              <h6 class="m-0 ml-2"><strong>Solving Path</strong></h6>
             </div>
-            <div class="Mayer_323">
-              <div class="Mariano_448 Mckenzie_188">
-                <input disabled="" id="knowledge<?= $ExpertSystem['id'] ?>" name="knowledge" type="text" class="Amen_518" />
-                <span data-error="" data-success="" class="Adeleine_465"></span>
+            <div class="col-md-9">
+              <div class="input-field mt-4">
+                <input disabled id="knowledge<?= $ExpertSystem['id'] ?>" name="knowledge" type="text" class="text-success">
+                <span class="helper-text" data-error="" data-success=""></span>
               </div>
             </div>
           </div>
 
-          <div class="Calen_148">
-            <div class="Izzabella_317 Jana_232 Xavien_336 Preston_343 Safwan_346">
-              <svg width="24" height="24" fill="currentColor" class="Atalia_258">
+          <div class="row">
+            <div class="col-md-3 d-none d-md-flex ai-center jc-center">
+              <svg class="prefix" width="24" height="24" fill="currentColor">
                 <use xlink:href="<?= ROOT ?>/assets/fonts/icons/all-icons.svg#card-checklist" />
               </svg>
-              <h6 class="Raena_142 Gotham_178"><strong>Symptoms</strong></h6>
+              <h6 class="m-0 ml-2"><strong>Symptoms</strong></h6>
             </div>
-            <div class="Mayer_323">
-              <div class="Mariano_448 Mckenzie_188">
-                <select multiple="" name="symptoms[]" id="symptoms<?= $ExpertSystem['id'] ?>">
+            <div class="col-md-9">
+              <div class="input-field mt-4">
+                <select multiple name="symptoms[]" id="symptoms<?= $ExpertSystem['id'] ?>">
                   <?php if ($symptoms::findAll(['expertSystemId' => $ExpertSystem['id']])) : ?>
                     <?php foreach ($symptoms::findAll(['expertSystemId' => $ExpertSystem['id']]) as $symptom) : ?>
                       <option value="<?= $symptom['id'] ?>"><?= $symptom['name'] ?></option>
@@ -44,11 +44,11 @@
             </div>
           </div>
 
-          <div class="Calen_148 Safwan_346 Mckenzie_188 Jermani_171">
-            <div class="Gaston_216 Ann_319 Zephyr_231 Talaya_354">
-              <button type="button" data-dismiss="modal" class="Zakai_128 Kepler_361">Close</button>
-              <button type="submit" class="Zakai_128 Kepler_361 Zeppelin_413 Zephyr_231 Preston_343 Safwan_346">
-                <span style="width: 1rem; height: 1rem" role="status" class="Zayne_577 Annsley_184 Jana_232"></span>
+          <div class="row jc-center mt-4 mb-5">
+            <div class="col-7 col-md-5 d-flex jc-around">
+              <button type="button" class="btn btn-small" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-small bg-primary d-flex ai-center jc-center">
+                <span class="spinner-border mr-2 d-none" style="width: 1rem; height: 1rem;" role="status"></span>
                 <span>Edit Knowledge Base</span>
               </button>
             </div>

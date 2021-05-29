@@ -1,48 +1,48 @@
 <?php include VIEW_DIR . "/layouts/header.php"; ?>
-<div id="app" class="Brylan_497">
+<div id="app" class="bg-background">
   <?php include VIEW_DIR . "/layouts/navbar.php"; ?>
-  <div class="Karlee_636 Zephyr_231 Micaiah_457">
-    <div class="Karlee_303 Annaleah_193 Brylan_497">
-      <div class="Aylin_367">
+  <div class="content-wrapper d-flex flex-column">
+    <div class="content my-4 bg-background">
+      <div class="container">
       </div>
     </div>
 
-    <div class="Karlee_303 Annaleah_193 Brylan_497">
-      <div class="Yovani_551 Emmarose_194">
-        <div class="Calen_148 Aamira_138 Brooke_245">
-          <div class="Sufyan_297 Montana_404 Aamira_138 Brooke_245 Xochitl_197">
-            <div class="Calen_148 Jermani_171">
-              <div class="Zephyr_231 Preston_343 Zhuri_391 Annaleah_193">
-                <h1 class="Wilfredo_102 Aalyah_176">Diagnosis Based on The Selected Symptoms</h1>
+    <div class="content my-4 bg-background">
+      <div class="container-xxl my-5">
+        <div class="row p-3 p-md-5">
+          <div class="bg-panel rounded-lg p-3 p-md-5 py-5">
+            <div class="row mb-5">
+              <div class="d-flex ai-center jc-between my-4">
+                <h1 class="h3 mb-0 ">Diagnosis Based on The Selected Symptoms</h1>
               </div>
 
-              <div class="Finlay_320 Jermani_171">
-                <h6 class="Tayler_170">Users Information</h6>
-                <table class="Jedidiah_192 Eily_440">
+              <div class="col-md-6 mb-5">
+                <h6 class="mb-4">Users Information</h6>
+                <table class="table table-hover">
                   <tr>
-                    <td scope="col" class="Lebron_195">Full Name</td>
-                    <td scope="col" class="Lebron_195">
+                    <td class="py-3" scope="col">Full Name</td>
+                    <td class="py-3" scope="col">
                       <strong><?= $user->name ?></strong>
                     </td>
                   </tr>
                   <tr>
-                    <td scope="col" class="Lebron_195">Username</td>
-                    <td scope="col" class="Lebron_195">
+                    <td class="py-3" scope="col">Username</td>
+                    <td class="py-3" scope="col">
                       <strong><?= $user->username != null ? $user->username : 'NULL' ?></strong>
                     </td>
                   </tr>
                   <tr>
-                    <td scope="col" class="Lebron_195">E-mail</td>
-                    <td scope="col" class="Lebron_195">
+                    <td class="py-3" scope="col">E-mail</td>
+                    <td class="py-3" scope="col">
                       <strong>
-                        <?= $user->email != null ? $user->email : 'NULL' ?><small class="<?= $user->role == 'unverified' ? 'Dariah_515' : 'Amen_518' ?> Aleyda_179"><?= $user->role == 'unverified' ? '(unverified)' : '(verified)' ?></small>
+                        <?= $user->email != null ? $user->email : 'NULL' ?><small class="ml-3" class="<?= $user->role == 'unverified' ? 'Dariah_515' : 'Amen_518' ?>"><?= $user->role == 'unverified' ? '(unverified)' : '(verified)' ?></small>
                       </strong>
                     </td>
                   </tr>
                 </table>
               </div>
-              <div class="Finlay_320 Eston_289">
-                <h3 class="Zianna_371 Tayler_170">Results</h3>
+              <div class="col-md-6 pl-md-5">
+                <h3 class="text-dark mb-4">Results</h3>
                 <?php if ($results['id'] == 0) : ?>
                   <h6><?= $results['desc'] ?> </h6>
                   <ul>
@@ -65,16 +65,16 @@
               </div>
             </div>
             <?php if ($results['id'] != 0) : ?>
-              <div class="Calen_148 Jermani_171">
-                <h3 class="Zianna_371 Tayler_170">What Is <strong><?= $results['name'] ?></strong> ?</h3>
+              <div class="row mb-5">
+                <h3 class="text-dark mb-4">What Is <strong><?= $results['name'] ?></strong> ?</h3>
                 <h6><strong><?= $results['name'] ?></strong> is <?= $results['desc'] ?></h6>
               </div>
-              <div class="Calen_148">
-                <h3 class="Zianna_371 Tayler_170">Solution for this Disease</h3>
+              <div class="row">
+                <h3 class="text-dark mb-4">Solution for this Disease</h3>
                 <h6><?= $results['solution'] ?></h6>
               </div>
             <?php endif; ?>
-            <a href="<?= LINK ?>/" class="Zakai_128 Zeppelin_413 Isabella_429 Jewels_189">&larr; Back to Home</a>
+            <a href="<?= LINK ?>/" class="btn bg-primary text-light mt-5">&larr; Back to Home</a>
           </div>
         </div>
       </div>

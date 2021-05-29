@@ -1,21 +1,21 @@
-<div id="forgotModal" tabindex="-1" aria-labelledby="forgotModalLabel" aria-hidden="true" class="Judd_197 Avery_140 Garrison_477">
-  <div class="Merry_453 Lacy_317 Caylin_795">
-    <div class="Kayce_528 Dezmond_357 Aylan_418 Alexei_424 Brantly_247">
-      <div class="Daiana_395 Aren_140">
-        <button type="button" data-dismiss="modal" aria-label="Close" class="Zakai_358"></button>
-        <div class="Zephyr_231 Safwan_346 Jermani_171">
-          <h5 id="forgotModalLabel" class="Malayna_443 Faizan_466">Please input your email address to send reset
+<div class="modal fade modal-static" id="forgotModal" tabindex="-1" aria-labelledby="forgotModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm modal-dialog-centered">
+    <div class="modal-content shadow-lg bl-primary br-primary bg-card">
+      <div class="modal-body p-5">
+        <button type="button" class="btn-close  " data-dismiss="modal" aria-label="Close"></button>
+        <div class="d-flex jc-center mb-5">
+          <h5 class="modal-title text-center" id="forgotModalLabel">Please input your email address to send reset
             password request</h5>
         </div>
         <form method="POST" id="forgotForm" onsubmit="forgotForm({this:this,event:event,link:'<?= LINK ?>/auth/forgot',method:'POST'})">
-          <div class="Mariano_448 Faizan_466">
-            <input id="address" name="address" type="email" class="Amen_518 Simcha_314" />
+          <div class="input-field text-center">
+            <input id="address" name="address" type="email" class="text-success validate">
             <label for="address">E-mail Address</label>
-            <span data-error="" data-success="" class="Adeleine_465"></span>
+            <span class="helper-text" data-error="" data-success=""></span>
           </div>
-          <div class="Zephyr_231 Aylee_306 Raegyn_275 Annaleah_193">
-            <button type="submit" class="Zakai_128 Aylee_306 Zeppelin_413 Zephyr_231 Preston_343 Safwan_346">
-              <span style="width: 1rem; height: 1rem" role="status" class="Zayne_577 Annsley_184 Jana_232"></span>
+          <div class="d-flex mx-auto col-10 my-4">
+            <button type="submit" class="btn mx-auto bg-primary d-flex ai-center jc-center">
+              <span class="spinner-border mr-2 d-none" style="width: 1rem; height: 1rem;" role="status"></span>
               <span>Send Request</span>
             </button>
           </div>
@@ -23,4 +23,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>

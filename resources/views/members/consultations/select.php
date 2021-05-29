@@ -1,24 +1,24 @@
 <?php include VIEW_DIR . "/layouts/header.php"; ?>
-<div class="Avalyn_309">
+<div class="wrapper">
   <?php include VIEW_DIR . "/layouts/sidebar.php"; ?>
-  <div class="Karlee_636 Zephyr_231 Micaiah_457 Brylan_497">
-    <div class="Karlee_303 Tayler_170">
+  <div class="content-wrapper d-flex flex-column bg-background">
+    <div class="content mb-4">
       <?php include VIEW_DIR . "/layouts/topbar.php"; ?>
-      <div class="Aylin_367 Aren_140">
-        <div class="Calen_148 Jermani_171">
+      <div class="container p-5">
+        <div class="row mb-5">
 
-          <div class="Zephyr_231 Preston_343 Zhuri_391 Annaleah_193">
-            <h1 class="Wilfredo_102 Aalyah_176"><?= $title ?></h1>
+          <div class="d-flex ai-center jc-between my-4">
+            <h1 class="h3 mb-0 "><?= $title ?></h1>
           </div>
 
           <?php foreach ($expertsystems::findAll() as $key => $ExpertSystem) : ?>
-            <div style="width: 18rem" class="Zaydee_150 Faizan_466 Brantly_247 Terron_136">
-              <div style="height: 23rem" class="Rory_340">
-                <h4 class="Brileigh_396 Annaleah_193"><b><?= $ExpertSystem['problem'] ?></b></h4>
-                <div class="Renata_565 Jarred_201">
-                  <p class="Harmonie_363"><?= $ExpertSystem['desc'] ?></p>
+            <div class="card text-center bg-card m-4" style="width: 18rem;">
+              <div class="card-body" style="height: 23rem;">
+                <h4 class="card-title my-4"><b><?= $ExpertSystem['problem'] ?></b></h4>
+                <div class="overflow-auto h-50">
+                  <p class="card-text"><?= $ExpertSystem['desc'] ?></p>
                 </div>
-                <a href="<?= LINK ?>/members/consultation/<?= $ExpertSystem['id'] ?>" class="Zakai_128 Zeppelin_413 Isabella_429 Annaleah_193">Try This One</a>
+                <a href="<?= LINK ?><?= $subUrlMap[2] ?>/<?= $ExpertSystem['id'] ?>" class="btn bg-primary text-light my-4">Try This One</a>
               </div>
             </div>
           <?php endforeach; ?>

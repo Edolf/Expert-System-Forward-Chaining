@@ -54,11 +54,11 @@ class MemberController extends Controller
       ));
     }
 
-    Application::$app->locals['expertsystems'] = ExpertSystem::class;
-    Application::$app->locals['diseases'] = Disease::class;
-    Application::$app->locals['symptoms'] = Symptom::class;
-    Application::$app->locals['knowledgebases'] = KnowledgeBase::class;
-    Application::$app->locals['rule'] = Rule::class;
+    $GLOBALS['locals']['expertsystems'] = ExpertSystem::class;
+    $GLOBALS['locals']['diseases'] = Disease::class;
+    $GLOBALS['locals']['symptoms'] = Symptom::class;
+    $GLOBALS['locals']['knowledgebases'] = KnowledgeBase::class;
+    $GLOBALS['locals']['rule'] = Rule::class;
   }
 
   public function index(Request $request, Response $response)
@@ -92,8 +92,8 @@ class MemberController extends Controller
         'username' => $request->getBody('editUserName'),
         'role' => $roles[array_search($request->getBody('roleUser'), $roles)]
       ], ['id' => $request->getQuery('id')])) {
-        $request->setFlash('list-user', 'Ilona_537', [['msg' => "{$request->getBody('editFullName')} Has Been Updated"]]);
-        $response->redirect('/members/list-user');
+        $request->setFlash('list-user', 'alert-info', [['msg' => "{$request->getBody('editFullName')} Has Been Updated"]]);
+        $response->redirect($GLOBALS['subUrlMap'][3]);
       } else {
         throw new HttpException(500);
       }
@@ -103,8 +103,8 @@ class MemberController extends Controller
   public function dropUser(Request $request, Response $response)
   {
     if (User::destroy(['id' => $request->getQuery('id')])) {
-      $request->setFlash('list-user', 'Ilona_537', [['msg' => "User Has Been Deleted"]]);
-      $response->redirect('/members/list-user');
+      $request->setFlash('list-user', 'alert-info', [['msg' => "User Has Been Deleted"]]);
+      $response->redirect($GLOBALS['subUrlMap'][3]);
     } else {
       throw new HttpException(404);
     }

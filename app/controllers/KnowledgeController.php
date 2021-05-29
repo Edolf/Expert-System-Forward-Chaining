@@ -39,7 +39,7 @@ trait KnowledgeController
 
     if (!empty(self::validateResults())) {
       $request->setFlash('knowledge', 'Carolina_534', self::validateResults());
-      $response->redirect('/members/knowledge');
+      $response->redirect($GLOBALS['collUrlMap'][4]);
     } else {
       $typeSolving = strpos($request->getBody('solving'), 'disease-') !== false ? 'diseaseId' : 'symptomId';
       $id = (int) explode('-', $request->getBody('solving'))[1];
@@ -48,8 +48,8 @@ trait KnowledgeController
         'symptoms' => implode(',', $request->getBody('symptoms')),
         'expertSystemId' => $request->getQuery('problemId')
       ])) {
-        $request->setFlash('knowledge', 'Ilona_537', [['msg' => "The Knowledge Has Been Added"]]);
-        $response->redirect('/members/knowledge');
+        $request->setFlash('knowledge', 'alert-info', [['msg' => "The Knowledge Has Been Added"]]);
+        $response->redirect($GLOBALS['collUrlMap'][4]);
       } else {
         throw new HttpException(500);
       }
@@ -62,13 +62,13 @@ trait KnowledgeController
 
     if (!empty(self::validateResults())) {
       $request->setFlash('knowledge', 'Carolina_534', self::validateResults());
-      $response->redirect('/members/knowledge');
+      $response->redirect($GLOBALS['collUrlMap'][4]);
     } else {
       if (KnowledgeBase::update([
         'symptoms' => implode(',', $request->getBody('symptoms')),
       ], ['id' => $request->getQuery('id')])) {
-        $request->setFlash('knowledge', 'Ilona_537', [['msg' => "The Knowledge Has Been Updated"]]);
-        $response->redirect('/members/knowledge');
+        $request->setFlash('knowledge', 'alert-info', [['msg' => "The Knowledge Has Been Updated"]]);
+        $response->redirect($GLOBALS['collUrlMap'][4]);
       } else {
         throw new HttpException(500);
       }
@@ -79,12 +79,12 @@ trait KnowledgeController
   {
     self::validateQuery('id')->isNotNull()->isInt()->trim()->sanitize();
     if (!empty(self::validateResults())) {
-      $request->setFlash('knowledge', 'Brennen_465', self::validateResults());
-      $response->redirect('/members/knowledge');
+      $request->setFlash('knowledge', 'alert-danger', self::validateResults());
+      $response->redirect($GLOBALS['collUrlMap'][4]);
     } else {
       if (KnowledgeBase::destroy(['id' => $request->getQuery('id')])) {
-        $request->setFlash('knowledge', 'Ilona_537', [['msg' => "The Knowledge Has Been Deleted"]]);
-        $response->redirect('/members/knowledge');
+        $request->setFlash('knowledge', 'alert-info', [['msg' => "The Knowledge Has Been Deleted"]]);
+        $response->redirect($GLOBALS['collUrlMap'][4]);
       } else {
         throw new HttpException(500);
       }

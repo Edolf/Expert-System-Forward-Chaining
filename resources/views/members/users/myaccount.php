@@ -1,60 +1,60 @@
 <?php include VIEW_DIR . "/layouts/header.php"; ?>
-<div class="Avalyn_309">
+<div class="wrapper">
   <?php include VIEW_DIR . "/layouts/sidebar.php"; ?>
-  <div class="Karlee_636 Zephyr_231 Micaiah_457 Brylan_497">
-    <div class="Karlee_303 Tayler_170">
+  <div class="content-wrapper d-flex flex-column bg-background">
+    <div class="content mb-4">
       <?php include VIEW_DIR . "/layouts/topbar.php"; ?>
-      <div class="Aylin_367 Aren_140">
-        <div class="Calen_148 Jermani_171">
-          <div class="Leander_448">
-            <h3 class="Zianna_371">Profile</h3>
-            <h6 class="Tayler_170">Your personal information</h6>
+      <div class="container p-5">
+        <div class="row mb-5">
+          <div class="offset-md-1">
+            <h3 class="text-dark">Profile</h3>
+            <h6 class="mb-4">Your personal information</h6>
           </div>
-          <div class="Leander_448 Izzabella_317 Slate_295">
-            <h3 class="Zianna_371 Tayler_170">Profile Picture</h3>
-            <div style="background-image: url('<?= $user->image ? 'data:image/jpg/jpeg/png/bmp; base64,' . $user->image : '' ?>')" class="Hillary_Emmalyn_504 Scottlyn_277 Iyla_521 Nachman_169">
+          <div class="offset-md-1 col-md-3 pr-md-5">
+            <h3 class="text-dark mb-4">Profile Picture</h3>
+            <div class="user-profile w-100 img-thumbnail mb-3" style="background-image: url('<?= $user->image ? 'data:image/jpg/jpeg/png/bmp;base64,' . $user->image : '' ?>');">
             </div>
             <form id="pictUploadForm" method="POST" action="<?= LINK ?>/members/account/upload?_csrf=<?= $csrfToken ?>&_method=PUT" enctype="multipart/form-data">
-              <div class="Calen_148 Mariano_448 Preston_343">
-                <div class="Johan_218">
-                  <div class="Nallely_372 Mariano_448">
-                    <input type="file" name="userprofile" id="userprofile" multiple="" />
-                    <div class="Adelynn_682">
-                      <input type="text" class="<?= $flash->getFlash('upload')['class'] ?? '' ?> Adelynn_345 Simcha_314 Ulisses_424 Kerrington_563" placeholder="<?= $flash->getFlash('upload')['message'][0]['msg'] ?? 'Click Here to Change' ?>" value="<?= $flash->getFlash('upload')['message'][0]['msg'] ?? 'Click Here to Change' ?>" />
+              <div class="row input-field ai-center">
+                <div class="col-9">
+                  <div class="file-field input-field">
+                    <input type="file" name="userprofile" id="userprofile" multiple>
+                    <div class="file-path-wrapper">
+                      <input type="text" class="file-path validate text-theme text-truncate" class="<?= $flash->getFlash('upload')['class'] ?? ''  ?>" placeholder="<?= $flash->getFlash('upload')['message'][0]['msg'] ?? 'Click Here to Change' ?>" value="<?= $flash->getFlash('upload')['message'][0]['msg'] ?? 'Click Here to Change' ?>">
                     </div>
                   </div>
                 </div>
-                <div style="z-index: 3" class="Maliha_212">
-                  <button type="submit" class="Zakai_128 Zeppelin_413">
-                    <svg width="24" height="24" fill="currentColor" class="Isabella_429">
+                <div class="col-3" style="z-index: 3">
+                  <button type="submit" class="btn bg-primary">
+                    <svg class="text-light" width="24" height="24" fill="currentColor">
                       <use xlink:href="<?= ROOT ?>/assets/fonts/icons/all-icons.svg#upload" />
                     </svg>
                   </button>
                 </div>
               </div>
-              <div class="Faizan_466 Emmarose_194 Ammon_304">
+              <div class="text-center my-5 my-md-0">
                 <small><i>Image size: Max. 300 KB | Format: [.jpg .jpeg .png .bmp]</i></small>
               </div>
             </form>
           </div>
-          <div class="Leander_448 Ann_319">
-            <div class="Calen_148 Jermani_171">
-              <h3 class="Zianna_371 Tayler_170">Basic Information</h3>
-              <table class="Jedidiah_192 Eily_440">
+          <div class="offset-md-1 col-md-5">
+            <div class="row mb-5">
+              <h3 class="text-dark mb-4">Basic Information</h3>
+              <table class="table table-hover">
                 <tr>
                   <td scope="col">Full Name</td>
                   <td scope="col">
                     <strong><?= $user->name ?></strong>
-                    <form method="POST" id="newfullnameForm" onsubmit="changeForm({this:this,event:event,link:'<?= LINK ?>/members/account/name',method:'PUT'})" class="Jana_232">
-                      <div class="Calen_148 Mariano_448 Faizan_466 Raena_142">
-                        <div class="Raegyn_275 William_145">
-                          <div class="Mariano_448 Chrisette_199">
-                            <input id="newfullname" name="newfullname" value="<?= $user->name ?>" default="Null" type="text" data-length="30" class="William_145 Rishi_194 Zavian_198 Simcha_314 Amen_518" />
-                            <span data-error="" data-success="" class="Adeleine_465"></span>
+                    <form method="POST" id="newfullnameForm" class="d-none" onsubmit="changeForm({this:this,event:event,link:'<?= LINK ?>/members/account/name',method:'PUT'})">
+                      <div class="row input-field text-center m-0">
+                        <div class="col-10 p-0">
+                          <div class="input-field my-0">
+                            <input id="newfullname" name="newfullname" value="<?= $user->name ?>" default="Null" type="text" class="p-0 mt-0 mx-0 validate text-success" data-length="30">
+                            <span class="helper-text" data-error="" data-success=""></span>
                           </div>
                         </div>
-                        <div class="Kaleigh_211 William_145">
-                          <button data-toggle="modal" data-target="#confirmModal" type="submit" class="Olivia_315 Ulisses_424 Nana_Sam_274 William_145">
+                        <div class="col-2 p-0">
+                          <button data-toggle="modal" data-target="#confirmModal" type="submit" class="btn-flat text-theme loading p-0">
                             <svg width="24" height="24" fill="currentColor">
                               <use xlink:href="<?= ROOT ?>/assets/fonts/icons/all-icons.svg#check" />
                             </svg>
@@ -64,11 +64,11 @@
                     </form>
                   </td>
                   <td scope="col">
-                    <button type="button" onclick="noneBlock({
-                  this:this})" class="Olivia_315 Ulisses_424 William_145 Lily_328">Edit
+                    <button class="btn-flat text-theme p-0 p-static" type="button" onclick="noneBlock({
+                  this:this})">Edit
                     </button>
-                    <button type="button" onclick="noneBlock({
-                  this:this})" class="Olivia_315 Ulisses_424 William_145 Jana_232">
+                    <button type="button" class="btn-flat text-theme p-0 d-none" onclick="noneBlock({
+                  this:this})">
                       <svg width="24" height="24" fill="currentColor">
                         <use xlink:href="<?= ROOT ?>/assets/fonts/icons/all-icons.svg#x" />
                       </svg>
@@ -79,16 +79,16 @@
                   <td scope="col">Username</td>
                   <td scope="col">
                     <strong><?= $user->username != null ? $user->username : 'NULL' ?></strong>
-                    <form method="POST" id="newusernameForm" onsubmit="changeForm({this:this,event:event,link:'<?= LINK ?>/members/account/username',method:'PUT'})" class="Jana_232">
-                      <div class="Calen_148 Mariano_448 Faizan_466 Raena_142">
-                        <div class="Raegyn_275 William_145">
-                          <div class="Mariano_448 Chrisette_199">
-                            <input id="newusername" name="newusername" value="<?= $user->username ?>" type="text" data-length="30" class="William_145 Rishi_194 Zavian_198 Simcha_314 Amen_518" />
-                            <span data-error="" data-success="" class="Adeleine_465"></span>
+                    <form method="POST" id="newusernameForm" class="d-none" onsubmit="changeForm({this:this,event:event,link:'<?= LINK ?>/members/account/username',method:'PUT'})">
+                      <div class="row input-field text-center m-0">
+                        <div class="col-10 p-0">
+                          <div class="input-field my-0">
+                            <input id="newusername" name="newusername" value="<?= $user->username ?>" type="text" class="p-0 mt-0 mx-0 validate text-success" data-length="30">
+                            <span class="helper-text" data-error="" data-success=""></span>
                           </div>
                         </div>
-                        <div class="Kaleigh_211 William_145">
-                          <button data-toggle="modal" data-target="#confirmModal" type="submit" class="Olivia_315 Ulisses_424 Nana_Sam_274 William_145">
+                        <div class="col-2 p-0">
+                          <button data-toggle="modal" data-target="#confirmModal" type="submit" class="btn-flat text-theme loading p-0">
                             <svg width="24" height="24" fill="currentColor">
                               <use xlink:href="<?= ROOT ?>/assets/fonts/icons/all-icons.svg#check" />
                             </svg>
@@ -98,11 +98,11 @@
                     </form>
                   </td>
                   <td scope="col">
-                    <button type="button" onclick="noneBlock({
-                    this:this})" class="Olivia_315 Ulisses_424 William_145 Lily_328">Edit
+                    <button class="btn-flat text-theme p-0 p-static" type="button" onclick="noneBlock({
+                    this:this})">Edit
                     </button>
-                    <button type="button" onclick="noneBlock({
-                  this:this})" class="Olivia_315 Ulisses_424 William_145 Jana_232">
+                    <button type="button" class="btn-flat text-theme p-0 d-none" onclick="noneBlock({
+                  this:this})">
                       <svg width="24" height="24" fill="currentColor">
                         <use xlink:href="<?= ROOT ?>/assets/fonts/icons/all-icons.svg#x" />
                       </svg>
@@ -113,18 +113,18 @@
                   <td scope="col">E-mail</td>
                   <td scope="col">
                     <strong>
-                      <?= $user->email != null ? $user->email : 'NULL' ?><small class="<?= $user->role == 'unverified' ? 'Dariah_515' : 'Amen_518' ?> Aleyda_179"><?= $user->role == 'unverified' ? '(unverified)' : '(verified)' ?></small>
+                      <?= $user->email != null ? $user->email : 'NULL' ?><small class="ml-3" class="<?= $user->role == 'unverified' ? 'Dariah_515' : 'Amen_518' ?>"><?= $user->role == 'unverified' ? '(unverified)' : '(verified)' ?></small>
                     </strong>
-                    <form method="POST" id="newemailForm" onsubmit="changeForm({this:this,event:event,link:'<?= LINK ?>/members/account/email',method:'PUT'})" class="Jana_232">
-                      <div class="Calen_148 Mariano_448 Faizan_466 Raena_142">
-                        <div class="Raegyn_275 William_145">
-                          <div class="Mariano_448 Chrisette_199">
-                            <input id="newemail" name="newemail" value="<?= $user->email ?>" type="email" data-length="30" class="William_145 Rishi_194 Zavian_198 Simcha_314 Amen_518" />
-                            <span data-error="" data-success="" class="Adeleine_465"></span>
+                    <form method="POST" id="newemailForm" class="d-none" onsubmit="changeForm({this:this,event:event,link:'<?= LINK ?>/members/account/email',method:'PUT'})">
+                      <div class="row input-field text-center m-0">
+                        <div class="col-10 p-0">
+                          <div class="input-field my-0">
+                            <input id="newemail" name="newemail" value="<?= $user->email ?>" type="email" class="p-0 mt-0 mx-0 validate text-success" data-length="30">
+                            <span class="helper-text" data-error="" data-success=""></span>
                           </div>
                         </div>
-                        <div class="Kaleigh_211 William_145">
-                          <button data-toggle="modal" data-target="#confirmModal" type="submit" class="Olivia_315 Ulisses_424 Nana_Sam_274 William_145">
+                        <div class="col-2 p-0">
+                          <button data-toggle="modal" data-target="#confirmModal" type="submit" class="btn-flat text-theme loading p-0">
                             <svg width="24" height="24" fill="currentColor">
                               <use xlink:href="<?= ROOT ?>/assets/fonts/icons/all-icons.svg#check" />
                             </svg>
@@ -134,11 +134,11 @@
                     </form>
                   </td>
                   <td scope="col">
-                    <button data-name="email" data-value="<?= $user->email ?>" type="button" onclick="noneBlock({
-                    this:this})" class="Olivia_315 Ulisses_424 William_145 Lily_328">Edit
+                    <button data-name="email" data-value="<?= $user->email ?>" class="btn-flat text-theme p-0 p-static" type="button" onclick="noneBlock({
+                    this:this})">Edit
                     </button>
-                    <button type="button" onclick="noneBlock({
-                  this:this})" class="Olivia_315 Ulisses_424 William_145 Jana_232">
+                    <button type="button" class="btn-flat text-theme p-0 d-none" onclick="noneBlock({
+                  this:this})">
                       <svg width="24" height="24" fill="currentColor">
                         <use xlink:href="<?= ROOT ?>/assets/fonts/icons/all-icons.svg#x" />
                       </svg>
@@ -155,49 +155,49 @@
                     </strong>
                   </td>
                   <td scope="col">
-                    <button type="button" data-toggle="modal" data-target="#confirmPassModal" class="Olivia_315 Ulisses_424 Janeth_450 William_145 Lily_328">Edit
+                    <button class="btn-flat text-theme shadow-none p-0 p-static" type="button" data-toggle="modal" data-target="#confirmPassModal">Edit
                     </button>
                   </td>
                 </tr>
               </table>
             </div>
-            <div class="Calen_148">
-              <h3 class="Zianna_371 Jermani_171">Connected Accounts</h3>
-              <div class="Zarya_217 Nachman_169">
+            <div class="row">
+              <h3 class="text-dark mb-5">Connected Accounts</h3>
+              <div class="col-8 mb-3">
                 <h5><strong>Google+</strong></h5>
-                <small>You can log in to <span class="Ariana_Dora_191"><?= APP_NAME ?></span> with Google+</small>
+                <small>You can log in to <span class="brand"><?= APP_NAME ?></span> with Google+</small>
               </div>
-              <div class="Mazie_213 Nachman_169">
+              <div class="col-4 mb-3">
                 <?php if (json_decode($user->other, true)['googleId'] != null) { ?>
                   <form method="POST" id="dcGplusForm">
-                    <button type="button" class="Olivia_315 Faizan_466 Ever_450">(disconnect)</button>
+                    <button type="button" class="btn-flat text-center text-danger">(disconnect)</button>
                   </form>
                 <?php } else { ?>
                   <!-- Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a> -->
-                  <a href="<?= LINK ?>/auth/gplus" class="Olivia_315 Cathryn_314 Jayden_370 Zianna_371 Zephyr_231 Preston_343 Anyiah_194 Karsyn_610">
+                  <a href="<?= LINK ?>/auth/gplus" class="btn-flat bg-white shadow-sm text-dark d-flex ai-center px-3 text-decor-none">
                     <small><b>Connect to</b></small>
-                    <svg width="16" height="16" fill="currentColor" class="Gotham_178">
+                    <svg class="ml-2" width="16" height="16" fill="currentColor">
                       <use xlink:href="<?= ROOT ?>/assets/svg/google.svg#Layer_1" />
                     </svg>
                   </a>
                 <?php } ?>
               </div>
-              <hr class="Williams_300" />
+              <hr class="bb-light">
             </div>
           </div>
         </div>
-        <div class="Calen_148">
-          <div class="Leander_448">
-            <h3 class="Zianna_371">Danger zone</h3>
-            <h6 class="Jermani_171">Irreversible and destructive actions</h6>
+        <div class="row ">
+          <div class="offset-md-1">
+            <h3 class="text-dark">Danger zone</h3>
+            <h6 class="mb-5">Irreversible and destructive actions</h6>
           </div>
-          <div class="Leander_448 Mayer_323">
-            <div class="Zaydee_150 Brantly_247 Linkin_321 Nachman_169">
-              <div class="Gil_399 Hutton_326 Isabella_429">Delete user</div>
-              <div class="Rory_340">
-                <h5 class="Brileigh_396">Be Careful</h5>
-                <p class="Harmonie_363">Once you delete your user, there is no going back. Please be certain.</p>
-                <button data-toggle="modal" data-target="#dropAccountModal" class="Zakai_128 Hutton_326">Delete
+          <div class="offset-md-1 col-md-9">
+            <div class="card bg-card bb-danger mb-3">
+              <div class="card-header bg-danger text-light">Delete user</div>
+              <div class="card-body">
+                <h5 class="card-title">Be Careful</h5>
+                <p class="card-text">Once you delete your user, there is no going back. Please be certain.</p>
+                <button class="btn bg-danger" data-toggle="modal" data-target="#dropAccountModal">Delete
                   User</button>
               </div>
             </div>

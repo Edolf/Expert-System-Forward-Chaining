@@ -24,11 +24,11 @@ class ConsultationController extends Controller
   {
     $this->setMiddleware(new AuthMiddleware());
 
-    Application::$app->locals['expertsystems'] = ExpertSystem::class;
-    Application::$app->locals['diseases'] = Disease::class;
-    Application::$app->locals['symptoms'] = Symptom::class;
-    Application::$app->locals['knowledgebases'] = KnowledgeBase::class;
-    Application::$app->locals['rule'] = Rule::class;
+    $GLOBALS['locals']['expertsystems'] = ExpertSystem::class;
+    $GLOBALS['locals']['diseases'] = Disease::class;
+    $GLOBALS['locals']['symptoms'] = Symptom::class;
+    $GLOBALS['locals']['knowledgebases'] = KnowledgeBase::class;
+    $GLOBALS['locals']['rule'] = Rule::class;
   }
 
   public function selectConsul(Request $request, Response $response)

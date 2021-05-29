@@ -1,45 +1,45 @@
 <?php include VIEW_DIR . "/layouts/header.php"; ?>
-<div id="app" class="Brylan_497">
+<div id="app" class="bg-background">
   <?php include VIEW_DIR . "/layouts/navbar.php"; ?>
-  <div class="Karlee_636 Zephyr_231 Micaiah_457">
-    <div class="Karlee_303 Annaleah_193 Brylan_497">
-      <div class="Aylin_367">
+  <div class="content-wrapper d-flex flex-column">
+    <div class="content my-4 bg-background">
+      <div class="container">
       </div>
     </div>
 
-    <div class="Karlee_636 Zephyr_231 Micaiah_457">
-      <div class="Karlee_303 Tayler_170 Jewels_189 Brantly_247">
-        <div class="Yovani_551">
-          <div class="Calen_148 Aren_140">
-            <div class="Alisa_321 Jermani_171">
-              <h1 class="Mykel_383 Ariana_Dora_191">Lorem Ipsum</h1>
-              <h4 class="Tayler_170">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil totam repudiandae sunt. Quo unde
+    <div class="content-wrapper d-flex flex-column">
+      <div class="content mb-4 mt-5 bg-card">
+        <div class="container-xxl">
+          <div class="row p-5">
+            <div class="col-md-7 mb-5">
+              <h1 class="display-2 brand">Lorem Ipsum</h1>
+              <h4 class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil totam repudiandae sunt. Quo unde
                 iste
                 voluptates vero earum nesciunt autem laboriosam voluptatem a voluptatibus? Nobis fuga quia quidem. Ea, autem.
               </h4>
               <?php if ($user) : ?>
-                <a href="<?= LINK ?>/consultation" style="max-width: fit-content" class="Zephyr_231 Preston_343 Kepler_347 Zeppelin_413 Lamonte_490 Isabella_429">
-                  <h4 class="William_145 Raena_142"><strong class="Dariah_515">Start Consultation</strong></h4>
+                <a href="<?= LINK ?>/consultation" class="d-flex ai-center btn-large bg-primary rounded-pill text-light" style="max-width: fit-content;">
+                  <h4 class="p-0 m-0"><strong class="text-warning">Start Consultation</strong></h4>
                 </a>
               <?php else : ?>
-                <button type="button" data-toggle="modal" data-target="#authModal" class="Kepler_347 Zeppelin_413 Lamonte_490 Isabella_429">
-                  <h4 class="William_145 Raena_142"><strong class="Dariah_515">Get Started</strong></h4>
+                <button type="button" class="btn-large bg-primary rounded-pill text-light" data-toggle="modal" data-target="#authModal">
+                  <h4 class="p-0 m-0"><strong class="text-warning">Get Started</strong></h4>
                 </button>
               <?php endif; ?>
             </div>
-            <div class="Ann_319">
+            <div class="col-md-5">
               <?php include VIEW_DIR . "/nurse.php"; ?>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="Karlee_303 Annaleah_193 Brylan_497">
-        <div class="Yovani_551">
-          <div class="Calen_148 Aren_140">
-            <div class="Sufyan_297 Montana_404 Aren_140 Faizan_466">
-              <h1 class="Jenelle_387 Ariana_Dora_191">About Us</h1>
-              <h4 class="Tayler_170">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil totam repudiandae sunt. Quo unde
+      <div class="content my-4 bg-background">
+        <div class="container-xxl">
+          <div class="row p-5">
+            <div class="bg-panel rounded-lg p-5 text-center">
+              <h1 class="display-6 brand">About Us</h1>
+              <h4 class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil totam repudiandae sunt. Quo unde
                 iste
                 voluptates vero earum nesciunt autem laboriosam voluptatem a voluptatibus? Nobis fuga quia quidem. Ea, autem.
               </h4>
@@ -52,7 +52,7 @@
 
   <?php include VIEW_DIR . "/layouts/footbar.php"; ?>
 </div>
-
+</div>
 <?php include VIEW_DIR . "/auths/authmodal.php"; ?>
 <?php include VIEW_DIR . "/auths/forgot/forgotmodal.php"; ?>
 <?php include VIEW_DIR . "/auths/verify/verifymodal.php"; ?>

@@ -1,22 +1,22 @@
-<div id="addCollapseMenuModal" tabindex="-1" aria-labelledby="addCollapseMenuModalLabel" aria-hidden="true" class="Judd_197 Avery_140 Garrison_477">
-  <div class="Merry_453">
-    <div class="Kayce_528 Dezmond_357 Aylan_418 Alexei_424 Brantly_247">
-      <div class="Susana_446">
-        <h5 id="addCollapseMenuModalLabel" class="Malayna_443">Edit Sidemenu</h5>
+<div class="modal fade modal-static" id="addCollapseMenuModal" tabindex="-1" aria-labelledby="addCollapseMenuModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content shadow-lg bl-primary br-primary bg-card">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addCollapseMenuModalLabel">Add New Sidemenu</h5>
       </div>
-      <form method="POST" id="newSubMenuform" onsubmit="sulaiForm({this:this,event:event,link:'<?= LINK ?>/members/sidemenu/submenu?_csrf=<?= $csrfToken ?>',method:'POST'})">
-        <div class="Daiana_395">
+      <form method="POST" id="newSubMenuform" onsubmit="sulaiForm({this:this,event:event,link:'<?= LINK ?><?= $collUrlMap[3] ?>?_csrf=<?= $csrfToken ?>',method:'POST'})">
+        <div class="modal-body">
 
-          <div class="Mariano_448">
-            <input type="text" id="title" name="title" class="Amen_518 Simcha_314" />
+          <div class="input-field">
+            <input type="text" id="title" name="title" class="text-success validate">
             <label for="title">Title</label>
-            <span data-error="" data-success="" class="Adeleine_465"></span>
+            <span class="helper-text" data-error="" data-success=""></span>
           </div>
 
-          <div class="Mariano_448">
-            <div class="Calen_148">
-              <div class="Finlay_320">
-                <div class="Mariano_448">
+          <div class="input-field">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="input-field">
                   <select name="subMenuId" id="subMenuId">
                     <?php foreach ($submenus as $key => $submenu) : ?>
                       <option value="<?= $submenu['id'] ?>"><?= $submenu['title'] ?></option>
@@ -24,9 +24,9 @@
                   </select>
                 </div>
               </div>
-              <div class="Finlay_320">
-                <div class="Mariano_448">
-                  <select multiple="" name="role[]" id="role">
+              <div class="col-md-6">
+                <div class="input-field">
+                  <select multiple name="role[]" id="role">
                     <option value="admin">Admin</option>
                     <option value="doctor">Doctor</option>
                     <option value="member">Member</option>
@@ -36,26 +36,26 @@
             </div>
           </div>
 
-          <div class="Mariano_448">
-            <span style="bottom: 1rem" class="Harriet_412"><b><?= LINK ?></b></span>
-            <div class="Mariano_448 Miri_243 Aliza_216">
-              <input type="text" name="url" id="url" class="Amen_518 Simcha_314" />
-              <span data-error="" data-success="" class="Adeleine_465"></span>
+          <div class="input-field">
+            <span class="p-relative" style="bottom: 1rem;"><b><?= LINK ?></b></span>
+            <div class="input-field inline w-50">
+              <input type="text" class="text-success validate" name="url" id="url">
+              <span class="helper-text" data-error="" data-success=""></span>
             </div>
           </div>
 
-          <div class="Maizey_484 Zelie_201">
-            <div class="Calen_148 Scottlyn_277">
-              <div class="Ximena_214">
+          <div class="modal-footer px-0">
+            <div class="row w-100">
+              <div class="col-5">
                 <label>
-                  <input type="checkbox" name="isActive" id="isSubMenuActive" checked="" />
-                  <span class="Ulisses_424 Virat_488"><b>Is Active ?</b></span>
+                  <input type="checkbox" name="isActive" id="isSubMenuActive" checked />
+                  <span class="text-theme text-nowrap"><b>Is Active ?</b></span>
                 </label>
               </div>
-              <div class="Gaston_216 Zephyr_231 Ruslan_216">
-                <button type="button" data-dismiss="modal" class="Zakai_128 Kepler_361">Close</button>
-                <button type="submit" class="Zakai_128 Kepler_361 Pascual_265 Aleyda_179">
-                  <span style="width: 1rem; height: 1rem" role="status" class="Zayne_577 Annsley_184 Jana_232"></span>
+              <div class="col-7 d-flex jc-end">
+                <button type="button" class="btn btn-small" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-small bg-info ml-3">
+                  <span class="spinner-border mr-2 d-none" style="width: 1rem; height: 1rem;" role="status"></span>
                   <span>Add</span>
                 </button>
               </div>
