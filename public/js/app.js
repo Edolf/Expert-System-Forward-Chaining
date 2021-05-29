@@ -1,1 +1,2751 @@
-!function(e){e.Package?Sulai={}:e.Sulai={}}(window),"function"==typeof define&&define.amd?define("Sulai",[],(function(){return Sulai})):"undefined"==typeof exports||exports.nodeType||("undefined"!=typeof module&&!module.nodeType&&module.exports&&(exports=module.exports=Sulai),exports.default=Sulai),Element.prototype.ready=function(e){"loading"!=document.readyState?e():document.addEventListener("DOMContentLoaded",e)},Element.prototype.off=function(e,t){return this.removeEventListener(e,t)},Element.prototype.is=function(e){return!!e&&!(this!==e&&this.tagName.toLowerCase()!==e&&(Sulai.isElement(e)||!this.matches(e)))},Element.prototype.siblings=function(e){return this.parentNode.childrens(e).filter((function(e){return e!==this}))},Element.prototype.childrens=function(e){let t=[];return e.split(", ").forEach(e=>{Array.prototype.filter.call(this.children,i=>{i.is(e)&&t.push(i)})}),t},Array.prototype.childrens=function(e){let t=[];return e.split(", ").forEach(e=>{this.forEach(i=>{i.querySelectorAll(""+e).forEach(i=>{i.is(e)&&t.push(i)})})}),t},Element.prototype.index=function(e){if(!this)return-1;let t=this,i=0;do{if(t.is(e))return i;i++}while(t=t.previousElementSibling);return i},Array.prototype.index=function(e){if(!this)return-1;let t=0;return this.filter(i=>{t=0;do{if(i.is(e))return t;t++}while(i=i.previousElementSibling)}),t},Element.prototype.trigger=function(e,t){if(t){if(window.CustomEvent&&"function"==typeof window.CustomEvent)var i=new CustomEvent(e,{detail:t});else(i=document.createEvent("CustomEvent")).initCustomEvent(e,!0,!0,t);return this.dispatchEvent(i)}return(i=document.createEvent("HTMLEvents")).initEvent("change",!0,!1),this.dispatchEvent(i)},Element.prototype.filter=function(e){return Array.prototype.filter.call(this,e)},Element.prototype.innerHeight=function(){return parseFloat(window.getComputedStyle(this,null).getPropertyValue("height").replace("px",""))},Element.prototype.innerWidth=function(){return parseFloat(window.getComputedStyle(this,null).getPropertyValue("width").replace("px",""))},Element.prototype.fullHeight=function(){let e,t,i=this;return document.all?(e=parseInt(i.currentStyle.height),t=parseInt(i.currentStyle.marginTop,10)+parseInt(i.currentStyle.marginBottom,10)):(e=parseInt(document.defaultView.getComputedStyle(i,"").getPropertyValue("height")),t=parseInt(document.defaultView.getComputedStyle(i,"").getPropertyValue("margin-top"))+parseInt(document.defaultView.getComputedStyle(i,"").getPropertyValue("margin-bottom"))),e+t},Element.prototype.anime=function(e,t,i,n){return e.target=this,Sulai.animate.bind(e,t,i,n)()};const TRANSITION="Leevi_443",FADE="Avery_140",SHOW="Tillman_189",COLLAPSE="Abriella_323",COLLAPSING="Ramir_412",DISABLED="Niyah_296",ACTIVE="Elyzabeth_240",ALERT="Azura_208",MODAL_OPEN="Judd_399",MODAL="Judd_197",MODAL_BACKDROP="Zyir_535",CAROUSEL="Luz_334",CAROUSEL_ITEM="Glendon_533",CAROUSEL_ITEM_NEXT="Hutch_740",CAROUSEL_ITEM_PREV="Daniela_738",CAROUSEL_ITEM_LEFT="Breckyn_720",CAROUSEL_ITEM_RIGHT="Breyden_775",CAROUSEL_CONTROL_PREV="Draya_880",CAROUSEL_CONTROL_NEXT="Ysabella_882",SPINNER_BORDER="Zayne_577",D_FLEX="Zephyr_231",D_NONE="Jana_232",SIDEBAR="Weslyn_270",TEXT_DECOR_NONE="Karsyn_610",SCROLL_TO_TOP="Analise_557",DROPDOWN_CONTENT="Kepler_680",SIDEBARTOGGLE="Sumayyah_489",TOGGLED="Aliana_282",COLLAPSED="Cayson_355",SIDEBAR_TOGGLED="Sloan_576",BROWSER_DEFAULT="Regan_617",SULAI_TEXTAREA="Justus_576",VALID="Tatum_200",INVALID="Deniz_283",VALIDATE="Simcha_314",SELECT_WRAPPER="Zyair_581",SELECT_DROPDOWN="Zyair_621",HELPER_TEXT="Adeleine_465",INPUT_FIELD="Mariano_448",PREFIX="Atalia_258",HIDDENDIV="Miarose_347",TABBED="Alexandro_214",CARET="Dmari_199",OPTGROUP="Efren_368",KEYBOARD_FOCUSED="Nihal_634",SELECTED="Gabby_313",FILE_FIELD="Nallely_372",FILE_PATH="Adelynn_345",DROPDOWN_TRIGGER="Echo_Brodie_673",TABS="Amirah_Nanette_166",TAB="Jedidiah_115",INDICATOR="Becky_Jenessa_361",SEARCH_FIELD="Scarlet_Christabel_450",SEARCH_HEADING="Dawn_Dee_522",POPUP_LIST="Rosetta_Kerri_448",SEARCH_HIDE="Waverley_Anne_412";Sulai.version="1.0.1",Sulai.keys={TAB:9,ENTER:13,ESC:27,ARROW_UP:38,ARROW_DOWN:40},Sulai.tabPressed=!1,Sulai.keyDown=!1;let docHandleKeydown=function(e){Sulai.keyDown=!0,e.which!==Sulai.keys.TAB&&e.which!==Sulai.keys.ARROW_DOWN&&e.which!==Sulai.keys.ARROW_UP||(Sulai.tabPressed=!0)},docHandleKeyup=function(e){Sulai.keyDown=!1,e.which!==Sulai.keys.TAB&&e.which!==Sulai.keys.ARROW_DOWN&&e.which!==Sulai.keys.ARROW_UP||(Sulai.tabPressed=!1)},docHandleFocus=function(e){Sulai.keyDown&&document.body.classList.add("Nihal_634")},docHandleBlur=function(e){document.body.classList.remove("Nihal_634")};document.addEventListener("keydown",docHandleKeydown,!0),document.addEventListener("keyup",docHandleKeyup,!0),document.addEventListener("focus",docHandleFocus,!0),document.addEventListener("blur",docHandleBlur,!0),Sulai.AutoInit=function(e){let t=e||document.body,i={Carousel:t.querySelectorAll(".Luz_334:not(.no-autoinit)"),Dropdown:t.querySelectorAll(".Echo_Brodie_673:not(.no-autoinit)"),FormSelect:t.querySelectorAll("select:not(.no-autoinit)"),Tabs:t.querySelectorAll(`.${TABS}:not(.no-autoinit)`)};for(let e in i){Sulai[e].init(i[e])}},Sulai.objectSelectorString=function(e){return((e.tagName||"")+(e.id||"")+(e.class||"")).replace(/\s/g,"")},Sulai.guid=function(){function e(){return Math.floor(65536*(1+Math.random())).toString(16).substring(1)}return function(){return e()+e()+"-"+e()+"-"+e()+"-"+e()+"-"+e()+e()+e()}}(),Sulai.escapeHash=function(e){return e.replace(/(:|\.|\[|\]|,|=|\/)/g,"\\$1")},Sulai.checkWithinContainer=function(e,t,i){let n={top:!1,right:!1,bottom:!1,left:!1},s=e.getBoundingClientRect(),o=e===document.body?Math.max(s.bottom,window.innerHeight):s.bottom,l=e.scrollLeft,a=e.scrollTop,r=t.left-l,d=t.top-a;return(r<s.left+i||r<i)&&(n.left=!0),(r+t.width>s.right-i||r+t.width>window.innerWidth-i)&&(n.right=!0),(d<s.top+i||d<i)&&(n.top=!0),(d+t.height>o-i||d+t.height>window.innerHeight-i)&&(n.bottom=!0),n},Sulai.checkPossibleAlignments=function(e,t,i,n){let s={top:!0,right:!0,bottom:!0,left:!0,spaceOnTop:null,spaceOnRight:null,spaceOnBottom:null,spaceOnLeft:null},o="visible"===getComputedStyle(t).overflow,l=t.getBoundingClientRect(),a=Math.min(l.height,window.innerHeight),r=Math.min(l.width,window.innerWidth),d=e.getBoundingClientRect(),u=t.scrollLeft,c=t.scrollTop,h=i.left-u,p=i.top-c,m=i.top+d.height-c;return s.spaceOnRight=o?window.innerWidth-(d.left+i.width):r-(h+i.width),s.spaceOnRight<0&&(s.left=!1),s.spaceOnLeft=o?d.right-i.width:h-i.width+d.width,s.spaceOnLeft<0&&(s.right=!1),s.spaceOnBottom=o?window.innerHeight-(d.top+i.height+n):a-(p+i.height+n),s.spaceOnBottom<0&&(s.top=!1),s.spaceOnTop=o?d.bottom-(i.height+n):m-(i.height-n),s.spaceOnTop<0&&(s.bottom=!1),s},Sulai.getOverflowParent=function(e){return null==e?null:e===document.body||"visible"!==getComputedStyle(e).overflow?e:Sulai.getOverflowParent(e.parentElement)},Sulai.getIdFromTrigger=function(e){let t=e.getAttribute("data-target");return t||(t=e.getAttribute("href"),t=t?t.slice(1):""),t},Sulai.getDocumentScrollTop=function(){return window.pageYOffset||document.documentElement.scrollTop||document.body.scrollTop||0},Sulai.getDocumentScrollLeft=function(){return window.pageXOffset||document.documentElement.scrollLeft||document.body.scrollLeft||0};let getTime=Date.now||function(){return(new Date).getTime()};async function getCookie(e){const t=("; "+document.cookie).split(`; ${e}=`);if(2===t.length)return t.pop().split(";").shift()}async function noneBlock(e){e.this.nextElementSibling&&e.this.nextElementSibling.classList.toggle("Jana_232"),e.this.previousElementSibling&&e.this.previousElementSibling.classList.toggle("Jana_232"),e.this.classList.toggle("Jana_232"),e.this.parentNode.previousElementSibling.children[0].classList.toggle("Jana_232"),e.this.parentNode.previousElementSibling.children[1].classList.toggle("Jana_232")}async function changeForm(e){e.event.preventDefault();const t=new FormData(e.this);document.querySelector("#changeForm").onsubmit=async function(i){i.preventDefault(),await formFetch({link:`${e.link}?${Array.from(t.keys()).toString()}=${Array.from(t.values()).toString()}`,method:e.method,this:this}).then(e=>{if(!e.redirected&&![201,301,302,303,307,308].includes(e.status))return e.json();this.querySelector(".Zayne_577").classList.toggle("Jana_232"),window.location.replace(e.url)}).then(t=>{Object.keys(t).forEach(i=>{t[i].forEach(t=>{if("param"!=t.location)if("yourpassword"!=t.param){modalHide(document.querySelector("#confirmModal"));const i=e.this.querySelector("#"+t.param),n=i.nextElementSibling;i.classList.add("Deniz_283"),n.dataset.error=t.msg}else{const e=this.querySelector("#"+t.param),i=e.nextElementSibling.nextElementSibling;e.classList.add("Deniz_283"),i.dataset.error=t.msg}})})}).catch(e=>{window.location.replace(window.location.href)})}}async function verifyCode(e){if(e.value.length==e.maxLength){let t=e.nextElementSibling;null!=t&&t.focus()}else{let t=e.previousElementSibling;null!=t&&t.focus()}}async function verifyForm(e){e.event.preventDefault(),e.this.querySelector(".Zayne_577").classList.toggle("Jana_232");let t="";e.this.querySelectorAll("#verify input").forEach(e=>{t+=e.value});const i=new FormData(e.this);i.set("verify",t.toUpperCase()),fetch(e.link,{credentials:"same-origin",method:e.method,headers:{"CSRF-Token":document.querySelector('meta[name="csrf-token"]').getAttribute("content")},body:i}).then(t=>{if(!t.redirected)return t.json();e.this.querySelector(".Zayne_577").classList.toggle("Jana_232"),e.this.querySelector(".Mariano_448").innerHTML="<strong>Your email has been verified</strong>",setTimeout((async function(){window.location.replace(t.url)}),5e3)}).then(t=>{e.this.querySelector(".Zayne_577").classList.toggle("Jana_232"),Object.keys(t).forEach(i=>{t[i].forEach(t=>{e.this.querySelectorAll("#verify input").forEach(e=>{e.classList.add("Deniz_283")}),e.this.querySelector(".Adeleine_465").dataset.error=t.msg})})})}async function forgotForm(e){e.event.preventDefault(),await formFetch(e).then(t=>{if(200!=t.status)return t.json();e.this.querySelector(".Zayne_577").classList.toggle("Jana_232"),e.this.querySelector(".Mariano_448").innerHTML="<strong>Request has been send</strong>"}).then(t=>{setFormError(e,t)})}async function setFormError(e,t){e.this.querySelector(".Zayne_577").classList.toggle("Jana_232"),Object.keys(t).forEach(i=>{t[i].forEach(t=>{if("param"!=t.location&&"query"!=t.location){const i=e.this.querySelector("#"+t.param),n=i.nextElementSibling.nextElementSibling;i.classList.add("Deniz_283"),n.dataset.error=t.msg}})})}async function sulaiForm(e){e.event.preventDefault(),await formFetch(e).then(t=>{if(!t.redirected&&![201,301,302,303,307,308].includes(t.status))return t.json();e.this.querySelector(".Zayne_577").classList.toggle("Jana_232"),window.location.replace(t.url)}).then(t=>{setFormError(e,t)}).catch(e=>{window.location.replace(window.location.href)})}async function DEBUG(e){e.event.preventDefault(),await formFetch(e).then(t=>(e.this.querySelector(".Zayne_577")&&e.this.querySelector(".Zayne_577").classList.toggle("Jana_232"),t.text())).then(e=>{}).catch(e=>{})}async function formFetch(e){return await fetch(e.link,{method:e.method,headers:{"CSRF-Token":document.querySelector('meta[name="csrf-token"]').getAttribute("content")},body:new FormData(e.this)}).then(e=>e)}function searchEngine(e){let t=document.getElementById("search-input"),i="",n=[],s=document.querySelector(".Dawn_Dee_522");""===t.value?searchResults.forEach((function(e){s.textContent="Most Visited",!0===e.frequent&&n.push(e)})):(s.textContent="Search Results",searchResults.forEach((function(e){e.title.toUpperCase().includes(t.value.toUpperCase())&&n.push(e)}))),n.length>0?(n.forEach((function(e){i+=`\n      <li><a class="Karsyn_610" href="${e.link}">${boldString(e.title,t.value)}</a></li>`})),document.querySelector("."+POPUP_LIST).innerHTML=i):(i="<li>There are no suggestions for your query.</li>",document.querySelector("."+POPUP_LIST).innerHTML=i)}Sulai.throttle=function(e,t,i){let n,s,o,l=null,a=0;i||(i={});let r=function(){a=!1===i.leading?0:getTime(),l=null,o=e.apply(n,s),n=s=null};return function(){let d=getTime();a||!1!==i.leading||(a=d);let u=t-(d-a);return n=this,s=arguments,u<=0?(clearTimeout(l),l=null,a=d,o=e.apply(n,s),n=s=null):l||!1===i.trailing||(l=setTimeout(r,u)),o}},Sulai.getTransitionDurationFromElement=function(e){if(!e)return 0;let{transitionDuration:t,transitionDelay:i}=window.getComputedStyle(e);const n=parseFloat(t),s=parseFloat(i);return n||s?(t=t.split(",")[0],i=i.split(",")[0],1e3*(parseFloat(t)+parseFloat(i))):0},Sulai.deepExtend=function(e){e=e||{};for(let t=1;t<arguments.length;t++){let i=arguments[t];if(i)for(let t in i)i.hasOwnProperty(t)&&("object"==typeof i[t]?i[t]instanceof Array==1?e[t]=i[t].slice(0):e[t]=Sulai.deepExtend(e[t],i[t]):e[t]=i[t])}return e},Sulai.stringToElement=function(e){var t=document.createElement("div");return t.innerHTML=e,t.firstChild},Sulai.isNode=function(e){return"object"==typeof Node?e instanceof Node:e&&"object"==typeof e&&"number"==typeof e.nodeType&&"string"==typeof e.nodeName},Sulai.isElement=function(e){return"object"==typeof HTMLElement?e instanceof HTMLElement:e&&"object"==typeof e&&null!==e&&1===e.nodeType&&"string"==typeof e.nodeName},Sulai.animate=function(e,t,i){if(null==this.currentStep&&(this.currentStep=0),null==this.frameRate&&(this.frameRate=.06),this.currentStep++,Object.keys(this).forEach(i=>{if("currentStep"!=i&&"frameRate"!=i&&"target"!=i){let n=[];Object.keys(this[i]).forEach((s,o)=>{if("object"==typeof this[i][s]){let o=s;for(;o.includes("??");)o=o.replace("??",Sulai[t](this.currentStep,this[i][s][0],this[i][s][1]-this[i][s][0],this.frameRate*e));n.push(o)}}),n.length||n.push(Sulai[t](this.currentStep,this[i][0],this[i][1]-this[i][0],this.frameRate*e)),this.target.style[i]=n.join(" ")}}),this.currentStep>=this.frameRate*e)return"function"==typeof i?i(this.target):void 0;requestAnimationFrame(Sulai.animate.bind(this,e,t,i))},Sulai.easeInQuad=function(e,t,i,n,s){return n*(t/=s)*t+i},Sulai.easeOutQuad=function(e,t,i,n){return-i*(e/=n)*(e-2)+t},Sulai.easeInOutQuad=function(e,t,i,n){return(e/=n/2)<1?i/2*e*e+t:-i/2*(--e*(e-2)-1)+t},Sulai.easeInCubic=function(e,t,i,n){return i*(e/=n)*e*e+t},Sulai.easeOutCubic=function(e,t,i,n){return i*((e=e/n-1)*e*e+1)+t},Sulai.easeInOut=function(e,t,i,n){return(e/=n/2)<1?i/2*e*e*e+t:i/2*((e-=2)*e*e+2)+t},Sulai.easeInQuart=function(e,t,i,n){return i*(e/=n)*e*e*e+t},Sulai.easeOutQuart=function(e,t,i,n){return-i*((e=e/n-1)*e*e*e-1)+t},Sulai.easeInOutQuart=function(e,t,i,n){return(e/=n/2)<1?i/2*e*e*e*e+t:-i/2*((e-=2)*e*e*e-2)+t},Sulai.easeInQuint=function(e,t,i,n){return i*(e/=n)*e*e*e*e+t},Sulai.easeOutQuint=function(e,t,i,n){return i*((e=e/n-1)*e*e*e*e+1)+t},Sulai.easeInOutQuint=function(e,t,i,n){return(e/=n/2)<1?i/2*e*e*e*e*e+t:i/2*((e-=2)*e*e*e*e+2)+t},Sulai.easeInSine=function(e,t,i,n){return-i*Math.cos(e/n*(Math.PI/2))+i+t},Sulai.easeOutSine=function(e,t,i,n){return i*Math.sin(e/n*(Math.PI/2))+t},Sulai.easeInOutSine=function(e,t,i,n){return-i/2*(Math.cos(Math.PI*e/n)-1)+t},Sulai.easeInExpo=function(e,t,i,n){return 0==e?t:i*Math.pow(2,10*(e/n-1))+t},Sulai.easeOutExpo=function(e,t,i,n){return e==n?t+i:i*(1-Math.pow(2,-10*e/n))+t},Sulai.easeInOutExpo=function(e,t,i,n){return 0==e?t:e==n?t+i:(e/=n/2)<1?i/2*Math.pow(2,10*(e-1))+t:i/2*(2-Math.pow(2,-10*--e))+t},Sulai.easeInCirc=function(e,t,i,n){return-i*(Math.sqrt(1-(e/=n)*e)-1)+t},Sulai.easeOutCirc=function(e,t,i,n){return i*Math.sqrt(1-(e=e/n-1)*e)+t},Sulai.easeInOutCirc=function(e,t,i,n){return(e/=n/2)<1?-i/2*(Math.sqrt(1-e*e)-1)+t:i/2*(Math.sqrt(1-(e-=2)*e)+1)+t},Sulai.easeInElastic=function(e,t,i,n){var s=1.70158,o=0,l=i;if(0==e)return t;if(1==(e/=n))return t+i;if(o||(o=.3*n),l<Math.abs(i)){l=i;s=o/4}else s=o/(2*Math.PI)*Math.asin(i/l);return-l*Math.pow(2,10*(e-=1))*Math.sin((e*n-s)*(2*Math.PI)/o)+t},Sulai.easeOutElastic=function(e,t,i,n){var s=1.70158,o=0,l=i;if(0==e)return t;if(1==(e/=n))return t+i;if(o||(o=.3*n),l<Math.abs(i)){l=i;s=o/4}else s=o/(2*Math.PI)*Math.asin(i/l);return l*Math.pow(2,-10*e)*Math.sin((e*n-s)*(2*Math.PI)/o)+i+t},Sulai.easeInOutElastic=function(e,t,i,n){var s=1.70158,o=0,l=i;if(0==e)return t;if(2==(e/=n/2))return t+i;if(o||(o=n*(.3*1.5)),l<Math.abs(i)){l=i;s=o/4}else s=o/(2*Math.PI)*Math.asin(i/l);return e<1?l*Math.pow(2,10*(e-=1))*Math.sin((e*n-s)*(2*Math.PI)/o)*-.5+t:l*Math.pow(2,-10*(e-=1))*Math.sin((e*n-s)*(2*Math.PI)/o)*.5+i+t},Sulai.easeInBack=function(e,t,i,n,s){return null==s&&(s=1.70158),i*(e/=n)*e*((s+1)*e-s)+t},Sulai.easeOutBack=function(e,t,i,n,s){return null==s&&(s=1.70158),i*((e=e/n-1)*e*((s+1)*e+s)+1)+t},Sulai.easeInOutBack=function(e,t,i,n,s){return null==s&&(s=1.70158),(e/=n/2)<1?i/2*(e*e*((1+(s*=1.525))*e-s))+t:i/2*((e-=2)*e*((1+(s*=1.525))*e+s)+2)+t},Sulai.easeInBounce=function(e,t,i,n,s){return n-easeOutBounce(s-t,0,n,s)+i},Sulai.easeOutBounce=function(e,t,i,n){return(e/=n)<1/2.75?i*(7.5625*e*e)+t:e<2/2.75?i*(7.5625*(e-=1.5/2.75)*e+.75)+t:e<2.5/2.75?i*(7.5625*(e-=2.25/2.75)*e+.9375)+t:i*(7.5625*(e-=2.625/2.75)*e+.984375)+t},Sulai.easeInOutBounce=function(e,t,i,n){return e<n/2?.5*easeInBounce(2*e,0,i,n)+t:.5*easeOutBounce(2*e-n,0,i,n)+.5*i+t},document.querySelector("#switchTheme").addEventListener("change",(function(e){this.checked?(document.documentElement.classList.add("Leevi_443"),setTimeout(()=>{document.documentElement.classList.remove("Leevi_443")},Sulai.getTransitionDurationFromElement(document.documentElement)),document.documentElement.setAttribute("data-theme","dark"),localStorage.setItem("theme","dark")):(document.documentElement.classList.add("Leevi_443"),setTimeout(()=>{document.documentElement.classList.remove("Leevi_443")},Sulai.getTransitionDurationFromElement(document.documentElement)),document.documentElement.setAttribute("data-theme","light"),localStorage.setItem("theme","light"))})),document.addEventListener("scroll",(function(){document.documentElement.scrollTop>100?(document.querySelector(".Analise_557").style.display="flex",document.querySelector(".Analise_557").anime({opacity:[0,1]},500,"easeInOutExpo")):document.querySelector(".Analise_557").anime({opacity:[1,0]},500,"easeInOutExpo",e=>{document.querySelector(".Analise_557").style.display="none"})}),!1),document.querySelector("a.Analise_557").addEventListener("click",(function(e){window.scrollTo({top:0,behavior:"smooth"})}),!1),document.querySelectorAll(".Sumayyah_489").forEach(e=>{e.addEventListener("click",(function(e){document.body.classList.toggle("Sloan_576"),document.querySelector(".Weslyn_270").classList.toggle("Aliana_282"),document.querySelector(".Weslyn_270").classList.contains("Aliana_282")&&(document.querySelector(".Weslyn_270").style.transition="all 200ms",document.querySelector(".Weslyn_270 ."+COLLAPSE).style.transition="all 200ms")}),!1)}),document.addEventListener("resize",(function(){getWidth(document)<768&&(document.querySelector(".Weslyn_270").style.transition="all 200ms",document.querySelector(".Weslyn_270 ."+COLLAPSE).style.transition="all 200ms")}),!1),document.querySelectorAll(".Zayne_577").forEach(e=>{e.parentNode.addEventListener("click",(function(){this.querySelector(".Zayne_577").classList.remove("Jana_232")}))},!1),document.querySelector("."+SEARCH_FIELD).addEventListener("focus",(function(){document.querySelectorAll("."+SEARCH_HIDE).forEach(e=>{window.innerWidth<=768&&e.classList.replace(""+D_FLEX,"Jana_232")})}),!1),document.querySelector("."+SEARCH_FIELD).addEventListener("focusout",(function(){document.querySelectorAll("."+SEARCH_HIDE).forEach(e=>{window.innerWidth<=768&&setTimeout(()=>{e.classList.replace("Jana_232",""+D_FLEX)},200)})}),!1),document.getElementById("search-input").addEventListener("keyup",searchEngine,!1),document.getElementById("search-input").addEventListener("focus",searchEngine,!1);let searchResults=[{title:"CodePen",description:"This is just a test",link:"#test1",frequent:!1},{title:"Facebook",description:"Something else to test",link:"#test2",frequent:!1},{title:"Font Awesome",description:"Something else to test",link:"#test3",frequent:!1},{title:"Link 1",description:"Something else to test, just a link name.",link:"#test4",frequent:!1},{title:"Stack Overflow",description:"Something else to test, just another link name.",link:"#test5",frequent:!1},{title:"Google",description:"Something else to test, just another link name.",link:"#googletest",frequent:!0},{title:"Apple",description:"Something else to test, just another link name.",link:"#appletest",frequent:!0},{title:"Microsoft",description:"Something else to test, just another link name.",link:"#Microsofttest",frequent:!0},{title:"Github",description:"Something else to test, just another link name.",link:"#githubtest",frequent:!0}];function boldString(e,t){let i=new RegExp(t,"i");return t=i.exec(e),e.replace(i,"<b>"+t+"</b>")}function dropShow(e,t){e.setAttribute("aria-expanded","true"),e.nextElementSibling.classList.add(""+SHOW),t.stopPropagation()}function dropHide(e,t){e.setAttribute("aria-expanded","false"),e.nextElementSibling.classList.remove(""+SHOW),t.stopPropagation()}function collapseShow(e){let t=document.querySelector(e.dataset.target);e.setAttribute("aria-expanded","true"),e.classList.toggle("Cayson_355"),t.classList.replace(""+COLLAPSE,"Ramir_412"),t.style.height=t.children[0].fullHeight()+"px",setTimeout(()=>{t.classList.replace("Ramir_412",""+COLLAPSE),t.style.removeProperty("height"),t.classList.toggle(""+SHOW)},Sulai.getTransitionDurationFromElement(t))}function collapseHide(e){let t=document.querySelector(e.dataset.target);e.setAttribute("aria-expanded","false"),e.classList.toggle("Cayson_355"),t.classList.toggle(""+SHOW),t.classList.replace(""+COLLAPSE,"Ramir_412"),t.style.height="0px",setTimeout(()=>{t.style.removeProperty("height"),t.classList.replace("Ramir_412",""+COLLAPSE)},Sulai.getTransitionDurationFromElement(t))}function dismiss(e){if(e.dataset.dismiss)switch(e.dataset.dismiss){case"modal":e.addEventListener("click",(function(e){modalHide(this.closest(".Judd_197"))}),!1);break;case"alert":e.addEventListener("click",(function(e){this.closest("."+ALERT).remove()}),!1);break;default:break}}function toggle(e){if(e.dataset.toggle)switch(e.dataset.toggle){case"collapse":e.setAttribute("aria-expanded","false"),e.addEventListener("click",(function(e){if("true"==this.getAttribute("aria-expanded"))collapseHide(this);else{let e=document.querySelector("[aria-expanded='true']");null!=e?(collapseHide(e),collapseShow(this)):collapseShow(this)}}),!1);break;case"modal":e.addEventListener("click",(function(t){modalShow(e)}),!1);break;default:break}}function modalShow(e,t){let i=document.body;i.setAttribute("data-padding-right",""),i.style.paddingRight=window.getComputedStyle(document.documentElement,"::-webkit-scrollbar").getPropertyValue("width"),i.classList.add("Judd_399");let n=document.querySelector(e.dataset.target);n.style.display="block",n.style.paddingRight=window.getComputedStyle(document.documentElement,"::-webkit-scrollbar").getPropertyValue("width"),setTimeout(()=>{n.classList.add(""+SHOW)},Sulai.getTransitionDurationFromElement(n));let s=document.createElement("div");s.classList.add("Zyir_535",""+FADE,""+SHOW),document.body.appendChild(s),document.addEventListener("mousedown",(function(e){e.target===n&&modalHide(n)}))}function modalHide(e){e.classList.remove(""+SHOW),setTimeout(()=>{e.style.removeProperty("display")},Sulai.getTransitionDurationFromElement(e)),null!=document.querySelector(".Zyir_535:last-child")&&document.querySelector(".Zyir_535:last-child").remove();let t=document.body;t.removeAttribute("data-padding-right"),t.classList.remove("Judd_399"),t.style.removeProperty("padding-right")}function setModalValue(e,t){Object.keys(e).forEach(t=>{let i=document.querySelector("#"+t);switch(i.tagName){case"SELECT":i.querySelectorAll("option").forEach((function(e){e.selected=!1})),i.querySelectorAll("option").forEach((function(i){e[t].split(",").find(e=>e==i.value)&&(i.selected=!0)}));break;default:switch(i.type){case"checkbox":"true"==e[t]&&(i.checked=!0);break;default:i.value=e[t];break}break}}),t&&Sulai.resetFormFields(t,"input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], input[type=number], input[type=search], input[type=date], input[type=time], textarea".split(", "))}class Component{constructor(e,t,i){Element;let n=e.getInstance(t);n&&n.destroy(),this.el=t}static init(e,t,i){let n=null;if(t instanceof Element)n=new e(t,i);else if(t&&t instanceof NodeList){let s=[];for(let n=0;n<t.length;n++){let o=i??{},l=Object.assign({},t[n].dataset);Object.keys(l).forEach(e=>{switch(l[e]){case"true":o[e]=!0;break;case"false":o[e]=!1;break;default:o[e]=l[e];break}}),s.push(new e(t[n],o))}n=s}return n}}function testAnimate(e){e.anime({transform:{"scale(??, ??)":[.3,1],"translateY(??px)":[0,400]}},1e3,"easeOutBounce",(function(e){}))}window,Sulai.updateTextFields=function(){let e="input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], input[type=number], input[type=search], input[type=date], input[type=time], textarea".split(", ");document.querySelectorAll(e).forEach((function(e,t){e.value.length>0||e.is(":focus")||e.autofocus||e.placeholder.length>0?e.siblings("label")[0]&&e.siblings("label")[0].classList.add(""+ACTIVE):e.validity?e.siblings("label")[0]&&e.siblings("label")[0].classList.toggle(""+ACTIVE,!0===e.validity.badInput):e.siblings("label")[0]&&e.siblings("label")[0].classList.remove(""+ACTIVE)}))},Sulai.validate_field=function(e){let t=void 0!==e.dataset.length,i=parseInt(e.dataset.length),n=e.value.length;0!==n||!1!==e.validity.badInput||e.is(":required")?e.classList.contains(VALIDATE)&&(e.is(":valid")&&t&&n<=i||e.is(":valid")&&!t?(e.classList.remove("Deniz_283"),e.classList.add(""+VALID)):(e.classList.remove(""+VALID),e.classList.add("Deniz_283"))):e.classList.contains(VALIDATE)&&(e.classList.remove(""+VALID),e.classList.remove("Deniz_283"))},Sulai.textareaAutoResize=function(e){if(!e)return;let t=document.querySelectorAll(".Miarose_347")[0];t||(t=Sulai.stringToElement('<div class="Miarose_347"></div>'),document.body.appendChild(t));let i=e.style.fontFamily,n=e.style.fontSize,s=e.style.lineHeight,o=e.style.paddingTop,l=e.style.paddingRight,a=e.style.paddingBottom,r=e.style.paddingLeft;n&&(t.style.fontSize=n),i&&(t.style.fontFamily=i),s&&(t.style.lineHeight=s),o&&(t.style.paddingTop=o),l&&(t.style.paddingRight=l),a&&(t.style.paddingBottom=a),r&&(t.style.paddingLeft=r),e.dataset.originalHeight||(e.dataset.originalHeight=parseFloat(getComputedStyle(e,null).height.replace("px",""))),"off"===e.wrap&&(t.style.overflowWrap=normal,t.style.whiteSpace=pre),t.textContent=e.value+"\n";let d=t.innerHTML.replace(/\n/g,"<br>");t.innerHTML=d,e.offsetWidth>0&&e.offsetHeight>0?t.style.width=parseFloat(getComputedStyle(e,null).width):t.style.width=window.innerWidth/2+"px",e.dataset.originalHeight<=t.innerHeight()?e.style.height=t.innerHeight()+"px":e.value.length<e.dataset.previousLength&&(e.style.height=e.dataset.originalHeight+"px"),e.dataset.previousLength=e.value.length},Sulai.resetFormFields=function(e,t){"form"==e.tagName.toLowerCase()&&(e.querySelector(t).classList.remove(""+VALID),e.querySelector(t).classList.remove("Deniz_283"),e.querySelectorAll(t).forEach((function(e){e.value.length&&e.siblings("label")[0]&&e.siblings("label")[0].classList.remove(""+ACTIVE)})),setTimeout((function(){e.querySelectorAll("select").forEach((function(e){e.Sulai_FormSelect&&e.trigger("change")}))}),0))},document.documentElement.ready((function(){let e="input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], input[type=number], input[type=search], input[type=date], input[type=time], textarea".split(", ");document.addEventListener("change",(function(){this.querySelectorAll(e).forEach(e=>{(0!==e.value.length||e.placeholder.length>0)&&e.siblings("label")[0]&&e.siblings("label")[0].classList.add(""+ACTIVE),Sulai.validate_field(e)})})),Sulai.updateTextFields(),document.addEventListener("reset",(function(t){Sulai.resetFormFields(t.target,e)})),document.addEventListener("focus",(function(t){t.target.is(e)&&t.target.siblings("label, ."+PREFIX).forEach(e=>{e.classList.add(""+ACTIVE)})}),!0),document.addEventListener("blur",(function(t){let i=t.target;if(i.is(e)){let e="."+PREFIX;0===i.value.length&&!0!==i.validity.badInput&&0===i.placeholder.length&&(e+=", label"),i.siblings(e).forEach(e=>{e.classList.remove(""+ACTIVE)}),Sulai.validate_field(i)}}),!0),document.addEventListener("keyup",(function(e){this.querySelectorAll("input[type=radio], input[type=checkbox]").forEach(t=>{if(e.which===Sulai.keys.TAB)return t.classList.add(""+TABBED),void t.addEventListener("blur",(function(e){t.classList.remove(""+TABBED)}),!0)})}));let t=".Justus_576";document.querySelectorAll(t).forEach((function(e){e.dataset.originalHeight=parseFloat(getComputedStyle(e,null).height.replace("px","")),e.dataset.previousLength=e.value.length,Sulai.textareaAutoResize(e)})),document.addEventListener("keyup",(function(e){this.querySelectorAll(t).forEach(e=>{Sulai.textareaAutoResize(e)})})),document.addEventListener("keydown",(function(){this.querySelectorAll(t).forEach(e=>{Sulai.textareaAutoResize(e)})})),document.addEventListener("change",(function(){this.querySelectorAll('.Nallely_372 input[type="file"]').forEach(e=>{let t=e.closest(".Nallely_372").querySelector("input.Adelynn_345"),i=e.files,n=[];for(let e=0;e<i.length;e++)n.push(i[e].name);t.value=n.join(", "),t.trigger("change")})}))})),function(e){"use strict";let t={interval:5e3,wrap:"true",touch:"true",duration:100};class i extends Component{constructor(e,t){super(i,e,t),this.el=e,this.el.Sulai_Carousel=this,this.options=Sulai.deepExtend({},i.defaults,t),this.slide=this.el.querySelectorAll(".Glendon_533"),this.nextSlide="",this.prevSlide="",this._setupEventHandlers(),this._setupInterval()}static get defaults(){return t}static init(e,t){return super.init(this,e,t)}static getInstance(e){return e.Sulai_Carousel}destroy(){this._removeEventHandlers(),this._removeCarousel(),this.el.Sulai_Carousel=void 0}_setupInterval(){Number.isInteger(this.interval)&&setInterval(this.nextSlideBound,this.options.interval)}_setupEventHandlers(){this.prevSlideBound=this.prevSlideHandler.bind(this),this.nextSlideBound=this.nextSlideHandler.bind(this),this.prev=this.el.parentNode.querySelectorAll(".Draya_880"),this.next=this.el.parentNode.querySelectorAll(".Ysabella_882"),this.prev.forEach(e=>{e.addEventListener("click",this.prevSlideBound)}),this.next.forEach(e=>{e.addEventListener("click",this.nextSlideBound)})}prevSlideHandler(e){if(this.el.querySelector(".Glendon_533.Daniela_738"))return;let t=this.el.querySelector(".Glendon_533."+ACTIVE);if(t.previousElementSibling)this.prevSlide=t.previousElementSibling;else{if(!this.options.wrap)return;this.prevSlide=this.slide[this.slide.length-1]}this._animateSlide(t,"prev")}nextSlideHandler(e){if(this.el.querySelector(".Glendon_533.Hutch_740"))return;let t=this.el.querySelector(".Glendon_533."+ACTIVE);if(t.nextElementSibling)this.nextSlide=t.nextElementSibling;else{if(!this.options.wrap)return;this.nextSlide=this.slide[0]}this._animateSlide(t,"next")}_animateSlide(e,t){let i="next"===t,n=i?"Breckyn_720":"Breyden_775",s=i?"Hutch_740":"Daniela_738";e.classList.add(n),i?this.nextSlide.classList.add(s):this.prevSlide.classList.add(s),setTimeout(()=>{i?this.nextSlide.classList.add(n):this.prevSlide.classList.add(n)},this.options.duration),setTimeout(()=>{e.classList.remove(""+ACTIVE,n),i?this.nextSlide.classList.remove(s,n):this.prevSlide.classList.remove(s,n),i?this.nextSlide.classList.add(""+ACTIVE):this.prevSlide.classList.add(""+ACTIVE)},Sulai.getTransitionDurationFromElement(e))}_animateFade(){}}Sulai.Carousel=i}(window),function(e){"use strict";let t={classes:"",dropdownOptions:{}};class i extends Component{constructor(e,t){super(i,e,t),this.el.classList.contains("Regan_617")||(this.el.Sulai_FormSelect=this,this.options=Sulai.deepExtend({},i.defaults,t),this.isMultiple=this.el.multiple,this.el.tabIndex=-1,this._keysSelected={},this._valueDict={},this._setupDropdown(),this._setupEventHandlers())}static get defaults(){return t}static init(e,t){return super.init(this,e,t)}static getInstance(e){return e.Sulai_FormSelect}destroy(){this._removeEventHandlers(),this._removeDropdown(),this.el.Sulai_FormSelect=void 0}_setupEventHandlers(){this._handleSelectChangeBound=this._handleSelectChange.bind(this),this._handleOptionClickBound=this._handleOptionClick.bind(this),this._handleInputClickBound=this._handleInputClick.bind(this),this.dropdownOptions.querySelectorAll("li:not(.Efren_368)").forEach(e=>{e.addEventListener("click",this._handleOptionClickBound)}),this.el.addEventListener("change",this._handleSelectChangeBound),this.input.addEventListener("click",this._handleInputClickBound)}_removeEventHandlers(){this.dropdownOptions.querySelectorAll("li:not(.Efren_368)").forEach(e=>{e.removeEventListener("click",this._handleOptionClickBound)}),this.el.removeEventListener("change",this._handleSelectChangeBound),this.input.removeEventListener("click",this._handleInputClickBound)}_handleSelectChange(e){this._setValueToInput()}_handleOptionClick(e){e.preventDefault();let t=e.target.closest("li"),i=t.id;if(!t.classList.contains("Niyah_296")&&!t.classList.contains("Efren_368")&&i.length){let e=!0;if(this.isMultiple){let t=this.dropdownOptions.querySelectorAll("li.Niyah_296.Gabby_313");t.length&&(t.classList.remove("Gabby_313"),t.querySelector('input[type="checkbox"]').checked=!1,this._toggleEntryFromArray(t[0].id)),e=this._toggleEntryFromArray(i)}else this.dropdownOptions.querySelector("li").classList.remove("Gabby_313"),t.classList.toggle("Gabby_313",e);this._valueDict[i].el.selected=!!e,this.el.trigger("change")}e.stopPropagation()}_handleInputClick(){this.dropdown&&this.dropdown.isOpen&&(this._setValueToInput(),this._setSelectedStates())}_setupDropdown(){if(this.wrapper=document.createElement("div"),this.wrapper.classList.add("Zyair_581"),this.options.classes&&this.wrapper.classList.add(this.options.classes),this.el.insertAdjacentElement("beforebegin",this.wrapper),this.wrapper.appendChild(this.el),this.el.disabled&&this.wrapper.classList.add("Niyah_296"),this.$selectOptions=this.el.childrens("option, optgroup"),this.dropdownOptions=document.createElement("ul"),this.dropdownOptions.id="select-options-"+Sulai.guid(),this.dropdownOptions.classList.add("Kepler_680","Zyair_621"),this.isMultiple&&this.dropdownOptions.classList.add("multiple-select-dropdown"),this.$selectOptions.length)for(const e of this.$selectOptions)if("option"===e.tagName.toLowerCase()){let t;t=this.isMultiple?this._appendOptionWithIcon(this.el,e,"multiple"):this._appendOptionWithIcon(this.el,e),this._addOptionToValueDict(e,t)}else if("optgroup"===e.tagName.toLowerCase()){let t=e.childrens("option");this.dropdownOptions.appendChild(Sulai.stringToElement(`<li class="Efren_368"><span>${e.getAttribute("label")}</span></li>`));for(const e of t){let t=this._appendOptionWithIcon(this.el,e,"optgroup-option");this._addOptionToValueDict(e,t)}}this.el.insertAdjacentElement("afterend",this.dropdownOptions),this.input=document.createElement("input"),this.input.classList.add("Zyair_621","Echo_Brodie_673"),this.input.setAttribute("type","text"),this.input.setAttribute("readonly","true"),this.input.setAttribute("data-target",this.dropdownOptions.id),this.el.disabled&&(this.input.disabled=!0),this.el.insertAdjacentElement("beforebegin",this.input),this._setValueToInput();let e=`<svg class="${CARET}" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>`;if(this.el.insertAdjacentElement("beforebegin",Sulai.stringToElement(e)),!this.el.disabled){let e=Sulai.deepExtend({},this.options.dropdownOptions);e.onOpenEnd=e=>{let t=this.dropdownOptions.querySelectorAll(".Gabby_313")[0];if(t&&t.length&&(Sulai.keyDown=!0,this.dropdown.focusedIndex=t.index(),this.dropdown._focusFocusedItem(),Sulai.keyDown=!1,this.dropdown.isScrollable)){let e=t[0].getBoundingClientRect().top-this.dropdownOptions.getBoundingClientRect().top;e-=this.dropdownOptions.clientHeight/2,this.dropdownOptions.scrollTop=e}},this.isMultiple&&(e.closeOnClick=!1),this.dropdown=Sulai.Dropdown.init(this.input,e)}this._setSelectedStates()}_addOptionToValueDict(e,t){let i=Object.keys(this._valueDict).length,n=this.dropdownOptions.id+i,s={};t.id=n,s.el=e,s.optionEl=t,this._valueDict[n]=s}_removeDropdown(){let e=this.wrapper.querySelector("."+CARET);e.parentNode.removeChild(this.wrapper),this.input.parentNode.removeChild(e),this.dropdownOptions.parentNode.removeChild(this.dropdownOptions),this.wrapper.insertAdjacentElement("beforebegin",this.el),this.wrapper.parentNode.removeChild(this.wrapper)}_appendOptionWithIcon(e,t,i){let n=t.disabled?"disabled ":"",s="optgroup-option"===i?"optgroup-option":"",o=this.isMultiple?`<label><input type="checkbox" ${n}/><span>${t.innerHTML}</span></label>`:t.innerHTML,l=document.createElement("li"),a=document.createElement("span");a.innerHTML=o,n&&l.classList.add(n),s&&l.classList.add(s),l.appendChild(a);let r=t.getAttribute("data-icon");if(r){let e=Sulai.stringToElement(`<img alt="" src="${r}">`);l.insertBefore(e,l.firstChild)}return this.dropdownOptions.appendChild(l),l}_toggleEntryFromArray(e){let t=!this._keysSelected.hasOwnProperty(e),i=this._valueDict[e].optionEl;return t?this._keysSelected[e]=!0:delete this._keysSelected[e],i.classList.toggle("Gabby_313",t),i.querySelector('input[type="checkbox"]').checked=!!t,i.selected=!!t,t}_setValueToInput(){let e=[];if(this.el.querySelectorAll("option").forEach(t=>{t.selected&&e.push(t.textContent)}),!e.length){let t=this.el.querySelectorAll("option[disabled]");t.length&&""===t[0].value&&e.push(t.textContent)}this.input.value=e.join(", ")}_setSelectedStates(){this._keysSelected={};for(let e in this._valueDict){let t=this._valueDict[e],i=t.el.selected;t.optionEl.querySelector('input[type="checkbox"]')&&(t.optionEl.querySelector('input[type="checkbox"]').checked=!!i),i?(this._activateOption(this.dropdownOptions,t.optionEl),this._keysSelected[e]=!0):t.optionEl.classList.remove("Gabby_313")}}_activateOption(e,t){if(t){this.isMultiple||e.querySelector("li.Gabby_313")&&e.querySelector("li.Gabby_313").classList.remove("Gabby_313"),t.classList.add("Gabby_313")}}getSelectedValues(){let e=[];for(let t in this._keysSelected)e.push(this._valueDict[t].el.value);return e}}Sulai.FormSelect=i}(window),function(e){"use strict";let t={alignment:"left",autoFocus:!0,constrainWidth:!0,container:null,coverTrigger:!0,closeOnClick:!0,hover:!1,inDuration:150,outDuration:250,onOpenStart:null,onOpenEnd:null,onCloseStart:null,onCloseEnd:null,onItemClick:null};class i extends Component{constructor(e,t){super(i,e,t),this.el.Sulai_Dropdown=this,i._dropdowns.push(this),this.id=Sulai.getIdFromTrigger(e),this.dropdownEl=document.getElementById(this.id),this.$dropdownEl=this.dropdownEl,this.options=Sulai.deepExtend({},i.defaults,t),this.isOpen=!1,this.isScrollable=!1,this.isTouchMoving=!1,this.focusedIndex=-1,this.filterQuery=[],this.options.container?this.el.insertAdjacentElement("afterend",this.dropdownEl):this.options.container.appendChild(this.dropdownEl),this._makeDropdownFocusable(),this._resetFilterQueryBound=this._resetFilterQuery.bind(this),this._handleDocumentClickBound=this._handleDocumentClick.bind(this),this._handleDocumentTouchmoveBound=this._handleDocumentTouchmove.bind(this),this._handleDropdownClickBound=this._handleDropdownClick.bind(this),this._handleDropdownKeydownBound=this._handleDropdownKeydown.bind(this),this._handleTriggerKeydownBound=this._handleTriggerKeydown.bind(this),this._setupEventHandlers()}static get defaults(){return t}static init(e,t){return super.init(this,e,t)}static getInstance(e){return e.Sulai_Dropdown}destroy(){this._resetDropdownStyles(),this._removeEventHandlers(),i._dropdowns.splice(i._dropdowns.indexOf(this),1),this.el.Sulai_Dropdown=void 0}_setupEventHandlers(){this.el.addEventListener("keydown",this._handleTriggerKeydownBound),this.dropdownEl.addEventListener("click",this._handleDropdownClickBound),this.options.hover?(this._handleMouseEnterBound=this._handleMouseEnter.bind(this),this.el.addEventListener("mouseenter",this._handleMouseEnterBound),this._handleMouseLeaveBound=this._handleMouseLeave.bind(this),this.el.addEventListener("mouseleave",this._handleMouseLeaveBound),this.dropdownEl.addEventListener("mouseleave",this._handleMouseLeaveBound)):(this._handleClickBound=this._handleClick.bind(this),this.el.addEventListener("click",this._handleClickBound))}_removeEventHandlers(){this.el.removeEventListener("keydown",this._handleTriggerKeydownBound),this.dropdownEl.removeEventListener("click",this._handleDropdownClickBound),this.options.hover?(this.el.removeEventListener("mouseenter",this._handleMouseEnterBound),this.el.removeEventListener("mouseleave",this._handleMouseLeaveBound),this.dropdownEl.removeEventListener("mouseleave",this._handleMouseLeaveBound)):this.el.removeEventListener("click",this._handleClickBound)}_setupTemporaryEventHandlers(){document.body.addEventListener("click",this._handleDocumentClickBound,!0),document.body.addEventListener("touchend",this._handleDocumentClickBound),document.body.addEventListener("touchmove",this._handleDocumentTouchmoveBound),this.dropdownEl.addEventListener("keydown",this._handleDropdownKeydownBound)}_removeTemporaryEventHandlers(){document.body.removeEventListener("click",this._handleDocumentClickBound,!0),document.body.removeEventListener("touchend",this._handleDocumentClickBound),document.body.removeEventListener("touchmove",this._handleDocumentTouchmoveBound),this.dropdownEl.removeEventListener("keydown",this._handleDropdownKeydownBound)}_handleClick(e){e.preventDefault(),this.open()}_handleMouseEnter(){this.open()}_handleMouseLeave(e){let t=e.toElement||e.relatedTarget,i=!!t.closest(".Kepler_680").length,n=!1,s=t.closest(".Echo_Brodie_673");s.length&&s[0].Sulai_Dropdown&&s[0].Sulai_Dropdown.isOpen&&(n=!0),n||i||this.close()}_handleDocumentClick(e){let t=e.target;this.options.closeOnClick&&t.closest(".Kepler_680")&&!this.isTouchMoving?setTimeout(()=>{this.close()},0):!t.closest(".Echo_Brodie_673")&&t.closest(".Kepler_680")||setTimeout(()=>{this.close()},0),this.isTouchMoving=!1}_handleTriggerKeydown(e){e.which!==Sulai.keys.ARROW_DOWN&&e.which!==Sulai.keys.ENTER||this.isOpen||(e.preventDefault(),this.open())}_handleDocumentTouchmove(e){e.target.closest(".Kepler_680")&&(this.isTouchMoving=!0)}_handleDropdownClick(e){if("function"==typeof this.options.onItemClick){let t=e.target.closest("li")[0];this.options.onItemClick.call(this,t)}}_handleDropdownKeydown(e){if(e.which===Sulai.keys.TAB)e.preventDefault(),this.close();else if(e.which!==Sulai.keys.ARROW_DOWN&&e.which!==Sulai.keys.ARROW_UP||!this.isOpen)if(e.which===Sulai.keys.ENTER&&this.isOpen){let e=this.dropdownEl.children[this.focusedIndex],t=e.querySelectorAll("a, button")[0];t.length?t[0].click():e&&e.click()}else e.which===Sulai.keys.ESC&&this.isOpen&&(e.preventDefault(),this.close());else{e.preventDefault();let t=e.which===Sulai.keys.ARROW_DOWN?1:-1,i=this.focusedIndex,n=!1;do{if(i+=t,this.dropdownEl.children[i]&&-1!==this.dropdownEl.children[i].tabIndex){n=!0;break}}while(i<this.dropdownEl.children.length&&i>=0);n&&(this.focusedIndex=i,this._focusFocusedItem())}let t=String.fromCharCode(e.which).toLowerCase();if(t&&-1===[9,13,27,38,40].indexOf(e.which)){this.filterQuery.push(t);let e=this.filterQuery.join(""),i=this.dropdownEl.querySelectorAll("li").filter(t=>0===t.textContent.toLowerCase().indexOf(e))[0];i&&(this.focusedIndex=i.index(),this._focusFocusedItem())}this.filterTimeout=setTimeout(this._resetFilterQueryBound,1e3)}_resetFilterQuery(){this.filterQuery=[]}_resetDropdownStyles(){this.$dropdownEl.style.display="",this.$dropdownEl.style.width="",this.$dropdownEl.style.height="",this.$dropdownEl.style.left="",this.$dropdownEl.style.top="",this.$dropdownEl.style.transformOrigin="",this.$dropdownEl.style.transform="",this.$dropdownEl.style.opacity=""}_makeDropdownFocusable(){this.dropdownEl.tabIndex=0;for(let e of this.dropdownEl.children)e.getAttribute("tabindex")||e.setAttribute("tabindex",0)}_focusFocusedItem(){this.focusedIndex>=0&&this.focusedIndex<this.dropdownEl.children.length&&this.options.autoFocus&&this.dropdownEl.children[this.focusedIndex].focus()}_getDropdownPosition(){this.el.offsetParent.getBoundingClientRect();let e=this.el.getBoundingClientRect(),t=this.dropdownEl.getBoundingClientRect(),i=t.height,n=t.width,s=e.left-t.left,o=e.top-t.top,l={left:s,top:o,height:i,width:n},a=this.dropdownEl.offsetParent?this.dropdownEl.offsetParent:this.dropdownEl.parentNode,r=Sulai.checkPossibleAlignments(this.el,a,l,this.options.coverTrigger?0:e.height),d="top",u=this.options.alignment;if(o+=this.options.coverTrigger?0:e.height,this.isScrollable=!1,r.top||(r.bottom?d="bottom":(this.isScrollable=!0,r.spaceOnTop>r.spaceOnBottom?(d="bottom",i+=r.spaceOnTop,o-=r.spaceOnTop):i+=r.spaceOnBottom)),!r[u]){let e="left"===u?"right":"left";r[e]?u=e:r.spaceOnLeft>r.spaceOnRight?(u="right",n+=r.spaceOnLeft,s-=r.spaceOnLeft):(u="left",n+=r.spaceOnRight)}return"bottom"===d&&(o=o-t.height+(this.options.coverTrigger?e.height:0)),"right"===u&&(s=s-t.width+e.width),{x:s,y:o,verticalAlignment:d,horizontalAlignment:u,height:i,width:n}}_animateIn(){this.dropdownEl.anime({transform:{"scale(??, ??)":[.3,1]},opacity:[0,1]},this.options.inDuration,"easeOutQuint",e=>{this.options.autoFocus&&this.dropdownEl.focus(),"function"==typeof this.options.onOpenEnd&&this.options.onOpenEnd.call(this,this.el)})}_animateOut(){this.dropdownEl.anime({transform:{"scale(??, ??)":[1,.3]},opacity:[1,0]},this.options.inDuration,"easeOutQuint",e=>{this._resetDropdownStyles(),"function"==typeof this.options.onCloseEnd&&this.options.onCloseEnd.call(this,this.el)})}_placeDropdown(){let e=this.options.constrainWidth?this.el.getBoundingClientRect().width:this.dropdownEl.getBoundingClientRect().width;this.dropdownEl.style.width=e+"px";let t=this._getDropdownPosition();this.dropdownEl.style.left=t.x+"px",this.dropdownEl.style.top=t.y+"px",this.dropdownEl.style.height=t.height+"px",this.dropdownEl.style.width=t.width+"px",this.dropdownEl.style.transformOrigin=`${"left"===t.horizontalAlignment?"0":"100%"} ${"top"===t.verticalAlignment?"0":"100%"}`}open(){this.isOpen||(this.isOpen=!0,"function"==typeof this.options.onOpenStart&&this.options.onOpenStart.call(this,this.el),this._resetDropdownStyles(),this.dropdownEl.style.display="block",this._placeDropdown(),this._animateIn(),this._setupTemporaryEventHandlers())}close(){this.isOpen&&(this.isOpen=!1,this.focusedIndex=-1,"function"==typeof this.options.onCloseStart&&this.options.onCloseStart.call(this,this.el),this._animateOut(),this._removeTemporaryEventHandlers(),this.options.autoFocus&&this.el.focus())}recalculateDimensions(){this.isOpen&&(this.$dropdownEl.style.width="",this.$dropdownEl.style.height="",this.$dropdownEl.style.left="",this.$dropdownEl.style.top="",this.$dropdownEl.style.transformOrigin="",this._placeDropdown())}}i._dropdowns=[],Sulai.Dropdown=i}(window),function(e){"use strict";let t={duration:300,onShow:null,swipeable:!1,responsiveThreshold:1/0};class i extends Component{constructor(e,t){super(i,e,t),this.el.Sulai_Tabs=this,this.options=Sulai.deepExtend({},i.defaults,t),this.tabLinks=this.el.childrens("li."+TAB).childrens("a"),this.index=0,this._setupActiveTabLink(),this.options.swipeable?this._setupSwipeableTabs():this._setupNormalTabs(),this._setTabsAndTabWidth(),this._createIndicator(),this._setupEventHandlers()}static get defaults(){return t}static init(e,t){return super.init(this,e,t)}static getInstance(e){return e.Sulai_Tabs}destroy(){this._removeEventHandlers(),this._indicator.parentNode.removeChild(this._indicator),this.options.swipeable?this._teardownSwipeableTabs():this._teardownNormalTabs(),this.el.Sulai_Tabs=void 0}_setupEventHandlers(){this._handleWindowResizeBound=this._handleWindowResize.bind(this),window.addEventListener("resize",this._handleWindowResizeBound),this._handleTabClickBound=this._handleTabClick.bind(this),this.el.addEventListener("click",this._handleTabClickBound)}_removeEventHandlers(){window.removeEventListener("resize",this._handleWindowResizeBound),this.el.removeEventListener("click",this._handleTabClickBound)}_handleWindowResize(){this._setTabsAndTabWidth(),0!==this.tabWidth&&0!==this.tabsWidth&&(this._indicator.style.left=this._calcLeftPos(this.activeTabLink)+"px",this._indicator.style.right=this._calcRightPos(this.activeTabLink)+"px")}_handleTabClick(e){let t=e.target.closest("li."+TAB),i=e.target.closest("a");if(!i||!i.parentNode.classList.contains(""+TAB))return;if(t.classList.contains("Niyah_296"))return void e.preventDefault();if(i.target)return;this.activeTabLink.classList.remove(""+ACTIVE);let n=this.content;this.activeTabLink=i,this.content=document.querySelector(Sulai.escapeHash(i.hash)),this.tabLinks=this.el.childrens("li."+TAB).childrens("a"),this.activeTabLink.classList.add(""+ACTIVE);let s=this.index;this.index=Math.max(this.tabLinks.index(i),0),this.options.swipeable?this._tabsCarousel&&this._tabsCarousel.set(this.index,()=>{"function"==typeof this.options.onShow&&this.options.onShow.call(this,this.content)}):this.content&&(this.content.style.display="block",this.content.classList.add(""+ACTIVE),"function"==typeof this.options.onShow&&this.options.onShow.call(this,this.content),n&&!n.is(this.content)&&(n.style.display="none",n.classList.remove(""+ACTIVE))),this._setTabsAndTabWidth(),this._animateIndicator(s),e.preventDefault()}_createIndicator(){let e=document.createElement("li");e.classList.add(""+INDICATOR),this.el.appendChild(e),this._indicator=e,setTimeout(()=>{this._indicator.style.left=this._calcLeftPos(this.activeTabLink)+"px",this._indicator.style.right=this._calcRightPos(this.activeTabLink)+"px"},0)}_setupActiveTabLink(){this.activeTabLink=this.tabLinks.filter(e=>{if(e.is('[href="'+location.hash+'"]'))return e})[0],null==this.activeTabLink&&(this.activeTabLink=this.el.childrens("li."+TAB).childrens("a."+ACTIVE)[0]),null==this.activeTabLink&&(this.activeTabLink=this.el.childrens("li."+TAB).childrens("a")[0]),this.tabLinks.forEach(e=>{e.classList.remove(""+ACTIVE)}),this.activeTabLink.classList.add(""+ACTIVE),this.index=Math.max(this.tabLinks.index(this.activeTabLink),0),this.activeTabLink&&(this.content=document.querySelector(Sulai.escapeHash(this.activeTabLink.hash)),this.content.classList.add(""+ACTIVE))}_setupSwipeableTabs(){let e;window.innerWidth>this.options.responsiveThreshold&&(this.options.swipeable=!1),this.tabLinks.forEach(t=>{let i=Sulai.escapeHash(t.hash);i.classList.add("Glendon_533"),e=i});let t=Sulai.stringToElement('<div class="tabs-content carousel carousel-slider"></div>');e.insertAdjacentElement("beforebegin",t),t.appendChild(e),e.style.display="";let i=this.activeTabLink.closest("."+TAB).index();this._tabsCarousel=Sulai.Carousel.init(t,{fullWidth:!0,noWrap:!0,onCycleTo:e=>{let t=this.index;this.index=e.index(),this.activeTabLink.classList.remove(""+ACTIVE),this.activeTabLink=this.tabLinks.eq(this.index),this.activeTabLink.addClass(""+ACTIVE),this._animateIndicator(t),"function"==typeof this.options.onShow&&this.options.onShow.call(this,this.$content[0])}}),this._tabsCarousel.set(i)}_teardownSwipeableTabs(){let e=this._tabsCarousel.el;this._tabsCarousel.destroy(),e.insertAdjacentElement("afterend",e.children),e.remove()}_setupNormalTabs(){this.tabLinks.filter(e=>{if(!e.is(this.activeTabLink)&&e.hash){let t=document.querySelector(Sulai.escapeHash(e.hash));t&&(t.style.display="none")}})}_teardownNormalTabs(){this.tabLinks.forEach(e=>{if(e.hash){let t=Sulai.escapeHash(e.hash);t.length&&(t.style.display="")}})}_setTabsAndTabWidth(){this.tabsWidth=this.el.innerWidth(),this.tabWidth=Math.max(this.tabsWidth,this.el.scrollWidth)/this.tabLinks.length}_calcRightPos(e){return Math.ceil(this.tabsWidth-e.offsetLeft-e.getBoundingClientRect().width)}_calcLeftPos(e){return Math.floor(e.offsetLeft)}updateTabIndicator(){this._setTabsAndTabWidth(),this._animateIndicator(this.index)}_animateIndicator(e){let t=0,i=0;this.index-e>=0?t=90:i=90,this._indicator.anime({left:{"??px":[0,this._calcLeftPos(this.activeTabLink)]},right:{"??px":[0,this._calcRightPos(this.activeTabLink)]}},this.options.duration,"easeOutBounce")}select(e){let t=this.tabLinks.filter('[href="#'+e+'"]');t.length&&t.trigger("click")}}Sulai.Tabs=i}(window),document.documentElement.ready((function(){Sulai.AutoInit(),this.querySelectorAll("*").forEach((function(e){toggle(e),dismiss(e)}))}),!1);
+(function (window) {
+  if (window.Package) {
+    Sulai = {};
+  } else {
+    window.Sulai = {};
+  }
+})(window);
+
+if (typeof define === 'function' && define.amd) {
+  define('Sulai', [], function () {
+    return Sulai;
+  });
+} else if (typeof exports !== 'undefined' && !exports.nodeType) {
+  if (typeof module !== 'undefined' && !module.nodeType && module.exports) {
+    exports = module.exports = Sulai;
+  }
+  exports.default = Sulai;
+}
+
+Element.prototype.ready = function (fn) {
+  if (document.readyState != 'loading') {
+    fn();
+  } else {
+    document.addEventListener('DOMContentLoaded', fn);
+  }
+};
+
+Element.prototype.off = function (eventName, eventHandler) {
+  return this.removeEventListener(eventName, eventHandler);
+};
+
+Element.prototype.is = function (selector) {
+  if (!selector) {
+    return false;
+  }
+
+  if (
+    this === selector ||
+    this.tagName.toLowerCase() === selector ||
+    (Sulai.isElement(selector) ? false : this.matches(selector))
+  ) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+Element.prototype.siblings = function (selector) {
+  let collection = this.parentNode.childrens(selector);
+
+  return collection.filter(function (i) {
+    return i !== this;
+  });
+};
+
+Element.prototype.childrens = function (selector) { // ragu
+  let elems = [];
+  selector.split(', ').forEach((el) => {
+    Array.prototype.filter.call(this.children, child => {
+      if (child.is(el)) {
+        elems.push(child);
+      }
+    });
+  })
+  return elems;
+}
+
+Array.prototype.childrens = function (selector) { // ragu
+  let elems = [];
+  selector.split(', ').forEach((el) => {
+    this.forEach((child) => {
+      child.querySelectorAll(`${el}`).forEach((eachChild) => {
+        if (eachChild.is(el)) {
+          elems.push(eachChild);
+        }
+      })
+    })
+  })
+  return elems;
+}
+
+Element.prototype.index = function (selector) {
+  if (!this) return -1;
+  let el = this;
+  let i = 0;
+  do {
+    if (el.is(selector)) {
+      return i;
+    }
+    i++;
+  } while (el = el.previousElementSibling);
+  return i;
+}
+
+Array.prototype.index = function (selector) {
+  if (!this) return -1;
+  let i = 0;
+  this.filter(el => {
+    i = 0;
+    do {
+      if (el.is(selector)) {
+        return i;
+      }
+      i++;
+    } while (el = el.previousElementSibling);
+  });
+  return i;
+}
+
+Element.prototype.trigger = function (myEvent, options) {
+  if (options) {
+    if (window.CustomEvent && typeof window.CustomEvent === 'function') {
+      var event = new CustomEvent(myEvent, {
+        detail: options
+      });
+    } else {
+      var event = document.createEvent('CustomEvent');
+      event.initCustomEvent(myEvent, true, true, options);
+    }
+    return this.dispatchEvent(event);
+  } else {
+    var event = document.createEvent('HTMLEvents');
+    event.initEvent('change', true, false);
+    return this.dispatchEvent(event);
+  }
+}
+
+Element.prototype.filter = function (filterFn) {
+  return Array.prototype.filter.call(this, filterFn);
+}
+
+Element.prototype.innerHeight = function () {
+  return parseFloat(window.getComputedStyle(this, null).getPropertyValue("height").replace("px", ""));
+}
+
+Element.prototype.innerWidth = function () {
+  return parseFloat(window.getComputedStyle(this, null).getPropertyValue("width").replace("px", ""));
+}
+
+Element.prototype.fullHeight = function () {
+  let elmHeight, elmMargin, elm = this;
+  if (document.all) {
+    elmHeight = parseInt(elm.currentStyle.height);
+    elmMargin = parseInt(elm.currentStyle.marginTop, 10) + parseInt(elm.currentStyle.marginBottom, 10);
+  } else {
+    elmHeight = parseInt(document.defaultView.getComputedStyle(elm, '').getPropertyValue('height'));
+    elmMargin = parseInt(document.defaultView.getComputedStyle(elm, '').getPropertyValue('margin-top')) + parseInt(document.defaultView.getComputedStyle(elm, '').getPropertyValue('margin-bottom'));
+  }
+  return (elmHeight + elmMargin);
+}
+
+Element.prototype.anime = function (options, duration, ease, callback) {
+  options.target = this;
+  return Sulai.animate.bind(options, duration, ease, callback)();
+}
+
+const TRANSITION = 'transition';
+const FADE = 'fade';
+const SHOW = 'show';
+const COLLAPSE = 'collapse';
+const COLLAPSING = 'collapsing';
+const DISABLED = 'disabled';
+const ACTIVE = 'active';
+const ALERT = 'alert';
+const MODAL_OPEN = 'modal-open';
+const MODAL = 'modal';
+const MODAL_BACKDROP = 'modal-backdrop';
+const CAROUSEL = 'carousel';
+const CAROUSEL_ITEM = 'carousel-item';
+const CAROUSEL_ITEM_NEXT = 'carousel-item-next';
+const CAROUSEL_ITEM_PREV = 'carousel-item-prev';
+const CAROUSEL_ITEM_LEFT = 'carousel-item-left';
+const CAROUSEL_ITEM_RIGHT = 'carousel-item-right';
+const CAROUSEL_CONTROL_PREV = 'carousel-control-prev';
+const CAROUSEL_CONTROL_NEXT = 'carousel-control-next';
+const SPINNER_BORDER = 'spinner-border';
+const D_FLEX = 'd-flex';
+const D_NONE = 'd-none';
+const SIDEBAR = 'sidebar';
+const TEXT_DECOR_NONE = 'text-decor-none';
+const SCROLL_TO_TOP = 'scroll-to-top';
+const DROPDOWN_CONTENT = 'dropdown-content';
+const SIDEBARTOGGLE = 'sidebarToggle';
+const TOGGLED = 'toggled';
+const COLLAPSED = 'collapsed';
+const SIDEBAR_TOGGLED = 'sidebar-toggled';
+const BROWSER_DEFAULT = 'browser-default';
+const SULAI_TEXTAREA = 'sulai-textarea';
+const VALID = 'valid';
+const INVALID = 'invalid';
+const VALIDATE = 'validate';
+const SELECT_WRAPPER = 'select-wrapper';
+const SELECT_DROPDOWN = 'select-dropdown';
+const HELPER_TEXT = 'helper-text';
+const INPUT_FIELD = 'input-field';
+const PREFIX = 'prefix';
+const HIDDENDIV = 'hiddendiv';
+const TABBED = 'tabbed';
+const CARET = 'caret';
+const OPTGROUP = 'optgroup';
+const KEYBOARD_FOCUSED = 'keyboard-focused';
+const SELECTED = 'selected';
+const FILE_FIELD = 'file-field';
+const FILE_PATH = 'file-path';
+const DROPDOWN_TRIGGER = 'dropdown-trigger';
+const TABS = 'tabs';
+const TAB = 'tab';
+const INDICATOR = 'indicator';
+const SEARCH_FIELD = 'search-field';
+const SEARCH_HEADING = 'search-heading';
+const POPUP_LIST = 'popup-list';
+const SEARCH_HIDE = 'search-hide';
+
+Sulai.version = '1.0.1';
+
+Sulai.keys = {
+  TAB: 9,
+  ENTER: 13,
+  ESC: 27,
+  ARROW_UP: 38,
+  ARROW_DOWN: 40
+};
+
+Sulai.tabPressed = false;
+Sulai.keyDown = false;
+let docHandleKeydown = function (e) {
+  Sulai.keyDown = true;
+  if (e.which === Sulai.keys.TAB || e.which === Sulai.keys.ARROW_DOWN || e.which === Sulai.keys.ARROW_UP) {
+    Sulai.tabPressed = true;
+  }
+};
+let docHandleKeyup = function (e) {
+  Sulai.keyDown = false;
+  if (e.which === Sulai.keys.TAB || e.which === Sulai.keys.ARROW_DOWN || e.which === Sulai.keys.ARROW_UP) {
+    Sulai.tabPressed = false;
+  }
+};
+let docHandleFocus = function (e) {
+  if (Sulai.keyDown) {
+    document.body.classList.add(`${KEYBOARD_FOCUSED}`);
+  }
+};
+let docHandleBlur = function (e) {
+  document.body.classList.remove(`${KEYBOARD_FOCUSED}`);
+};
+document.addEventListener('keydown', docHandleKeydown, true);
+document.addEventListener('keyup', docHandleKeyup, true);
+document.addEventListener('focus', docHandleFocus, true);
+document.addEventListener('blur', docHandleBlur, true);
+
+Sulai.AutoInit = function (context) {
+  let root = !!context ? context : document.body;
+
+  let registry = {
+    Carousel: root.querySelectorAll(`.${CAROUSEL}:not(.no-autoinit)`),
+    Dropdown: root.querySelectorAll(`.${DROPDOWN_TRIGGER}:not(.no-autoinit)`),
+    FormSelect: root.querySelectorAll('select:not(.no-autoinit)'),
+    Tabs: root.querySelectorAll(`.${TABS}:not(.no-autoinit)`),
+  };
+
+  for (let pluginName in registry) {
+    let plugin = Sulai[pluginName];
+    plugin.init(registry[pluginName]);
+  }
+};
+
+Sulai.objectSelectorString = function (obj) {
+  let tagStr = obj.tagName || '';
+  let idStr = obj.id || '';
+  let classStr = obj.class || '';
+  return (tagStr + idStr + classStr).replace(/\s/g, '');
+};
+
+Sulai.guid = (function () {
+  function s4() {
+    return Math.floor((1 + Math.random()) * 0x10000)
+      .toString(16)
+      .substring(1);
+  }
+  return function () {
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+  };
+})();
+
+Sulai.escapeHash = function (hash) {
+  return hash.replace(/(:|\.|\[|\]|,|=|\/)/g, '\\$1');
+};
+
+Sulai.checkWithinContainer = function (container, bounding, offset) {
+  let edges = {
+    top: false,
+    right: false,
+    bottom: false,
+    left: false
+  };
+
+  let containerRect = container.getBoundingClientRect();
+  let containerBottom =
+    container === document.body ?
+      Math.max(containerRect.bottom, window.innerHeight) :
+      containerRect.bottom;
+
+  let scrollLeft = container.scrollLeft;
+  let scrollTop = container.scrollTop;
+
+  let scrolledX = bounding.left - scrollLeft;
+  let scrolledY = bounding.top - scrollTop;
+
+  if (scrolledX < containerRect.left + offset || scrolledX < offset) {
+    edges.left = true;
+  }
+
+  if (
+    scrolledX + bounding.width > containerRect.right - offset ||
+    scrolledX + bounding.width > window.innerWidth - offset
+  ) {
+    edges.right = true;
+  }
+
+  if (scrolledY < containerRect.top + offset || scrolledY < offset) {
+    edges.top = true;
+  }
+
+  if (
+    scrolledY + bounding.height > containerBottom - offset ||
+    scrolledY + bounding.height > window.innerHeight - offset
+  ) {
+    edges.bottom = true;
+  }
+
+  return edges;
+};
+
+Sulai.checkPossibleAlignments = function (el, container, bounding, offset) {
+  let canAlign = {
+    top: true,
+    right: true,
+    bottom: true,
+    left: true,
+    spaceOnTop: null,
+    spaceOnRight: null,
+    spaceOnBottom: null,
+    spaceOnLeft: null
+  };
+
+  let containerAllowsOverflow = getComputedStyle(container).overflow === 'visible';
+  let containerRect = container.getBoundingClientRect();
+  let containerHeight = Math.min(containerRect.height, window.innerHeight);
+  let containerWidth = Math.min(containerRect.width, window.innerWidth);
+  let elOffsetRect = el.getBoundingClientRect();
+
+  let scrollLeft = container.scrollLeft;
+  let scrollTop = container.scrollTop;
+
+  let scrolledX = bounding.left - scrollLeft;
+  let scrolledYTopEdge = bounding.top - scrollTop;
+  let scrolledYBottomEdge = bounding.top + elOffsetRect.height - scrollTop;
+
+  canAlign.spaceOnRight = !containerAllowsOverflow ?
+    containerWidth - (scrolledX + bounding.width) :
+    window.innerWidth - (elOffsetRect.left + bounding.width);
+  if (canAlign.spaceOnRight < 0) {
+    canAlign.left = false;
+  }
+
+  canAlign.spaceOnLeft = !containerAllowsOverflow ?
+    scrolledX - bounding.width + elOffsetRect.width :
+    elOffsetRect.right - bounding.width;
+  if (canAlign.spaceOnLeft < 0) {
+    canAlign.right = false;
+  }
+
+  canAlign.spaceOnBottom = !containerAllowsOverflow ?
+    containerHeight - (scrolledYTopEdge + bounding.height + offset) :
+    window.innerHeight - (elOffsetRect.top + bounding.height + offset);
+  if (canAlign.spaceOnBottom < 0) {
+    canAlign.top = false;
+  }
+
+  canAlign.spaceOnTop = !containerAllowsOverflow ?
+    scrolledYBottomEdge - (bounding.height - offset) :
+    elOffsetRect.bottom - (bounding.height + offset);
+  if (canAlign.spaceOnTop < 0) {
+    canAlign.bottom = false;
+  }
+
+  return canAlign;
+};
+
+Sulai.getOverflowParent = function (element) {
+  if (element == null) {
+    return null;
+  }
+
+  if (element === document.body || getComputedStyle(element).overflow !== 'visible') {
+    return element;
+  }
+
+  return Sulai.getOverflowParent(element.parentElement);
+};
+
+Sulai.getIdFromTrigger = function (trigger) {
+  let id = trigger.getAttribute('data-target');
+  if (!id) {
+    id = trigger.getAttribute('href');
+    if (id) {
+      id = id.slice(1);
+    } else {
+      id = '';
+    }
+  }
+  return id;
+};
+
+Sulai.getDocumentScrollTop = function () {
+  return window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+};
+
+Sulai.getDocumentScrollLeft = function () {
+  return window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft || 0;
+};
+
+let getTime =
+  Date.now ||
+  function () {
+    return new Date().getTime();
+  };
+
+Sulai.throttle = function (func, wait, options) {
+  let context, args, result;
+  let timeout = null;
+  let previous = 0;
+  options || (options = {});
+  let later = function () {
+    previous = options.leading === false ? 0 : getTime();
+    timeout = null;
+    result = func.apply(context, args);
+    context = args = null;
+  };
+  return function () {
+    let now = getTime();
+    if (!previous && options.leading === false) previous = now;
+    let remaining = wait - (now - previous);
+    context = this;
+    args = arguments;
+    if (remaining <= 0) {
+      clearTimeout(timeout);
+      timeout = null;
+      previous = now;
+      result = func.apply(context, args);
+      context = args = null;
+    } else if (!timeout && options.trailing !== false) {
+      timeout = setTimeout(later, remaining);
+    }
+    return result;
+  };
+};
+
+Sulai.getTransitionDurationFromElement = function (element) {
+  if (!element) {
+    return 0
+  }
+  let {
+    transitionDuration,
+    transitionDelay
+  } = window.getComputedStyle(element)
+  const floatTransitionDuration = parseFloat(transitionDuration)
+  const floatTransitionDelay = parseFloat(transitionDelay)
+  if (!floatTransitionDuration && !floatTransitionDelay) {
+    return 0
+  }
+  transitionDuration = transitionDuration.split(',')[0]
+  transitionDelay = transitionDelay.split(',')[0]
+  return (parseFloat(transitionDuration) + parseFloat(transitionDelay)) * 1000
+}
+
+Sulai.deepExtend = function (out) {
+  out = out || {};
+  for (let i = 1; i < arguments.length; i++) {
+    let obj = arguments[i];
+    if (!obj)
+      continue;
+    for (let key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        if (typeof obj[key] === 'object') {
+          if (obj[key] instanceof Array == true)
+            out[key] = obj[key].slice(0);
+          else
+            out[key] = Sulai.deepExtend(out[key], obj[key]);
+        } else
+          out[key] = obj[key];
+      }
+    }
+  }
+  return out;
+};
+
+Sulai.stringToElement = function (someString) {
+  var temp = document.createElement('div');
+  temp.innerHTML = someString;
+  return temp.firstChild;
+}
+
+Sulai.isNode = function (selector) {
+  return (
+    typeof Node === "object" ? selector instanceof Node : selector && typeof selector === "object" && typeof selector.nodeType === "number" && typeof selector.nodeName === "string"
+  );
+}
+
+Sulai.isElement = function (selector) {
+  return (
+    typeof HTMLElement === "object" ? selector instanceof HTMLElement : selector && typeof selector === "object" && selector !== null && selector.nodeType === 1 && typeof selector.nodeName === "string"
+  );
+}
+
+Sulai.animate = function (duration, ease, callback) {
+  // Untuk Animate Ini Masih Jauh Dari Sempurna Akan Saya Lanjutkan Apabila ProJect Ini Terus Di Lanjutkan
+  if (this.currentStep == undefined) {
+    this.currentStep = 0;
+  }
+  if (this.frameRate == undefined) {
+    this.frameRate = 15 / 250;
+  }
+  this.currentStep++;
+  Object.keys(this).forEach(eachStyle => {
+    if (eachStyle != 'currentStep' && eachStyle != 'frameRate' && eachStyle != 'target') {
+      let temp = [];
+      Object.keys(this[eachStyle]).forEach((gaya, i) => {
+        if (typeof this[eachStyle][gaya] === 'object') {
+          let tempGaya = gaya;
+          while (tempGaya.includes('??')) {
+            tempGaya = tempGaya.replace("??", Sulai[ease](this.currentStep, this[eachStyle][gaya][0], this[eachStyle][gaya][1] - this[eachStyle][gaya][0], this.frameRate * duration));
+          }
+          temp.push(tempGaya);
+        }
+      })
+      if (!temp.length) {
+        temp.push(Sulai[ease](this.currentStep, this[eachStyle][0], this[eachStyle][1] - this[eachStyle][0], this.frameRate * duration));
+      }
+      this.target.style[eachStyle] = temp.join(' ');
+    }
+  });
+  if (this.currentStep >= this.frameRate * duration) {
+    if (typeof callback == "function") {
+      return callback(this.target);
+    } else {
+      return;
+    }
+  };
+  requestAnimationFrame(Sulai.animate.bind(this, duration, ease, callback));
+}
+
+Sulai.easeInQuad = function (x, t, b, c, d) {
+  return c * (t /= d) * t + b;
+}
+
+Sulai.easeOutQuad = function (t, b, c, d) {
+  return -c * (t /= d) * (t - 2) + b;
+}
+
+Sulai.easeInOutQuad = function (t, b, c, d) {
+  if ((t /= d / 2) < 1) return c / 2 * t * t + b;
+  return -c / 2 * ((--t) * (t - 2) - 1) + b;
+}
+
+Sulai.easeInCubic = function (t, b, c, d) {
+  return c * (t /= d) * t * t + b;
+}
+
+Sulai.easeOutCubic = function (t, b, c, d) {
+  return c * ((t = t / d - 1) * t * t + 1) + b;
+}
+
+Sulai.easeInOut = function (t, b, c, d) {
+  if ((t /= d / 2) < 1) return c / 2 * t * t * t + b;
+  return c / 2 * ((t -= 2) * t * t + 2) + b;
+}
+
+Sulai.easeInQuart = function (t, b, c, d) {
+  return c * (t /= d) * t * t * t + b;
+}
+
+Sulai.easeOutQuart = function (t, b, c, d) {
+  return -c * ((t = t / d - 1) * t * t * t - 1) + b;
+}
+
+Sulai.easeInOutQuart = function (t, b, c, d) {
+  if ((t /= d / 2) < 1) return c / 2 * t * t * t * t + b;
+  return -c / 2 * ((t -= 2) * t * t * t - 2) + b;
+}
+
+Sulai.easeInQuint = function (t, b, c, d) {
+  return c * (t /= d) * t * t * t * t + b;
+}
+
+Sulai.easeOutQuint = function (t, b, c, d) {
+  return c * ((t = t / d - 1) * t * t * t * t + 1) + b;
+}
+
+Sulai.easeInOutQuint = function (t, b, c, d) {
+  if ((t /= d / 2) < 1) return c / 2 * t * t * t * t * t + b;
+  return c / 2 * ((t -= 2) * t * t * t * t + 2) + b;
+}
+
+Sulai.easeInSine = function (t, b, c, d) {
+  return -c * Math.cos(t / d * (Math.PI / 2)) + c + b;
+}
+
+Sulai.easeOutSine = function (t, b, c, d) {
+  return c * Math.sin(t / d * (Math.PI / 2)) + b;
+}
+
+Sulai.easeInOutSine = function (t, b, c, d) {
+  return -c / 2 * (Math.cos(Math.PI * t / d) - 1) + b;
+}
+
+Sulai.easeInExpo = function (t, b, c, d) {
+  return (t == 0) ? b : c * Math.pow(2, 10 * (t / d - 1)) + b;
+}
+
+Sulai.easeOutExpo = function (t, b, c, d) {
+  return (t == d) ? b + c : c * (-Math.pow(2, -10 * t / d) + 1) + b;
+}
+
+Sulai.easeInOutExpo = function (t, b, c, d) {
+  if (t == 0) return b;
+  if (t == d) return b + c;
+  if ((t /= d / 2) < 1) return c / 2 * Math.pow(2, 10 * (t - 1)) + b;
+  return c / 2 * (-Math.pow(2, -10 * --t) + 2) + b;
+}
+
+Sulai.easeInCirc = function (t, b, c, d) {
+  return -c * (Math.sqrt(1 - (t /= d) * t) - 1) + b;
+}
+
+Sulai.easeOutCirc = function (t, b, c, d) {
+  return c * Math.sqrt(1 - (t = t / d - 1) * t) + b;
+}
+
+Sulai.easeInOutCirc = function (t, b, c, d) {
+  if ((t /= d / 2) < 1) return -c / 2 * (Math.sqrt(1 - t * t) - 1) + b;
+  return c / 2 * (Math.sqrt(1 - (t -= 2) * t) + 1) + b;
+}
+
+Sulai.easeInElastic = function (t, b, c, d) {
+  var s = 1.70158;
+  var p = 0;
+  var a = c;
+  if (t == 0) return b;
+  if ((t /= d) == 1) return b + c;
+  if (!p) p = d * .3;
+  if (a < Math.abs(c)) {
+    a = c;
+    var s = p / 4;
+  } else var s = p / (2 * Math.PI) * Math.asin(c / a);
+  return -(a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p)) + b;
+}
+
+Sulai.easeOutElastic = function (t, b, c, d) {
+  var s = 1.70158;
+  var p = 0;
+  var a = c;
+  if (t == 0) return b;
+  if ((t /= d) == 1) return b + c;
+  if (!p) p = d * .3;
+  if (a < Math.abs(c)) {
+    a = c;
+    var s = p / 4;
+  } else var s = p / (2 * Math.PI) * Math.asin(c / a);
+  return a * Math.pow(2, -10 * t) * Math.sin((t * d - s) * (2 * Math.PI) / p) + c + b;
+}
+
+Sulai.easeInOutElastic = function (t, b, c, d) {
+  var s = 1.70158;
+  var p = 0;
+  var a = c;
+  if (t == 0) return b;
+  if ((t /= d / 2) == 2) return b + c;
+  if (!p) p = d * (.3 * 1.5);
+  if (a < Math.abs(c)) {
+    a = c;
+    var s = p / 4;
+  } else var s = p / (2 * Math.PI) * Math.asin(c / a);
+  if (t < 1) return -.5 * (a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p)) + b;
+  return a * Math.pow(2, -10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p) * .5 + c + b;
+}
+
+Sulai.easeInBack = function (t, b, c, d, s) {
+  if (s == undefined) s = 1.70158;
+  return c * (t /= d) * t * ((s + 1) * t - s) + b;
+}
+
+Sulai.easeOutBack = function (t, b, c, d, s) {
+  if (s == undefined) s = 1.70158;
+  return c * ((t = t / d - 1) * t * ((s + 1) * t + s) + 1) + b;
+}
+
+Sulai.easeInOutBack = function (t, b, c, d, s) {
+  if (s == undefined) s = 1.70158;
+  if ((t /= d / 2) < 1) return c / 2 * (t * t * (((s *= (1.525)) + 1) * t - s)) + b;
+  return c / 2 * ((t -= 2) * t * (((s *= (1.525)) + 1) * t + s) + 2) + b;
+}
+
+Sulai.easeInBounce = function (x, t, b, c, d) {
+  return c - easeOutBounce(d - t, 0, c, d) + b;
+}
+
+Sulai.easeOutBounce = function (t, b, c, d) {
+  if ((t /= d) < (1 / 2.75)) {
+    return c * (7.5625 * t * t) + b;
+  } else if (t < (2 / 2.75)) {
+    return c * (7.5625 * (t -= (1.5 / 2.75)) * t + .75) + b;
+  } else if (t < (2.5 / 2.75)) {
+    return c * (7.5625 * (t -= (2.25 / 2.75)) * t + .9375) + b;
+  } else {
+    return c * (7.5625 * (t -= (2.625 / 2.75)) * t + .984375) + b;
+  }
+}
+
+Sulai.easeInOutBounce = function (t, b, c, d) {
+  if (t < d / 2) return easeInBounce(t * 2, 0, c, d) * .5 + b;
+  return easeOutBounce(t * 2 - d, 0, c, d) * .5 + c * .5 + b;
+}
+
+document.querySelector('#switchTheme').addEventListener('change', function (e) {
+  if (this.checked) {
+
+    document.documentElement.classList.add(`${TRANSITION}`);
+    setTimeout(() => {
+      document.documentElement.classList.remove(`${TRANSITION}`);
+    }, Sulai.getTransitionDurationFromElement(document.documentElement))
+
+    document.documentElement.setAttribute('data-theme', 'dark')
+    localStorage.setItem('theme', 'dark')
+  } else {
+
+    document.documentElement.classList.add(`${TRANSITION}`);
+    setTimeout(() => {
+      document.documentElement.classList.remove(`${TRANSITION}`);
+    }, Sulai.getTransitionDurationFromElement(document.documentElement))
+
+    document.documentElement.setAttribute('data-theme', 'light')
+    localStorage.setItem('theme', 'light')
+  }
+})
+
+document.addEventListener('scroll', function () {
+  if (document.documentElement.scrollTop > 100) {
+    document.querySelector(`.${SCROLL_TO_TOP}`).style.display = 'flex';
+    document.querySelector(`.${SCROLL_TO_TOP}`).anime({
+      opacity: [0, 1]
+    }, 500, 'easeInOutExpo');
+  } else {
+    document.querySelector(`.${SCROLL_TO_TOP}`).anime({
+      opacity: [1, 0]
+    }, 500, 'easeInOutExpo', (anim) => {
+      document.querySelector(`.${SCROLL_TO_TOP}`).style.display = 'none';
+    });
+  }
+}, false);
+
+document.querySelector(`a.${SCROLL_TO_TOP}`).addEventListener('click', function (e) {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+}, false);
+
+async function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+async function noneBlock(params) {
+  if (params.this.nextElementSibling) {
+    params.this.nextElementSibling.classList.toggle(`${D_NONE}`);
+  }
+  if (params.this.previousElementSibling) {
+    params.this.previousElementSibling.classList.toggle(`${D_NONE}`);
+  }
+  params.this.classList.toggle(`${D_NONE}`);
+  params.this.parentNode.previousElementSibling.children[0].classList.toggle(`${D_NONE}`);
+  params.this.parentNode.previousElementSibling.children[1].classList.toggle(`${D_NONE}`);
+}
+
+async function changeForm(params) {
+  params.event.preventDefault();
+  const formData = new FormData(params.this)
+  document.querySelector('#changeForm').onsubmit = async function (event) {
+    event.preventDefault();
+    await formFetch({
+      link: `${params.link}?${Array.from(formData.keys()).toString()}=${Array.from(formData.values()).toString()}`,
+      method: params.method,
+      this: this
+    }).then((prom) => {
+      if (prom.redirected || [201, 301, 302, 303, 307, 308].includes(prom.status)) {
+        this.querySelector(`.${SPINNER_BORDER}`).classList.toggle(`${D_NONE}`);
+        window.location.replace(prom.url)
+      } else {
+        return prom.json();
+      }
+    }).then((response) => {
+      Object.keys(response).forEach((type) => {
+        response[type].forEach((err) => {
+          if (err.location != 'param') {
+            if (err.param != 'yourpassword') {
+              modalHide(document.querySelector('#confirmModal'));
+              const inputForm = params.this.querySelector(`#${err.param}`)
+              const helperText = inputForm.nextElementSibling
+              inputForm.classList.add(`${INVALID}`)
+              helperText.dataset.error = err.msg;
+            } else {
+              const passForm = this.querySelector(`#${err.param}`)
+              const passHelperText = passForm.nextElementSibling.nextElementSibling
+              passForm.classList.add(`${INVALID}`)
+              passHelperText.dataset.error = err.msg;
+            }
+          }
+        })
+      })
+    }).catch((response) => {
+      console.log(response);
+      window.location.replace(window.location.href)
+    })
+  }
+}
+
+async function verifyCode(param) {
+  if (param.value.length == param.maxLength) {
+    let next = param.nextElementSibling;
+    if (next != null) next.focus();
+  } else {
+    let prev = param.previousElementSibling;
+    if (prev != null) prev.focus();
+  }
+}
+
+async function verifyForm(params) {
+  params.event.preventDefault();
+  params.this.querySelector(`.${SPINNER_BORDER}`).classList.toggle(`${D_NONE}`);
+  let verify = '';
+  params.this.querySelectorAll('#verify input').forEach(element => {
+    verify = verify + element.value
+  });
+  const formData = new FormData(params.this)
+  formData.set('verify', verify.toUpperCase())
+  fetch(params.link, {
+    credentials: 'same-origin',
+    method: params.method,
+    headers: {
+      'CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+    },
+    body: formData
+  }).then((prom) => {
+    if (prom.redirected) {
+      params.this.querySelector(`.${SPINNER_BORDER}`).classList.toggle(`${D_NONE}`);
+      params.this.querySelector(`.${INPUT_FIELD}`).innerHTML = `<strong>Your email has been verified</strong>`
+      setTimeout(async function () {
+        window.location.replace(prom.url)
+      }, 5000)
+    } else {
+      return prom.json();
+    }
+  }).then((response) => {
+    params.this.querySelector(`.${SPINNER_BORDER}`).classList.toggle(`${D_NONE}`);
+    Object.keys(response).forEach((type) => {
+      response[type].forEach((err) => {
+        params.this.querySelectorAll(`#verify input`).forEach(element => {
+          element.classList.add(`${INVALID}`)
+        })
+        params.this.querySelector(`.${HELPER_TEXT}`).dataset.error = err.msg;
+      })
+    })
+  })
+}
+
+async function forgotForm(params) {
+  params.event.preventDefault();
+  await formFetch(params).then((prom) => {
+    if (prom.status == 200) {
+      params.this.querySelector(`.${SPINNER_BORDER}`).classList.toggle(`${D_NONE}`);
+      params.this.querySelector(`.${INPUT_FIELD}`).innerHTML = `<strong>Request has been send</strong>`;
+    } else {
+      return prom.json();
+    }
+  }).then((response) => {
+    setFormError(params, response)
+  })
+}
+
+async function setFormError(params, response) {
+  params.this.querySelector(`.${SPINNER_BORDER}`).classList.toggle(`${D_NONE}`);
+  Object.keys(response).forEach((type) => {
+    response[type].forEach((err) => {
+      if (err.location != 'param' && err.location != 'query') {
+        const inputForm = params.this.querySelector(`#${err.param}`)
+        const helperText = inputForm.nextElementSibling.nextElementSibling
+        inputForm.classList.add(`${INVALID}`)
+        helperText.dataset.error = err.msg;
+      }
+    })
+  })
+}
+
+async function sulaiForm(params) {
+  params.event.preventDefault();
+  await formFetch(params).then((prom) => {
+    if (prom.redirected || [201, 301, 302, 303, 307, 308].includes(prom.status)) {
+      params.this.querySelector(`.${SPINNER_BORDER}`).classList.toggle(`${D_NONE}`);
+      window.location.replace(prom.url)
+    } else {
+      return prom.json();
+    }
+  }).then((response) => {
+    setFormError(params, response)
+  }).catch((response) => {
+    window.location.replace(window.location.href)
+  })
+}
+
+async function DEBUG(params) {
+  params.event.preventDefault();
+  await formFetch(params).then((prom) => {
+    if (params.this.querySelector(`.${SPINNER_BORDER}`)) {
+      params.this.querySelector(`.${SPINNER_BORDER}`).classList.toggle(`${D_NONE}`);
+    }
+    console.log(prom);
+    return prom.text();
+  }).then((response) => {
+    console.log(response);
+  }).catch((response) => {
+    console.log(response);
+  })
+}
+
+async function formFetch(params) {
+  return await fetch(params.link, {
+    method: params.method,
+    headers: {
+      'CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+    },
+    body: new FormData(params.this)
+  }).then((promise) => {
+    return promise;
+  })
+}
+
+document.querySelectorAll(`.${SIDEBARTOGGLE}`).forEach(each => {
+  each.addEventListener('click', function (e) {
+    document.body.classList.toggle(`${SIDEBAR_TOGGLED}`);
+    document.querySelector(`.${SIDEBAR}`).classList.toggle(`${TOGGLED}`);
+    if (document.querySelector(`.${SIDEBAR}`).classList.contains(`${TOGGLED}`)) {
+      document.querySelector(`.${SIDEBAR}`).style.transition = 'all 200ms';
+      document.querySelector(`.${SIDEBAR} .${COLLAPSE}`).style.transition = 'all 200ms';
+    }
+  }, false);
+})
+
+document.addEventListener('resize', function () {
+  if (getWidth(document) < 768) {
+    document.querySelector(`.${SIDEBAR}`).style.transition = 'all 200ms';
+    document.querySelector(`.${SIDEBAR} .${COLLAPSE}`).style.transition = 'all 200ms';
+  }
+}, false)
+
+document.querySelectorAll(`.${SPINNER_BORDER}`).forEach(spin => {
+  spin.parentNode.addEventListener('click', function () {
+    this.querySelector(`.${SPINNER_BORDER}`).classList.remove(`${D_NONE}`);
+  })
+}, false);
+
+document.querySelector(`.${SEARCH_FIELD}`).addEventListener("focus", function () {
+  document.querySelectorAll(`.${SEARCH_HIDE}`).forEach(hide => {
+    if (window.innerWidth <= 768) {
+      hide.classList.replace(`${D_FLEX}`, `${D_NONE}`)
+    }
+  });
+}, false);
+
+document.querySelector(`.${SEARCH_FIELD}`).addEventListener("focusout", function () {
+  document.querySelectorAll(`.${SEARCH_HIDE}`).forEach(hide => {
+    if (window.innerWidth <= 768) {
+      setTimeout(() => {
+        hide.classList.replace(`${D_NONE}`, `${D_FLEX}`)
+      }, 200)
+    }
+  });
+}, false);
+
+document.getElementById('search-input').addEventListener('keyup', searchEngine, false);
+document.getElementById('search-input').addEventListener('focus', searchEngine, false);
+
+function searchEngine(e) {
+  let input = document.getElementById('search-input');
+  let html = '';
+  let matchingResults = [];
+  let heading = document.querySelector(`.${SEARCH_HEADING}`);
+
+  if (input.value === '') {
+    searchResults.forEach(function (obj) {
+      heading.textContent = 'Most Visited';
+      if (obj.frequent === true) {
+        matchingResults.push(obj);
+      }
+    })
+  } else {
+    heading.textContent = 'Search Results';
+    searchResults.forEach(function (obj) {
+      if (obj.title.toUpperCase().includes(input.value.toUpperCase())) {
+        matchingResults.push(obj);
+      }
+    })
+  }
+
+  if (matchingResults.length > 0) {
+    matchingResults.forEach(function (el) {
+      html += `
+      <li><a class="${TEXT_DECOR_NONE}" href="${el.link}">${boldString(el.title, input.value)}</a></li>`
+    })
+    document.querySelector(`.${POPUP_LIST}`).innerHTML = html;
+  } else {
+    html = `<li>There are no suggestions for your query.</li>`
+    document.querySelector(`.${POPUP_LIST}`).innerHTML = html;
+  }
+}
+
+let searchResults = [{
+  title: 'CodePen',
+  description: 'This is just a test',
+  link: '#test1',
+  frequent: false
+},
+{
+  title: 'Facebook',
+  description: 'Something else to test',
+  link: '#test2',
+  frequent: false
+},
+{
+  title: 'Font Awesome',
+  description: 'Something else to test',
+  link: '#test3',
+  frequent: false
+},
+{
+  title: 'Link 1',
+  description: 'Something else to test, just a link name.',
+  link: '#test4',
+  frequent: false
+},
+{
+  title: 'Stack Overflow',
+  description: 'Something else to test, just another link name.',
+  link: '#test5',
+  frequent: false
+},
+{
+  title: 'Google',
+  description: 'Something else to test, just another link name.',
+  link: '#googletest',
+  frequent: true
+},
+{
+  title: 'Apple',
+  description: 'Something else to test, just another link name.',
+  link: '#appletest',
+  frequent: true
+},
+{
+  title: 'Microsoft',
+  description: 'Something else to test, just another link name.',
+  link: '#Microsofttest',
+  frequent: true
+},
+{
+  title: 'Github',
+  description: 'Something else to test, just another link name.',
+  link: '#githubtest',
+  frequent: true
+}
+]
+
+function boldString(str, find) {
+  let re = new RegExp(find, 'i');
+  find = re.exec(str);
+  return str.replace(re, '<b>' + find + '</b>');
+}
+
+function dropShow(each, event) {
+  each.setAttribute('aria-expanded', 'true');
+  each.nextElementSibling.classList.add(`${SHOW}`);
+  event.stopPropagation();
+}
+
+function dropHide(each, event) {
+  each.setAttribute('aria-expanded', 'false');
+  each.nextElementSibling.classList.remove(`${SHOW}`);
+  event.stopPropagation();
+}
+
+function collapseShow(each) {
+  let target = document.querySelector(each.dataset.target);
+
+  each.setAttribute('aria-expanded', 'true');
+  each.classList.toggle(`${COLLAPSED}`);
+
+  target.classList.replace(`${COLLAPSE}`, `${COLLAPSING}`);
+  target.style.height = target.children[0].fullHeight() + 'px';
+
+  setTimeout(() => {
+    target.classList.replace(`${COLLAPSING}`, `${COLLAPSE}`);
+    target.style.removeProperty('height');
+    target.classList.toggle(`${SHOW}`);
+  }, Sulai.getTransitionDurationFromElement(target))
+}
+
+function collapseHide(each) {
+  let target = document.querySelector(each.dataset.target);
+
+  each.setAttribute('aria-expanded', 'false');
+  each.classList.toggle(`${COLLAPSED}`);
+
+  target.classList.toggle(`${SHOW}`);
+  target.classList.replace(`${COLLAPSE}`, `${COLLAPSING}`);
+  target.style.height = '0px';
+
+  setTimeout(() => {
+    target.style.removeProperty('height');
+    target.classList.replace(`${COLLAPSING}`, `${COLLAPSE}`);
+  }, Sulai.getTransitionDurationFromElement(target))
+
+}
+
+function dismiss(each) {
+  if (each.dataset.dismiss ?? false) {
+    switch (each.dataset.dismiss) {
+      case 'modal':
+        each.addEventListener('click', function (e) {
+          modalHide(this.closest(`.${MODAL}`));
+        }, false)
+        break;
+      case 'alert':
+        each.addEventListener('click', function (e) {
+          this.closest(`.${ALERT}`).remove();
+        }, false)
+        break;
+
+      default:
+        console.log(each.dataset.dismiss);
+        break;
+    }
+  }
+}
+
+function toggle(each) {
+  if (each.dataset.toggle ?? false) {
+    switch (each.dataset.toggle) {
+      case 'collapse':
+        each.setAttribute('aria-expanded', 'false');
+        each.addEventListener('click', function (e) {
+          if (this.getAttribute('aria-expanded') == 'true') {
+            collapseHide(this)
+          } else {
+            let otherCollapse = document.querySelector(`[aria-expanded='true']`);
+            if (otherCollapse != null) {
+              collapseHide(otherCollapse);
+              collapseShow(this);
+            } else {
+              collapseShow(this);
+            }
+          }
+        }, false)
+        break;
+      case 'modal':
+        each.addEventListener('click', function (e) {
+          modalShow(each);
+        }, false)
+        break;
+
+      default:
+        console.log(each.dataset.toggle);
+        break;
+    }
+  }
+}
+
+function modalShow(each, options) {
+  let body = document.body;
+  body.setAttribute('data-padding-right', '')
+  body.style.paddingRight = window.getComputedStyle(document.documentElement, '::-webkit-scrollbar').getPropertyValue('width');
+  body.classList.add(`${MODAL_OPEN}`);
+
+  let modal = document.querySelector(each.dataset.target);
+  modal.style.display = 'block';
+  modal.style.paddingRight = window.getComputedStyle(document.documentElement, '::-webkit-scrollbar').getPropertyValue('width');
+
+  setTimeout(() => {
+    modal.classList.add(`${SHOW}`);
+  }, Sulai.getTransitionDurationFromElement(modal))
+
+  let backdrop = document.createElement('div');
+  backdrop.classList.add(`${MODAL_BACKDROP}`, `${FADE}`, `${SHOW}`);
+  document.body.appendChild(backdrop);
+
+  document.addEventListener('mousedown', function (e) {
+    if (e.target === modal) {
+      modalHide(modal);
+    }
+  })
+}
+
+function modalHide(modal) {
+  modal.classList.remove(`${SHOW}`);
+  setTimeout(() => {
+    modal.style.removeProperty('display');
+  }, Sulai.getTransitionDurationFromElement(modal))
+
+  if (document.querySelector(`.${MODAL_BACKDROP}:last-child`) != null) {
+    document.querySelector(`.${MODAL_BACKDROP}:last-child`).remove();
+  }
+
+  let body = document.body;
+  body.removeAttribute('data-padding-right');
+  body.classList.remove(`${MODAL_OPEN}`);
+  body.style.removeProperty('padding-right');
+}
+
+function setModalValue(params, resetForm) {
+  Object.keys(params).forEach(id => {
+    let target = document.querySelector(`#${id}`)
+    switch (target.tagName) {
+      case 'SELECT':
+        target.querySelectorAll('option').forEach(function (option) {
+          option.selected = false;
+        })
+
+        target.querySelectorAll('option').forEach(function (option) {
+          if (params[id].split(',').find(options => options == option.value)) option.selected = true;
+        })
+        break;
+
+      default:
+        switch (target.type) {
+          case 'checkbox':
+            if (params[id] == 'true') target.checked = true;
+            break;
+
+          default:
+            target.value = params[id];
+            break;
+        }
+        break;
+    }
+  });
+  if (resetForm) {
+    Sulai.resetFormFields(resetForm, 'input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], input[type=number], input[type=search], input[type=date], input[type=time], textarea'.split(', '));
+  }
+}
+
+class Component {
+  constructor(classDef, el, options) {
+    if (!(el instanceof Element)) {
+      console.error(Error(el + ' is not an HTML Element'));
+    }
+
+    let ins = classDef.getInstance(el);
+    if (!!ins) {
+      ins.destroy();
+    }
+
+    this.el = el;
+  }
+
+  static init(classDef, els, options) {
+    let instances = null;
+    if (els instanceof Element) {
+      instances = new classDef(els, options);
+    } else if (!!els && (els instanceof NodeList)) {
+      let instancesArr = [];
+      for (let i = 0; i < els.length; i++) {
+        let opsi = options ?? {};
+        let dataAttributes = Object.assign({}, els[i].dataset);
+        Object.keys(dataAttributes).forEach(element => {
+          switch (dataAttributes[element]) {
+            case 'true':
+              opsi[element] = true;
+              break;
+            case 'false':
+              opsi[element] = false;
+              break;
+            default:
+              opsi[element] = dataAttributes[element];
+              break;
+          }
+        });
+        instancesArr.push(new classDef(els[i], opsi));
+      }
+      instances = instancesArr;
+    }
+
+    return instances;
+  }
+}
+
+(function ($) {
+  Sulai.updateTextFields = function () {
+    let input_selector = 'input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], input[type=number], input[type=search], input[type=date], input[type=time], textarea'.split(', ');
+    document.querySelectorAll(input_selector).forEach(function (element, index) {
+      if (
+        element.value.length > 0 ||
+        element.is(':focus') ||
+        element.autofocus ||
+        element.placeholder.length > 0
+      ) {
+        if (element.siblings('label')[0]) element.siblings('label')[0].classList.add(`${ACTIVE}`);
+      } else if (element.validity) {
+        if (element.siblings('label')[0]) element.siblings('label')[0].classList.toggle(`${ACTIVE}`, element.validity.badInput === true);
+      } else {
+        if (element.siblings('label')[0]) element.siblings('label')[0].classList.remove(`${ACTIVE}`);
+      }
+    })
+  };
+
+  Sulai.validate_field = function (object) {
+    let hasLength = object.dataset.length !== undefined;
+    let lenAttr = parseInt(object.dataset.length);
+    let len = object.value.length;
+
+    if (len === 0 && object.validity.badInput === false && !object.is(':required')) {
+      if (object.classList.contains(VALIDATE)) {
+        object.classList.remove(`${VALID}`);
+        object.classList.remove(`${INVALID}`);
+      }
+    } else {
+      if (object.classList.contains(VALIDATE)) {
+        if (
+          (object.is(':valid') && hasLength && len <= lenAttr) ||
+          (object.is(':valid') && !hasLength)
+        ) {
+          object.classList.remove(`${INVALID}`);
+          object.classList.add(`${VALID}`);
+        } else {
+          object.classList.remove(`${VALID}`);
+          object.classList.add(`${INVALID}`);
+        }
+      }
+    }
+  };
+
+  Sulai.textareaAutoResize = function (textarea) {
+    if (!textarea) {
+      console.error('No textarea element found');
+      return;
+    }
+
+    let hiddenDiv = document.querySelectorAll(`.${HIDDENDIV}`)[0];
+    if (!hiddenDiv) {
+      hiddenDiv = Sulai.stringToElement(`<div class="${HIDDENDIV}"></div>`);
+      document.body.appendChild(hiddenDiv);
+    }
+
+    let fontFamily = textarea.style.fontFamily
+    let fontSize = textarea.style.fontSize
+    let lineHeight = textarea.style.lineHeight
+
+    let paddingTop = textarea.style.paddingTop
+    let paddingRight = textarea.style.paddingRight
+    let paddingBottom = textarea.style.paddingBottom
+    let paddingLeft = textarea.style.paddingLeft
+
+    if (fontSize) hiddenDiv.style.fontSize = fontSize;
+    if (fontFamily) hiddenDiv.style.fontFamily = fontFamily;
+    if (lineHeight) hiddenDiv.style.lineHeight = lineHeight;
+    if (paddingTop) hiddenDiv.style.paddingTop = paddingTop;
+    if (paddingRight) hiddenDiv.style.paddingRight = paddingRight;
+    if (paddingBottom) hiddenDiv.style.paddingBottom = paddingBottom;
+    if (paddingLeft) hiddenDiv.style.paddingLeft = paddingLeft;
+
+    if (!textarea.dataset.originalHeight) {
+      textarea.dataset.originalHeight = parseFloat(getComputedStyle(textarea, null).height.replace("px", ""));
+    }
+
+    if (textarea.wrap === 'off') {
+      hiddenDiv.style.overflowWrap = normal;
+      hiddenDiv.style.whiteSpace = pre;
+    }
+
+    hiddenDiv.textContent = textarea.value + '\n';
+    let content = hiddenDiv.innerHTML.replace(/\n/g, '<br>');
+    hiddenDiv.innerHTML = content;
+
+    if (textarea.offsetWidth > 0 && textarea.offsetHeight > 0) {
+      hiddenDiv.style.width = parseFloat(getComputedStyle(textarea, null).width);
+    } else {
+      hiddenDiv.style.width = (window.innerWidth / 2) + 'px';
+    }
+
+    if (textarea.dataset.originalHeight <= hiddenDiv.innerHeight()) {
+      textarea.style.height = hiddenDiv.innerHeight() + 'px';
+    } else if (textarea.value.length < textarea.dataset.previousLength) {
+      textarea.style.height = textarea.dataset.originalHeight + 'px';
+    }
+    textarea.dataset.previousLength = textarea.value.length;
+  };
+
+  Sulai.resetFormFields = function (formReset, input_selector) {
+    if (formReset.tagName.toLowerCase() == 'form') {
+      formReset.querySelector(input_selector).classList.remove(`${VALID}`);
+      formReset.querySelector(input_selector).classList.remove(`${INVALID}`);
+      formReset.querySelectorAll(input_selector).forEach(function (el) {
+        if (el.value.length) {
+          if (el.siblings('label')[0]) el.siblings('label')[0].classList.remove(`${ACTIVE}`);
+        }
+      });
+
+      setTimeout(function () {
+        formReset.querySelectorAll('select').forEach(function (el) {
+          if (el.Sulai_FormSelect) {
+            el.trigger('change');
+          }
+        });
+      }, 0);
+    }
+  }
+
+  document.documentElement.ready(function () {
+    let input_selector = 'input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], input[type=number], input[type=search], input[type=date], input[type=time], textarea'.split(', ');
+
+    document.addEventListener('change', function () {
+      this.querySelectorAll(input_selector).forEach(el => {
+        if (el.value.length !== 0 || el.placeholder.length > 0) {
+          if (el.siblings('label')[0]) el.siblings('label')[0].classList.add(`${ACTIVE}`);
+        }
+        Sulai.validate_field(el);
+      });
+    })
+
+    Sulai.updateTextFields();
+
+    document.addEventListener('reset', function (e) {
+      Sulai.resetFormFields(e.target, input_selector);
+    });
+
+    document.addEventListener('focus', function (e) {
+      if (e.target.is(input_selector)) {
+        e.target.siblings(`label, .${PREFIX}`).forEach(element => {
+          element.classList.add(`${ACTIVE}`);
+        });
+      }
+    }, true);
+
+    document.addEventListener('blur', function (e) {
+      let inputElement = e.target;
+      if (inputElement.is(input_selector)) {
+        let selector = `.${PREFIX}`;
+
+        if (
+          inputElement.value.length === 0 &&
+          inputElement.validity.badInput !== true &&
+          inputElement.placeholder.length === 0
+        ) {
+          selector += ', label';
+        }
+        inputElement.siblings(selector).forEach(element => {
+          element.classList.remove(`${ACTIVE}`);
+        });
+        Sulai.validate_field(inputElement);
+      }
+    }, true);
+
+
+    let radio_checkbox = 'input[type=radio], input[type=checkbox]';
+    document.addEventListener('keyup', function (e) {
+      this.querySelectorAll(radio_checkbox).forEach(el => {
+        if (e.which === Sulai.keys.TAB) {
+          el.classList.add(`${TABBED}`);
+          el.addEventListener('blur', function (e) {
+            el.classList.remove(`${TABBED}`);
+          }, true);
+          return;
+        }
+      });
+    })
+
+    let text_area_selector = `.${SULAI_TEXTAREA}`;
+    document.querySelectorAll(text_area_selector).forEach(function (textarea) {
+      textarea.dataset.originalHeight = parseFloat(getComputedStyle(textarea, null).height.replace("px", ""));
+      textarea.dataset.previousLength = textarea.value.length;
+      Sulai.textareaAutoResize(textarea);
+    });
+
+    document.addEventListener('keyup', function (e) {
+      this.querySelectorAll(text_area_selector).forEach(el => {
+        Sulai.textareaAutoResize(el);
+      });
+    });
+
+    document.addEventListener('keydown', function () {
+      this.querySelectorAll(text_area_selector).forEach(el => {
+        Sulai.textareaAutoResize(el);
+      });
+    });
+
+    document.addEventListener('change', function () {
+      this.querySelectorAll(`.${FILE_FIELD} input[type="file"]`).forEach(el => {
+        let file_field = el.closest(`.${FILE_FIELD}`);
+        let path_input = file_field.querySelector(`input.${FILE_PATH}`);
+        let files = el.files;
+        let file_names = [];
+        for (let i = 0; i < files.length; i++) {
+          file_names.push(files[i].name);
+        }
+        path_input.value = file_names.join(', ');
+        path_input.trigger('change');
+      });
+    });
+  });
+})(window);
+
+(function ($) {
+  'use strict';
+
+  let _defaults = {
+    interval: 5000,
+    wrap: 'true',
+    touch: 'true',
+    duration: 100,
+  };
+
+  class Carousel extends Component {
+
+    constructor(el, options) {
+      super(Carousel, el, options);
+      this.el = el;
+      this.el.Sulai_Carousel = this;
+      this.options = Sulai.deepExtend({}, Carousel.defaults, options);
+      this.slide = this.el.querySelectorAll(`.${CAROUSEL_ITEM}`);
+      this.nextSlide = '';
+      this.prevSlide = '';
+
+      this._setupEventHandlers();
+      this._setupInterval();
+    }
+
+    static get defaults() {
+      return _defaults;
+    }
+
+    static init(els, options) {
+      return super.init(this, els, options);
+    }
+
+    static getInstance(el) {
+      return el.Sulai_Carousel;
+    }
+
+    destroy() {
+      this._removeEventHandlers();
+      this._removeCarousel();
+      this.el.Sulai_Carousel = undefined;
+    }
+
+    _setupInterval() {
+      if (Number.isInteger(this.interval)) {
+        setInterval(this.nextSlideBound, this.options.interval);
+      }
+    }
+
+    _setupEventHandlers() {
+      this.prevSlideBound = this.prevSlideHandler.bind(this);
+      this.nextSlideBound = this.nextSlideHandler.bind(this);
+
+      this.prev = this.el.parentNode.querySelectorAll(`.${CAROUSEL_CONTROL_PREV}`);
+      this.next = this.el.parentNode.querySelectorAll(`.${CAROUSEL_CONTROL_NEXT}`);
+
+      this.prev.forEach((el) => {
+        el.addEventListener('click', this.prevSlideBound);
+      })
+      this.next.forEach((el) => {
+        el.addEventListener('click', this.nextSlideBound);
+      })
+    }
+
+    prevSlideHandler(e) {
+      if (this.el.querySelector(`.${CAROUSEL_ITEM}.${CAROUSEL_ITEM_PREV}`) ?? false) {
+        return;
+      }
+
+      let active = this.el.querySelector(`.${CAROUSEL_ITEM}.${ACTIVE}`);
+
+      if (active.previousElementSibling) {
+        this.prevSlide = active.previousElementSibling;
+      } else {
+        if (!!this.options.wrap) {
+          this.prevSlide = this.slide[this.slide.length - 1];
+        } else {
+          return;
+        }
+      }
+
+      this._animateSlide(active, 'prev')
+    }
+
+    nextSlideHandler(e) {
+      if (this.el.querySelector(`.${CAROUSEL_ITEM}.${CAROUSEL_ITEM_NEXT}`) ?? false) {
+        return;
+      }
+
+      let active = this.el.querySelector(`.${CAROUSEL_ITEM}.${ACTIVE}`);
+      if (active.nextElementSibling) {
+        this.nextSlide = active.nextElementSibling;
+      } else {
+        if (!!this.options.wrap) {
+          this.nextSlide = this.slide[0];
+        } else {
+          return;
+        }
+      }
+
+      this._animateSlide(active, 'next')
+    }
+
+    _animateSlide(active, direction) {
+      let isNext = direction === 'next';
+      let itemDirection = isNext ? CAROUSEL_ITEM_LEFT : CAROUSEL_ITEM_RIGHT;
+      let itemSlide = isNext ? CAROUSEL_ITEM_NEXT : CAROUSEL_ITEM_PREV;
+
+      active.classList.add(itemDirection);
+      isNext ? this.nextSlide.classList.add(itemSlide) : this.prevSlide.classList.add(itemSlide);
+      setTimeout(() => {
+        isNext ? this.nextSlide.classList.add(itemDirection) : this.prevSlide.classList.add(itemDirection);
+      }, this.options.duration)
+
+      setTimeout(() => {
+        active.classList.remove(`${ACTIVE}`, itemDirection);
+        isNext ? this.nextSlide.classList.remove(itemSlide, itemDirection) : this.prevSlide.classList.remove(itemSlide, itemDirection);
+        isNext ? this.nextSlide.classList.add(`${ACTIVE}`) : this.prevSlide.classList.add(`${ACTIVE}`);
+      }, Sulai.getTransitionDurationFromElement(active))
+    }
+
+    _animateFade() {
+
+    }
+  }
+
+  Sulai.Carousel = Carousel;
+})(window);
+
+(function ($) {
+  'use strict';
+
+  let _defaults = {
+    classes: '',
+    dropdownOptions: {}
+  };
+
+  class FormSelect extends Component {
+
+    constructor(el, options) {
+      super(FormSelect, el, options);
+
+      if (this.el.classList.contains(`${BROWSER_DEFAULT}`)) {
+        return;
+      }
+
+      this.el.Sulai_FormSelect = this;
+      this.options = Sulai.deepExtend({}, FormSelect.defaults, options);
+      this.isMultiple = this.el.multiple;
+      this.el.tabIndex = -1;
+      this._keysSelected = {};
+      this._valueDict = {};
+      this._setupDropdown();
+      this._setupEventHandlers();
+    }
+
+    static get defaults() {
+      return _defaults;
+    }
+
+    static init(els, options) {
+      return super.init(this, els, options);
+    }
+
+    static getInstance(el) {
+      return el.Sulai_FormSelect;
+    }
+
+    destroy() {
+      this._removeEventHandlers();
+      this._removeDropdown();
+      this.el.Sulai_FormSelect = undefined;
+    }
+
+    _setupEventHandlers() {
+      this._handleSelectChangeBound = this._handleSelectChange.bind(this);
+      this._handleOptionClickBound = this._handleOptionClick.bind(this);
+      this._handleInputClickBound = this._handleInputClick.bind(this);
+
+      this.dropdownOptions.querySelectorAll(`li:not(.${OPTGROUP})`).forEach((el) => {
+        el.addEventListener('click', this._handleOptionClickBound);
+      });
+      this.el.addEventListener('change', this._handleSelectChangeBound);
+      this.input.addEventListener('click', this._handleInputClickBound);
+    }
+
+    _removeEventHandlers() {
+      this.dropdownOptions.querySelectorAll(`li:not(.${OPTGROUP})`).forEach((el) => {
+        el.removeEventListener('click', this._handleOptionClickBound);
+      });
+      this.el.removeEventListener('change', this._handleSelectChangeBound);
+      this.input.removeEventListener('click', this._handleInputClickBound);
+    }
+
+    _handleSelectChange(e) {
+      this._setValueToInput();
+    }
+
+    _handleOptionClick(e) {
+      e.preventDefault();
+      let option = e.target.closest('li');
+      let key = option.id;
+      if ((!option.classList.contains(`${DISABLED}`)) && (!option.classList.contains(`${OPTGROUP}`)) && key.length) {
+        let selected = true;
+
+        if (this.isMultiple) {
+          let placeholderOption = this.dropdownOptions.querySelectorAll(`li.${DISABLED}.${SELECTED}`);
+          if (placeholderOption.length) {
+            placeholderOption.classList.remove(`${SELECTED}`);
+            placeholderOption.querySelector('input[type="checkbox"]').checked = false;
+            this._toggleEntryFromArray(placeholderOption[0].id);
+          }
+          selected = this._toggleEntryFromArray(key);
+        } else {
+          this.dropdownOptions.querySelector('li').classList.remove(`${SELECTED}`);
+          option.classList.toggle(`${SELECTED}`, selected);
+        }
+
+        // let prevSelected = this._valueDict[key].el.selected;
+        // this._valueDict[key].el.selected = prevSelected !== selected ? true : false;
+        this._valueDict[key].el.selected = selected ? true : false;
+        this.el.trigger('change');
+      }
+
+      e.stopPropagation();
+    }
+
+    _handleInputClick() {
+      if (this.dropdown && this.dropdown.isOpen) {
+        this._setValueToInput();
+        this._setSelectedStates();
+      }
+    }
+
+    _setupDropdown() {
+      this.wrapper = document.createElement('div');
+      this.wrapper.classList.add(`${SELECT_WRAPPER}`);
+      if (this.options.classes) {
+        this.wrapper.classList.add(this.options.classes);
+      }
+      this.el.insertAdjacentElement('beforebegin', this.wrapper);
+      this.wrapper.appendChild(this.el);
+
+      if (this.el.disabled) {
+        this.wrapper.classList.add(`${DISABLED}`);
+      }
+
+      // Buat Dropdown Khusus Select.
+      this.$selectOptions = this.el.childrens(`option, optgroup`);
+      this.dropdownOptions = document.createElement('ul');
+      this.dropdownOptions.id = `select-options-${Sulai.guid()}`;
+      this.dropdownOptions.classList.add(`${DROPDOWN_CONTENT}`, `${SELECT_DROPDOWN}`);
+      if (this.isMultiple) {
+        this.dropdownOptions.classList.add('multiple-select-dropdown');
+      }
+
+      // Buat Struktur Dropdown
+      if (this.$selectOptions.length) {
+        for (const el of this.$selectOptions) {
+          if (el.tagName.toLowerCase() === 'option') {
+            let optionEl;
+            if (this.isMultiple) {
+              optionEl = this._appendOptionWithIcon(this.el, el, 'multiple');
+            } else {
+              optionEl = this._appendOptionWithIcon(this.el, el);
+            }
+
+            this._addOptionToValueDict(el, optionEl);
+          } else if (el.tagName.toLowerCase() === 'optgroup') {
+            let selectOptions = el.childrens('option');
+
+            this.dropdownOptions.appendChild(Sulai.stringToElement(`<li class="${OPTGROUP}"><span>${el.getAttribute('label')}</span></li>`));
+
+            for (const el of selectOptions) {
+              let optionEl = this._appendOptionWithIcon(this.el, el, 'optgroup-option');
+              this._addOptionToValueDict(el, optionEl);
+            }
+          }
+        }
+      }
+
+      this.el.insertAdjacentElement('afterend', this.dropdownOptions);
+
+      // Input dropdown
+      this.input = document.createElement('input');
+      this.input.classList.add(`${SELECT_DROPDOWN}`, `${DROPDOWN_TRIGGER}`);
+      this.input.setAttribute('type', 'text');
+      this.input.setAttribute('readonly', 'true');
+      this.input.setAttribute('data-target', this.dropdownOptions.id);
+      if (this.el.disabled) {
+        this.input.disabled = true;
+      }
+
+      this.el.insertAdjacentElement('beforebegin', this.input);
+      // this.el.insertAdjacentElement('beforebegin', this.dropdownOptions);
+
+      this._setValueToInput();
+
+      // Add caret
+      let dropdownIcon = `<svg class="${CARET}" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>`;
+
+      this.el.insertAdjacentElement('beforebegin', Sulai.stringToElement(dropdownIcon));
+
+      // Siapkan Dropdown
+      if (!this.el.disabled) {
+        let dropdownOptions = Sulai.deepExtend({}, this.options.dropdownOptions);
+
+        // Tambahkan callback untuk memusatkan opsi yang dipilih saat konten tarik-turun dapat digulir
+        dropdownOptions.onOpenEnd = (el) => {
+          let selectedOption = this.dropdownOptions.querySelectorAll(`.${SELECTED}`)[0];
+          if (selectedOption) {
+            if (selectedOption.length) {
+              Sulai.keyDown = true;
+              this.dropdown.focusedIndex = selectedOption.index();
+              this.dropdown._focusFocusedItem();
+              Sulai.keyDown = false;
+
+              if (this.dropdown.isScrollable) {
+                let scrollOffset = selectedOption[0].getBoundingClientRect().top - this.dropdownOptions.getBoundingClientRect().top;
+                scrollOffset -= this.dropdownOptions.clientHeight / 2;
+                this.dropdownOptions.scrollTop = scrollOffset;
+              }
+            }
+          }
+        };
+
+        if (this.isMultiple) {
+          dropdownOptions.closeOnClick = false;
+        }
+        this.dropdown = Sulai.Dropdown.init(this.input, dropdownOptions);
+      }
+
+      this._setSelectedStates();
+    }
+
+    _addOptionToValueDict(el, optionEl) {
+      let index = Object.keys(this._valueDict).length;
+      let key = this.dropdownOptions.id + index;
+      let obj = {};
+      optionEl.id = key;
+
+      obj.el = el;
+      obj.optionEl = optionEl;
+      this._valueDict[key] = obj;
+    }
+
+    _removeDropdown() {
+      let carret = this.wrapper.querySelector(`.${CARET}`);
+      carret.parentNode.removeChild(this.wrapper);
+      this.input.parentNode.removeChild(carret);
+
+      this.dropdownOptions.parentNode.removeChild(this.dropdownOptions);
+      this.wrapper.insertAdjacentElement('beforebegin', this.el);
+      this.wrapper.parentNode.removeChild(this.wrapper);
+    }
+
+    _appendOptionWithIcon(select, option, type) {
+      let disabledClass = option.disabled ? 'disabled ' : '';
+      let optgroupClass = type === 'optgroup-option' ? 'optgroup-option' : '';
+      let multipleCheckbox = this.isMultiple ? `<label><input type="checkbox" ${disabledClass}/><span>${option.innerHTML}</span></label>` : option.innerHTML;
+      let liEl = document.createElement('li');
+      let spanEl = document.createElement('span');
+      spanEl.innerHTML = multipleCheckbox;
+      if (disabledClass) {
+        liEl.classList.add(disabledClass);
+      }
+      if (optgroupClass) {
+        liEl.classList.add(optgroupClass);
+      }
+      liEl.appendChild(spanEl);
+
+      // Kasih Icon
+      let iconUrl = option.getAttribute('data-icon');
+      if (!!iconUrl) {
+        let imgEl = Sulai.stringToElement(`<img alt="" src="${iconUrl}">`);
+        liEl.insertBefore(imgEl, liEl.firstChild);
+      }
+
+      // Check Kalau multiple tipe.
+      this.dropdownOptions.appendChild(liEl);
+      return liEl;
+    }
+
+    _toggleEntryFromArray(key) {
+      let notAdded = !this._keysSelected.hasOwnProperty(key);
+      let $optionLi = this._valueDict[key].optionEl
+
+      if (notAdded) {
+        this._keysSelected[key] = true;
+      } else {
+        delete this._keysSelected[key];
+      }
+
+      $optionLi.classList.toggle(`${SELECTED}`, notAdded);
+      $optionLi.querySelector('input[type="checkbox"]').checked = notAdded ? true : false;
+      $optionLi.selected = notAdded ? true : false;
+      return notAdded;
+    }
+
+    _setValueToInput() {
+      let values = [];
+      let options = this.el.querySelectorAll('option');
+      options.forEach(el => {
+        if (el.selected) {
+          values.push(el.textContent);
+        }
+      });
+
+      if (!values.length) {
+        let firstDisabled = this.el.querySelectorAll('option[disabled]');
+        if (firstDisabled.length && firstDisabled[0].value === '') {
+          values.push(firstDisabled.textContent);
+        }
+      }
+
+      this.input.value = values.join(', ');
+    }
+
+    _setSelectedStates() {
+      this._keysSelected = {};
+
+      for (let key in this._valueDict) {
+        let option = this._valueDict[key];
+        let optionIsSelected = option.el.selected
+        if (option.optionEl.querySelector('input[type="checkbox"]')) {
+          option.optionEl.querySelector('input[type="checkbox"]').checked = optionIsSelected ? true : false;
+        }
+        if (optionIsSelected) {
+          this._activateOption(this.dropdownOptions, option.optionEl);
+          this._keysSelected[key] = true;
+        } else {
+          option.optionEl.classList.remove(`${SELECTED}`);
+        }
+      }
+    }
+
+    _activateOption(collection, newOption) {
+      if (newOption) {
+        if (!this.isMultiple) {
+          if (collection.querySelector(`li.${SELECTED}`)) {
+            collection.querySelector(`li.${SELECTED}`).classList.remove(`${SELECTED}`);
+          }
+        }
+        let option = newOption;
+        option.classList.add(`${SELECTED}`);
+      }
+    }
+
+    getSelectedValues() {
+      let selectedValues = [];
+      for (let key in this._keysSelected) {
+        selectedValues.push(this._valueDict[key].el.value);
+      }
+      return selectedValues;
+    }
+  }
+
+  Sulai.FormSelect = FormSelect;
+})(window);
+
+(function ($) {
+  'use strict';
+
+  let _defaults = {
+    alignment: 'left',
+    autoFocus: true,
+    constrainWidth: true,
+    container: null,
+    coverTrigger: true,
+    closeOnClick: true,
+    hover: false,
+    inDuration: 150,
+    outDuration: 250,
+    onOpenStart: null,
+    onOpenEnd: null,
+    onCloseStart: null,
+    onCloseEnd: null,
+    onItemClick: null
+  };
+
+  class Dropdown extends Component {
+    constructor(el, options) {
+      super(Dropdown, el, options);
+      this.el.Sulai_Dropdown = this;
+      Dropdown._dropdowns.push(this);
+      this.id = Sulai.getIdFromTrigger(el);
+      this.dropdownEl = document.getElementById(this.id);
+      this.$dropdownEl = this.dropdownEl
+      this.options = Sulai.deepExtend({}, Dropdown.defaults, options);
+      this.isOpen = false;
+      this.isScrollable = false;
+      this.isTouchMoving = false;
+      this.focusedIndex = -1;
+      this.filterQuery = [];
+
+      if (!!!this.options.container) {
+        this.options.container.appendChild(this.dropdownEl);
+      } else {
+        this.el.insertAdjacentElement('afterend', this.dropdownEl); // ragu
+      }
+
+      this._makeDropdownFocusable();
+      this._resetFilterQueryBound = this._resetFilterQuery.bind(this);
+      this._handleDocumentClickBound = this._handleDocumentClick.bind(this);
+      this._handleDocumentTouchmoveBound = this._handleDocumentTouchmove.bind(this);
+      this._handleDropdownClickBound = this._handleDropdownClick.bind(this);
+      this._handleDropdownKeydownBound = this._handleDropdownKeydown.bind(this);
+      this._handleTriggerKeydownBound = this._handleTriggerKeydown.bind(this);
+      this._setupEventHandlers();
+    }
+
+    static get defaults() {
+      return _defaults;
+    }
+
+    static init(els, options) {
+      return super.init(this, els, options);
+    }
+
+    static getInstance(el) {
+      return el.Sulai_Dropdown;
+    }
+
+    destroy() {
+      this._resetDropdownStyles();
+      this._removeEventHandlers();
+      Dropdown._dropdowns.splice(Dropdown._dropdowns.indexOf(this), 1);
+      this.el.Sulai_Dropdown = undefined;
+    }
+
+    _setupEventHandlers() {
+      this.el.addEventListener('keydown', this._handleTriggerKeydownBound);
+      this.dropdownEl.addEventListener('click', this._handleDropdownClickBound);
+
+      if (this.options.hover) {
+        this._handleMouseEnterBound = this._handleMouseEnter.bind(this);
+        this.el.addEventListener('mouseenter', this._handleMouseEnterBound);
+        this._handleMouseLeaveBound = this._handleMouseLeave.bind(this);
+        this.el.addEventListener('mouseleave', this._handleMouseLeaveBound);
+        this.dropdownEl.addEventListener('mouseleave', this._handleMouseLeaveBound);
+
+      } else {
+        this._handleClickBound = this._handleClick.bind(this);
+        this.el.addEventListener('click', this._handleClickBound);
+      }
+    }
+
+    _removeEventHandlers() {
+      this.el.removeEventListener('keydown', this._handleTriggerKeydownBound);
+      this.dropdownEl.removeEventListener('click', this._handleDropdownClickBound);
+
+      if (this.options.hover) {
+        this.el.removeEventListener('mouseenter', this._handleMouseEnterBound);
+        this.el.removeEventListener('mouseleave', this._handleMouseLeaveBound);
+        this.dropdownEl.removeEventListener('mouseleave', this._handleMouseLeaveBound);
+      } else {
+        this.el.removeEventListener('click', this._handleClickBound);
+      }
+    }
+
+    _setupTemporaryEventHandlers() {
+      document.body.addEventListener('click', this._handleDocumentClickBound, true);
+      document.body.addEventListener('touchend', this._handleDocumentClickBound);
+      document.body.addEventListener('touchmove', this._handleDocumentTouchmoveBound);
+      this.dropdownEl.addEventListener('keydown', this._handleDropdownKeydownBound);
+    }
+
+    _removeTemporaryEventHandlers() {
+      document.body.removeEventListener('click', this._handleDocumentClickBound, true);
+      document.body.removeEventListener('touchend', this._handleDocumentClickBound);
+      document.body.removeEventListener('touchmove', this._handleDocumentTouchmoveBound);
+      this.dropdownEl.removeEventListener('keydown', this._handleDropdownKeydownBound);
+    }
+
+    _handleClick(e) {
+      e.preventDefault();
+      this.open();
+    }
+
+    _handleMouseEnter() {
+      this.open();
+    }
+
+    _handleMouseLeave(e) {
+      let toEl = e.toElement || e.relatedTarget;
+      let leaveToDropdownContent = !!toEl.closest(`.${DROPDOWN_CONTENT}`).length;
+      let leaveToActiveDropdownTrigger = false;
+
+      let $closestTrigger = toEl.closest(`.${DROPDOWN_TRIGGER}`);
+      if (
+        $closestTrigger.length &&
+        !!$closestTrigger[0].Sulai_Dropdown &&
+        $closestTrigger[0].Sulai_Dropdown.isOpen
+      ) {
+        leaveToActiveDropdownTrigger = true;
+      }
+
+      if (!leaveToActiveDropdownTrigger && !leaveToDropdownContent) {
+        this.close();
+      }
+    }
+
+    _handleDocumentClick(e) {
+      let $target = e.target
+      if (
+        this.options.closeOnClick && $target.closest(`.${DROPDOWN_CONTENT}`) && !this.isTouchMoving
+      ) {
+        setTimeout(() => {
+          this.close();
+        }, 0);
+      } else if (
+        $target.closest(`.${DROPDOWN_TRIGGER}`) || !$target.closest(`.${DROPDOWN_CONTENT}`)
+      ) {
+        setTimeout(() => {
+          this.close();
+        }, 0);
+      }
+      this.isTouchMoving = false;
+    }
+
+    _handleTriggerKeydown(e) {
+      if ((e.which === Sulai.keys.ARROW_DOWN || e.which === Sulai.keys.ENTER) && !this.isOpen) {
+        e.preventDefault();
+        this.open();
+      }
+    }
+
+    _handleDocumentTouchmove(e) {
+      let $target = e.target
+      if ($target.closest(`.${DROPDOWN_CONTENT}`)) {
+        this.isTouchMoving = true;
+      }
+    }
+
+    _handleDropdownClick(e) {
+      if (typeof this.options.onItemClick === 'function') {
+        let itemEl = e.target.closest('li')[0];
+        this.options.onItemClick.call(this, itemEl);
+      }
+    }
+
+    _handleDropdownKeydown(e) {
+      if (e.which === Sulai.keys.TAB) {
+        e.preventDefault();
+        this.close();
+
+      } else if ((e.which === Sulai.keys.ARROW_DOWN || e.which === Sulai.keys.ARROW_UP) && this.isOpen) {
+        e.preventDefault();
+        let direction = e.which === Sulai.keys.ARROW_DOWN ? 1 : -1;
+        let newFocusedIndex = this.focusedIndex;
+        let foundNewIndex = false;
+        do {
+          newFocusedIndex = newFocusedIndex + direction;
+
+          if (
+            !!this.dropdownEl.children[newFocusedIndex] &&
+            this.dropdownEl.children[newFocusedIndex].tabIndex !== -1
+          ) {
+            foundNewIndex = true;
+            break;
+          }
+        } while (newFocusedIndex < this.dropdownEl.children.length && newFocusedIndex >= 0);
+
+        if (foundNewIndex) {
+          this.focusedIndex = newFocusedIndex;
+          this._focusFocusedItem();
+        }
+
+      } else if (e.which === Sulai.keys.ENTER && this.isOpen) {
+        let focusedElement = this.dropdownEl.children[this.focusedIndex];
+        let $activatableElement = focusedElement.querySelectorAll('a, button')[0];
+
+        if (!!$activatableElement.length) {
+          $activatableElement[0].click();
+        } else if (!!focusedElement) {
+          focusedElement.click();
+        }
+
+      } else if (e.which === Sulai.keys.ESC && this.isOpen) {
+        e.preventDefault();
+        this.close();
+      }
+
+      let letter = String.fromCharCode(e.which).toLowerCase(),
+        nonLetters = [9, 13, 27, 38, 40];
+      if (letter && nonLetters.indexOf(e.which) === -1) {
+        this.filterQuery.push(letter);
+
+        let string = this.filterQuery.join(''),
+          // newOptionEl = Array.prototype.filter.call(this.dropdownEl.querySelectorAll('li'), (el) => {
+          //   return (el.textContent.toLowerCase().indexOf(string) === 0);
+          // })[0];
+
+          newOptionEl = this.dropdownEl.querySelectorAll('li').filter((el) => {
+            return (el.textContent.toLowerCase().indexOf(string) === 0);
+          })[0];
+
+        if (newOptionEl) {
+          this.focusedIndex = newOptionEl.index();
+          this._focusFocusedItem();
+        }
+      }
+
+      this.filterTimeout = setTimeout(this._resetFilterQueryBound, 1000);
+    }
+
+    _resetFilterQuery() {
+      this.filterQuery = [];
+    }
+
+    _resetDropdownStyles() {
+      this.$dropdownEl.style.display = ''
+      this.$dropdownEl.style.width = ''
+      this.$dropdownEl.style.height = ''
+      this.$dropdownEl.style.left = ''
+      this.$dropdownEl.style.top = ''
+      this.$dropdownEl.style.transformOrigin = ''
+      this.$dropdownEl.style.transform = ''
+      this.$dropdownEl.style.opacity = ''
+    }
+
+    _makeDropdownFocusable() {
+      this.dropdownEl.tabIndex = 0;
+      for (let el of this.dropdownEl.children) {
+        if (!el.getAttribute('tabindex')) {
+          el.setAttribute('tabindex', 0);
+        }
+      }
+    }
+
+    _focusFocusedItem() {
+      if (
+        this.focusedIndex >= 0 &&
+        this.focusedIndex < this.dropdownEl.children.length &&
+        this.options.autoFocus
+      ) {
+        this.dropdownEl.children[this.focusedIndex].focus();
+      }
+    }
+
+    _getDropdownPosition() {
+      let offsetParentBRect = this.el.offsetParent.getBoundingClientRect();
+      let triggerBRect = this.el.getBoundingClientRect();
+      let dropdownBRect = this.dropdownEl.getBoundingClientRect();
+
+      let idealHeight = dropdownBRect.height;
+      let idealWidth = dropdownBRect.width;
+      let idealXPos = triggerBRect.left - dropdownBRect.left;
+      let idealYPos = triggerBRect.top - dropdownBRect.top;
+
+      let dropdownBounds = {
+        left: idealXPos,
+        top: idealYPos,
+        height: idealHeight,
+        width: idealWidth
+      };
+
+      let closestOverflowParent = !!this.dropdownEl.offsetParent ? this.dropdownEl.offsetParent : this.dropdownEl.parentNode;
+
+      let alignments = Sulai.checkPossibleAlignments(
+        this.el,
+        closestOverflowParent,
+        dropdownBounds,
+        this.options.coverTrigger ? 0 : triggerBRect.height
+      );
+
+      let verticalAlignment = 'top';
+      let horizontalAlignment = this.options.alignment;
+      idealYPos += this.options.coverTrigger ? 0 : triggerBRect.height;
+
+      this.isScrollable = false;
+
+      if (!alignments.top) {
+        if (alignments.bottom) {
+          verticalAlignment = 'bottom';
+        } else {
+          this.isScrollable = true;
+
+          if (alignments.spaceOnTop > alignments.spaceOnBottom) {
+            verticalAlignment = 'bottom';
+            idealHeight += alignments.spaceOnTop;
+            idealYPos -= alignments.spaceOnTop;
+          } else {
+            idealHeight += alignments.spaceOnBottom;
+          }
+        }
+      }
+
+      if (!alignments[horizontalAlignment]) {
+        let oppositeAlignment = horizontalAlignment === 'left' ? 'right' : 'left';
+        if (alignments[oppositeAlignment]) {
+          horizontalAlignment = oppositeAlignment;
+        } else {
+          if (alignments.spaceOnLeft > alignments.spaceOnRight) {
+            horizontalAlignment = 'right';
+            idealWidth += alignments.spaceOnLeft;
+            idealXPos -= alignments.spaceOnLeft;
+          } else {
+            horizontalAlignment = 'left';
+            idealWidth += alignments.spaceOnRight;
+          }
+        }
+      }
+
+      if (verticalAlignment === 'bottom') {
+        idealYPos = idealYPos - dropdownBRect.height + (this.options.coverTrigger ? triggerBRect.height : 0);
+      }
+      if (horizontalAlignment === 'right') {
+        idealXPos = idealXPos - dropdownBRect.width + triggerBRect.width;
+      }
+      return {
+        x: idealXPos,
+        y: idealYPos,
+        verticalAlignment: verticalAlignment,
+        horizontalAlignment: horizontalAlignment,
+        height: idealHeight,
+        width: idealWidth
+      };
+    }
+
+    _animateIn() {
+      this.dropdownEl.anime({
+        transform: {
+          'scale(??, ??)': [0.3, 1],
+        },
+        opacity: [0, 1],
+      }, this.options.inDuration, 'easeOutQuint', (anim) => {
+        if (this.options.autoFocus) {
+          this.dropdownEl.focus();
+        }
+        if (typeof this.options.onOpenEnd === 'function') {
+          this.options.onOpenEnd.call(this, this.el);
+        }
+      });
+    }
+
+    _animateOut() {
+      this.dropdownEl.anime({
+        transform: {
+          'scale(??, ??)': [1, 0.3],
+        },
+        opacity: [1, 0],
+      }, this.options.inDuration, 'easeOutQuint', (anim) => {
+        this._resetDropdownStyles();
+        if (typeof this.options.onCloseEnd === 'function') {
+          this.options.onCloseEnd.call(this, this.el);
+        }
+      });
+    }
+
+    _placeDropdown() {
+      let idealWidth = this.options.constrainWidth ? this.el.getBoundingClientRect().width : this.dropdownEl.getBoundingClientRect().width;
+      this.dropdownEl.style.width = idealWidth + 'px';
+
+      let positionInfo = this._getDropdownPosition();
+      this.dropdownEl.style.left = positionInfo.x + 'px';
+      this.dropdownEl.style.top = positionInfo.y + 'px';
+      this.dropdownEl.style.height = positionInfo.height + 'px';
+      this.dropdownEl.style.width = positionInfo.width + 'px';
+      this.dropdownEl.style.transformOrigin = `${positionInfo.horizontalAlignment === 'left' ? '0' : '100%'} ${positionInfo.verticalAlignment === 'top' ? '0' : '100%'}`;
+    }
+
+    open() {
+      if (this.isOpen) {
+        return;
+      }
+      this.isOpen = true;
+
+      if (typeof this.options.onOpenStart === 'function') {
+        this.options.onOpenStart.call(this, this.el);
+      }
+
+      this._resetDropdownStyles();
+      this.dropdownEl.style.display = 'block';
+
+      this._placeDropdown();
+      this._animateIn();
+      this._setupTemporaryEventHandlers();
+    }
+
+    close() {
+      if (!this.isOpen) {
+        return;
+      }
+      this.isOpen = false;
+      this.focusedIndex = -1;
+
+      if (typeof this.options.onCloseStart === 'function') {
+        this.options.onCloseStart.call(this, this.el);
+      }
+
+      this._animateOut();
+      this._removeTemporaryEventHandlers();
+
+      if (this.options.autoFocus) {
+        this.el.focus();
+      }
+    }
+
+    recalculateDimensions() {
+      if (this.isOpen) {
+        this.$dropdownEl.style.width = ''
+        this.$dropdownEl.style.height = ''
+        this.$dropdownEl.style.left = ''
+        this.$dropdownEl.style.top = ''
+        this.$dropdownEl.style.transformOrigin = ''
+        this._placeDropdown();
+      }
+    }
+  }
+
+  Dropdown._dropdowns = [];
+  Sulai.Dropdown = Dropdown;
+})(window);
+
+(function ($) {
+  'use strict';
+
+  let _defaults = {
+    duration: 300,
+    onShow: null,
+    swipeable: false,
+    responsiveThreshold: Infinity
+  };
+
+  class Tabs extends Component {
+
+    constructor(el, options) {
+      super(Tabs, el, options);
+      this.el.Sulai_Tabs = this;
+      this.options = Sulai.deepExtend({}, Tabs.defaults, options);
+
+      this.tabLinks = this.el.childrens(`li.${TAB}`).childrens('a');
+      this.index = 0;
+      this._setupActiveTabLink();
+
+      if (this.options.swipeable) {
+        this._setupSwipeableTabs();
+      } else {
+        this._setupNormalTabs();
+      }
+
+      this._setTabsAndTabWidth();
+      this._createIndicator();
+      this._setupEventHandlers();
+    }
+
+    static get defaults() {
+      return _defaults;
+    }
+
+    static init(els, options) {
+      return super.init(this, els, options);
+    }
+
+    static getInstance(el) {
+      return el.Sulai_Tabs;
+    }
+
+    destroy() {
+      this._removeEventHandlers();
+      this._indicator.parentNode.removeChild(this._indicator);
+
+      if (this.options.swipeable) {
+        this._teardownSwipeableTabs();
+      } else {
+        this._teardownNormalTabs();
+      }
+
+      this.el.Sulai_Tabs = undefined;
+    }
+
+    _setupEventHandlers() {
+      this._handleWindowResizeBound = this._handleWindowResize.bind(this);
+      window.addEventListener('resize', this._handleWindowResizeBound);
+
+      this._handleTabClickBound = this._handleTabClick.bind(this);
+      this.el.addEventListener('click', this._handleTabClickBound);
+    }
+
+    _removeEventHandlers() {
+      window.removeEventListener('resize', this._handleWindowResizeBound);
+      this.el.removeEventListener('click', this._handleTabClickBound);
+    }
+
+    _handleWindowResize() {
+      this._setTabsAndTabWidth();
+
+      if (this.tabWidth !== 0 && this.tabsWidth !== 0) {
+        this._indicator.style.left = this._calcLeftPos(this.activeTabLink) + 'px';
+        this._indicator.style.right = this._calcRightPos(this.activeTabLink) + 'px';
+      }
+    }
+
+    _handleTabClick(e) {
+      let tab = e.target.closest(`li.${TAB}`);
+      let tabLink = e.target.closest('a');
+
+      if (!tabLink || !tabLink.parentNode.classList.contains(`${TAB}`)) {
+        return;
+      }
+
+      if (tab.classList.contains(`${DISABLED}`)) {
+        e.preventDefault();
+        return;
+      }
+
+      if (!!tabLink.target) {
+        return;
+      }
+
+      this.activeTabLink.classList.remove(`${ACTIVE}`);
+      let oldContent = this.content;
+
+      this.activeTabLink = tabLink;
+      this.content = document.querySelector(Sulai.escapeHash(tabLink.hash));
+      this.tabLinks = this.el.childrens(`li.${TAB}`).childrens('a');
+
+      this.activeTabLink.classList.add(`${ACTIVE}`);
+      let prevIndex = this.index;
+      this.index = Math.max(this.tabLinks.index(tabLink), 0); // Ragu
+
+      if (this.options.swipeable) {
+        if (this._tabsCarousel) {
+          this._tabsCarousel.set(this.index, () => {
+            if (typeof this.options.onShow === 'function') {
+              this.options.onShow.call(this, this.content);
+            }
+          });
+        }
+      } else {
+        if (this.content) {
+          this.content.style.display = 'block';
+          this.content.classList.add(`${ACTIVE}`);
+          if (typeof this.options.onShow === 'function') {
+            this.options.onShow.call(this, this.content);
+          }
+
+          if (oldContent && !oldContent.is(this.content)) {
+            oldContent.style.display = 'none';
+            oldContent.classList.remove(`${ACTIVE}`);
+          }
+        }
+      }
+
+      this._setTabsAndTabWidth();
+      this._animateIndicator(prevIndex);
+      e.preventDefault();
+    }
+
+    _createIndicator() {
+      let indicator = document.createElement('li');
+      indicator.classList.add(`${INDICATOR}`);
+
+      this.el.appendChild(indicator);
+      this._indicator = indicator;
+
+      setTimeout(() => {
+        this._indicator.style.left = this._calcLeftPos(this.activeTabLink) + 'px';
+        this._indicator.style.right = this._calcRightPos(this.activeTabLink) + 'px';
+      }, 0);
+    }
+
+    _setupActiveTabLink() {
+      this.activeTabLink = this.tabLinks.filter((tabs) => {
+        if (tabs.is('[href="' + location.hash + '"]')) {
+          return tabs;
+        }
+      })[0]
+
+      if (this.activeTabLink == undefined) {
+        this.activeTabLink = this.el.childrens(`li.${TAB}`).childrens(`a.${ACTIVE}`)[0];
+      }
+      if (this.activeTabLink == undefined) {
+        this.activeTabLink = this.el.childrens(`li.${TAB}`).childrens('a')[0];
+      }
+
+      this.tabLinks.forEach(tab => {
+        tab.classList.remove(`${ACTIVE}`);
+      });
+      this.activeTabLink.classList.add(`${ACTIVE}`);
+
+      this.index = Math.max(this.tabLinks.index(this.activeTabLink), 0);
+
+      if (this.activeTabLink) {
+        this.content = document.querySelector(Sulai.escapeHash(this.activeTabLink.hash));
+        this.content.classList.add(`${ACTIVE}`);
+      }
+    }
+
+    _setupSwipeableTabs() {
+      if (window.innerWidth > this.options.responsiveThreshold) {
+        this.options.swipeable = false;
+      }
+
+      let tabsContent;
+      this.tabLinks.forEach((link) => {
+        let currContent = Sulai.escapeHash(link.hash);
+        currContent.classList.add(`${CAROUSEL_ITEM}`);
+        tabsContent = currContent;
+      });
+
+      let tabsWrapper = Sulai.stringToElement('<div class="tabs-content carousel carousel-slider"></div>');
+      tabsContent.insertAdjacentElement('beforebegin', tabsWrapper);
+      tabsWrapper.appendChild(tabsContent);
+      tabsContent.style.display = '';
+
+      let activeTabIndex = this.activeTabLink.closest(`.${TAB}`).index();
+
+      this._tabsCarousel = Sulai.Carousel.init(tabsWrapper, {
+        fullWidth: true,
+        noWrap: true,
+        onCycleTo: (item) => {
+          let prevIndex = this.index;
+          this.index = item.index();
+          this.activeTabLink.classList.remove(`${ACTIVE}`);
+          this.activeTabLink = this.tabLinks.eq(this.index);
+          this.activeTabLink.addClass(`${ACTIVE}`);
+          this._animateIndicator(prevIndex);
+          if (typeof this.options.onShow === 'function') {
+            this.options.onShow.call(this, this.$content[0]);
+          }
+        }
+      });
+
+      // Set initial carousel slide to active tab
+      this._tabsCarousel.set(activeTabIndex);
+    }
+
+    _teardownSwipeableTabs() {
+      let tabsWrapper = this._tabsCarousel.el;
+      this._tabsCarousel.destroy();
+
+      tabsWrapper.insertAdjacentElement('afterend', tabsWrapper.children);
+      tabsWrapper.remove();
+    }
+
+    _setupNormalTabs() {
+      // Hide Tabs Content
+      this.tabLinks.filter((link) => {
+        if (!link.is(this.activeTabLink)) {
+          if (!!link.hash) {
+            let currContent = document.querySelector(Sulai.escapeHash(link.hash));
+            if (currContent) {
+              currContent.style.display = 'none';
+            }
+          }
+        }
+      })
+    }
+
+    _teardownNormalTabs() {
+      // show Tabs Content
+      this.tabLinks.forEach((link) => {
+        if (!!link.hash) {
+          let currContent = Sulai.escapeHash(link.hash)
+          if (currContent.length) {
+            currContent.style.display = '';
+          }
+        }
+      });
+    }
+
+    _setTabsAndTabWidth() {
+      this.tabsWidth = this.el.innerWidth();
+      this.tabWidth = Math.max(this.tabsWidth, this.el.scrollWidth) / this.tabLinks.length;
+    }
+
+    _calcRightPos(el) {
+      return Math.ceil(this.tabsWidth - el.offsetLeft - el.getBoundingClientRect().width);
+    }
+
+    _calcLeftPos(el) {
+      return Math.floor(el.offsetLeft);
+    }
+
+    updateTabIndicator() {
+      this._setTabsAndTabWidth();
+      this._animateIndicator(this.index);
+    }
+
+    _animateIndicator(prevIndex) {
+      let leftDelay = 0,
+        rightDelay = 0;
+
+      if (this.index - prevIndex >= 0) {
+        leftDelay = 90;
+      } else {
+        rightDelay = 90;
+      }
+
+      this._indicator.anime({
+        left: {
+          "??px": [0, this._calcLeftPos(this.activeTabLink)]
+        },
+        right: {
+          "??px": [0, this._calcRightPos(this.activeTabLink)]
+        }
+      }, this.options.duration, 'easeOutBounce')
+    }
+
+    select(tabId) {
+      let tab = this.tabLinks.filter('[href="#' + tabId + '"]');
+      if (tab.length) {
+        tab.trigger('click');
+      }
+    }
+  }
+
+  Sulai.Tabs = Tabs;
+})(window);
+
+document.documentElement.ready(function () {
+  Sulai.AutoInit();
+  this.querySelectorAll('*').forEach(function (each) {
+    toggle(each);
+    dismiss(each);
+  });
+}, false);
+
+function testAnimate(that) {
+  that.anime({
+    transform: {
+      'scale(??, ??)': [0.3, 1],
+      'translateY(??px)': [0, 400],
+    },
+    // opacity: [1, 0.1],
+  }, 1000, 'easeOutBounce', function (anime) {
+    console.log(anime);
+  });
+}
